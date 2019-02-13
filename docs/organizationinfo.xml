@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fpdoc-descriptions><package name="project1"><module name="OrganizationInfo"><element name="TOrganizationInfo.OKPO"><short>Код в общероссийском классификаторе предприятий и организаций</short>
+      </element><element name="TOrganizationInfo"><short>Сведения об участнике факта хозяйственной жизни (УчастникТип)</short>
+      <descr>Таблица 5.33
+</descr>
+      </element><element name="TOrganizationInfo.Department"><short>Структурное подразделение</short>
+      </element><element name="TOrganizationInfo.OrganizationOrPersonInfo"><short>Информация для участника документооборота</short><descr>Информация, позволяющая получающему документ участнику документооборота обеспечить его автоматизированную обработку
+</descr>
+      </element><element name="TOrganizationInfo.ShortName"><short>Краткое название</short>
+      </element><element name="TIdentificationInformation.IndividualEntrepreneurInformation"><short>Сведения об индивидуальном предпринимателе</short><descr>Типовой элемент &lt;СвИПТип&gt;.
+Состав элемента представлен в таблице 5.43
+</descr>
+      </element><element name="TIndividualEntrepreneurInformation.INN"><short>ИНН</short><descr>Типовой элемент &lt;ИННФЛТип&gt;.
+  Обязателен при отсутствии ДефИННФЛ
+</descr>
+      </element><element name="TIndividualEntrepreneurInformation.INNDef"><short>ИНН при составлении документа с Функция=СЧФ или Функция=СЧФДОП налоговым агентом, указанным в пунктах 2 и 3 статьи 161 НК РФ, в части информации о продавце/грузоотправителе</short><descr>Принимает значение: "-" (дефис) (визуализируется как прочерк).
+  При наличии ИННФЛ не формируется.
+  Обязателен при отсутствии ИННФЛ
+</descr>
+      </element><element name="TIndividualEntrepreneurInformation.IndividualEntityRegistrationCertificate"><short>Реквизиты свидетельства о государственной регистрации индивидуального предпринимателя</short><descr>Обязателен для случаев подписания счета-фактуры непосредственно продавцом
+</descr>
+      </element><element name="TIndividualEntrepreneurInformation.OtherInfo"><short>Иные сведения, идентифицирующие физическое лицо</short>
+      </element><element name="TIndividualEntrepreneurInformation.Person"><short>Фамилия, имя, отчество</short><descr>Типовой элемент &lt;ФИОТип&gt;.
+  Состав элемента представлен в таблице 5.49
+</descr>
+      </element><element name="TPerson"><short>Фамилия, имя, отчество физического лица (ФИОТип)</short><descr>Таблица 5.49
+</descr>
+      </element><element name="TPerson.Surname"><short>Фамилия</short>
+      </element><element name="TPerson.FirstName"><short>Имя</short>
+      </element><element name="TPerson.Patronymic"><short>Отчество</short>
+      </element>
+    <element name="TOrganizationInfoList"><short>Список контрагентов</short>
+      </element><element name="TOrganizationInfo.IdentificationInformation"><short>Идентификационные сведения</short><descr>Состав элемента представлен в таблице 5.34
+</descr>
+      </element><element name="TIdentificationInformation"><short>Идентификационные сведения (ИдСв)</short><descr>Таблица 5.34
+</descr>
+      </element><element name="TIndividualEntrepreneurInformation"><short>Сведения об индивидуальном предпринимателе (СвИПТип)</short><descr>Таблица 5.43
+</descr>
+      </element><element name="TLegalEntityInformation"><short>Сведения о юридическом лице, состоящем на учете в налоговых органах (СвЮЛУч)</short><descr>Таблица 5.35
+</descr>
+      </element><element name="TLegalEntityInformation.FullName"><short>Наименование полное</short>
+      </element><element name="TLegalEntityInformation.INN"><short>ИНН</short><descr><p>Типовой элемент &lt;ИННЮЛТип&gt;.</p><p>Обязателен при отсутствии ДефИННЮЛ </p>
+        </descr>
+      </element><element name="TLegalEntityInformation.INNDef"><short>ИНН при составлении документа с Функция=СЧФ или Функция=СЧФДОП налоговым агентом, указанным в пунктах 2 и 3 статьи 161 НК РФ, в части информации о продавце/грузоотправителе/грузополучателе или для документа с Функция=СЧФ, выставляемом при получении оплаты, частичной оплаты в счет предстоящих поставок товаров (выполнения работ, оказания услуг), передачи имущественных прав, в части информации о грузоотправителе/грузополучателе</short><descr>Принимает значение "-" (дефис) (визуализируется как прочерк).
+При наличии ИННЮЛ не формируется.
+Обязателен при отсутствии ИННЮЛ
+</descr>
+      </element><element name="TLegalEntityInformation.KPP"><short>КПП</short><descr>Типовой элемент &lt;КППТип&gt;.
+</descr>
+      </element><element name="TIdentificationInformation.LegalEntityInformation"><short>Сведения о юридическом лице, состоящем на учете в налоговых органах</short><descr>Состав элемента представлен в таблице 5.35
+</descr>
+      </element><element name="TIdentificationInformation.ForeignEntityInformation"><short>Сведения об иностранном лице, не состоящем на учете в налоговых органах в качестве налогоплательщика</short><descr>Состав элемента представлен в таблице 5.36
+</descr>
+      </element><element name="TForeignEntityInformation"><short>Сведения об иностранном лице, не состоящем на учете в налоговых органах в качестве налогоплательщика (СвИнНеУч)</short><descr>Таблица 5.36
+</descr>
+      </element><element name="TForeignEntityInformation.FullName"><short>Наименование полное </short>
+      </element><element name="TForeignEntityInformation.Identifier"><short>Идентификатор юридического лица</short><descr>Информация для автоматизированной обработки
+</descr>
+      </element><element name="TForeignEntityInformation.OtherInfo"><short>Иные сведения, идентифицирующие юридическое лицо</short><descr>В частности, может быть указана страна при отсутствии КодСтр
+</descr>
+      </element><element name="TIdentificationInformation.PhysicalPerson"><short>Сведения о физическом лице</short><descr><p>Типовой элемент &lt;СвФЛТип&gt;.</p><p>Состав элемента представлен в таблице 5.44.</p><p>Для документов с Функция=ДОП. При формировании данного элемента ГосРегИПВыдДов не заполняется</p>
+        </descr>
+      </element><element name="TPhysicalPersonEntity"><short>Сведения о физическом лице (СвФЛТип)</short><descr>Таблица 5.44
+</descr>
+      </element><element name="TPhysicalPersonEntity.CertificateStateRegistration"><short>Реквизиты свидетельства о государственной регистрации индивидуального предпринимателя, выдавшего доверенность физическому лицу на подписание счета-фактуры</short><descr>Обязателен для подписанта счета-фактуры в случае выставления счета-фактуры индивидуальным предпринимателем, когда счет-фактура подписывается физическим лицом (в том числе индивидуальным предпринимателем), уполномоченным доверенностью от имени индивидуального предпринимателя
+</descr>
+      </element><element name="TPhysicalPersonEntity.INN"><short>ИНН физического лица</short><descr><p>Типовой элемент &lt;ИННФЛТип&gt;.</p><p>Обязателен для подписанта при наличии в сертификате ключа проверки электронной подписи
+</p>
+        </descr>
+      </element><element name="TPhysicalPersonEntity.OtherInfo"><short>Иные сведения, идентифицирующие физическое лицо</short>
+      </element><element name="TPhysicalPersonEntity.Person"><short>Фамилия, имя, отчество</short><descr>Состав элемента представлен в таблице 5.49
+</descr>
+      </element><element name="TOrganizationInfo.Adress"><short>Адрес</short><descr><p>Типовой элемент &lt;АдресТип&gt;.</p><p>Состав элемента представлен в таблице 5.39.</p><p>Обязателен для Функция=СЧФ и Функция=СЧФДОП</p>
+        </descr>
+      </element><element name="TOrganizationInfo.ContactInfo"><short>Контактные данные</short><descr><p>Типовой элемент &lt;КонтактТип&gt;.</p><p>Состав элемента представлен в таблице 5.42</p>
+        </descr>
+      </element><element name="TContactInfo"><short>Контактные данные (КонтактТип)</short><descr>Таблица 5.42
+</descr>
+      </element><element name="TContactInfo.Phone"><short>Номер контактного телефона/факс </short>
+      </element><element name="TContactInfo.EMail"><short>Адрес электронной почты </short>
+      </element><element name="TOrganizationInfo.BankDetails"><short>Банковские реквизиты</short><descr>Состав элемента представлен в таблице 5.37
+</descr>
+      </element><element name="TBankDetails"><short>Банковские реквизиты (БанкРекв)</short><descr>Таблица 5.37
+</descr>
+      </element><element name="TBankDetails.Account"><short>Номер банковского счета</short>
+      </element><element name="TBankDetails.BankInfo"><short>Сведения о банке</short><descr>Состав элемента представлен в таблице 5.38
+</descr>
+      </element><element name="TBankInfo"><short>Сведения о банке (СвБанк)</short><descr>Таблица 5.38
+</descr>
+      </element><element name="TBankInfo.Name"><short>Наименование банка </short>
+      </element><element name="TBankInfo.BIK"><short>Банковский идентификационный код (БИК) в соответствии со "Справочником БИК РФ" </short><descr>Типовой элемент &lt;БИКТип&gt;
+</descr>
+      </element><element name="TBankInfo.KorrAcount"><short>Корреспондентский счет банка </short>
+      </element>
+    <element name="TLegalEntityEmployee"><short>Представитель юридического лица (ЮЛ)</short><descr>Таблица 5.32
+</descr>
+      </element><element name="TLegalEntityEmployee.RegistrationInfo"><short>Реквизиты свидетельства о государственной регистрации индивидуального предпринимателя, выдавшего доверенность организации на подписание счета-фактуры</short><descr>Обязателен для подписанта счета-фактуры в случае выставления счета-фактуры индивидуальным предпринимателем, когда счет-фактура подписывается работником организации, уполномоченной доверенностью от имени индивидуального предпринимателя
+</descr>
+      </element><element name="TLegalEntityEmployee.Inn"><short>ИНН юридического лица</short><descr>Типовой элемент &lt;ИННЮЛТип&gt;
+</descr>
+      </element><element name="TLegalEntityEmployee.OrganizationName"><short>Наименование</short>
+      </element><element name="TLegalEntityEmployee.Position"><short>Должность</short>
+      </element><element name="TLegalEntityEmployee.OtherInfo"><short>Иные сведения, идентифицирующие физическое лицо</short>
+      </element><element name="TLegalEntityEmployee.Person"><short>Фамилия, имя, отчество</short><descr><p>Типовой элемент &lt;ФИОТип&gt;.</p><p>Состав элемента представлен в таблице 5.49</p>
+        </descr>
+      </element>
+    </module>
+  </package>
+</fpdoc-descriptions>

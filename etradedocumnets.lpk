@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Package Version="4">
+    <Name Value="ETradeDocumnets"/>
+    <Type Value="RunAndDesignTime"/>
+    <Author Value="Lagunov A.A."/>
+    <CompilerOptions>
+      <Version Value="11"/>
+      <SearchPaths>
+        <OtherUnitFiles Value="invoce"/>
+        <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)/"/>
+      </SearchPaths>
+    </CompilerOptions>
+    <Description Value="Обработка электронных форматов документов РФ"/>
+    <License Value="LGPL"/>
+    <Version Minor="2"/>
+    <Files Count="9">
+      <Item1>
+        <Filename Value="etradedoc.pas"/>
+        <HasRegisterProc Value="True"/>
+        <UnitName Value="ETradeDoc"/>
+      </Item1>
+      <Item2>
+        <Filename Value="invoce/additionalinfo.pas"/>
+        <UnitName Value="AdditionalInfo"/>
+      </Item2>
+      <Item3>
+        <Filename Value="invoce/adressinfo.pas"/>
+        <UnitName Value="AdressInfo"/>
+      </Item3>
+      <Item4>
+        <Filename Value="invoce/exchangefile.pas"/>
+        <UnitName Value="ExchangeFile"/>
+      </Item4>
+      <Item5>
+        <Filename Value="invoce/invocedocument.pas"/>
+        <UnitName Value="InvoceDocument"/>
+      </Item5>
+      <Item6>
+        <Filename Value="invoce/invoiceitem.pas"/>
+        <UnitName Value="InvoiceItem"/>
+      </Item6>
+      <Item7>
+        <Filename Value="invoce/organizationinfo.pas"/>
+        <UnitName Value="OrganizationInfo"/>
+      </Item7>
+      <Item8>
+        <Filename Value="invoce/signer.pas"/>
+        <UnitName Value="Signer"/>
+      </Item8>
+      <Item9>
+        <Filename Value="invoce/transferinfo.pas"/>
+        <UnitName Value="TransferInfo"/>
+      </Item9>
+    </Files>
+    <LazDoc Paths="/usr/local/share/lazarus/components/ETradeDocuments/docs"/>
+    <i18n>
+      <EnableI18N Value="True"/>
+      <OutDir Value="languages"/>
+    </i18n>
+    <RequiredPkgs Count="2">
+      <Item1>
+        <PackageName Value="LazUtils"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="FCL"/>
+      </Item2>
+    </RequiredPkgs>
+    <UsageOptions>
+      <UnitPath Value="$(PkgOutDir)"/>
+    </UsageOptions>
+    <PublishOptions>
+      <Version Value="2"/>
+      <UseFileFilters Value="True"/>
+    </PublishOptions>
+  </Package>
+</CONFIG>

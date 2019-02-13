@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fpdoc-descriptions><package name="project1"><module name="TransferInfo"><element name="TTransferInfo"><short>Содержание факта хозяйственной жизни 3 - сведения о факте отгрузки товаров (выполнения работ), передачи имущественных прав (о предъявлении оказанных услуг) (СвПродПер)
+ </short><descr>Таблица 5.20
+</descr>
+      </element><element name="TTransferInfo.ItemsTransferInfo"><short>Сведения о передаче (сдаче) товаров (результатов работ), имущественных прав (о предъявлении оказанных услуг)</short><descr>Состав элемента представлен в таблице 5.21
+</descr>
+      </element><element name="TItemsTransferInfo.OperationInfo"><short>Содержание операции</short><descr><p>Содержание действий.</p><p>Указывается, например, "Товары переданы", "Результаты работ сдал", "Услуги оказаны в полном объеме" или другое</p>
+        </descr>
+      </element><element name="TItemsTransferInfo.OperationType"><short>Вид операции</short><descr>Дополнительная информация, позволяющая в автоматизированном режиме определять необходимый для конкретного случая порядок использования информации документа у продавца
+</descr>
+      </element><element name="TItemsTransferInfo.TransferDate"><short>Дата отгрузки товаров (передачи результатов работ), передачи имущественных прав (предъявления оказанных услуг)</short><descr><p>Типовой элемент &lt;ДатаТип&gt;.</p><p>Дата в формате ДД.ММ.ГГГГ.</p><p>Формируется, если ДатаПер отлична от ДатаСчФ</p>
+        </descr>
+      </element><element name="TItemsTransferInfo.DateBegin"><short>Дата начала периода оказания услуг (выполнения работ, поставки товаров)</short><descr><p>Типовой элемент &lt;ДатаТип&gt;.</p><p>Дата в формате ДД.ММ.ГГГГ.</p><p>Например, показатель может формироваться для товаров (работ, услуг, имущественных прав), отгруженных (выполненных, оказанных, переданных) лицам, указанным в подпункте 1 пункта 3 статьи 169 НК РФ, а также организациями отдельных отраслей, связанных с непрерывными и долгосрочными поставками в адрес одного и того же покупателя или в отношении деятельности, результаты которой не имеют материального выражения, реализуются и потребляются в процессе осуществления этой деятельности</p>
+        </descr>
+      </element><element name="TItemsTransferInfo.DateEnd"><short>Дата окончания периода оказания услуг (выполнения работ, поставки товаров)</short><descr><p>Типовой элемент &lt;ДатаТип&gt;.</p><p>Дата в формате ДД.ММ.ГГГГ.</p><p>Например, показатель может формироваться для товаров (работ, услуг, имущественных прав), отгруженных (выполненных, оказанных, переданных) лицам, указанным в подпункте 1 пункта 3 статьи 169 НК РФ, а также организациями отдельных отраслей, связанных с непрерывными и долгосрочными поставками в адрес одного и того же покупателя, или в отношении деятельности, результаты которой не имеют материального выражения, реализуются и потребляются в процессе осуществления этой деятельности</p>
+        </descr>
+      </element>
+<element name="TShipmentBase.BaseDocumentName"><short>Наименование документа - основания</short><descr>При отсутствии указывается "Без документа-основания"
+</descr>
+      </element><element name="TShipmentBase.BaseDocumentNumber"><short>Номер документа - основания</short>
+      </element><element name="TShipmentBase.BaseDocumentDate"><short>Дата документа - основания</short><descr><p>Типовой элемент &lt;ДатаТип&gt;.</p><p>Дата в формате ДД.ММ.ГГГГ.</p><p>Обязателен при НаимОсн, отличном от значения "Без документа-основания"</p>
+        </descr>
+      </element><element name="TShipmentBase.BaseDocumentInfo"><short>Дополнительные сведения</short>
+      </element><element name="TShipmentBase.BaseDocumentID"><short>Идентификатор документа</short>
+      </element><element name="TInvoiceInformation.ShipmentBaseConfirms"><short>Реквизиты документа, подтверждающего отгрузку товаров (работ, услуг, имущественных прав)</short><descr>Состав элемента представлен в таблице 5.11
+</descr>
+      </element><element name="TShipmentBaseConfirm.BaseDocumentName"><short>Наименование документа об отгрузке</short>
+      </element><element name="TShipmentBaseConfirm.BaseDocumentNumber"><short>Номер документа об отгрузке</short>
+      </element><element name="TShipmentBaseConfirm.BaseDocumentDate"><short>Дата документа об отгрузке </short><descr><p>Типовой элемент &lt;ДатаТип&gt;.</p><p>Дата в формате ДД.ММ.ГГГГ</p>
+        </descr>
+      </element>
+    <element name="TShipmentBase"/><element name="TItemsTransferInfo.TransferBase"><short>Основание отгрузки товаров (передачи результатов работ), передачи имущественных прав (предъявления оказанных услуг)</short><descr><p>Типовой элемент &lt;ОснованиеТип&gt;.</p><p>Состав элемента представлен в таблице 5.48</p>
+        </descr>
+      </element><element name="TItemsTransferInfo.TransferEmployee"><short>Сведения о лице, передавшем товар (груз)</short><descr>Состав элемента представлен в таблице 5.22
+</descr>
+      </element><element name="TTransferEmployee"><short>Сведения о лице, передавшем товар (груз) (СвЛицПер)</short><descr>Таблица 5.22
+</descr>
+      </element><element name="TTransferEmployee.SellerEmployee"><short>Работник организации продавца</short><descr>Состав элемента представлен в таблице 5.23
+</descr>
+      </element><element name="TSellerEmployee"><short>Работник организации продавца (РабОргПрод)</short><descr>Таблица 5.23
+</descr>
+      </element>
+    <element name="TSellerEmployee.Position"><short>Должность</short>
+      </element><element name="TSellerEmployee.OtherInformation"><short>Иные сведения, идентифицирующие физическое лицо</short>
+      </element><element name="TSellerEmployee.PermisionPosition"><short>Основание полномочий (доверия)</short><descr>Значение по умолчанию "Должностные обязанности" или указываются иные основания полномочий (доверия)
+</descr>
+      </element>
+    <element name="TTransferEmployee.OtherIssuer"><short>Иное лицо</short><descr>Состав элемента представлен в таблице 5.24
+</descr>
+      </element><element name="TOtherIssuer"><short>Иное лицо (ИнЛицо)</short><descr>Таблица 5.24
+</descr>
+      </element><element name="TOtherIssuerEmployee"><short>Представитель организации, которой доверена отгрузка товаров (передача результатов работ), передача имущественных прав (предъявление оказанных услуг) (ПредОргПер)</short><descr>Таблица 5.25
+</descr>
+      </element><element name="TOtherIssuerEmployee.Position"><short>Должность</short>
+      </element><element name="TOtherIssuer.OtherIssuerEmployee"><short>Представитель организации, которой доверена отгрузка товаров (передача результатов работ), передача имущественных прав (предъявление оказанных услуг)</short><descr>Состав элемента представлен в таблице 5.25
+</descr>
+      </element><element name="TOtherIssuerEmployee.OtherInfo"><short>Иные сведения, идентифицирующие физическое лицо</short>
+      </element><element name="TOtherIssuerEmployee.OrganizationName"><short>Наименование организации</short>
+      </element><element name="TOtherIssuerEmployee.TransferBase"><short>Основание, по которому организации доверена отгрузка товаров (передача результатов работ), передача имущественных прав (предъявление оказанных услуг)</short>
+      </element><element name="TOtherIssuerEmployee.PositionBase"><short>Основание полномочий представителя организации на отгрузку товаров (передачу результатов работ), передачу имущественных прав (предъявление оказанных услуг)</short>
+      </element><element name="TOtherIssuerEmployee.Person"><short>Фамилия, имя, отчество</short><descr><p>Типовой элемент &lt;ФИОТип&gt;.</p><p>Состав элемента представлен в таблице 5.49</p>
+        </descr>
+      </element>
+    <element name="TOtherIssuer.PhysicalPersonTransfer"><short>Физическое лицо, которому доверена отгрузка товаров (передача результатов работ), передача имущественных прав (предъявление оказанных услуг)</short><descr>Состав элемента представлен в таблице 5.26
+</descr>
+      </element><element name="TPhysicalPersonTransfer"><short>Физическое лицо, которому доверена отгрузка товаров (передача результатов работ), передача имущественных прав (предъявление оказанных услуг) (ФЛПер)</short><descr>Таблица 5.26
+</descr>
+      </element><element name="TPhysicalPersonTransfer.OtherInfo"><short>Иные сведения, идентифицирующие физическое лицо</short>
+      </element><element name="TPhysicalPersonTransfer.TransferBase"><short>Основание, по которому физическому лицу доверена отгрузка товаров (передача результатов работ), передача имущественных прав (предъявление оказанных услуг)</short>
+      </element><element name="TPhysicalPersonTransfer.Person"><short>Фамилия, имя, отчество</short><descr><p>Типовой элемент &lt;ФИОТип&gt;.</p><p>Состав элемента представлен в таблице 5.49</p>
+        </descr>
+      </element><element name="TItemsTransferInfo.TransportationCargo"><short>Транспортировка и груз</short><descr>Состав элемента представлен в таблице 5.27
+</descr>
+      </element><element name="TTransportationCargo"><short>Транспортировка и груз (ТранГруз)</short><descr>Таблица 5.27
+</descr>
+      </element><element name="TTransportationCargo.TransferTextInfo"><short>Сведения о транспортировке и грузе</short>
+      </element>
+    <element name="TTransportationCargo.Waybills"><short>Транспортная накладная</short><descr><p>Состав элемента представлен в таблице 5.28.</p><p>Указывается в случае отгрузки с транспортировкой</p>
+        </descr>
+      </element><element name="TWaybill.TransferDocumentNumber"><short>Номер транспортной накладной</short>
+      </element><element name="TWaybill.TransferDocumentDate"><short>Дата транспортной накладной</short><descr><p>Типовой элемент &lt;ДатаТип&gt;.</p><p>Дата в формате ДД.ММ.ГГГГ</p>
+        </descr>
+      </element><element name="TTransportationCargo.Carrier"><short>Перевозчик</short><descr><p>Типовой элемент &lt;УчастникТип&gt;.</p><p>Состав элемента представлен в таблице 5.33</p>
+        </descr>
+      </element><element name="TItemsTransferInfo.CreatedThing"><short>Сведения о передаче вещи, изготовленной по договору подряда</short><descr><p>Состав элемента представлен в таблице 5.29.</p><p>Реквизиты используются для указания информации о передаче вещи, изготовленной по договору подряда, в случае ее передачи в другое время и (или) лицу, отличному от ответственного за оформление хозяйственной операции</p>
+        </descr>
+      </element><element name="TCreatedThing"><short>Сведения о передаче вещи, изготовленной по договору подряда (СвПерВещи)</short><descr>Таблица 5.29
+</descr>
+      </element><element name="TCreatedThing.CreatedThingTransferDate"><short>Дата передачи вещи, изготовленной по договору подряда</short><descr>Типовой элемент &lt;ДатаТип&gt;.
+Дата в формате ДД.ММ.ГГГГ
+</descr>
+      </element><element name="TCreatedThing.CreatedThingInfo"><short>Сведения о передаче</short>
+      </element><element name="TTransferInfo.AdditionalInfo3"><short>Информационное поле факта хозяйственной жизни 3</short><descr>Состав элемента представлен в таблице 5.30
+</descr>
+      </element>
+    </module>
+  </package>
+</fpdoc-descriptions>

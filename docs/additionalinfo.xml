@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fpdoc-descriptions><package name="project1"><module name="AdditionalInfo"><element name="TAdditionalInfo1"><short>Информационное поле факта хозяйственной жизни 1 (ИнфПолФХЖ1)</short><descr>Таблица 5.12
+</descr>
+      </element><element name="TAdditionalInfo1.InfoFileID"><short>Идентификатор файла информационного поля</short><descr><p>GUID.</p><p>Указывается идентификатор файла, связанного со сведениями данного электронного документа</p>
+        </descr>
+      </element><element name="TTextInfo"><short>Текстовая информация (ТекстИнфТип)</short><descr>Таблица 5.47
+</descr>
+      </element><element name="TTextInfo.ID"><short>Идентификатор</short>
+      </element><element name="TTextInfo.Value"><short>Значение</short>
+      </element>
+    <element name="TTextInfoList"><short>Текстовая информация (ТекстИнфТип)</short><descr>Таблица 5.47
+</descr>
+      </element><element name="TAdditionalInfo3"><short>Информационное поле факта хозяйственной жизни 3 (ИнфПолФХЖЗ)</short><descr>Таблица 5.30
+</descr>
+      </element><element name="TAdditionalInfo3.InfoFileID"><short>Идентификатор файла информационного поля</short><descr><p>GUID.</p><p>Указывается идентификатор файла, связанного со сведениями данного электронного документа</p>
+        </descr>
+      </element><element name="TAdditionalInfo3.TextInfo"><short>Текстовая информация</short><descr><p>Типовой элемент &lt;ТекстИнфТип&gt;.</p><p>Состав элемента представлен в таблице 5.47</p>
+        </descr>
+      </element>
+    </module>
+  </package>
+</fpdoc-descriptions>
