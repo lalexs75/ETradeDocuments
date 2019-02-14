@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fpdoc-descriptions><package name="project1"><module name="Signer"><element name="TSigner"><short>Сведения о лице, подписывающем файл обмена счета-фактуры (информации продавца) в электронной форме (Подписант)</short><descr>Таблица 5.31
+<fpdoc-descriptions><package name="ETradeDocumnets"><module name="Signer"><element name="TSigner"><short>Сведения о лице, подписывающем файл обмена счета-фактуры (информации продавца) в электронной форме (Подписант)</short><descr>Таблица 5.31
 </descr>
       </element><element name="TSignerList"><short>Сведения о лице, подписывающем файл обмена счета-фактуры (информации продавца) в электронной форме (Подписант)</short><descr>Таблица 5.31
 </descr>

@@ -7,14 +7,14 @@
     <CompilerOptions>
       <Version Value="11"/>
       <SearchPaths>
-        <OtherUnitFiles Value="invoce"/>
+        <OtherUnitFiles Value="invoce;exchange"/>
         <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
       </SearchPaths>
     </CompilerOptions>
     <Description Value="Обработка электронных форматов документов РФ"/>
     <License Value="LGPL"/>
     <Version Minor="2"/>
-    <Files Count="9">
+    <Files Count="11">
       <Item1>
         <Filename Value="etradedoc.pas"/>
         <HasRegisterProc Value="True"/>
@@ -30,7 +30,7 @@
       </Item3>
       <Item4>
         <Filename Value="invoce/invoceexchangefile.pas"/>
-        <UnitName Value="invoceexchangefile"/>
+        <UnitName Value="InvoceExchangeFile"/>
       </Item4>
       <Item5>
         <Filename Value="invoce/invocedocument.pas"/>
@@ -52,6 +52,17 @@
         <Filename Value="invoce/transferinfo.pas"/>
         <UnitName Value="TransferInfo"/>
       </Item9>
+      <Item10>
+        <Filename Value="exchange/clientexchangefile.pas"/>
+        <UnitName Value="ClientExchangeFile"/>
+        <CustomOptions Items="FPMake" Version="2">
+          <_FPMake Items="AllCPUs/AllOSes/TargetCPUs/TargetOSes"/>
+        </CustomOptions>
+      </Item10>
+      <Item11>
+        <Filename Value="xml_doc.pas"/>
+        <UnitName Value="xml_doc"/>
+      </Item11>
     </Files>
     <LazDoc Paths="/usr/local/share/lazarus/components/ETradeDocuments/docs"/>
     <i18n>
@@ -73,5 +84,12 @@
       <Version Value="2"/>
       <UseFileFilters Value="True"/>
     </PublishOptions>
+    <CustomOptions Items="Fppkg" Version="2">
+      <_Fppkg Items="CustomCodeCount/PackageVariants">
+        <_PackageVariants Items="Items">
+          <_Items Items="Count"/>
+        </_PackageVariants>
+      </_Fppkg>
+    </CustomOptions>
   </Package>
 </CONFIG>

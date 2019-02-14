@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fpdoc-descriptions><package name="project1"><module name="OrganizationInfo"><element name="TOrganizationInfo.OKPO"><short>Код в общероссийском классификаторе предприятий и организаций</short>
+<fpdoc-descriptions><package name="ETradeDocumnets"><module name="OrganizationInfo"><element name="TOrganizationInfo.OKPO"><short>Код в общероссийском классификаторе предприятий и организаций</short>
       </element><element name="TOrganizationInfo"><short>Сведения об участнике факта хозяйственной жизни (УчастникТип)</short>
       <descr>Таблица 5.33
 </descr>

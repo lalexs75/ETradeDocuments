@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fpdoc-descriptions><package name="ETradeDocumnets"><module name="ETradeDoc"><element name="TETradeDoc" link="1"><short>1</short>
+<fpdoc-descriptions>
+  <package name="ETradeDocumnets">
+    <module name="ETradeDoc">
+      <element name="TETradeDoc" link="1"><short>1</short>
       </element>
     </module>
   </package>

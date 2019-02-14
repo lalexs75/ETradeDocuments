@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fpdoc-descriptions><package name="project1"><module name="TransferInfo"><element name="TTransferInfo"><short>Содержание факта хозяйственной жизни 3 - сведения о факте отгрузки товаров (выполнения работ), передачи имущественных прав (о предъявлении оказанных услуг) (СвПродПер)
+<fpdoc-descriptions><package name="ETradeDocumnets"><module name="TransferInfo"><element name="TTransferInfo"><short>Содержание факта хозяйственной жизни 3 - сведения о факте отгрузки товаров (выполнения работ), передачи имущественных прав (о предъявлении оказанных услуг) (СвПродПер)
  </short><descr>Таблица 5.20
 </descr>
       </element><element name="TTransferInfo.ItemsTransferInfo"><short>Сведения о передаче (сдаче) товаров (результатов работ), имущественных прав (о предъявлении оказанных услуг)</short><descr>Состав элемента представлен в таблице 5.21

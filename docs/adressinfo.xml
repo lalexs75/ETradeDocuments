@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fpdoc-descriptions><package name="project1"><module name="AdressInfo"><element name="TAdress"><short>Сведения об адресе (АдресТип)</short><descr>Таблица 5.39
+<fpdoc-descriptions><package name="ETradeDocumnets"><module name="AdressInfo"><element name="TAdress"><short>Сведения об адресе (АдресТип)</short><descr>Таблица 5.39
 </descr>
       </element><element name="TAdress.RussianAdress"><short>Адрес, указанный в Едином государственном реестре юридических лиц/почтовый адрес/адрес места жительства индивидуального предпринимателя (реквизиты адреса на территории Российской Федерации)</short><descr><p>Типовой элемент &lt;АдрРФТип&gt;.</p><p>Состав элемента представлен в таблице 5.40</p>
         </descr>

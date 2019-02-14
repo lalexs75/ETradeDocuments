@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fpdoc-descriptions><package name="project1"><module name="InvoiceItem"><element name="TInvoiceItems"><short>Сведения таблицы счета-фактуры (содержание факта хозяйственной жизни 2 - наименование и другая информация об отгруженных товарах (выполненных работах, оказанных услугах), о переданных имущественных правах (ТаблСчФакт)</short><descr>Таблица 5.13
+<fpdoc-descriptions><package name="ETradeDocumnets"><module name="InvoiceItem"><element name="TInvoiceItems"><short>Сведения таблицы счета-фактуры (содержание факта хозяйственной жизни 2 - наименование и другая информация об отгруженных товарах (выполненных работах, оказанных услугах), о переданных имущественных правах (ТаблСчФакт)</short><descr>Таблица 5.13
 </descr>
       </element><element name="TInvoiceItem"><short>Сведения об отгруженных товарах (о выполненных работах, оказанных услугах), переданных имущественных правах (СведТов)</short><descr>Таблица 5.14
 </descr>

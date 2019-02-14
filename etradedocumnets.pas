@@ -8,8 +8,9 @@ unit ETradeDocumnets;
 interface
 
 uses
-  ETradeDoc, AdditionalInfo, AdressInfo, ExchangeFile, InvoceDocument, 
-  InvoiceItem, OrganizationInfo, Signer, TransferInfo, LazarusPackageIntf;
+  ETradeDoc, AdditionalInfo, AdressInfo, InvoceExchangeFile, InvoceDocument, 
+  InvoiceItem, OrganizationInfo, Signer, TransferInfo, ClientExchangeFile, 
+  xml_doc, LazarusPackageIntf;
 
 implementation
 

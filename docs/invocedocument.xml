@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fpdoc-descriptions><package name="project1"><module name="InvoceDocument"><element name="TInvoceDocument.KND"><short>Код документа по КНД</short><descr>Типовой элемент &lt;КНДТип&gt;.
+<fpdoc-descriptions><package name="ETradeDocumnets"><module name="InvoceDocument"><element name="TInvoceDocument.KND"><short>Код документа по КНД</short><descr>Типовой элемент &lt;КНДТип&gt;.
 Принимает значение: 1115131
 </descr>
       </element><element name="TInvoceDocument.DocFunction"><short>Функция</short><descr><p>Принимает значение:</p><li>СЧФ - счет-фактура, применяемый при расчетах по налогу на добавленную стоимость</li><li>СЧФДОП - счет-фактура, применяемый при расчетах по налогу на добавленную стоимость, и документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг)</li><li>ДОП - документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг)</li>

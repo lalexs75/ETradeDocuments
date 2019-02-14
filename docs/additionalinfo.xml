@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fpdoc-descriptions><package name="project1"><module name="AdditionalInfo"><element name="TAdditionalInfo1"><short>Информационное поле факта хозяйственной жизни 1 (ИнфПолФХЖ1)</short><descr>Таблица 5.12
+<fpdoc-descriptions><package name="ETradeDocumnets"><module name="AdditionalInfo"><element name="TAdditionalInfo1"><short>Информационное поле факта хозяйственной жизни 1 (ИнфПолФХЖ1)</short><descr>Таблица 5.12
 </descr>
       </element><element name="TAdditionalInfo1.InfoFileID"><short>Идентификатор файла информационного поля</short><descr><p>GUID.</p><p>Указывается идентификатор файла, связанного со сведениями данного электронного документа</p>
         </descr>
