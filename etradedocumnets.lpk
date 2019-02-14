@@ -8,7 +8,7 @@
       <Version Value="11"/>
       <SearchPaths>
         <OtherUnitFiles Value="invoce"/>
-        <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)/"/>
+        <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
       </SearchPaths>
     </CompilerOptions>
     <Description Value="Обработка электронных форматов документов РФ"/>
@@ -29,8 +29,8 @@
         <UnitName Value="AdressInfo"/>
       </Item3>
       <Item4>
-        <Filename Value="invoce/exchangefile.pas"/>
-        <UnitName Value="ExchangeFile"/>
+        <Filename Value="invoce/invoceexchangefile.pas"/>
+        <UnitName Value="invoceexchangefile"/>
       </Item4>
       <Item5>
         <Filename Value="invoce/invocedocument.pas"/>

@@ -32,7 +32,7 @@
   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 }
 
-unit ExchangeFile;
+unit InvoceExchangeFile;
 
 {$mode objfpc}{$H+}
 
@@ -84,25 +84,16 @@ type
 
   { TExchangeFile }
 
-  TExchangeFile = class(TXmlSerializationObject)   //%Таблица 5.1
+  TExchangeFile = class(TAbstractExchangeFile)   //%Таблица 5.1
   private
-    FApplicationVersion: string;
     FDocument: TInvoceDocument;
-    FFileID: string;
-    FFormatVersion: string;
     FParticipantsInformation: TParticipantsInformation;
-    procedure SetApplicationVersion(AValue: string);
-    procedure SetFileID(AValue: string);
-    procedure SetFormatVersion(AValue: string);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
     destructor Destroy; override;
   published
-    property FileID:string read FFileID write SetFileID;
-    property FormatVersion:string read FFormatVersion write SetFormatVersion;
-    property ApplicationVersion:string read FApplicationVersion write SetApplicationVersion;
     property ParticipantsInformation:TParticipantsInformation read FParticipantsInformation;
     property Document:TInvoceDocument read FDocument;
   end;
@@ -176,32 +167,8 @@ end;
 
 { TExchangeFile }
 
-procedure TExchangeFile.SetApplicationVersion(AValue: string);
-begin
-  if FApplicationVersion=AValue then Exit;
-  FApplicationVersion:=AValue;
-  ModifiedProperty('ApplicationVersion');
-end;
-
-procedure TExchangeFile.SetFileID(AValue: string);
-begin
-  if FFileID=AValue then Exit;
-  FFileID:=AValue;
-  ModifiedProperty('FileID');
-end;
-
-procedure TExchangeFile.SetFormatVersion(AValue: string);
-begin
-  if FFormatVersion=AValue then Exit;
-  FFormatVersion:=AValue;
-  ModifiedProperty('FormatVersion');
-end;
-
 procedure TExchangeFile.InternalRegisterPropertys;
 begin
-  RegisterProperty('FileID', 'ИдФайл', 'О', 'Идентификатор файла', 1, 255);
-  RegisterProperty('FormatVersion', 'ВерсФорм', 'О', 'Версия формата', 1, 5);
-  RegisterProperty('ApplicationVersion', 'ВерсПрог', 'О', 'Версия программы, с помощью которой сформирован файл', 1, 40);
   RegisterProperty('ParticipantsInformation', 'СвУчДокОбор', 'О', 'Сведения об участниках электронного документооборота', -1, -1);
   RegisterProperty('Document', 'Документ', 'О', 'Счет-фактура, или документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг), включающий в себя счет-фактуру (информация продавца), или документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг) (информация продавца)', -1, -1);
 end;

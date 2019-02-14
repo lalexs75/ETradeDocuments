@@ -22,7 +22,7 @@ type
 procedure Register;
 
 implementation
-uses ExchangeFile;
+uses InvoceExchangeFile;
 
 procedure Register;
 begin

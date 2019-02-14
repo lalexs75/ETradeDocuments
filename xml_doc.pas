@@ -128,8 +128,69 @@ type
     property Count:Integer read GetCount;
   end;
 
+  { TAbstractExchangeFile }
+
+  TAbstractExchangeFile = class(TXmlSerializationObject)
+  private
+    FApplicationVersion: string;
+    FFileID: string;
+    FFormatVersion: string;
+    procedure SetApplicationVersion(AValue: string);
+    procedure SetFileID(AValue: string);
+    procedure SetFormatVersion(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property FileID:string read FFileID write SetFileID;
+    property FormatVersion:string read FFormatVersion write SetFormatVersion;
+    property ApplicationVersion:string read FApplicationVersion write SetApplicationVersion;
+  end;
+
 implementation
 uses XMLRead, XMLWrite, xmliconv, TypInfo, LazUTF8;
+
+{ TAbstractExchangeFile }
+
+procedure TAbstractExchangeFile.SetApplicationVersion(AValue: string);
+begin
+  if FApplicationVersion=AValue then Exit;
+  FApplicationVersion:=AValue;
+  ModifiedProperty('ApplicationVersion');
+end;
+
+procedure TAbstractExchangeFile.SetFileID(AValue: string);
+begin
+  if FFileID=AValue then Exit;
+  FFileID:=AValue;
+  ModifiedProperty('FileID');
+end;
+
+procedure TAbstractExchangeFile.SetFormatVersion(AValue: string);
+begin
+  if FFormatVersion=AValue then Exit;
+  FFormatVersion:=AValue;
+  ModifiedProperty('FormatVersion');
+end;
+
+procedure TAbstractExchangeFile.InternalRegisterPropertys;
+begin
+  RegisterProperty('FileID', 'ИдФайл', 'О', 'Идентификатор файла', 1, 255);
+  RegisterProperty('FormatVersion', 'ВерсФорм', 'О', 'Версия формата', 1, 5);
+  RegisterProperty('ApplicationVersion', 'ВерсПрог', 'О', 'Версия программы, с помощью которой сформирован файл', 1, 40);
+end;
+
+procedure TAbstractExchangeFile.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TAbstractExchangeFile.Destroy;
+begin
+  inherited Destroy;
+end;
 
 { TXmlSerializationObjectList }
 
