@@ -41,11 +41,44 @@ uses
   Classes, SysUtils, xml_doc;
 type
 
+  { TOperationCode }
+
+  TOperationCode = class(TXmlSerializationObject)   //%Таблица 7.8
+  private
+    FDocumentName: string;
+    FItogCode: string;
+    procedure SetDocumentName(AValue: string);
+    procedure SetItogCode(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property ItogCode:string read FItogCode write SetItogCode;
+    property DocumentName:string read FDocumentName write SetDocumentName;
+    (*
+    Наименование документа, оформляющего расхождения 	НаимДокРасх 	А 	T(1-255) 	Н
+
+    Код вида документа о расхождениях 	ВидДокРасх 	А 	T(=1) 	НК 	Принимает значение:
+    2 - документ о приемке с расхождениями |
+    3 - документ о расхождениях
+
+    Номер документа покупателя о расхождениях 	НомДокРасх 	А 	T(1-255) 	Н
+
+    Дата документа о расхождениях 	ДатаДокРасх 	А 	T(=10) 	Н 	Типовой элемент <ДатаТип>.
+    Дата в формате ДД.ММ.ГГГГ
+
+    Идентификатор файла обмена документа о расхождениях, сформированного покупателем 	ИдФайлДокРасх 	А 	T(1-255) 	Н
+    *)
+  end;
+
   { TAcceptanceInformation }
 
   TAcceptanceInformation = class(TXmlSerializationObject)   //%Таблица 7.7
   private
     FAcceptanceDate: string;
+    FOperationCode: TOperationCode;
     FOperationContent: string;
     procedure SetAcceptanceDate(AValue: string);
     procedure SetOperationContent(AValue: string);
@@ -57,6 +90,7 @@ type
   published
     property OperationContent:string read FOperationContent write SetOperationContent;
     property AcceptanceDate:string read FAcceptanceDate write SetAcceptanceDate;
+    property OperationCode:TOperationCode read FOperationCode;
     (*
     Код содержания операции
     КодСодОпер 	С 		Н
@@ -104,6 +138,52 @@ type
 
 implementation
 
+{ TOperationCode }
+
+procedure TOperationCode.SetDocumentName(AValue: string);
+begin
+  if FDocumentName=AValue then Exit;
+  FDocumentName:=AValue;
+end;
+
+procedure TOperationCode.SetItogCode(AValue: string);
+begin
+  if FItogCode=AValue then Exit;
+  FItogCode:=AValue;
+end;
+
+procedure TOperationCode.InternalRegisterPropertys;
+begin
+  (*
+  Код, обозначающий итог приемки товара (работ, услуг, прав) 	КодИтога 	А 	T(=1) 	ОК 	Принимает значение:
+  1 - товары (работы, услуги, права) приняты без расхождений (претензий) |
+  2 - товары (работы, услуги, права) приняты с расхождениями (претензией) |
+  3 - товары (работы, услуги, права) не приняты
+
+  Наименование документа, оформляющего расхождения 	НаимДокРасх 	А 	T(1-255) 	Н
+  Код вида документа о расхождениях 	ВидДокРасх 	А 	T(=1) 	НК 	Принимает значение:
+  2 - документ о приемке с расхождениями |
+  3 - документ о расхождениях
+
+  Номер документа покупателя о расхождениях 	НомДокРасх 	А 	T(1-255) 	Н
+
+  Дата документа о расхождениях 	ДатаДокРасх 	А 	T(=10) 	Н 	Типовой элемент <ДатаТип>.
+  Дата в формате ДД.ММ.ГГГГ
+
+  Идентификатор файла обмена документа о расхождениях, сформированного покупателем 	ИдФайлДокРасх 	А 	T(1-255) 	Н
+  *)
+end;
+
+procedure TOperationCode.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TOperationCode.Destroy;
+begin
+  inherited Destroy;
+end;
+
 { TAcceptanceInformation }
 
 procedure TAcceptanceInformation.SetAcceptanceDate(AValue: string);
@@ -124,12 +204,8 @@ procedure TAcceptanceInformation.InternalRegisterPropertys;
 begin
   RegisterProperty('OperationContent', 'СодОпер', 'Н', 'Содержание операции (текст)', 1, 255);
   RegisterProperty('AcceptanceDate', 'ДатаПрин', 'Н', 'Дата принятия товаров (результатов выполненных работ), имущественных прав (подтверждения факта оказания услуг)', 10, 10);
+  RegisterProperty('OperationCode', 'КодСодОпер', 'Н', 'Код содержания операции', -1, -1);
   (*
-  Код содержания операции
-  КодСодОпер 	С 		Н
-  Состав элемента представлен в таблице 7.8.
-  Обязателен при отсутствии СодОпер
-
   Сведения о лице, принявшем товары (груз)
   СвЛицПрин 	С 		Н
   Состав элемента представлен в таблице 7.9
@@ -139,10 +215,12 @@ end;
 procedure TAcceptanceInformation.InternalInitChilds;
 begin
   inherited InternalInitChilds;
+  FOperationCode:=TOperationCode.Create;
 end;
 
 destructor TAcceptanceInformation.Destroy;
 begin
+  FreeAndNil(FOperationCode);
   inherited Destroy;
 end;
 

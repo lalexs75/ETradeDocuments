@@ -19,6 +19,12 @@
         </descr>
       </element><element name="TAcceptanceInformation.AcceptanceDate"><short>Дата принятия товаров (результатов выполненных работ), имущественных прав (подтверждения факта оказания услуг)</short><descr><p>Дата в формате ДД.ММ.ГГГГ.</p><p>Обязателен, если дата получения груза не совпадает с ДатаПер информации продавца</p>
         </descr>
+      </element><element name="TAcceptanceInformation.OperationCode"><short>Код содержания операции</short><descr><p>Состав элемента представлен в таблице 7.8.</p><p>Обязателен при отсутствии СодОпер</p>
+        </descr>
+      </element><element name="TOperationCode.ItogCode"><short>Код, обозначающий итог приемки товара (работ, услуг, прав)</short><descr><p>Принимает значение:</p><ul><li>1 - товары (работы, услуги, права) приняты без расхождений (претензий)</li><li>2 - товары (работы, услуги, права) приняты с расхождениями (претензией)</li><li>3 - товары (работы, услуги, права) не приняты</li>
+          </ul>
+        </descr>
+      </element><element name="TOperationCode.DocumentName"><short>Наименование документа, оформляющего расхождения</short>
       </element>
     </module>
   </package>
