@@ -14,7 +14,7 @@
     <Description Value="Обработка электронных форматов документов РФ"/>
     <License Value="LGPL"/>
     <Version Minor="2"/>
-    <Files Count="12">
+    <Files Count="13">
       <Item1>
         <Filename Value="etradedoc.pas"/>
         <HasRegisterProc Value="True"/>
@@ -65,8 +65,12 @@
       </Item11>
       <Item12>
         <Filename Value="exchange/exchangedocument.pas"/>
-        <UnitName Value="exchangedocument"/>
+        <UnitName Value="ExchangeDocument"/>
       </Item12>
+      <Item13>
+        <Filename Value="exchange/exchangeinformation.pas"/>
+        <UnitName Value="exchangeinformation"/>
+      </Item13>
     </Files>
     <LazDoc Paths="/usr/local/share/lazarus/components/ETradeDocuments/docs"/>
     <i18n>

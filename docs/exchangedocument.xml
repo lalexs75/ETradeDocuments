@@ -11,6 +11,19 @@
       </element><element name="TExchangeDocument.DocumentCreatorBase"><short>Основание, по которому экономический субъект является составителем файла обмена информации покупателя</short><descr>Обязателен, если составитель информации покупателя не является покупателем
 </descr>
       </element>
+    <element name="TExchangeFileIdentificatorSeller"><short>Идентификация файла обмена счета-фактуры (информации продавца) или файла обмена информации продавца (ИдИнфПрод)</short><descr>Таблица 7.5
+</descr>
+      </element><element name="TExchangeDocument.ExchangeFileIdentificatorSeller"><short>Идентификация файла обмена счета-фактуры (информации продавца) или файла обмена информации продавца</short><descr>Состав элемента представлен в таблице 7.5
+</descr>
+      </element><element name="TExchangeFileIdentificatorSeller.FileName"><short>Идентификатор файла обмена информации продавца</short><descr>Содержит (повторяет) имя файла обмена счета-фактуры (информации продавца) или файла обмена информации продавца (без расширения)
+</descr>
+      </element><element name="TExchangeFileIdentificatorSeller.DateCreate"><short>Дата формирования файла обмена информации продавца</short><descr><p>Дата в формате ДД.ММ.ГГГГ.</p><p>Указывается (повторяет) значение ДатаИнфПр, указанное в файле обмена счета-фактуры (информации продавца) или файле обмена информации продавца</p>
+        </descr>
+      </element><element name="TExchangeFileIdentificatorSeller.TimeCreate"><short>Время формирования файла обмена информации продавца</short><descr><p>Типовой элемент &lt;ВремяТип&gt;.</p><p>Время в формате ЧЧ.ММ.СС.</p><p>Указывается (повторяет) значение ВремИнфПр, указанное в файле обмена счета-фактуры (информации продавца) или файле обмена информации продавца</p>
+        </descr>
+      </element><element name="TExchangeFileIdentificatorSeller.Sign"><short>Электронная подпись файла обмена информации продавца</short><descr>Представляется в кодировке Base64
+</descr>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>
