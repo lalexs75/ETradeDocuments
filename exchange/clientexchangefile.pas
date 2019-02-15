@@ -39,7 +39,7 @@ unit ClientExchangeFile;
 interface
 
 uses
-  Classes, SysUtils, xml_doc;
+  Classes, SysUtils, xml_doc, ExchangeDocument;
 
 type
 
@@ -86,8 +86,8 @@ type
 
   TClientExchangeFile = class(TAbstractExchangeFile)   //%Таблица 7.1
   private
+    FDocument: TExchangeDocument;
     FParticipantsInformationEx: TParticipantsInformationEx;
-    //FDocument: TInvoceDocument;
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
@@ -95,7 +95,7 @@ type
     destructor Destroy; override;
   published
     property ParticipantsInformationEx:TParticipantsInformationEx read FParticipantsInformationEx;
-    //property Document:TInvoceDocument read FDocument;
+    property Document:TExchangeDocument read FDocument;
   end;
 
 implementation
@@ -170,20 +170,20 @@ procedure TClientExchangeFile.InternalRegisterPropertys;
 begin
   inherited InternalRegisterPropertys;
   RegisterProperty('ParticipantsInformationEx', 'СвУчДокОбор', 'О', 'Сведения об участниках электронного документооборота', -1, -1);
-  (*
-  Документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг), включающий в себя счет-фактуру (информация покупателя), или документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг) (информация покупателя) 	ИнфПок 	С 		О 	Состав элемента представлен в таблице 7.4
-  *)
+  RegisterProperty('Document', 'ИнфПок', 'О', 'Документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг), включающий в себя счет-фактуру (информация покупателя), или документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг) (информация покупателя)', -1, -1);
 end;
 
 procedure TClientExchangeFile.InternalInitChilds;
 begin
   inherited InternalInitChilds;
   FParticipantsInformationEx:=TParticipantsInformationEx.Create;
+  FDocument:=TExchangeDocument.Create;
 end;
 
 destructor TClientExchangeFile.Destroy;
 begin
   FreeAndNil(FParticipantsInformationEx);
+  FreeAndNil(FDocument);
   inherited Destroy;
 end;
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fpdoc-descriptions><package name="ETradeDocumnets"><module name="ExchangeDocument"><element name="TExchangeDocument"><short>Документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг), включающий в себя счет-фактуру (информация покупателя), или документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг) (информация покупателя) (ИнфПок)</short><descr>Таблица 7.4
+</descr>
+      </element><element name="TExchangeDocument.KND"><short>Код документа по КНД</short><descr><p>Типовой элемент &lt;КНДТип&gt;.</p><p>Принимает значение: 1115132</p>
+        </descr>
+      </element><element name="TExchangeDocument.DateCreate"><short>Дата формирования файла обмена информации покупателя</short><descr><p>Типовой элемент &lt;ДатаТип&gt;.</p><p>Дата в формате ДД.ММ.ГГГГ</p>
+        </descr>
+      </element><element name="TExchangeDocument.TimeCreate"><short>Время формирования файла обмена информации покупателя</short><descr><p>Типовой элемент &lt;ВремяТип&gt;.</p><p>Время в формате ЧЧ.ММ.СС</p>
+        </descr>
+      </element><element name="TExchangeDocument.DocumentCreator"><short>Наименование экономического субъекта - составителя файла обмена информации покупателя</short>
+      </element><element name="TExchangeDocument.DocumentCreatorBase"><short>Основание, по которому экономический субъект является составителем файла обмена информации покупателя</short><descr>Обязателен, если составитель информации покупателя не является покупателем
+</descr>
+      </element>
+    </module>
+  </package>
+</fpdoc-descriptions>
