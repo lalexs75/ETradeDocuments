@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fpdoc-descriptions><package name="ETradeDocumnets"><module name="TreasuryInformation"><element name="TTreasuryInformation"><short>Информация покупателя об обстоятельствах закупок для государственных и муниципальных нужд (для учета Федеральным казначейством денежных обязательств) (ИнфПокГосЗакКазн)</short><descr>Таблица 7.16
+</descr>
+      </element><element name="TTreasuryInformation.PurchaseID"><short>Идентификационный код закупки</short>
+      </element><element name="TTreasuryInformation.AccountNumber"><short>Номер лицевого счета покупателя</short>
+      </element><element name="TTreasuryInformation.FinancialName"><short>Наименование финансового органа покупателя</short><descr>Принимает значение "Министерство финансов Российской Федерации", если покупатель является участником бюджетного процесса федерального уровня. Указывается наименование финансового органа соответствующего бюджета, если покупатель является участником бюджетного процесса субъекта Российской Федерации или муниципального образования
+</descr>
+      </element><element name="TTreasuryInformation.ReestrNumber"><short>Номер реестровой записи покупателя по Реестру участников бюджетного процесса, а также юридических лиц, не являющихся участниками бюджетного процесса</short>
+      </element><element name="TTreasuryInformation.BudgetAccountNumebr"><short>Учетный номер бюджетного обязательства покупателя</short>
+      </element><element name="TTreasuryInformation.TreasuryCode"><short>Код территориального органа Федерального казначейства покупателя</short><descr>Код территориального органа Федерального казначейства
+</descr>
+      </element><element name="TTreasuryInformation.TreasuryName"><short>Наименование территориального органа Федерального казначейства покупателя </short><descr>Полное или сокращенное наименование территориального органа Федерального казначейства, в котором открыт лицевой счет покупателя
+</descr>
+      </element><element name="TTreasuryInformation.OKTMOCode"><short>Код покупателя в Общероссийском классификаторе территорий муниципальных образований</short><descr><p>Типовой элемент &lt;ОКТМОТип&gt;.</p><p>Принимает значение в соответствии с Общероссийским классификатором территорий муниципальных образований</p>
+        </descr>
+      </element><element name="TTreasuryInformation.OKTMOCodeLocation"><short>Код места поставки в Общероссийском классификаторе территорий муниципальных образований</short><descr><p>Типовой элемент &lt;ОКТМОТип&gt;.</p><p>Принимает значение в соответствии с Общероссийским классификатором территорий муниципальных образований</p>
+        </descr>
+      </element><element name="TTreasuryInformation.MaxPayDate"><short>Предельная дата оплаты</short><descr><p>Типовой элемент &lt;ДатаТип&gt;.</p><p>Дата в формате ДД.ММ.ГГГГ</p>
+        </descr>
+      </element>
+    </module>
+  </package>
+</fpdoc-descriptions>
