@@ -11,6 +11,16 @@
         </descr>
       </element><element name="TExchangeSigner.SignerPowersBase"><short>Основание полномочий (доверия)</short><descr><p>Для Статус=1 или Статус=2 или Статус=3 указываются "Должностные обязанности" по умолчанию или иные основания полномочий (доверия).</p><p>Для Статус=4 указываются основания полномочий (доверия)</p>
         </descr>
+      </element><element name="TExchangeSigner.SignerOrgPowersBase"><short>Основание полномочий (доверия) организации</short><descr>Обязателен для Статус=3. Указываются основания полномочий (доверия) организации
+</descr>
+      </element><element name="TExchangeSigner.PhysicalPersonEntity"><short>Физическое лицо</short><descr><p>Типовой элемент &lt;СвФЛТип&gt;.</p><p>Состав элемента представлен в таблице 7.21</p>
+        </descr>
+      </element><element name="TExchangeSigner.IndividualEntrepreneurInformation"><short>Индивидуальный предприниматель</short><descr><p>Типовой элемент &lt;СвИПТип&gt;.</p><p>Состав элемента представлен в таблице 7.20</p>
+        </descr>
+      </element><element name="TExchangeSigner.LegalEntityInformation"><short>Представитель юридического лица</short><descr>Состав элемента представлен в таблице 7.19
+</descr>
+      </element><element name="TExchangeLegalEntityInformation"><short>Представитель юридического лица (ЮЛ)</short><descr>Таблица 7.19
+</descr>
       </element>
     </module>
   </package>

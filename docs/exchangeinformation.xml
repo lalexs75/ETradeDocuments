@@ -26,6 +26,68 @@
         </descr>
       </element><element name="TOperationCode.DocumentName"><short>Наименование документа, оформляющего расхождения</short>
       </element>
+    <element name="TOperationCode.DocumentCode"><short>Код вида документа о расхождениях</short><descr><p>Принимает значение:</p><ul><li>2 - документ о приемке с расхождениями</li><li>3 - документ о расхождениях</li>
+          </ul>
+        </descr>
+      </element><element name="TOperationCode.DocumentNumber"><short>Номер документа покупателя о расхождениях</short>
+      </element><element name="TOperationCode.DocumentDate"><short>Дата документа о расхождениях</short><descr><p>Типовой элемент &lt;ДатаТип&gt;.</p><p>Дата в формате ДД.ММ.ГГГГ</p>
+        </descr>
+      </element><element name="TOperationCode.FileID"><short>Идентификатор файла обмена документа о расхождениях, сформированного покупателем</short>
+      </element><element name="TAcceptanceInformation.CargoPerson"><short>Сведения о лице, принявшем товары (груз)</short><descr>Состав элемента представлен в таблице 7.9
+</descr>
+      </element><element name="TCargoPerson"><short>Сведения о лице, принявшем товары (груз) (СвЛицПрин)</short><descr>Таблица 7.9
+</descr>
+      </element><element name="TCustomerEmployee"><short>Работник организации покупателя (РабОргПок)</short><descr>Таблица 7.10
+</descr>
+      </element><element name="TCargoPerson.CustomerEmployee"><short>Работник организации покупателя</short><descr>Состав элемента представлен в таблице 7.10
+</descr>
+      </element><element name="TCargoPerson.OtherIssuer"><short>Иное лицо</short><descr>Состав элемента представлен в таблице 7.11
+</descr>
+      </element><element name="TCustomerEmployee.Position"><short>Должность</short>
+      </element><element name="TCustomerEmployee.OtherInfo"><short>Иные сведения, идентифицирующие физическое лицо</short>
+      </element><element name="TCustomerEmployee.SignerPowersBase"><short>Основание полномочий (доверия)</short><descr>Значение по умолчанию "Должностные обязанности" или указываются иные основания полномочий
+</descr>
+      </element>
+    <element name="TCustomerEmployee.Person"><short>Фамилия, имя, отчество</short><descr><p>Типовой элемент &lt;ФИОТип&gt;.</p><p>Состав элемента представлен в таблице 7.22</p>
+        </descr>
+      </element><element name="TExchangePerson.Surname"><short>Фамилия</short>
+      </element><element name="TExchangePerson.FirstName"><short>Имя</short>
+      </element><element name="TExchangePerson.Patronymic"><short>Отчество</short>
+      </element><element name="TExchangeOtherIssuer"><short>Иное лицо (ИнЛицо)</short><descr>Таблица 7.11
+</descr>
+      </element><element name="TAacceptanceLegalEntityEmployee"><short>Представитель организации, которой доверено принятие товаров (груза) (ПредОргПрин)</short><descr>Таблица 7.12
+</descr>
+      </element><element name="TAacceptanceLegalEntityEmployee.Position"><short>Должность</short>
+      </element><element name="TAacceptanceLegalEntityEmployee.OtherInfo"><short>Иные сведения, идентифицирующие физическое лицо</short>
+      </element><element name="TAacceptanceLegalEntityEmployee.Organization"><short>Наименование организации</short>
+      </element><element name="TAacceptanceLegalEntityEmployee.OrgSignerPowersBase"><short>Основание, по которому организации доверено принятие товаров (груза)</short>
+      </element><element name="TAacceptanceLegalEntityEmployee.SignerPowersBase"><short>Основание полномочий представителя организации на принятие товаров (груза)</short><descr>Значение по умолчанию "Должностные обязанности" или указываются иные основания полномочий (доверия)
+</descr>
+      </element><element name="TAacceptanceLegalEntityEmployee.Person"><short>Фамилия, имя, отчество</short><descr><p>Типовой элемент &lt;ФИОТип&gt;.</p><p>Состав элемента представлен в таблице 7.22</p>
+        </descr>
+      </element><element name="TExchangeOtherIssuer.IndividualAcceptanceGoods"><short>Физическое лицо, которому доверено принятие товаров (груза)</short><descr>Состав элемента представлен в таблице 7.13
+</descr>
+      </element><element name="TExchangeOtherIssuer.LegalEntityEmployee"><short>Представитель организации, которой доверено принятие товаров (груза) </short><descr>Состав элемента представлен в таблице 7.12
+</descr>
+      </element><element name="TIndividualAcceptanceGoods"><short>Физическое лицо, которому доверено принятие товаров (груза) (ФЛПрин)</short><descr>Таблица 7.13
+</descr>
+      </element><element name="TIndividualAcceptanceGoods.SignerPowersBase"><short>Основание, по которому физическому лицу доверено принятие товаров (груза)</short>
+      </element><element name="TIndividualAcceptanceGoods.OtherInfo"><short>Иные сведения, идентифицирующие физическое лицо</short>
+      </element><element name="TIndividualAcceptanceGoods.Person"><short>Фамилия, имя, отчество</short><descr><p>Типовой элемент &lt;ФИОТип&gt;.</p><p>Состав элемента представлен в таблице 7.22</p>
+        </descr>
+      </element><element name="TAdditionalInfoId4"><short>Информационное поле факта хозяйственной жизни 4 (ИнфПолФХЖ4)</short><descr>Таблица 7.14
+</descr>
+      </element><element name="TExchangeInformation.AdditionalInfoId"><short>Информационное поле факта хозяйственной жизни 4</short><descr>Состав элемента представлен в таблице 7.14
+</descr>
+      </element><element name="TAdditionalInfoId4.FileID"><short>Идентификатор файла информационного поля</short><descr><p>GUID.</p><p>Указывается идентификатор файла, связанного со сведениями данного электронного документа</p>
+        </descr>
+      </element><element name="TExchangeTextInfo"><short>Текстовая информация (ТекстИнф)</short><descr>Таблица 7.15
+</descr>
+      </element><element name="TExchangeTextInfo.ID"><short>Идентификатор</short>
+      </element><element name="TExchangeTextInfo.Value"><short>Значение</short>
+      </element><element name="TAdditionalInfoId4.TextInfo"><short>Текстовая информация</short><descr>Состав элемента представлен в таблице 7.15
+</descr>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>

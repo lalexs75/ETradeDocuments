@@ -10,7 +10,8 @@ interface
 uses
   ETradeDoc, AdditionalInfo, AdressInfo, InvoceExchangeFile, InvoceDocument, 
   InvoiceItem, OrganizationInfo, Signer, TransferInfo, ClientExchangeFile, 
-  xml_doc, ExchangeDocument, ExchangeInformation, LazarusPackageIntf;
+  xml_doc, ExchangeDocument, ExchangeInformation, TreasuryInformation, 
+  ExchangeSigner, LazarusPackageIntf;
 
 implementation
 

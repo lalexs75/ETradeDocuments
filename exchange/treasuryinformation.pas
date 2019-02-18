@@ -43,12 +43,77 @@ uses
 
 type
 
+  { TMonetaryObligationInformation }
+
+  TMonetaryObligationInformation = class(TXmlSerializationObject)   //%Таблица 7.17
+  private
+    FAvanceSum: string;
+    FDestinationCode: string;
+    FFundsType: string;
+    FKBK: string;
+    FObjectCode: string;
+    FRowNumber: string;
+    procedure SetAvanceSum(AValue: string);
+    procedure SetDestinationCode(AValue: string);
+    procedure SetFundsType(AValue: string);
+    procedure SetKBK(AValue: string);
+    procedure SetObjectCode(AValue: string);
+    procedure SetRowNumber(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property RowNumber:string read FRowNumber write SetRowNumber;
+    property ObjectCode:string read FObjectCode write SetObjectCode;
+    property FundsType:string read FFundsType write SetFundsType;
+    property KBK:string read FKBK write SetKBK;
+    property DestinationCode:string read FDestinationCode write SetDestinationCode;
+    property AvanceSum:string read FAvanceSum write SetAvanceSum;
+  end;
+
+  { TMonetaryObligationInformationList }
+
+  TMonetaryObligationInformationList = class(TXmlSerializationObjectList) //%Таблица 7.17
+  private
+    function GetItem(AIndex: Integer): TMonetaryObligationInformation; inline;
+  public
+    constructor Create;
+    property Item[AIndex:Integer]:TMonetaryObligationInformation read GetItem;
+  end;
+
   { TTreasuryInformation }
 
   TTreasuryInformation = class(TXmlSerializationObject)   //%Таблица 7.16
   private
+    FAccountNumber: string;
+    FBudgetAccountNumebr: string;
+    FFinancialName: string;
+    FMaxPayDate: string;
+    FMonetaryObligationInformation: TMonetaryObligationInformationList;
+    FMonetaryObligationNumber: string;
+    FOKTMOCode: string;
+    FOKTMOCodeLocation: string;
+    FPayOrder: string;
+    FPayType: string;
     FPurchaseID: string;
+    FReestrNumber: string;
+    FTreasuryCode: string;
+    FTreasuryName: string;
+    procedure SetAccountNumber(AValue: string);
+    procedure SetBudgetAccountNumebr(AValue: string);
+    procedure SetFinancialName(AValue: string);
+    procedure SetMaxPayDate(AValue: string);
+    procedure SetMonetaryObligationNumber(AValue: string);
+    procedure SetOKTMOCode(AValue: string);
+    procedure SetOKTMOCodeLocation(AValue: string);
+    procedure SetPayOrder(AValue: string);
+    procedure SetPayType(AValue: string);
     procedure SetPurchaseID(AValue: string);
+    procedure SetReestrNumber(AValue: string);
+    procedure SetTreasuryCode(AValue: string);
+    procedure SetTreasuryName(AValue: string);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
@@ -56,36 +121,99 @@ type
     destructor Destroy; override;
   published
     property PurchaseID:string read FPurchaseID write SetPurchaseID;
-    property AccountNumber:string;
-    property FinancialName:string;
-    property ReestrNumber:string;
-    property BudgetAccountNumebr:string;
-    property TreasuryCode:string;
-    property TreasuryName:string;
-    property OKTMOCode:string;
-    property OKTMOCodeLocation:string;
-    property MaxPayDate:string;
-    (*
-    Предельная дата оплаты 	ДатаОплПред 	А 	T(=10) 	Н 	Типовой элемент <ДатаТип>.
-    Дата в формате ДД.ММ.ГГГГ
-
-    Учетный номер денежного обязательства 	УчНомДенОбяз 	А 	T(=22) 	Н
-    Обязателен для заполнения при внесении изменений в ранее направленный в Федеральное казначейство документ, по которому было поставлено на учет денежное обязательство
-
-    Очередность платежа 	ОчерПлат 	А 	T(=1) 	Н
-    Обязателен при заполнении ДатаОплПред
-
-    Вид платежа 	ВидПлат 	А 	T(=1) 	НК 	Принимает значение:
-    0 - пусто;
-    4 - срочно.
-    Обязателен при заполнении ДатаОплПред
-
-    Информация для сведений о денежном обязательстве 	ИнфСведДенОбяз 	С 		ОМ
-    Состав элемента представлен в таблице 7.17
-    *)
+    property AccountNumber:string read FAccountNumber write SetAccountNumber;
+    property FinancialName:string read FFinancialName write SetFinancialName;
+    property ReestrNumber:string read FReestrNumber write SetReestrNumber;
+    property BudgetAccountNumebr:string read FBudgetAccountNumebr write SetBudgetAccountNumebr;
+    property TreasuryCode:string read FTreasuryCode write SetTreasuryCode;
+    property TreasuryName:string read FTreasuryName write SetTreasuryName;
+    property OKTMOCode:string read FOKTMOCode write SetOKTMOCode;
+    property OKTMOCodeLocation:string read FOKTMOCodeLocation write SetOKTMOCodeLocation;
+    property MaxPayDate:string read FMaxPayDate write SetMaxPayDate;
+    property MonetaryObligationNumber:string read FMonetaryObligationNumber write SetMonetaryObligationNumber;
+    property PayOrder:string read FPayOrder write SetPayOrder;
+    property PayType:string read FPayType write SetPayType;
+    property MonetaryObligationInformation:TMonetaryObligationInformationList read FMonetaryObligationInformation;
   end;
 
 implementation
+
+{ TMonetaryObligationInformation }
+
+procedure TMonetaryObligationInformation.SetAvanceSum(AValue: string);
+begin
+  if FAvanceSum=AValue then Exit;
+  FAvanceSum:=AValue;
+  ModifiedProperty('AvanceSum');
+end;
+
+procedure TMonetaryObligationInformation.SetDestinationCode(AValue: string);
+begin
+  if FDestinationCode=AValue then Exit;
+  FDestinationCode:=AValue;
+  ModifiedProperty('DestinationCode');
+end;
+
+procedure TMonetaryObligationInformation.SetFundsType(AValue: string);
+begin
+  if FFundsType=AValue then Exit;
+  FFundsType:=AValue;
+  ModifiedProperty('FundsType');
+end;
+
+procedure TMonetaryObligationInformation.SetKBK(AValue: string);
+begin
+  if FKBK=AValue then Exit;
+  FKBK:=AValue;
+  ModifiedProperty('KBK');
+end;
+
+procedure TMonetaryObligationInformation.SetObjectCode(AValue: string);
+begin
+  if FObjectCode=AValue then Exit;
+  FObjectCode:=AValue;
+  ModifiedProperty('ObjectCode');
+end;
+
+procedure TMonetaryObligationInformation.SetRowNumber(AValue: string);
+begin
+  if FRowNumber=AValue then Exit;
+  FRowNumber:=AValue;
+  ModifiedProperty('RowNumber');
+end;
+
+procedure TMonetaryObligationInformation.InternalRegisterPropertys;
+begin
+  RegisterProperty('RowNumber', 'НомСтр', 'О', 'Номер строки таблицы информации продавца', 6, 6);
+  RegisterProperty('ObjectCode', 'КодОбъектФАИП', 'Н', 'Код объекта капитального строительства федеральной адресной инвестиционной программы/код мероприятия по информатизации', 1, 24);
+  RegisterProperty('FundsType', 'ВидСредств', 'ОК', 'Вид средств', 1, 1);
+  RegisterProperty('KBK', 'КодПокБюджКласс', 'О', 'Код по бюджетной классификации (покупатель)', 20, 20);
+  RegisterProperty('DestinationCode', 'КодЦелиПокуп', 'Н', 'Код цели (покупатель)', 1, 20);
+  RegisterProperty('AvanceSum', 'СумАванс', 'О', 'Сумма перечисленного аванса', 1, 19);
+end;
+
+procedure TMonetaryObligationInformation.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TMonetaryObligationInformation.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TMonetaryObligationInformationList }
+
+function TMonetaryObligationInformationList.GetItem(AIndex: Integer
+  ): TMonetaryObligationInformation;
+begin
+  Result:=TMonetaryObligationInformation(InternalGetItem(AIndex));
+end;
+
+constructor TMonetaryObligationInformationList.Create;
+begin
+  inherited Create(TMonetaryObligationInformation)
+end;
 
 { TTreasuryInformation }
 
@@ -93,63 +221,120 @@ procedure TTreasuryInformation.SetPurchaseID(AValue: string);
 begin
   if FPurchaseID=AValue then Exit;
   FPurchaseID:=AValue;
+  ModifiedProperty('PurchaseID');
+end;
+
+procedure TTreasuryInformation.SetAccountNumber(AValue: string);
+begin
+  if FAccountNumber=AValue then Exit;
+  FAccountNumber:=AValue;
+  ModifiedProperty('AccountNumber');
+end;
+
+procedure TTreasuryInformation.SetBudgetAccountNumebr(AValue: string);
+begin
+  if FBudgetAccountNumebr=AValue then Exit;
+  FBudgetAccountNumebr:=AValue;
+  ModifiedProperty('BudgetAccountNumebr');
+end;
+
+procedure TTreasuryInformation.SetFinancialName(AValue: string);
+begin
+  if FFinancialName=AValue then Exit;
+  FFinancialName:=AValue;
+  ModifiedProperty('FinancialName');
+end;
+
+procedure TTreasuryInformation.SetMaxPayDate(AValue: string);
+begin
+  if FMaxPayDate=AValue then Exit;
+  FMaxPayDate:=AValue;
+  ModifiedProperty('MaxPayDate');
+end;
+
+procedure TTreasuryInformation.SetMonetaryObligationNumber(AValue: string);
+begin
+  if FMonetaryObligationNumber=AValue then Exit;
+  FMonetaryObligationNumber:=AValue;
+  ModifiedProperty('MonetaryObligationNumber');
+end;
+
+procedure TTreasuryInformation.SetOKTMOCode(AValue: string);
+begin
+  if FOKTMOCode=AValue then Exit;
+  FOKTMOCode:=AValue;
+  ModifiedProperty('OKTMOCode');
+end;
+
+procedure TTreasuryInformation.SetOKTMOCodeLocation(AValue: string);
+begin
+  if FOKTMOCodeLocation=AValue then Exit;
+  FOKTMOCodeLocation:=AValue;
+  ModifiedProperty('OKTMOCodeLocation');
+end;
+
+procedure TTreasuryInformation.SetPayOrder(AValue: string);
+begin
+  if FPayOrder=AValue then Exit;
+  FPayOrder:=AValue;
+  ModifiedProperty('PayOrder');
+end;
+
+procedure TTreasuryInformation.SetPayType(AValue: string);
+begin
+  if FPayType=AValue then Exit;
+  FPayType:=AValue;
+  ModifiedProperty('PayType');
+end;
+
+procedure TTreasuryInformation.SetReestrNumber(AValue: string);
+begin
+  if FReestrNumber=AValue then Exit;
+  FReestrNumber:=AValue;
+  ModifiedProperty('ReestrNumber');
+end;
+
+procedure TTreasuryInformation.SetTreasuryCode(AValue: string);
+begin
+  if FTreasuryCode=AValue then Exit;
+  FTreasuryCode:=AValue;
+  ModifiedProperty('TreasuryCode');
+end;
+
+procedure TTreasuryInformation.SetTreasuryName(AValue: string);
+begin
+  if FTreasuryName=AValue then Exit;
+  FTreasuryName:=AValue;
+  ModifiedProperty('TreasuryName');
 end;
 
 procedure TTreasuryInformation.InternalRegisterPropertys;
 begin
-  (*
-  Идентификационный код закупки 	ИдКодЗак 	А 	T(1-36) 	Н
-
-  Номер лицевого счета покупателя 	ЛицСчетПок 	А 	T(=11) 	О
-
-  Наименование финансового органа покупателя 	НаимФинОргПок 	А 	T(1-2000) 	О
-  Принимает значение "Министерство финансов Российской Федерации", если покупатель является участником бюджетного процесса федерального уровня. Указывается наименование финансового органа соответствующего бюджета, если покупатель является участником бюджетного процесса субъекта Российской Федерации или муниципального образования
-
-  Номер реестровой записи покупателя по Реестру участников бюджетного процесса, а также юридических лиц, не являющихся участниками бюджетного процесса
-  НомРеестрЗапПок 	А 	T(=8) 	О
-
-  Учетный номер бюджетного обязательства покупателя 	УчНомБюдОбязПок 	А 	T(16-19) 	Н
-
-  Код территориального органа Федерального казначейства покупателя 	КодКазначПок 	А 	T(=4) 	Н
-  Код территориального органа Федерального казначейства
-
-  Наименование территориального органа Федерального казначейства покупателя 	НаимКазначПок 	А 	T(1-2000) 	Н
-  Полное или сокращенное наименование территориального органа Федерального казначейства, в котором открыт лицевой счет покупателя
-
-  Код покупателя в Общероссийском классификаторе территорий муниципальных образований 	ОКТМОПок 	А 	T(8-11) 	ОК
-  Типовой элемент <ОКТМОТип>.
-  Принимает значение в соответствии с Общероссийским классификатором территорий муниципальных образований
-
-  Код места поставки в Общероссийском классификаторе территорий муниципальных образований 	ОКТМОМесПост 	А 	T(8-11) 	НК
-  Типовой элемент <ОКТМОТип>.
-  Принимает значение в соответствии с Общероссийским классификатором территорий муниципальных образований
-
-  Предельная дата оплаты 	ДатаОплПред 	А 	T(=10) 	Н 	Типовой элемент <ДатаТип>.
-  Дата в формате ДД.ММ.ГГГГ
-
-  Учетный номер денежного обязательства 	УчНомДенОбяз 	А 	T(=22) 	Н
-  Обязателен для заполнения при внесении изменений в ранее направленный в Федеральное казначейство документ, по которому было поставлено на учет денежное обязательство
-
-  Очередность платежа 	ОчерПлат 	А 	T(=1) 	Н
-  Обязателен при заполнении ДатаОплПред
-
-  Вид платежа 	ВидПлат 	А 	T(=1) 	НК 	Принимает значение:
-  0 - пусто;
-  4 - срочно.
-  Обязателен при заполнении ДатаОплПред
-
-  Информация для сведений о денежном обязательстве 	ИнфСведДенОбяз 	С 		ОМ
-  Состав элемента представлен в таблице 7.17
-  *)
+  RegisterProperty('PurchaseID', 'ИдКодЗак', 'Н', 'Идентификационный код закупки', 1, 36);
+  RegisterProperty('AccountNumber', 'ЛицСчетПок', 'О', 'Номер лицевого счета покупателя', 11, 11);
+  RegisterProperty('FinancialName', 'НаимФинОргПок', 'О', 'Наименование финансового органа покупателя', 1, 2000);
+  RegisterProperty('ReestrNumber', 'НомРеестрЗапПок', 'О', 'Номер реестровой записи покупателя по Реестру участников бюджетного процесса, а также юридических лиц, не являющихся участниками бюджетного процесса', 8, 8);
+  RegisterProperty('BudgetAccountNumebr', 'УчНомБюдОбязПок', 'Н', 'Учетный номер бюджетного обязательства покупателя', 16, 19);
+  RegisterProperty('TreasuryCode', 'КодКазначПок', 'Н', 'Код территориального органа Федерального казначейства покупателя', 4, 4);
+  RegisterProperty('TreasuryName', 'НаимКазначПок', 'Н', 'Наименование территориального органа Федерального казначейства покупателя', 1, 2000);
+  RegisterProperty('OKTMOCode', 'ОКТМОПок', 'ОК', 'Код покупателя в Общероссийском классификаторе территорий муниципальных образований', 8, 11);
+  RegisterProperty('OKTMOCodeLocation', 'ОКТМОМесПост', 'НК', 'Код места поставки в Общероссийском классификаторе территорий муниципальных образований', 8, 11);
+  RegisterProperty('MaxPayDate', 'ДатаОплПред', 'Н', 'Предельная дата оплаты', 10, 10);
+  RegisterProperty('MonetaryObligationNumber', 'УчНомДенОбяз', 'Н', 'Учетный номер денежного обязательства', 22, 22);
+  RegisterProperty('PayOrder', 'ОчерПлат', 'Н', 'Очередность платежа', 1, 1);
+  RegisterProperty('PayType', 'ВидПлат', 'НК', 'Вид платежа', 1, 1);
+  RegisterProperty('MonetaryObligationInformation', 'ИнфСведДенОбяз', 'ОМ', 'Информация для сведений о денежном обязательстве', -1, -1);
 end;
 
 procedure TTreasuryInformation.InternalInitChilds;
 begin
   inherited InternalInitChilds;
+  FMonetaryObligationInformation:=TMonetaryObligationInformationList.Create;
 end;
 
 destructor TTreasuryInformation.Destroy;
 begin
+  FreeAndNil(FMonetaryObligationInformation);
   inherited Destroy;
 end;
 

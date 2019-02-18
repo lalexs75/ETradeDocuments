@@ -43,9 +43,9 @@ uses
 
 type
 
-  { TExchangeSigner }
+  { TExchangePhysicalPersonEntity }
 
-  TExchangeSigner = class(TXmlSerializationObject)   //%Таблица 7.18
+  TExchangePhysicalPersonEntity = class(TXmlSerializationObject)   //%Таблица 7.21
   private
   protected
     procedure InternalRegisterPropertys; override;
@@ -53,20 +53,61 @@ type
   public
     destructor Destroy; override;
   published
-    property SignerPowers:string;
-    property Status:string;
-    property SignerPowersBase:string;
-    (*
-    Основание полномочий (доверия) организации 	ОснПолнОрг 	А 	T(1-255) 	Н 	Обязателен для Статус=3. Указываются основания полномочий (доверия) организации
+  end;
 
-    Физическое лицо | 	ФЛ 	С 		О 	Типовой элемент <СвФЛТип>.
-    Состав элемента представлен в таблице 7.21
+  { TExchangeIndividualEntrepreneurInformation }
 
-    Индивидуальный предприниматель | 	ИП 	С 		О 	Типовой элемент <СвИПТип>.
-    Состав элемента представлен в таблице 7.20
+  TExchangeIndividualEntrepreneurInformation = class(TXmlSerializationObject)   //%Таблица 7.20
+  private
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+  end;
 
-    Представитель юридического лица 	ЮЛ 	С 		О 	Состав элемента представлен в таблице 7.19
-    *)
+
+  { TExchangeLegalEntityInformation }
+
+  TExchangeLegalEntityInformation = class(TXmlSerializationObject) //%Таблица 7.19
+  private
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+  end;
+
+  { TExchangeSigner }
+
+  TExchangeSigner = class(TXmlSerializationObject)   //%Таблица 7.18
+  private
+    FIndividualEntrepreneurInformation: TExchangeIndividualEntrepreneurInformation;
+    FLegalEntityInformation: TExchangeLegalEntityInformation;
+    FPhysicalPersonEntity: TExchangePhysicalPersonEntity;
+    FSignerOrgPowersBase: string;
+    FSignerPowers: string;
+    FSignerPowersBase: string;
+    FStatus: string;
+    procedure SetSignerOrgPowersBase(AValue: string);
+    procedure SetSignerPowers(AValue: string);
+    procedure SetSignerPowersBase(AValue: string);
+    procedure SetStatus(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property SignerPowers:string read FSignerPowers write SetSignerPowers;
+    property Status:string read FStatus write SetStatus;
+    property SignerPowersBase:string read FSignerPowersBase write SetSignerPowersBase;
+    property SignerOrgPowersBase:string read FSignerOrgPowersBase write SetSignerOrgPowersBase;
+    property PhysicalPersonEntity:TExchangePhysicalPersonEntity read FPhysicalPersonEntity;
+    property IndividualEntrepreneurInformation:TExchangeIndividualEntrepreneurInformation read FIndividualEntrepreneurInformation;
+    property LegalEntityInformation:TExchangeLegalEntityInformation read FLegalEntityInformation;
   end;
 
   { TExchangeSignerList }
@@ -81,44 +122,118 @@ type
 
 implementation
 
+{ TExchangeIndividualEntrepreneurInformation }
+
+procedure TExchangeIndividualEntrepreneurInformation.InternalRegisterPropertys;
+begin
+
+end;
+
+procedure TExchangeIndividualEntrepreneurInformation.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TExchangeIndividualEntrepreneurInformation.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TExchangePhysicalPersonEntity }
+
+procedure TExchangePhysicalPersonEntity.InternalRegisterPropertys;
+begin
+
+end;
+
+procedure TExchangePhysicalPersonEntity.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TExchangePhysicalPersonEntity.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TExchangeLegalEntityInformation }
+
+procedure TExchangeLegalEntityInformation.InternalRegisterPropertys;
+begin
+  (*
+  ИНН организации 	ИННЮЛ 	А 	T(=10) 	О 	Типовой элемент <ИННЮЛТип>
+  Наименование 	НаимОрг 	А 	T(1-1000) 	Н
+  Должность 	Должн 	А 	T(1-128) 	О
+  Иные сведения, идентифицирующие физическое лицо 	ИныеСвед 	А 	T(1-255) 	Н
+  Фамилия, имя, отчество 	ФИО 	С 		О 	Типовой элемент <ФИОТип>.
+  Состав элемента представлен в таблице 7.22
+  *)
+end;
+
+procedure TExchangeLegalEntityInformation.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TExchangeLegalEntityInformation.Destroy;
+begin
+  inherited Destroy;
+end;
+
 { TExchangeSigner }
+
+procedure TExchangeSigner.SetSignerOrgPowersBase(AValue: string);
+begin
+  if FSignerOrgPowersBase=AValue then Exit;
+  FSignerOrgPowersBase:=AValue;
+  ModifiedProperty('SignerOrgPowersBase');
+end;
+
+procedure TExchangeSigner.SetSignerPowers(AValue: string);
+begin
+  if FSignerPowers=AValue then Exit;
+  FSignerPowers:=AValue;
+  ModifiedProperty('SignerPowers');
+end;
+
+procedure TExchangeSigner.SetSignerPowersBase(AValue: string);
+begin
+  if FSignerPowersBase=AValue then Exit;
+  FSignerPowersBase:=AValue;
+  ModifiedProperty('SignerPowersBase');
+end;
+
+procedure TExchangeSigner.SetStatus(AValue: string);
+begin
+  if FStatus=AValue then Exit;
+  FStatus:=AValue;
+  ModifiedProperty('Status');
+end;
 
 procedure TExchangeSigner.InternalRegisterPropertys;
 begin
-  (*
-  Область полномочий 	ОблПолн 	А 	T(=1) 	ОК 	Принимает значение:
-  1 - лицо, совершившее сделку, операцию |
-  2 - лицо, совершившее сделку, операцию и ответственное за ее оформление |
-  3 - лицо, ответственное за оформление свершившегося события
-
-  Статус 	Статус 	А 	T(=1) 	ОК 	Принимает значение:
-  3 - работник иной уполномоченной организации |
-  4 - уполномоченное физическое лицо, в том числе индивидуальный предприниматель |
-  5 - работник организации - покупателя |
-  6 - работник организации - составителя файла обмена информации покупателя, если составитель файла обмена информации покупателя не является покупателем
-
-  Основание полномочий (доверия) 	ОснПолн 	А 	T(1-255) 	О 	Для Статус=1 или Статус=2 или Статус=3 указываются "Должностные обязанности" по умолчанию или иные основания полномочий (доверия).
-  Для Статус=4 указываются основания полномочий (доверия)
-
-  Основание полномочий (доверия) организации 	ОснПолнОрг 	А 	T(1-255) 	Н 	Обязателен для Статус=3. Указываются основания полномочий (доверия) организации
-
-  Физическое лицо | 	ФЛ 	С 		О 	Типовой элемент <СвФЛТип>.
-  Состав элемента представлен в таблице 7.21
-
-  Индивидуальный предприниматель | 	ИП 	С 		О 	Типовой элемент <СвИПТип>.
-  Состав элемента представлен в таблице 7.20
-
-  Представитель юридического лица 	ЮЛ 	С 		О 	Состав элемента представлен в таблице 7.19
-  *)
+  RegisterProperty('SignerPowers', 'ОблПолн', 'ОК', 'Область полномочий', 1, 1);
+  RegisterProperty('Status', 'Статус', 'ОК', 'Статус', 1, 1);
+  RegisterProperty('SignerPowersBase', 'ОснПолн', 'О', 'Основание полномочий (доверия)', 1, 255);
+  RegisterProperty('SignerOrgPowersBase', 'ОснПолнОрг', 'Н', 'Основание полномочий (доверия) организации', 1, 255);
+  RegisterProperty('PhysicalPersonEntity', 'ФЛ', 'О', 'Физическое лицо', -1, -1);
+  RegisterProperty('IndividualEntrepreneurInformation', 'ИП', 'О', 'Индивидуальный предприниматель', -1, -1);
+  RegisterProperty('LegalEntityInformation', 'ЮЛ', 'О', 'Представитель юридического лица', -1, -1);
 end;
 
 procedure TExchangeSigner.InternalInitChilds;
 begin
   inherited InternalInitChilds;
+  FPhysicalPersonEntity:=TExchangePhysicalPersonEntity.Create;
+  FIndividualEntrepreneurInformation:=TExchangeIndividualEntrepreneurInformation.Create;
+  FLegalEntityInformation:=TExchangeLegalEntityInformation.Create;
 end;
 
 destructor TExchangeSigner.Destroy;
 begin
+  FreeAndNil(FPhysicalPersonEntity);
+  FreeAndNil(FIndividualEntrepreneurInformation);
+  FreeAndNil(FLegalEntityInformation);
   inherited Destroy;
 end;
 

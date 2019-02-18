@@ -39,7 +39,7 @@ unit ExchangeDocument;
 interface
 
 uses
-  Classes, SysUtils, xml_doc, ExchangeInformation;
+  Classes, SysUtils, xml_doc, ExchangeInformation, TreasuryInformation, ExchangeSigner;
 
 type
 
@@ -77,7 +77,9 @@ type
     FExchangeFileIdentificatorSeller: TExchangeFileIdentificatorSeller;
     FExchangeInformation: TExchangeInformation;
     FKND: string;
+    FSigner: TExchangeSignerList;
     FTimeCreate: string;
+    FTreasuryInformation: TTreasuryInformation;
     procedure SetDateCreate(AValue: string);
     procedure SetDocumentCreator(AValue: string);
     procedure SetDocumentCreatorBase(AValue: string);
@@ -96,18 +98,8 @@ type
     property DocumentCreatorBase:string read FDocumentCreatorBase write SetDocumentCreatorBase;
     property ExchangeFileIdentificatorSeller:TExchangeFileIdentificatorSeller read FExchangeFileIdentificatorSeller;
     property ExchangeInformation:TExchangeInformation read FExchangeInformation;
-    (*
-    Содержание факта хозяйственной жизни 4 - сведения о принятии товаров (результатов выполненных работ), имущественных прав (о подтверждении факта оказания услуг) 	СодФХЖ4 	С 		О
-    Состав элемента представлен в таблице 7.6
-
-    Информация покупателя об обстоятельствах закупок для государственных и муниципальных нужд (для учета Федеральным казначейством денежных обязательств) 	ИнфПокГосЗакКазн 	С 		Н
-    Состав элемента представлен в таблице 7.16.
-    Обязателен при осуществлении закупок для обеспечения государственных и муниципальных нужд и (или) для формирования сведений о денежном обязательстве Федеральным казначейством
-
-    Сведения о лице, подписывающем файл обмена информации покупателя в электронной форме 	Подписант 	С 		ОМ
-    Состав элемента представлен в таблице 7.18.
-    Фамилия, имя, отчество и другие сведения о лице указаны в элементе Подписант
-    *)
+    property TreasuryInformation:TTreasuryInformation read FTreasuryInformation;
+    property ExchangeSigner:TExchangeSignerList read FSigner;
   end;
 
 implementation
@@ -206,14 +198,8 @@ begin
   RegisterProperty('DocumentCreatorBase', 'ОснДоверОргСост', 'Н', 'Основание, по которому экономический субъект является составителем файла обмена информации покупателя', 1, 120);
   RegisterProperty('ExchangeFileIdentificatorSeller', 'ИдИнфПрод', 'О', 'Идентификация файла обмена счета-фактуры (информации продавца) или файла обмена информации продавца', -1, -1);
   RegisterProperty('ExchangeInformation', 'СодФХЖ4', 'О', 'Содержание факта хозяйственной жизни 4 - сведения о принятии товаров (результатов выполненных работ), имущественных прав (о подтверждении факта оказания услуг)', -1, -1);
-  //RegisterProperty('', '', '', '', -1, -1);
-  (*
-  Информация покупателя об обстоятельствах закупок для государственных и муниципальных нужд (для учета Федеральным казначейством денежных обязательств) 	ИнфПокГосЗакКазн 	С 		Н 	Состав элемента представлен в таблице 7.16.
-  Обязателен при осуществлении закупок для обеспечения государственных и муниципальных нужд и (или) для формирования сведений о денежном обязательстве Федеральным казначейством
-
-  Сведения о лице, подписывающем файл обмена информации покупателя в электронной форме 	Подписант 	С 		ОМ 	Состав элемента представлен в таблице 7.18.
-  Фамилия, имя, отчество и другие сведения о лице указаны в элементе Подписант
-  *)
+  RegisterProperty('TreasuryInformation', 'ИнфПокГосЗакКазн', 'Н', 'Информация покупателя об обстоятельствах закупок для государственных и муниципальных нужд (для учета Федеральным казначейством денежных обязательств)', -1, -1);
+  RegisterProperty('ExchangeSigner', 'Подписант', 'ОМ', 'Сведения о лице, подписывающем файл обмена информации покупателя в электронной форме', -1, -1);
 end;
 
 procedure TExchangeDocument.InternalInitChilds;
@@ -221,12 +207,16 @@ begin
   inherited InternalInitChilds;
   FExchangeFileIdentificatorSeller:=TExchangeFileIdentificatorSeller.Create;
   FExchangeInformation:=TExchangeInformation.Create;
+  FTreasuryInformation:=TTreasuryInformation.Create;
+  FSigner:=TExchangeSignerList.Create;
 end;
 
 destructor TExchangeDocument.Destroy;
 begin
   FreeAndNil(FExchangeFileIdentificatorSeller);
   FreeAndNil(FExchangeInformation);
+  FreeAndNil(FTreasuryInformation);
+  FreeAndNil(FSigner);
   inherited Destroy;
 end;
 

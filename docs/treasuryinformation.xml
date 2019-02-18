@@ -17,6 +17,29 @@
         </descr>
       </element><element name="TTreasuryInformation.MaxPayDate"><short>Предельная дата оплаты</short><descr><p>Типовой элемент &lt;ДатаТип&gt;.</p><p>Дата в формате ДД.ММ.ГГГГ</p>
         </descr>
+      </element><element name="TTreasuryInformation.MonetaryObligationNumber"><short>Учетный номер денежного обязательства</short><descr>Обязателен для заполнения при внесении изменений в ранее направленный в Федеральное казначейство документ, по которому было поставлено на учет денежное обязательство
+</descr>
+      </element><element name="TTreasuryInformation.PayOrder"><short>Очередность платежа</short><descr>Обязателен при заполнении ДатаОплПред
+</descr>
+      </element><element name="TTreasuryInformation.PayType"><short>Вид платежа</short><descr><p>Принимает значение:</p><ul><li>0 - пусто;</li><li>4 - срочно.</li>
+          </ul><p>Обязателен при заполнении ДатаОплПред</p>
+        </descr>
+      </element><element name="TTreasuryInformation.MonetaryObligationInformation"><short>Информация для сведений о денежном обязательстве</short><descr>Состав элемента представлен в таблице 7.17
+</descr>
+      </element><element name="TMonetaryObligationInformationList"><short>Информация для сведений о денежном обязательстве (ИнфСведДенОбяз)</short><descr>Таблица 7.17
+</descr>
+      </element><element name="TMonetaryObligationInformation"><short>Информация для сведений о денежном обязательстве (ИнфСведДенОбяз)</short><descr>Таблица 7.17
+</descr>
+      </element><element name="TMonetaryObligationInformation.RowNumber"><short>Номер строки таблицы информации продавца</short><descr>Повторяет НомСтр информации продавца
+</descr>
+      </element><element name="TMonetaryObligationInformation.ObjectCode"><short>Код объекта капитального строительства федеральной адресной инвестиционной программы/код мероприятия по информатизации</short>
+      </element><element name="TMonetaryObligationInformation.FundsType"><short>Вид средств</short><descr><p>Принимает значение:</p><ul><li>1 - средства бюджета</li><li>3 - средства дополнительного бюджетного финансирования</li><li>4 - средства для финансирования мероприятий по оперативно-розыскной деятельности</li><li>5 - средства, поступающие во временное распоряжение казенных учреждений</li><li>6 - средства юридических лиц.</li>
+          </ul><p>Источник средств, за счет которого должна быть произведена кассовая выплата</p>
+        </descr>
+      </element><element name="TMonetaryObligationInformation.KBK"><short>Код по бюджетной классификации (покупатель)</short>
+      </element><element name="TMonetaryObligationInformation.DestinationCode"><short>Код цели (покупатель)</short>
+      </element><element name="TMonetaryObligationInformation.AvanceSum"><short>Сумма перечисленного аванса</short><descr>При отсутствии показателя СумАванс=0.00
+</descr>
       </element>
     </module>
   </package>
