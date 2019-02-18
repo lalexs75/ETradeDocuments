@@ -39,7 +39,7 @@ unit ExchangeSigner;
 interface
 
 uses
-  Classes, SysUtils, xml_doc;
+  Classes, SysUtils, xml_doc, ExchangeInformation;
 
 type
 
@@ -47,24 +47,43 @@ type
 
   TExchangePhysicalPersonEntity = class(TXmlSerializationObject)   //%Таблица 7.21
   private
+    FInn: string;
+    FOtherInfo: string;
+    FPerson: TExchangePerson;
+    procedure SetInn(AValue: string);
+    procedure SetOtherInfo(AValue: string);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
     destructor Destroy; override;
   published
+    property Inn:string read FInn write SetInn;
+    property OtherInfo:string read FOtherInfo write SetOtherInfo;
+    property Person:TExchangePerson read FPerson;
   end;
 
   { TExchangeIndividualEntrepreneurInformation }
 
   TExchangeIndividualEntrepreneurInformation = class(TXmlSerializationObject)   //%Таблица 7.20
   private
+    FIndividualEntityRegistrationCertificate: string;
+    FInn: string;
+    FOtherInfo: string;
+    FPerson: TExchangePerson;
+    procedure SetIndividualEntityRegistrationCertificate(AValue: string);
+    procedure SetInn(AValue: string);
+    procedure SetOtherInfo(AValue: string);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
     destructor Destroy; override;
   published
+    property Inn:string read FInn write SetInn;
+    property IndividualEntityRegistrationCertificate:string read FIndividualEntityRegistrationCertificate write SetIndividualEntityRegistrationCertificate;
+    property OtherInfo:string read FOtherInfo write SetOtherInfo;
+    property Person:TExchangePerson read FPerson;
   end;
 
 
@@ -72,12 +91,26 @@ type
 
   TExchangeLegalEntityInformation = class(TXmlSerializationObject) //%Таблица 7.19
   private
+    FInn: string;
+    FName: string;
+    FOtherInfo: string;
+    FPerson: TExchangePerson;
+    FPosition: string;
+    procedure SetInn(AValue: string);
+    procedure SetName(AValue: string);
+    procedure SetOtherInfo(AValue: string);
+    procedure SetPosition(AValue: string);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
     destructor Destroy; override;
   published
+    property Inn:string read FInn write SetInn;
+    property Name:string read FName write SetName;
+    property Position:string read FPosition write SetPosition;
+    property OtherInfo:string read FOtherInfo write SetOtherInfo;
+    property Person:TExchangePerson read FPerson;
   end;
 
   { TExchangeSigner }
@@ -124,59 +157,132 @@ implementation
 
 { TExchangeIndividualEntrepreneurInformation }
 
+procedure TExchangeIndividualEntrepreneurInformation.SetIndividualEntityRegistrationCertificate
+  (AValue: string);
+begin
+  if FIndividualEntityRegistrationCertificate=AValue then Exit;
+  FIndividualEntityRegistrationCertificate:=AValue;
+  ModifiedProperty('IndividualEntityRegistrationCertificate');
+end;
+
+procedure TExchangeIndividualEntrepreneurInformation.SetInn(AValue: string);
+begin
+  if FInn=AValue then Exit;
+  FInn:=AValue;
+  ModifiedProperty('Inn');
+end;
+
+procedure TExchangeIndividualEntrepreneurInformation.SetOtherInfo(AValue: string
+  );
+begin
+  if FOtherInfo=AValue then Exit;
+  FOtherInfo:=AValue;
+  ModifiedProperty('OtherInfo');
+end;
+
 procedure TExchangeIndividualEntrepreneurInformation.InternalRegisterPropertys;
 begin
-
+  RegisterProperty('Inn', 'ИННФЛ', 'О', 'ИНН', 12, 12);
+  RegisterProperty('IndividualEntityRegistrationCertificate', 'СвГосРегИП', 'Н', 'Реквизиты свидетельства о государственной регистрации индивидуального предпринимателя', 1, 100);
+  RegisterProperty('OtherInfo', 'ИныеСвед', 'Н', 'Иные сведения, идентифицирующие физическое лицо', 1, 255);
+  RegisterProperty('Person', 'ФИО', 'О', 'Фамилия, имя, отчество', -1, -1);
 end;
 
 procedure TExchangeIndividualEntrepreneurInformation.InternalInitChilds;
 begin
   inherited InternalInitChilds;
+  FPerson:=TExchangePerson.Create;
 end;
 
 destructor TExchangeIndividualEntrepreneurInformation.Destroy;
 begin
+  FreeAndNil(FPerson);
   inherited Destroy;
 end;
 
 { TExchangePhysicalPersonEntity }
 
+procedure TExchangePhysicalPersonEntity.SetInn(AValue: string);
+begin
+  if FInn=AValue then Exit;
+  FInn:=AValue;
+  ModifiedProperty('Inn');
+end;
+
+procedure TExchangePhysicalPersonEntity.SetOtherInfo(AValue: string);
+begin
+  if FOtherInfo=AValue then Exit;
+  FOtherInfo:=AValue;
+  ModifiedProperty('OtherInfo');
+end;
+
 procedure TExchangePhysicalPersonEntity.InternalRegisterPropertys;
 begin
-
+  RegisterProperty('Inn', 'ИННФЛ', 'Н', 'ИНН', 12, 12);
+  RegisterProperty('OtherInfo', 'ИныеСвед', 'Н', 'Иные сведения, идентифицирующие физическое лицо', 1, 255);
+  RegisterProperty('Person', 'ФИО', 'О', 'Фамилия, имя, отчество', -1, -1);
 end;
 
 procedure TExchangePhysicalPersonEntity.InternalInitChilds;
 begin
   inherited InternalInitChilds;
+  FPerson:=TExchangePerson.Create;
 end;
 
 destructor TExchangePhysicalPersonEntity.Destroy;
 begin
+  FreeAndNil(FPerson);
   inherited Destroy;
 end;
 
 { TExchangeLegalEntityInformation }
 
+procedure TExchangeLegalEntityInformation.SetInn(AValue: string);
+begin
+  if FInn=AValue then Exit;
+  FInn:=AValue;
+  ModifiedProperty('Inn');
+end;
+
+procedure TExchangeLegalEntityInformation.SetName(AValue: string);
+begin
+  if FName=AValue then Exit;
+  FName:=AValue;
+  ModifiedProperty('Name');
+end;
+
+procedure TExchangeLegalEntityInformation.SetOtherInfo(AValue: string);
+begin
+  if FOtherInfo=AValue then Exit;
+  FOtherInfo:=AValue;
+  ModifiedProperty('OtherInfo');
+end;
+
+procedure TExchangeLegalEntityInformation.SetPosition(AValue: string);
+begin
+  if FPosition=AValue then Exit;
+  FPosition:=AValue;
+  ModifiedProperty('Position');
+end;
+
 procedure TExchangeLegalEntityInformation.InternalRegisterPropertys;
 begin
-  (*
-  ИНН организации 	ИННЮЛ 	А 	T(=10) 	О 	Типовой элемент <ИННЮЛТип>
-  Наименование 	НаимОрг 	А 	T(1-1000) 	Н
-  Должность 	Должн 	А 	T(1-128) 	О
-  Иные сведения, идентифицирующие физическое лицо 	ИныеСвед 	А 	T(1-255) 	Н
-  Фамилия, имя, отчество 	ФИО 	С 		О 	Типовой элемент <ФИОТип>.
-  Состав элемента представлен в таблице 7.22
-  *)
+  RegisterProperty('Inn', 'ИННЮЛ', 'О', 'ИНН организации', 10, 10);
+  RegisterProperty('Name', 'НаимОрг', 'Н', 'Наименование', 1, 1000);
+  RegisterProperty('Position', 'Должн', 'О', 'Должность', 1, 128);
+  RegisterProperty('OtherInfo', 'ИныеСвед', 'Н', 'Иные сведения, идентифицирующие физическое лицо', 1, 255);
+  RegisterProperty('Person', 'ФИО', 'О', 'Фамилия, имя, отчество', -1, -1);
 end;
 
 procedure TExchangeLegalEntityInformation.InternalInitChilds;
 begin
   inherited InternalInitChilds;
+  FPerson:=TExchangePerson.Create;
 end;
 
 destructor TExchangeLegalEntityInformation.Destroy;
 begin
+  FreeAndNil(FPerson);
   inherited Destroy;
 end;
 

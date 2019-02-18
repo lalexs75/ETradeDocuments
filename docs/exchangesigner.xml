@@ -21,6 +21,26 @@
 </descr>
       </element><element name="TExchangeLegalEntityInformation"><short>Представитель юридического лица (ЮЛ)</short><descr>Таблица 7.19
 </descr>
+      </element><element name="TExchangeIndividualEntrepreneurInformation"><short>Сведения о индивидуальном предпринимателе (СвИПТип)</short><descr>Таблица 7.20
+</descr>
+      </element><element name="TExchangePhysicalPersonEntity"><short>Сведения о физическом лице (СвФЛТип)</short><descr>Таблица 7.21
+</descr>
+      </element><element name="TExchangePhysicalPersonEntity.Inn"><short>ИНН</short><descr><p>Типовой элемент &lt;ИННФЛТип&gt;.</p><p>Обязателен для подписанта при наличии в сертификате ключа проверки электронной подписи</p>
+        </descr>
+      </element><element name="TExchangePhysicalPersonEntity.OtherInfo"><short>Иные сведения, идентифицирующие физическое лицо</short>
+      </element><element name="TExchangePhysicalPersonEntity.Person"><short>Фамилия, имя, отчество</short><descr><p>Типовой элемент &lt;ФИОТип&gt;.</p><p>Состав элемента представлен в таблице 7.22</p>
+        </descr>
+      </element><element name="TExchangeIndividualEntrepreneurInformation.IndividualEntityRegistrationCertificate"><short>Реквизиты свидетельства о государственной регистрации индивидуального предпринимателя</short>
+      </element><element name="TExchangeIndividualEntrepreneurInformation.OtherInfo"><short>Иные сведения, идентифицирующие физическое лицо</short>
+      </element><element name="TExchangeIndividualEntrepreneurInformation.Person"><short>Фамилия, имя, отчество</short><descr><p>Типовой элемент &lt;ФИОТип&gt;.</p><p>Состав элемента представлен в таблице 7.22</p>
+        </descr>
+      </element><element name="TExchangeLegalEntityInformation.Inn"><short>ИНН организации</short><descr>Типовой элемент &lt;ИННЮЛТип&gt;
+</descr>
+      </element><element name="TExchangeLegalEntityInformation.Name"><short>Наименование</short>
+      </element><element name="TExchangeLegalEntityInformation.Position"><short>Должность</short>
+      </element><element name="TExchangeLegalEntityInformation.OtherInfo"><short>ные сведения, идентифицирующие физическое лицо</short>
+      </element><element name="TExchangeLegalEntityInformation.Person"><short>Фамилия, имя, отчество</short><descr><p>Типовой элемент &lt;ФИОТип&gt;.</p><p>Состав элемента представлен в таблице 7.22</p>
+        </descr>
       </element>
     </module>
   </package>
