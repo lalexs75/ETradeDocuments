@@ -2,7 +2,7 @@
   This source is only used to compile and install the package.
  }
 
-unit ETradeDocumnets;
+unit ETradeDocuments;
 
 {$warn 5023 off : no warning about unused units}
 interface
@@ -21,5 +21,5 @@ begin
 end;
 
 initialization
-  RegisterPackage('ETradeDocumnets', @Register);
+  RegisterPackage('ETradeDocuments', @Register);
 end.
