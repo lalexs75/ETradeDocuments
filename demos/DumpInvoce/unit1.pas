@@ -35,6 +35,8 @@ type
     procedure DumpInvoiceRevisionInfo(P:TInvoiceRevisionInfo; APrefix: string);
     procedure DumpInvoiceItems(P:TInvoiceItems; APrefix: string);
     procedure DumpInvoiceItemList(P:TInvoiceItemList; APrefix: string);
+    procedure DumpInvoiceItem(P:TInvoiceItem; APrefix: string);
+
     procedure DumpTotalForPay(P:TTotalForPay; APrefix: string);
     procedure DumpTransferInfo(P:TTransferInfo; APrefix: string);
     procedure DumpSigners(P:TSignerList; APrefix: string);
@@ -158,14 +160,31 @@ end;
 procedure TForm1.DumpInvoiceItemList(P: TInvoiceItemList; APrefix: string);
 var
   i: Integer;
-  Itm: TInvoiceItem;
+begin
+  if not Assigned(P) then Exit;
+  for i:=0 to P.Count-1 do
+    DumpInvoiceItem(P[i], Format(APrefix + '[%d]', [i]));
+end;
+
+procedure TForm1.DumpInvoiceItem(P: TInvoiceItem; APrefix: string);
 begin
   if not Assigned(P) then Exit;
   APrefix:=APrefix + '.';
-  for i:=0 to P.Count-1 do
-  begin
-    Itm:=P[i];
-  end;
+  WriteLogI(APrefix + 'LineNumber = %d', [P.LineNumber]);
+  WriteLogI(APrefix + 'Product = %s', [P.Product]);
+  WriteLogI(APrefix + 'UnitCode = %s', [P.UnitCode]);
+  WriteLogI(APrefix + 'UnitCodeDef = %s', [P.UnitCodeDef]);
+  WriteLogI(APrefix + 'Quantity = %s', [P.Quantity]);
+  WriteLogI(APrefix + 'Price = %s', [P.Price]);
+  WriteLogI(APrefix + 'SubtotalWithVatExcluded = %s', [P.SubtotalWithVatExcluded]);
+  WriteLogI(APrefix + 'TaxRate = %s', [P.TaxRate]);
+  WriteLogI(APrefix + 'Subtotal = %s', [P.Subtotal]);
+  WriteLogI(APrefix + 'SubtotalDef = %s', [P.SubtotalDef]);
+//  property Excise:TExciseSum read FExcise;
+//  property Vat:TVatSum read FVat;
+//  property CustomsDeclaration:TCustomsDeclarationList read FCustomsDeclaration;
+//  property InvoiceItemAdditional:TInvoiceItemAdditional read FInvoiceItemAdditional;
+//  property AdditionalInfo:TTextInfoList read FAdditionalInfo;
 end;
 
 procedure TForm1.DumpTotalForPay(P: TTotalForPay; APrefix: string);

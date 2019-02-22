@@ -3,7 +3,7 @@
   <ProjectSession>
     <Version Value="11"/>
     <BuildModes Active="Default"/>
-    <Units Count="23">
+    <Units Count="24">
       <Unit0>
         <Filename Value="project1.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -11,7 +11,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="22"/>
       </Unit0>
       <Unit1>
         <Filename Value="unit1.pas"/>
@@ -20,9 +20,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
-        <TopLine Value="151"/>
-        <CursorPos X="5" Y="167"/>
-        <UsageCount Value="21"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="169"/>
+        <CursorPos X="39" Y="173"/>
+        <UsageCount Value="22"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -37,7 +38,7 @@
       <Unit3>
         <Filename Value="../../invoce/invocedocument.pas"/>
         <UnitName Value="InvoceDocument"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="106"/>
         <CursorPos X="32" Y="121"/>
         <UsageCount Value="11"/>
@@ -61,7 +62,7 @@
       <Unit6>
         <Filename Value="../../invoce/transferinfo.pas"/>
         <UnitName Value="TransferInfo"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="191"/>
         <CursorPos X="66" Y="211"/>
         <UsageCount Value="11"/>
@@ -108,16 +109,16 @@
       <Unit12>
         <Filename Value="../../invoce/invoiceitem.pas"/>
         <UnitName Value="InvoiceItem"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="270"/>
-        <CursorPos X="28" Y="285"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="252"/>
+        <CursorPos Y="281"/>
         <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit12>
       <Unit13>
         <Filename Value="../../invoce/signer.pas"/>
         <UnitName Value="Signer"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="62"/>
         <CursorPos X="65" Y="83"/>
         <UsageCount Value="10"/>
@@ -190,14 +191,21 @@
       <Unit22>
         <Filename Value="../../invoce/organizationinfo.pas"/>
         <UnitName Value="OrganizationInfo"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="255"/>
         <CursorPos X="75" Y="276"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit22>
+      <Unit23>
+        <Filename Value="/home/install/source/fpcsrc/rtl/objpas/sysutils/sysstr.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1047"/>
+        <CursorPos Y="1063"/>
+        <UsageCount Value="10"/>
+      </Unit23>
     </Units>
-    <JumpHistory Count="14" HistoryIndex="13">
+    <JumpHistory Count="20" HistoryIndex="19">
       <Position1>
         <Filename Value="unit1.pas"/>
         <Caret Line="152" TopLine="138"/>
@@ -254,6 +262,30 @@
         <Filename Value="../../invoce/transferinfo.pas"/>
         <Caret Line="211" Column="66" TopLine="191"/>
       </Position14>
+      <Position15>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="167" Column="5" TopLine="151"/>
+      </Position15>
+      <Position16>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="38" Column="45" TopLine="23"/>
+      </Position16>
+      <Position17>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="172" Column="54" TopLine="159"/>
+      </Position17>
+      <Position18>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="183" Column="60" TopLine="164"/>
+      </Position18>
+      <Position19>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="166" Column="49" TopLine="151"/>
+      </Position19>
+      <Position20>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="38" Column="15" TopLine="24"/>
+      </Position20>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
