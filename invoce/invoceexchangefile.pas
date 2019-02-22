@@ -169,12 +169,14 @@ end;
 
 procedure TExchangeFile.InternalRegisterPropertys;
 begin
+  inherited InternalRegisterPropertys;
   RegisterProperty('ParticipantsInformation', 'СвУчДокОбор', 'О', 'Сведения об участниках электронного документооборота', -1, -1);
   RegisterProperty('Document', 'Документ', 'О', 'Счет-фактура, или документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг), включающий в себя счет-фактуру (информация продавца), или документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг) (информация продавца)', -1, -1);
 end;
 
 procedure TExchangeFile.InternalInitChilds;
 begin
+  inherited InternalInitChilds;
   FParticipantsInformation:=TParticipantsInformation.Create;
   FDocument:=TInvoceDocument.Create;
 end;

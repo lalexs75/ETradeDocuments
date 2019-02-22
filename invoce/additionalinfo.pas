@@ -68,7 +68,7 @@ type
     function GetItem(AIndex: Integer): TTextInfo; inline;
   public
     constructor Create;
-    property Item[AIndex:Integer]:TTextInfo read GetItem;
+    property Item[AIndex:Integer]:TTextInfo read GetItem; default;
   end;
 
   { TAdditionalInfo1 }

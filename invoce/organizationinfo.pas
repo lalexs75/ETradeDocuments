@@ -273,7 +273,7 @@ type
     function GetItem(AIndex: Integer): TOrganizationInfo; inline;
   public
     constructor Create;
-    property Item[AIndex:Integer]:TOrganizationInfo read GetItem;
+    property Item[AIndex:Integer]:TOrganizationInfo read GetItem; default;
   end;
 
 

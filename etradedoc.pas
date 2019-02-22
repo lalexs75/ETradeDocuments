@@ -39,16 +39,19 @@ unit ETradeDoc;
 interface
 
 uses
-  Classes, SysUtils;
+  Classes, SysUtils, InvoceExchangeFile;
 
 type
+
+  { TETradeDoc }
+
   TETradeDoc = class(TComponent)
   private
 
   protected
 
   public
-
+    function LoadInvoce(AFileName:string):TExchangeFile;
   published
 
   end;
@@ -56,11 +59,18 @@ type
 procedure Register;
 
 implementation
-uses InvoceExchangeFile;
 
 procedure Register;
 begin
   RegisterComponents('TradeEquipment',[TETradeDoc]);
+end;
+
+{ TETradeDoc }
+
+function TETradeDoc.LoadInvoce(AFileName: string): TExchangeFile;
+begin
+  Result:=TExchangeFile.Create;
+  Result.LoadFromXML(AFileName);
 end;
 
 end.

@@ -159,7 +159,7 @@ type
     function GetItem(AIndex: Integer): TExchangeTextInfo; inline;
   public
     constructor Create;
-    property Item[AIndex:Integer]:TExchangeTextInfo read GetItem;
+    property Item[AIndex:Integer]:TExchangeTextInfo read GetItem; default;
   end;
 
   { TAdditionalInfoId4 }

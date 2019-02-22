@@ -80,7 +80,7 @@ type
     function GetItem(AIndex: Integer): TMonetaryObligationInformation; inline;
   public
     constructor Create;
-    property Item[AIndex:Integer]:TMonetaryObligationInformation read GetItem;
+    property Item[AIndex:Integer]:TMonetaryObligationInformation read GetItem; default;
   end;
 
   { TTreasuryInformation }

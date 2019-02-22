@@ -92,7 +92,7 @@ type
     function GetItem(AIndex: Integer): TShipper; inline;
   public
     constructor Create;
-    property Item[AIndex:Integer]:TShipper read GetItem;
+    property Item[AIndex:Integer]:TShipper read GetItem; default;
   end;
 
   { TPaymentDocument }
@@ -123,7 +123,7 @@ type
     function GetItem(AIndex: Integer): TPaymentDocument; inline;
   public
     constructor Create;
-    property Item[AIndex:Integer]:TPaymentDocument read GetItem;
+    property Item[AIndex:Integer]:TPaymentDocument read GetItem; default;
   end;
 
   { TSellerInformationForState }
@@ -218,7 +218,7 @@ type
     function GetItem(AIndex: Integer): TShipmentBaseConfirm; inline;
   public
     constructor Create;
-    property Item[AIndex:Integer]:TShipmentBaseConfirm read GetItem;
+    property Item[AIndex:Integer]:TShipmentBaseConfirm read GetItem; default;
   end;
 
   { TInvoiceInformation }

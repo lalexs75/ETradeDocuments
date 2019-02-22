@@ -150,7 +150,7 @@ type
     function GetItem(AIndex: Integer): TExchangeSigner; inline;
   public
     constructor Create;
-    property Item[AIndex:Integer]:TExchangeSigner read GetItem;
+    property Item[AIndex:Integer]:TExchangeSigner read GetItem; default;
   end;
 
 implementation

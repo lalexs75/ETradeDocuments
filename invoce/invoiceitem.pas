@@ -110,7 +110,7 @@ type
     function GetItem(AIndex: Integer): TCustomsDeclaration; inline;
   public
     constructor Create;
-    property Item[AIndex:Integer]:TCustomsDeclaration read GetItem;
+    property Item[AIndex:Integer]:TCustomsDeclaration read GetItem; default;
   end;
 
   { TTraceabilityInformation }
@@ -147,7 +147,7 @@ type
     function GetItem(AIndex: Integer): TTraceabilityInformation; inline;
   public
     constructor Create;
-    property Item[AIndex:Integer]:TTraceabilityInformation read GetItem;
+    property Item[AIndex:Integer]:TTraceabilityInformation read GetItem; default;
   end;
 
   { TProductIdentificationNumber }
@@ -176,7 +176,7 @@ type
     function GetItem(AIndex: Integer): TProductIdentificationNumber; inline;
   public
     constructor Create;
-    property Item[AIndex:Integer]:TProductIdentificationNumber read GetItem;
+    property Item[AIndex:Integer]:TProductIdentificationNumber read GetItem; default;
   end;
 
   { TInvoiceItemAdditional }
@@ -287,7 +287,7 @@ type
     function GetItem(AIndex: Integer): TInvoiceItem; inline;
   public
     constructor Create;
-    property Item[AIndex:Integer]:TInvoiceItem read GetItem;
+    property Item[AIndex:Integer]:TInvoiceItem read GetItem; default;
   end;
 
   { TTotalForPay }

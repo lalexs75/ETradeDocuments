@@ -76,7 +76,7 @@ type
     function GetItem(AIndex: Integer): TShipmentBase; inline;
   public
     constructor Create;
-    property Item[AIndex:Integer]:TShipmentBase read GetItem;
+    property Item[AIndex:Integer]:TShipmentBase read GetItem; default;
   end;
 
   { TSellerEmployee }
@@ -208,7 +208,7 @@ type
     function GetItem(AIndex: Integer): TWaybill; inline;
   public
     constructor Create;
-    property Item[AIndex:Integer]:TWaybill read GetItem;
+    property Item[AIndex:Integer]:TWaybill read GetItem; default;
   end;
 
 
