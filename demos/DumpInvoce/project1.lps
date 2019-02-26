@@ -11,7 +11,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="26"/>
       </Unit0>
       <Unit1>
         <Filename Value="unit1.pas"/>
@@ -20,9 +20,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
-        <TopLine Value="125"/>
-        <CursorPos Y="130"/>
-        <UsageCount Value="25"/>
+        <TopLine Value="482"/>
+        <CursorPos Y="499"/>
+        <UsageCount Value="26"/>
         <Bookmarks Count="1">
           <Item0 X="44" Y="355" ID="1"/>
         </Bookmarks>
@@ -30,6 +30,21 @@
         <LoadedDesigner Value="True"/>
       </Unit1>
       <Unit2>
+        <Filename Value="unit2.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ExchInfoFrame"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Frame"/>
+        <UnitName Value="Unit2"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="217"/>
+        <CursorPos X="47" Y="246"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit2>
+      <Unit3>
         <Filename Value="../../etradedoc.pas"/>
         <UnitName Value="ETradeDoc"/>
         <EditorIndex Value="2"/>
@@ -37,8 +52,8 @@
         <CursorPos X="21" Y="55"/>
         <UsageCount Value="11"/>
         <Loaded Value="True"/>
-      </Unit2>
-      <Unit3>
+      </Unit3>
+      <Unit4>
         <Filename Value="../../invoce/invocedocument.pas"/>
         <UnitName Value="InvoceDocument"/>
         <EditorIndex Value="8"/>
@@ -46,24 +61,24 @@
         <CursorPos X="14" Y="68"/>
         <UsageCount Value="13"/>
         <Loaded Value="True"/>
-      </Unit3>
-      <Unit4>
+      </Unit4>
+      <Unit5>
         <Filename Value="../../invoce/exchangefile.pas"/>
         <UnitName Value="ExchangeFile"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="25"/>
         <CursorPos X="18" Y="35"/>
         <UsageCount Value="10"/>
-      </Unit4>
-      <Unit5>
+      </Unit5>
+      <Unit6>
         <Filename Value="../../xml_doc.pas"/>
         <EditorIndex Value="7"/>
         <TopLine Value="185"/>
         <CursorPos Y="200"/>
         <UsageCount Value="12"/>
         <Loaded Value="True"/>
-      </Unit5>
-      <Unit6>
+      </Unit6>
+      <Unit7>
         <Filename Value="../../invoce/transferinfo.pas"/>
         <UnitName Value="TransferInfo"/>
         <EditorIndex Value="11"/>
@@ -71,46 +86,46 @@
         <CursorPos Y="250"/>
         <UsageCount Value="13"/>
         <Loaded Value="True"/>
-      </Unit6>
-      <Unit7>
+      </Unit7>
+      <Unit8>
         <Filename Value="../../invoce/invoceexchangefile.pas"/>
         <UnitName Value="InvoceExchangeFile"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="22"/>
         <CursorPos X="45" Y="42"/>
         <UsageCount Value="11"/>
-      </Unit7>
-      <Unit8>
+      </Unit8>
+      <Unit9>
         <Filename Value="/home/install/source/fpcsrc/packages/fcl-xml/src/xmliconv.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="48"/>
         <CursorPos Y="73"/>
         <UsageCount Value="10"/>
-      </Unit8>
-      <Unit9>
+      </Unit9>
+      <Unit10>
         <Filename Value="/home/install/source/fpcsrc/packages/fcl-xml/src/xmltextreader.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="3338"/>
         <CursorPos Y="3353"/>
         <UsageCount Value="10"/>
-      </Unit9>
-      <Unit10>
+      </Unit10>
+      <Unit11>
         <Filename Value="/home/install/source/fpcsrc/packages/fcl-xml/src/xmlread.pp"/>
         <UnitName Value="XMLRead"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="404"/>
         <CursorPos Y="421"/>
         <UsageCount Value="10"/>
-      </Unit10>
-      <Unit11>
+      </Unit11>
+      <Unit12>
         <Filename Value="/home/install/source/fpcsrc/packages/fcl-xml/src/dom.pp"/>
         <UnitName Value="DOM"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2353"/>
         <CursorPos Y="2374"/>
         <UsageCount Value="10"/>
-      </Unit11>
-      <Unit12>
+      </Unit12>
+      <Unit13>
         <Filename Value="../../invoce/invoiceitem.pas"/>
         <UnitName Value="InvoiceItem"/>
         <EditorIndex Value="6"/>
@@ -118,8 +133,8 @@
         <CursorPos Y="317"/>
         <UsageCount Value="12"/>
         <Loaded Value="True"/>
-      </Unit12>
-      <Unit13>
+      </Unit13>
+      <Unit14>
         <Filename Value="../../invoce/signer.pas"/>
         <UnitName Value="Signer"/>
         <EditorIndex Value="13"/>
@@ -127,65 +142,65 @@
         <CursorPos Y="74"/>
         <UsageCount Value="12"/>
         <Loaded Value="True"/>
-      </Unit13>
-      <Unit14>
+      </Unit14>
+      <Unit15>
         <Filename Value="../../exchange/exchangesigner.pas"/>
         <UnitName Value="ExchangeSigner"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="132"/>
         <CursorPos X="65" Y="153"/>
         <UsageCount Value="10"/>
-      </Unit14>
-      <Unit15>
+      </Unit15>
+      <Unit16>
         <Filename Value="../../exchange/treasuryinformation.pas"/>
         <UnitName Value="TreasuryInformation"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="62"/>
         <CursorPos X="88" Y="83"/>
         <UsageCount Value="10"/>
-      </Unit15>
-      <Unit16>
+      </Unit16>
+      <Unit17>
         <Filename Value="../../exchange/exchangeinformation.pas"/>
         <UnitName Value="ExchangeInformation"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="267"/>
-        <CursorPos X="75" Y="162"/>
+        <TopLine Value="124"/>
+        <CursorPos Y="153"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
-      </Unit16>
-      <Unit17>
+      </Unit17>
+      <Unit18>
         <Filename Value="../../exchange/backup/exchangesigner.pas"/>
         <UnitName Value="ExchangeSigner"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="132"/>
         <CursorPos X="73" Y="153"/>
         <UsageCount Value="10"/>
-      </Unit17>
-      <Unit18>
+      </Unit18>
+      <Unit19>
         <Filename Value="../../exchange/backup/treasuryinformation.pas"/>
         <UnitName Value="TreasuryInformation"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="62"/>
         <CursorPos X="88" Y="83"/>
         <UsageCount Value="10"/>
-      </Unit18>
-      <Unit19>
+      </Unit19>
+      <Unit20>
         <Filename Value="../../exchange/backup/signer.pas"/>
         <UnitName Value="Signer"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="36"/>
         <CursorPos X="73" Y="61"/>
         <UsageCount Value="10"/>
-      </Unit19>
-      <Unit20>
+      </Unit20>
+      <Unit21>
         <Filename Value="../../exchange/backup/exchangeinformation.pas"/>
         <UnitName Value="ExchangeInformation"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="141"/>
         <CursorPos X="75" Y="162"/>
         <UsageCount Value="10"/>
-      </Unit20>
-      <Unit21>
+      </Unit21>
+      <Unit22>
         <Filename Value="../../invoce/additionalinfo.pas"/>
         <UnitName Value="AdditionalInfo"/>
         <EditorIndex Value="12"/>
@@ -193,8 +208,8 @@
         <CursorPos Y="62"/>
         <UsageCount Value="11"/>
         <Loaded Value="True"/>
-      </Unit21>
-      <Unit22>
+      </Unit22>
+      <Unit23>
         <Filename Value="../../invoce/organizationinfo.pas"/>
         <UnitName Value="OrganizationInfo"/>
         <EditorIndex Value="9"/>
@@ -202,15 +217,15 @@
         <CursorPos Y="307"/>
         <UsageCount Value="12"/>
         <Loaded Value="True"/>
-      </Unit22>
-      <Unit23>
+      </Unit23>
+      <Unit24>
         <Filename Value="/home/install/source/fpcsrc/rtl/objpas/sysutils/sysstr.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1047"/>
         <CursorPos Y="1063"/>
         <UsageCount Value="10"/>
-      </Unit23>
-      <Unit24>
+      </Unit24>
+      <Unit25>
         <Filename Value="../../invoce/adressinfo.pas"/>
         <UnitName Value="AdressInfo"/>
         <EditorIndex Value="10"/>
@@ -218,20 +233,6 @@
         <CursorPos Y="101"/>
         <UsageCount Value="11"/>
         <Loaded Value="True"/>
-      </Unit24>
-      <Unit25>
-        <Filename Value="unit2.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="ExchInfoFrame"/>
-        <ResourceBaseClass Value="Frame"/>
-        <UnitName Value="Unit2"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="81"/>
-        <CursorPos X="45" Y="107"/>
-        <UsageCount Value="21"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit25>
       <Unit26>
         <Filename Value="../../../../lcl/forms.pp"/>
@@ -252,8 +253,8 @@
         <Filename Value="../../exchange/exchangedocument.pas"/>
         <UnitName Value="ExchangeDocument"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="47"/>
-        <CursorPos Y="68"/>
+        <TopLine Value="85"/>
+        <CursorPos X="14" Y="100"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit28>
@@ -267,126 +268,125 @@
         <Loaded Value="True"/>
       </Unit29>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="30" HistoryIndex="28">
       <Position1>
         <Filename Value="unit2.pas"/>
-        <Caret Line="42" Column="50" TopLine="27"/>
+        <Caret Line="135" Column="38" TopLine="119"/>
       </Position1>
       <Position2>
         <Filename Value="unit2.pas"/>
-        <Caret Line="43" Column="42" TopLine="28"/>
+        <Caret Line="32" Column="19" TopLine="15"/>
       </Position2>
       <Position3>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="120" Column="3" TopLine="116"/>
+        <Filename Value="unit2.pas"/>
+        <Caret Line="155" Column="48" TopLine="129"/>
       </Position3>
       <Position4>
         <Filename Value="unit2.pas"/>
-        <Caret Line="24" Column="76" TopLine="7"/>
+        <Caret Line="33" Column="19" TopLine="18"/>
       </Position4>
       <Position5>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="33" Column="22" TopLine="12"/>
+        <Filename Value="unit2.pas"/>
+        <Caret Line="165" TopLine="150"/>
       </Position5>
       <Position6>
         <Filename Value="unit2.pas"/>
-        <Caret Line="53" TopLine="32"/>
+        <Caret Line="168" Column="5" TopLine="146"/>
       </Position6>
       <Position7>
         <Filename Value="unit2.pas"/>
-        <Caret Line="54" Column="66" TopLine="32"/>
+        <Caret Line="34" Column="19" TopLine="19"/>
       </Position7>
       <Position8>
         <Filename Value="unit2.pas"/>
-        <Caret Line="25" Column="19" TopLine="9"/>
+        <Caret Line="177" TopLine="158"/>
       </Position8>
       <Position9>
         <Filename Value="unit2.pas"/>
-        <Caret Line="54" Column="101" TopLine="48"/>
+        <Caret Line="158" Column="46" TopLine="148"/>
       </Position9>
       <Position10>
         <Filename Value="unit2.pas"/>
-        <Caret Line="64" Column="68" TopLine="48"/>
+        <Caret Line="35" Column="19" TopLine="18"/>
       </Position10>
       <Position11>
         <Filename Value="unit2.pas"/>
-        <Caret Line="26" Column="19" TopLine="10"/>
+        <Caret Line="182" Column="62" TopLine="177"/>
       </Position11>
       <Position12>
         <Filename Value="unit2.pas"/>
-        <Caret Line="74" TopLine="56"/>
+        <Caret Line="188" Column="65" TopLine="171"/>
       </Position12>
       <Position13>
         <Filename Value="unit2.pas"/>
-        <Caret Line="77" Column="86" TopLine="56"/>
+        <Caret Line="36" Column="19" TopLine="21"/>
       </Position13>
       <Position14>
         <Filename Value="unit2.pas"/>
-        <Caret Line="61" Column="20" TopLine="37"/>
+        <Caret Line="195" TopLine="184"/>
       </Position14>
       <Position15>
         <Filename Value="unit2.pas"/>
-        <Caret Line="64" Column="47" TopLine="48"/>
+        <Caret Line="202" Column="24" TopLine="176"/>
       </Position15>
       <Position16>
         <Filename Value="unit2.pas"/>
-        <Caret Line="55" Column="40" TopLine="44"/>
+        <Caret Line="190" Column="40" TopLine="170"/>
       </Position16>
       <Position17>
         <Filename Value="unit2.pas"/>
-        <Caret Line="27" Column="19" TopLine="9"/>
+        <Caret Line="37" Column="19" TopLine="21"/>
       </Position17>
       <Position18>
         <Filename Value="unit2.pas"/>
-        <Caret Line="81" Column="56" TopLine="63"/>
+        <Caret Line="212" TopLine="189"/>
       </Position18>
       <Position19>
         <Filename Value="unit2.pas"/>
-        <Caret Line="27" Column="38" TopLine="33"/>
+        <Caret Line="161" Column="46" TopLine="141"/>
       </Position19>
       <Position20>
-        <Filename Value="../../exchange/clientexchangefile.pas"/>
-        <Caret Line="98" Column="14" TopLine="83"/>
+        <Filename Value="unit2.pas"/>
+        <Caret Line="130" Column="49" TopLine="106"/>
       </Position20>
       <Position21>
-        <Filename Value="../../exchange/clientexchangefile.pas"/>
-        <Caret Line="35" Column="24" TopLine="13"/>
+        <Filename Value="unit2.pas"/>
+        <Caret Line="38" Column="19" TopLine="14"/>
       </Position21>
       <Position22>
         <Filename Value="unit2.pas"/>
-        <Caret Line="27" Column="49"/>
+        <Caret Line="131" Column="75" TopLine="123"/>
       </Position22>
       <Position23>
         <Filename Value="unit2.pas"/>
-        <Caret Line="81" Column="53" TopLine="77"/>
+        <Caret Line="223" TopLine="203"/>
       </Position23>
       <Position24>
-        <Filename Value="../../exchange/clientexchangefile.pas"/>
-        <Caret Line="35" Column="24" TopLine="82"/>
+        <Filename Value="unit2.pas"/>
+        <Caret Line="224" Column="44" TopLine="203"/>
       </Position24>
       <Position25>
-        <Filename Value="../../exchange/exchangedocument.pas"/>
-        <Caret Line="35" Column="22" TopLine="21"/>
+        <Filename Value="unit2.pas"/>
       </Position25>
       <Position26>
         <Filename Value="unit2.pas"/>
-        <Caret Line="27" Column="42"/>
+        <Caret Line="224" Column="44" TopLine="199"/>
       </Position26>
       <Position27>
         <Filename Value="unit2.pas"/>
-        <Caret Line="84" Column="3" TopLine="77"/>
+        <Caret Line="40" Column="55" TopLine="25"/>
       </Position27>
       <Position28>
-        <Filename Value="unit2.pas"/>
-        <Caret Line="92" Column="78" TopLine="75"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="144" Column="35" TopLine="141"/>
       </Position28>
       <Position29>
         <Filename Value="unit2.pas"/>
-        <Caret Line="28" Column="19" TopLine="12"/>
+        <Caret Line="244" TopLine="215"/>
       </Position29>
       <Position30>
-        <Filename Value="unit2.pas"/>
-        <Caret Line="104" TopLine="81"/>
+        <Filename Value="../../exchange/exchangeinformation.pas"/>
+        <Caret Line="153" TopLine="124"/>
       </Position30>
     </JumpHistory>
     <RunParams>
