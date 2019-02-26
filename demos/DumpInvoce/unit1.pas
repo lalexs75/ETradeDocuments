@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ComCtrls, StdCtrls,
-  ETradeDoc, DividerBevel,
+  ETradeDoc, DividerBevel, Unit2,
   AdressInfo, InvoceExchangeFile, InvoceDocument, InvoiceItem, TransferInfo, Signer,
   AdditionalInfo, OrganizationInfo;
 
@@ -16,22 +16,18 @@ type
 
   TForm1 = class(TForm)
     Button1: TButton;
-    Button2: TButton;
     DividerBevel1: TDividerBevel;
-    DividerBevel2: TDividerBevel;
     Edit1: TEdit;
-    Edit2: TEdit;
     ETradeDoc1: TETradeDoc;
     Label1: TLabel;
-    Label2: TLabel;
     Memo1: TMemo;
-    Memo2: TMemo;
     PageControl1: TPageControl;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+  private
+    FExchInfo:TExchInfoFrame;
   private
     //invoce
     procedure DumpExchangeFile(D: TExchangeFile; APrefix: string);
@@ -107,6 +103,10 @@ procedure TForm1.FormCreate(Sender: TObject);
 var
   S: String;
 begin
+  FExchInfo:=TExchInfoFrame.Create(Self);
+  FExchInfo.Parent:=TabSheet2;
+  FExchInfo.Align:=alClient;
+
   Memo1.Lines.Clear;
 
   S:=AppendPathDelim(ExtractFileDir(ParamStr(0))) + AppendPathDelim('data');
@@ -120,11 +120,6 @@ begin
   D:=ETradeDoc1.LoadInvoce(Edit1.Text);
   DumpExchangeFile(D, 'СФ');
   D.Free;
-end;
-
-procedure TForm1.Button2Click(Sender: TObject);
-begin
-  //
 end;
 
 procedure TForm1.DumpExchangeFile(D: TExchangeFile; APrefix: string);

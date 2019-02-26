@@ -1,4 +1,4 @@
-object Frame1: TFrame1
+object ExchInfoFrame: TExchInfoFrame
   Left = 0
   Height = 419
   Top = 0
@@ -9,6 +9,8 @@ object Frame1: TFrame1
   DesignLeft = 600
   DesignTop = 410
   object Label2: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
     Left = 6
     Height = 19
     Top = 6
@@ -17,7 +19,7 @@ object Frame1: TFrame1
     Caption = 'Файл с данными'
     ParentColor = False
   end
-  object Edit2: TEdit
+  object Edit1: TEdit
     AnchorSideLeft.Control = Label2
     AnchorSideTop.Control = Label2
     AnchorSideTop.Side = asrBottom
@@ -25,34 +27,39 @@ object Frame1: TFrame1
     Left = 12
     Height = 31
     Top = 31
-    Width = 417
+    Width = 411
     Anchors = [akTop, akLeft, akRight]
     BorderSpacing.Around = 6
     TabOrder = 0
-    Text = 'Edit2'
+    Text = 'Edit1'
   end
   object DividerBevel2: TDividerBevel
-    AnchorSideTop.Control = Edit2
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Edit1
     AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
     Left = 0
     Height = 19
     Top = 68
-    Width = 658
+    Width = 515
     Caption = 'Содержимое файла'
     Anchors = [akTop, akLeft, akRight]
     Font.Style = [fsBold]
     ParentFont = False
   end
-  object Memo2: TMemo
+  object Memo1: TMemo
+    AnchorSideLeft.Control = Owner
     AnchorSideTop.Control = DividerBevel2
     AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 0
     Height = 332
     Top = 87
-    Width = 658
+    Width = 515
     Anchors = [akTop, akLeft, akRight, akBottom]
     Lines.Strings = (
       'Memo1'
@@ -63,8 +70,9 @@ object Frame1: TFrame1
   object Button2: TButton
     AnchorSideTop.Control = Label2
     AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
-    Left = 435
+    Left = 429
     Height = 31
     Top = 31
     Width = 80
@@ -72,6 +80,11 @@ object Frame1: TFrame1
     AutoSize = True
     BorderSpacing.Around = 6
     Caption = 'Загрузить'
+    OnClick = Button2Click
     TabOrder = 2
+  end
+  object ETradeDoc1: TETradeDoc
+    Left = 424
+    Top = 104
   end
 end
