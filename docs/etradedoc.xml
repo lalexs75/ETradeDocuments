@@ -4,6 +4,9 @@
     <module name="ETradeDoc">
       <element name="TETradeDoc" link="1"><short>1</short>
       </element>
+    <element name="TETradeDoc.LoadInvoce"><short>Чтение из файла обмена данных счёта-фактуры</short>
+      </element><element name="TETradeDoc.LoadClientExchangeFile"><short>Чтение из файла обмена информации</short>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>

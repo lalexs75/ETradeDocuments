@@ -39,7 +39,7 @@ unit ETradeDoc;
 interface
 
 uses
-  Classes, SysUtils, InvoceExchangeFile;
+  Classes, SysUtils, InvoceExchangeFile, ClientExchangeFile;
 
 type
 
@@ -52,6 +52,7 @@ type
 
   public
     function LoadInvoce(AFileName:string):TExchangeFile;
+    function LoadClientExchangeFile(AFileName:string):TClientExchangeFile;
   published
 
   end;
@@ -70,6 +71,13 @@ end;
 function TETradeDoc.LoadInvoce(AFileName: string): TExchangeFile;
 begin
   Result:=TExchangeFile.Create;
+  Result.LoadFromXML(AFileName);
+end;
+
+function TETradeDoc.LoadClientExchangeFile(AFileName: string
+  ): TClientExchangeFile;
+begin
+  Result:=TClientExchangeFile.Create;
   Result.LoadFromXML(AFileName);
 end;
 
