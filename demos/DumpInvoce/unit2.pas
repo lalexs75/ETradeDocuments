@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, StdCtrls, DividerBevel, ETradeDoc,
-  ClientExchangeFile;
+  ClientExchangeFile, ExchangeDocument;
 
 type
 
@@ -24,6 +24,8 @@ type
     procedure DumpClientExchangeFile(P:TClientExchangeFile; APrefix: string);
     procedure DumpParticipantsInformationEx(P:TParticipantsInformationEx; APrefix: string);
     procedure DumpSenderExchangeInformationEx(P:TSenderExchangeInformationEx; APrefix: string);
+    procedure DumpExchangeDocument(P:TExchangeDocument; APrefix: string);
+    procedure DumpExchangeFileIdentificatorSeller(P:TExchangeFileIdentificatorSeller; APrefix: string);
 
     procedure WriteLogI(S:string; AParams:array of const);
   public
@@ -52,7 +54,7 @@ begin
   if not Assigned(P) then Exit;
   APrefix:=APrefix + '.';
   DumpParticipantsInformationEx(P.ParticipantsInformationEx, APrefix + 'ParticipantsInformationEx');
-  //property Document:TExchangeDocument read FDocument;
+  DumpExchangeDocument(P.Document, APrefix + 'Document');
 end;
 
 procedure TExchInfoFrame.DumpParticipantsInformationEx(
@@ -75,6 +77,34 @@ begin
   WriteLogI(APrefix + 'FullName = %s', [P.FullName]);
   WriteLogI(APrefix + 'Inn = %s', [P.Inn]);
   WriteLogI(APrefix + 'IdentifierSenderOperator = %s', [P.IdentifierSenderOperator]);
+end;
+
+procedure TExchInfoFrame.DumpExchangeDocument(P: TExchangeDocument;
+  APrefix: string);
+begin
+  if not Assigned(P) then Exit;
+  APrefix:=APrefix + '.';
+
+  WriteLogI(APrefix + 'KND = %s', [P.KND]);
+  WriteLogI(APrefix + 'DateCreate = %s', [P.DateCreate]);
+  WriteLogI(APrefix + 'TimeCreate = %s', [P.TimeCreate]);
+  WriteLogI(APrefix + 'DocumentCreator = %s', [P.DocumentCreator]);
+  WriteLogI(APrefix + 'DocumentCreatorBase = %s', [P.DocumentCreatorBase]);
+  DumpExchangeFileIdentificatorSeller(P.ExchangeFileIdentificatorSeller, APrefix + 'ExchangeFileIdentificatorSeller');
+  //property ExchangeInformation:TExchangeInformation read FExchangeInformation;
+  //property TreasuryInformation:TTreasuryInformation read FTreasuryInformation;
+  //property ExchangeSigner:TExchangeSignerList read FSigner;
+end;
+
+procedure TExchInfoFrame.DumpExchangeFileIdentificatorSeller(
+  P: TExchangeFileIdentificatorSeller; APrefix: string);
+begin
+  if not Assigned(P) then Exit;
+  APrefix:=APrefix + '.';
+  WriteLogI(APrefix + 'FileName = %s', [P.FileName]);
+  WriteLogI(APrefix + 'DateCreate = %s', [P.DateCreate]);
+  WriteLogI(APrefix + 'TimeCreate = %s', [P.TimeCreate]);
+  WriteLogI(APrefix + 'Sign = %s', [P.Sign]);
 end;
 
 procedure TExchInfoFrame.WriteLogI(S: string; AParams: array of const);
