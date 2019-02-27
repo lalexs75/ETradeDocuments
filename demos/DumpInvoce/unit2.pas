@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, StdCtrls, DividerBevel, ETradeDoc,
-  ClientExchangeFile, ExchangeDocument, ExchangeInformation;
+  ClientExchangeFile, ExchangeDocument, ExchangeInformation, TreasuryInformation,
+  ExchangeSigner;
 
 type
 
@@ -38,6 +39,14 @@ type
     procedure DumpAdditionalInfoId4(P:TAdditionalInfoId4; APrefix: string);
     procedure DumpExchangeTextInfoList(P:TExchangeTextInfoList; APrefix: string);
     procedure DumpExchangeTextInfo(P:TExchangeTextInfo; APrefix: string);
+    procedure DumpTreasuryInformation(P:TTreasuryInformation; APrefix: string);
+    procedure DumpMonetaryObligationInformationList(P:TMonetaryObligationInformationList; APrefix: string);
+    procedure DumpMonetaryObligationInformation(P:TMonetaryObligationInformation; APrefix: string);
+    procedure DumpExchangeSignerList(P:TExchangeSignerList; APrefix: string);
+    procedure DumpExchangeSigner(P:TExchangeSigner; APrefix: string);
+    procedure DumpExchangePhysicalPersonEntity(P:TExchangePhysicalPersonEntity; APrefix: string);
+    procedure DumpExchangeIndividualEntrepreneurInformation(P:TExchangeIndividualEntrepreneurInformation; APrefix: string);
+    procedure DumpExchangeLegalEntityInformation(P:TExchangeLegalEntityInformation; APrefix: string);
 
     procedure WriteLogI(S:string; AParams:array of const);
   public
@@ -77,7 +86,6 @@ begin
   WriteLogI(APrefix + 'SenderInfo = %s', [P.SenderInfo]);
   WriteLogI(APrefix + 'RecipientInfo = %s', [P.RecipientInfo]);
   DumpSenderExchangeInformationEx(P.SenderExchangeInformationEx, APrefix + 'SenderExchangeInformationEx');
-
 end;
 
 procedure TExchInfoFrame.DumpSenderExchangeInformationEx(
@@ -104,8 +112,8 @@ begin
   WriteLogI(APrefix + 'DocumentCreatorBase = %s', [P.DocumentCreatorBase]);
   DumpExchangeFileIdentificatorSeller(P.ExchangeFileIdentificatorSeller, APrefix + 'ExchangeFileIdentificatorSeller');
   DumpExchangeInformation(P.ExchangeInformation, APrefix + 'ExchangeInformation');
-  //property TreasuryInformation:TTreasuryInformation read FTreasuryInformation;
-  //property ExchangeSigner:TExchangeSignerList read FSigner;
+  DumpTreasuryInformation(P.TreasuryInformation, APrefix + 'TreasuryInformation');
+  DumpExchangeSignerList(P.ExchangeSigner, APrefix + 'ExchangeSigner');
 end;
 
 procedure TExchInfoFrame.DumpExchangeFileIdentificatorSeller(
@@ -244,6 +252,109 @@ begin
 
   WriteLogI(APrefix + 'ID = %s', [P.ID]);
   WriteLogI(APrefix + 'Value = %s', [P.Value]);
+end;
+
+procedure TExchInfoFrame.DumpTreasuryInformation(P: TTreasuryInformation;
+  APrefix: string);
+begin
+  if not Assigned(P) then Exit;
+  APrefix:=APrefix + '.';
+  WriteLogI(APrefix + 'PurchaseID = %s', [P.PurchaseID]);
+  WriteLogI(APrefix + 'AccountNumber = %s', [P.AccountNumber]);
+  WriteLogI(APrefix + 'FinancialName = %s', [P.FinancialName]);
+  WriteLogI(APrefix + 'ReestrNumber = %s', [P.ReestrNumber]);
+  WriteLogI(APrefix + 'BudgetAccountNumebr = %s', [P.BudgetAccountNumebr]);
+  WriteLogI(APrefix + 'TreasuryCode = %s', [P.TreasuryCode]);
+  WriteLogI(APrefix + 'TreasuryName = %s', [P.TreasuryName]);
+  WriteLogI(APrefix + 'OKTMOCode = %s', [P.OKTMOCode]);
+  WriteLogI(APrefix + 'OKTMOCodeLocation = %s', [P.OKTMOCodeLocation]);
+  WriteLogI(APrefix + 'MaxPayDate = %s', [P.MaxPayDate]);
+  WriteLogI(APrefix + 'MonetaryObligationNumber = %s', [P.MonetaryObligationNumber]);
+  WriteLogI(APrefix + 'PayOrder = %s', [P.PayOrder]);
+  WriteLogI(APrefix + 'PayType = %s', [P.PayType]);
+  DumpMonetaryObligationInformationList(P.MonetaryObligationInformation, APrefix + 'MonetaryObligationInformation');
+end;
+
+procedure TExchInfoFrame.DumpMonetaryObligationInformationList(
+  P: TMonetaryObligationInformationList; APrefix: string);
+var
+  i: Integer;
+begin
+  if not Assigned(P) then Exit;
+  for i:=0 to P.Count-1 do
+    DumpMonetaryObligationInformation(P[i], Format(APrefix + '[%d]', [i]));
+end;
+
+procedure TExchInfoFrame.DumpMonetaryObligationInformation(
+  P: TMonetaryObligationInformation; APrefix: string);
+begin
+  if not Assigned(P) then Exit;
+  APrefix:=APrefix + '.';
+  WriteLogI(APrefix + 'RowNumber = %s', [P.RowNumber]);
+  WriteLogI(APrefix + 'ObjectCode = %s', [P.ObjectCode]);
+  WriteLogI(APrefix + 'FundsType = %s', [P.FundsType]);
+  WriteLogI(APrefix + 'KBK = %s', [P.KBK]);
+  WriteLogI(APrefix + 'DestinationCode = %s', [P.DestinationCode]);
+  WriteLogI(APrefix + 'AvanceSum = %s', [P.AvanceSum]);
+end;
+
+procedure TExchInfoFrame.DumpExchangeSignerList(P: TExchangeSignerList;
+  APrefix: string);
+var
+  i: Integer;
+begin
+  if not Assigned(P) then Exit;
+  for i:=0 to P.Count-1 do
+    DumpExchangeSigner(P[i], Format(APrefix + '[%d]', [i]));
+end;
+
+procedure TExchInfoFrame.DumpExchangeSigner(P: TExchangeSigner; APrefix: string
+  );
+begin
+  if not Assigned(P) then Exit;
+  APrefix:=APrefix + '.';
+  WriteLogI(APrefix + 'SignerPowers = %s', [P.SignerPowers]);
+  WriteLogI(APrefix + 'Status = %s', [P.Status]);
+  WriteLogI(APrefix + 'SignerPowersBase = %s', [P.SignerPowersBase]);
+  WriteLogI(APrefix + 'SignerOrgPowersBase = %s', [P.SignerOrgPowersBase]);
+  DumpExchangePhysicalPersonEntity(P.PhysicalPersonEntity, APrefix + 'PhysicalPersonEntity');
+  DumpExchangeIndividualEntrepreneurInformation(P.IndividualEntrepreneurInformation, APrefix + 'IndividualEntrepreneurInformation');
+  DumpExchangeLegalEntityInformation(P.LegalEntityInformation, APrefix + 'LegalEntityInformation');
+end;
+
+procedure TExchInfoFrame.DumpExchangePhysicalPersonEntity(
+  P: TExchangePhysicalPersonEntity; APrefix: string);
+begin
+  if not Assigned(P) then Exit;
+  APrefix:=APrefix + '.';
+  WriteLogI(APrefix + 'Inn = %s', [P.Inn]);
+  WriteLogI(APrefix + 'OtherInfo = %s', [P.OtherInfo]);
+  DumpExchangePerson(P.Person, APrefix + 'Person');
+end;
+
+procedure TExchInfoFrame.DumpExchangeIndividualEntrepreneurInformation(
+  P: TExchangeIndividualEntrepreneurInformation; APrefix: string);
+begin
+  if not Assigned(P) then Exit;
+  APrefix:=APrefix + '.';
+
+  WriteLogI(APrefix + 'Inn = %s', [P.Inn]);
+  WriteLogI(APrefix + 'IndividualEntityRegistrationCertificate = %s', [P.IndividualEntityRegistrationCertificate]);
+  WriteLogI(APrefix + 'OtherInfo = %s', [P.OtherInfo]);
+  DumpExchangePerson(P.Person, APrefix + 'Person');
+end;
+
+procedure TExchInfoFrame.DumpExchangeLegalEntityInformation(
+  P: TExchangeLegalEntityInformation; APrefix: string);
+begin
+  if not Assigned(P) then Exit;
+  APrefix:=APrefix + '.';
+
+  WriteLogI(APrefix + 'Inn = %s', [P.Inn]);
+  WriteLogI(APrefix + 'Name = %s', [P.Name]);
+  WriteLogI(APrefix + 'Position = %s', [P.Position]);
+  WriteLogI(APrefix + 'OtherInfo = %s', [P.OtherInfo]);
+  DumpExchangePerson(P.Person, APrefix + 'Person');
 end;
 
 procedure TExchInfoFrame.WriteLogI(S: string; AParams: array of const);
