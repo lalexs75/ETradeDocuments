@@ -364,9 +364,12 @@ begin
 //                  SetAtribute(P: TDOMElement; AttribName, AttribValue:string; AMaxLen:Integer);
 //      tkBool : SetOrdProp(Self, FProp, Ord(ABuf.ReadAsBoolean));
 //      tkQWord : SetOrdProp(Self, FProp, Ord(ABuf.ReadAsQWord));
-{      tkInt64 : SetInt64Prop(Self, FProp, StrToInt64(S2));
-      tkInteger : SetOrdProp(Self, FProp, StrToInt(S2));}
+
+      tkInt64 ,
+      tkInteger : if P.Modified then SetAtribute(AElement, P.XMLName, IntToStr( GetInt64Prop(Self, P.PropertyName)), -1); //  P.FMaxSize);
       tkClass: InternalWriteChild(FXML, TObject(PtrInt( GetOrdProp(Self, FProp))), AElement, P);
+    else
+      raise exception.CreateFmt('sProtoBufUnknowPropType %s', [P.FPropertyName]);
     end;
   end;
 end;

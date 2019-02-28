@@ -110,6 +110,7 @@ type
     function GetItem(AIndex: Integer): TCustomsDeclaration; inline;
   public
     constructor Create;
+    function CreateChild:TCustomsDeclaration;
     property Item[AIndex:Integer]:TCustomsDeclaration read GetItem; default;
   end;
 
@@ -147,6 +148,7 @@ type
     function GetItem(AIndex: Integer): TTraceabilityInformation; inline;
   public
     constructor Create;
+    function CreateChild:TTraceabilityInformation;
     property Item[AIndex:Integer]:TTraceabilityInformation read GetItem; default;
   end;
 
@@ -176,6 +178,7 @@ type
     function GetItem(AIndex: Integer): TProductIdentificationNumber; inline;
   public
     constructor Create;
+    function CreateChild:TProductIdentificationNumber;
     property Item[AIndex:Integer]:TProductIdentificationNumber read GetItem; default;
   end;
 
@@ -287,6 +290,7 @@ type
     function GetItem(AIndex: Integer): TInvoiceItem; inline;
   public
     constructor Create;
+    function CreateChild:TInvoiceItem;
     property Item[AIndex:Integer]:TInvoiceItem read GetItem; default;
   end;
 
@@ -430,6 +434,11 @@ begin
   inherited Create(TProductIdentificationNumber);
 end;
 
+function TProductIdentificationNumberList.CreateChild: TProductIdentificationNumber;
+begin
+  Result:=InternalAddObject as TProductIdentificationNumber;
+end;
+
 { TTraceabilityInformation }
 
 procedure TTraceabilityInformation.SetAdditionalInfo(AValue: string);
@@ -497,6 +506,11 @@ end;
 constructor TTraceabilityInformationList.Create;
 begin
   inherited Create(TTraceabilityInformation);
+end;
+
+function TTraceabilityInformationList.CreateChild: TTraceabilityInformation;
+begin
+  Result:=InternalAddObject as TTraceabilityInformation;
 end;
 
 { TInvoiceItemAdditional }
@@ -661,6 +675,11 @@ begin
   inherited Create(TCustomsDeclaration)
 end;
 
+function TCustomsDeclarationList.CreateChild: TCustomsDeclaration;
+begin
+  Result:=InternalAddObject as TCustomsDeclaration;
+end;
+
 { TVatSum }
 
 procedure TVatSum.SetVatValue(AValue: string);
@@ -743,6 +762,11 @@ end;
 constructor TInvoiceItemList.Create;
 begin
   inherited Create(TInvoiceItem)
+end;
+
+function TInvoiceItemList.CreateChild: TInvoiceItem;
+begin
+  Result:=InternalAddObject as TInvoiceItem;
 end;
 
 { TInvoiceItem }
