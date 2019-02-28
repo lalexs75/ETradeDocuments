@@ -80,6 +80,7 @@ type
     function GetItem(AIndex: Integer): TSigner; inline;
   public
     constructor Create;
+    function CreateChild:TSigner;
     property Item[AIndex:Integer]:TSigner read GetItem; default;
   end;
 
@@ -152,6 +153,11 @@ end;
 constructor TSignerList.Create;
 begin
   inherited Create(TSigner)
+end;
+
+function TSignerList.CreateChild: TSigner;
+begin
+  Result:=InternalAddObject as TSigner;
 end;
 
 end.

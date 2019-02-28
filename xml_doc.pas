@@ -86,7 +86,7 @@ type
     function Add(const APropertyName, AXMLName, ARequaredAttribs, ACaption:string; AMinSize, AMaxSize:integer):TPropertyDef;
     procedure Clear;
     property Count:integer read GetCount;
-    property Items[AIndex:integer]:TPropertyDef read GetItems;
+    property Items[AIndex:integer]:TPropertyDef read GetItems; default;
   end;
 
   { TXmlSerializationObject }
@@ -97,6 +97,12 @@ type
     procedure InternalRead(AElement: TDOMNode);
     procedure DoLoadAtributes(AElement: TDOMNode);
     procedure DoLoadChild(AElement: TDOMNode);
+
+    procedure InternalWrite(FXML: TXMLDocument; AElement: TDOMElement);
+    procedure InternalWriteChild(FXML: TXMLDocument; AChild:TObject; AElement: TDOMElement; P: TPropertyDef);
+    procedure SetAtribute(P: TDOMElement; AttribName, AttribValue:DOMString; AMaxLen:Integer);
+    function CreateElement(FXML: TXMLDocument; AParent:TDOMNode; AName:string):TDOMElement;
+    procedure WriteXMLWin1251(Element: TDOMNode; const AFileName: String); overload;
   protected
     procedure RegisterProperty(APropertyName, AXMLName, ARequaredAttribs, ACaption:string; AMinSize, AMaxSize:integer);
     procedure ModifiedProperty(APropertyName:string);
@@ -334,6 +340,36 @@ begin
   FPropertyList.ClearModified;
 end;
 
+procedure TXmlSerializationObject.InternalWrite(FXML: TXMLDocument;
+  AElement: TDOMElement);
+var
+  i: Integer;
+  P: TPropertyDef;
+  FProp: PPropInfo;
+begin
+  for i:=0 to FPropertyList.Count-1 do
+  begin
+    P:=FPropertyList[i];
+
+    FProp:=GetPropInfo(Self, P.FPropertyName);
+    if not Assigned(FProp) then
+      raise Exception.CreateFmt('Not fond property %s.%s(%s)', [ClassName, P.PropertyName, P.Caption]);
+    case FProp^.PropType^.Kind of
+      tkChar,
+      tkAString,
+      tkWString,
+      tkSString,
+      tkLString : if P.Modified then SetAtribute(AElement, P.XMLName, GetStrProp(Self, P.PropertyName), P.FMaxSize);
+//                  SetAtribute(P: TDOMElement; AttribName, AttribValue:string; AMaxLen:Integer);
+//      tkBool : SetOrdProp(Self, FProp, Ord(ABuf.ReadAsBoolean));
+//      tkQWord : SetOrdProp(Self, FProp, Ord(ABuf.ReadAsQWord));
+{      tkInt64 : SetInt64Prop(Self, FProp, StrToInt64(S2));
+      tkInteger : SetOrdProp(Self, FProp, StrToInt(S2));}
+      tkClass: InternalWriteChild(FXML, TObject(PtrInt( GetOrdProp(Self, FProp))), AElement, P);
+    end;
+  end;
+end;
+
 procedure TXmlSerializationObject.DoLoadAtributes(AElement: TDOMNode);
 var
   i: Integer;
@@ -443,6 +479,78 @@ begin
   end;
 end;
 
+procedure TXmlSerializationObject.SetAtribute(P: TDOMElement; AttribName,
+  AttribValue: DOMString; AMaxLen: Integer);
+begin
+  if (AMaxLen > 0) and (UTF8Length(AttribValue) > AMaxLen) then
+    raise Exception.CreateFmt('Значение атрибута слишком велико (%s - %d)', [AttribValue, AMaxLen]);
+  P.SetAttribute(AttribName, AttribValue);
+end;
+
+function TXmlSerializationObject.CreateElement(FXML: TXMLDocument;
+  AParent: TDOMNode; AName: string): TDOMElement;
+begin
+  Result:=FXML.CreateElement(AName);
+  if Assigned(AParent) then
+    AParent.AppendChild(Result);
+end;
+
+procedure TXmlSerializationObject.InternalWriteChild(FXML: TXMLDocument;
+  AChild: TObject; AElement: TDOMElement; P: TPropertyDef);
+var
+  E: TDOMElement;
+  Itm: TXmlSerializationObject;
+  i: Integer;
+begin
+  if not Assigned(AChild) then Exit;
+  if AChild is TXmlSerializationObject then
+  begin
+    E:=CreateElement(FXML, AElement, P.XMLName);
+    TXmlSerializationObject(AChild).InternalWrite(FXML, E);
+  end
+  else
+  if AChild is TXmlSerializationObjectList then
+  begin
+    for i:=0 to TXmlSerializationObjectList(AChild).Count-1 do
+    begin
+      Itm:=TXmlSerializationObjectList(AChild).InternalGetItem(I);
+      E:=CreateElement(FXML, AElement, P.XMLName);
+      Itm.InternalWrite(FXML, E);
+    end;
+  end
+  else
+    raise Exception.CreateFmt('Unkonw object - %s', [AChild.ClassName]);
+end;
+
+procedure TXmlSerializationObject.WriteXMLWin1251(Element: TDOMNode;
+  const AFileName: String);
+var
+  F, F1:TextFile;
+  S, SL: String;
+begin
+  S:=GetTempFileName;
+  WriteXML(Element, S);
+  AssignFile(F, S);
+  Reset(F);
+
+  AssignFile(F1, AFileName);
+  Rewrite(F1);
+  TextRec(F1).CodePage:=1251;
+
+  ReadLn(F, SL);
+  SL:='<?xml version="1.0" encoding="windows-1251"?>';
+  WriteLn(F1, SL);
+
+  while not Eof(F) do
+  begin
+    ReadLn(F, SL);
+    WriteLn(F1, SL)
+  end;
+  CloseFile(F);
+  CloseFile(F1);
+  DeleteFile(S);
+end;
+
 procedure TXmlSerializationObject.InternalInitChilds;
 begin
 
@@ -481,7 +589,16 @@ begin
 end;
 
 procedure TXmlSerializationObject.SaveToXML(AFileName: string);
+var
+  FXML: TXMLDocument;
+  E: TDOMElement;
 begin
+  FXML:=TXMLDocument.Create;
+  E:=CreateElement(FXML, FXML, 'Файл');
+  InternalWrite(FXML, E);
+  WriteXMLWin1251(FXML, AFileName);
+  //FreeAndNil(FXML);
+  FXML.Free;
 end;
 
 procedure TXmlSerializationObject.LoadFromXML(AFileName: string);
@@ -490,6 +607,7 @@ var
 begin
   ReadXMLFile(FXML, AFileName);
   InternalRead(FXML.DocumentElement);
+  //FreeAndNil(FXML);
   FXML.Free;
 end;
 

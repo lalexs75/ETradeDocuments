@@ -47,14 +47,20 @@ type
 
   TETradeDoc = class(TComponent)
   private
+    FAppVersion: string;
+    FFormatVersion: string;
+    procedure SetAppVersion(AValue: string);
+    procedure SetFormatVersion(AValue: string);
 
   protected
 
   public
     function LoadInvoce(AFileName:string):TExchangeFile;
+    procedure SaveInvoce(AData:TExchangeFile; AFileName:string);
     function LoadClientExchangeFile(AFileName:string):TClientExchangeFile;
   published
-
+    property FormatVersion:string read FFormatVersion write SetFormatVersion;
+    property AppVersion:string read FAppVersion write SetAppVersion;
   end;
 
 procedure Register;
@@ -68,10 +74,27 @@ end;
 
 { TETradeDoc }
 
+procedure TETradeDoc.SetAppVersion(AValue: string);
+begin
+  if FAppVersion=AValue then Exit;
+  FAppVersion:=AValue;
+end;
+
+procedure TETradeDoc.SetFormatVersion(AValue: string);
+begin
+  if FFormatVersion=AValue then Exit;
+  FFormatVersion:=AValue;
+end;
+
 function TETradeDoc.LoadInvoce(AFileName: string): TExchangeFile;
 begin
   Result:=TExchangeFile.Create;
   Result.LoadFromXML(AFileName);
+end;
+
+procedure TETradeDoc.SaveInvoce(AData: TExchangeFile; AFileName: string);
+begin
+  AData.SaveToXML(AFileName);
 end;
 
 function TETradeDoc.LoadClientExchangeFile(AFileName: string

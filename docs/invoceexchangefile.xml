@@ -32,6 +32,12 @@
 </descr>
       </element><element name="TExchangeFile.Document"><short>Счет-фактура, или документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг), включающий в себя счет-фактуру (информация продавца), или документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг) (информация продавца) </short>
       </element>
+    <element name="TExchangeFile.FileID"><short>Идентификатор файла</short><descr>Содержит (повторяет) имя сформированного файла (без расширения)
+</descr>
+      </element><element name="TExchangeFile.FormatVersion"><short>Версия формата</short><descr>Принимает значение: 5.01
+</descr>
+      </element><element name="TExchangeFile.AppVersion"><short>Версия программы, с помощью которой сформирован файл</short>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>

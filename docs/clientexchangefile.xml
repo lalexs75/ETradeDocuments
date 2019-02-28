@@ -27,6 +27,12 @@
       </element><element name="TSenderExchangeInformationEx.IdentifierSenderOperator"><short>Идентификатор оператора электронного документооборота отправителя файла обмена информации покупателя</short><descr>Идентификатор оператора ЭДО СФ, услугами которого пользуется покупатель (продавец), символьный трехзначный код. В значении идентификатора допускаются символы латинского алфавита A - Z, a - z, цифры 0 - 9, знаки "@", ".", "-". Значение идентификатора регистронезависимо. При включении оператора ЭДО СФ в сеть доверенных операторов ЭДО СФ ФНС России, идентификатор присваивается Федеральной налоговой службой
 </descr>
       </element>
+    <element name="TClientExchangeFile.FileID"><short>Идентификатор файла</short><descr>Содержит (повторяет) имя сформированного файла (без расширения)
+</descr>
+      </element><element name="TClientExchangeFile.FormatVersion"><short>Версия формата</short><descr>Принимает значение: 5.01
+</descr>
+      </element><element name="TClientExchangeFile.AppVersion"><short>Версия программы, с помощью которой сформирован файл</short>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>
