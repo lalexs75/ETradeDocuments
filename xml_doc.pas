@@ -103,6 +103,7 @@ type
     procedure SetAtribute(P: TDOMElement; AttribName, AttribValue:DOMString; AMaxLen:Integer);
     function CreateElement(FXML: TXMLDocument; AParent:TDOMNode; AName:string):TDOMElement;
     procedure WriteXMLWin1251(Element: TDOMNode; const AFileName: String); overload;
+    function IsEmpty:Boolean;
   protected
     procedure RegisterProperty(APropertyName, AXMLName, ARequaredAttribs, ACaption:string; AMinSize, AMaxSize:integer);
     procedure ModifiedProperty(APropertyName:string);
@@ -505,6 +506,7 @@ begin
   if not Assigned(AChild) then Exit;
   if AChild is TXmlSerializationObject then
   begin
+    if TXmlSerializationObject(AChild).IsEmpty then Exit;
     E:=CreateElement(FXML, AElement, P.XMLName);
     TXmlSerializationObject(AChild).InternalWrite(FXML, E);
   end
@@ -549,6 +551,18 @@ begin
   CloseFile(F);
   CloseFile(F1);
   DeleteFile(S);
+end;
+
+function TXmlSerializationObject.IsEmpty: Boolean;
+var
+  i: Integer;
+begin
+  Result:=true;
+  for i:=0 to FPropertyList.Count-1 do
+  begin
+    if FPropertyList[i].Modified then
+      Exit(false);
+  end;
 end;
 
 procedure TXmlSerializationObject.InternalInitChilds;
