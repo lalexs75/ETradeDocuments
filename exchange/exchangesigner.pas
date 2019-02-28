@@ -150,6 +150,7 @@ type
     function GetItem(AIndex: Integer): TExchangeSigner; inline;
   public
     constructor Create;
+    function CreateChild:TExchangeSigner;
     property Item[AIndex:Integer]:TExchangeSigner read GetItem; default;
   end;
 
@@ -353,6 +354,11 @@ end;
 constructor TExchangeSignerList.Create;
 begin
   inherited Create(TExchangeSigner)
+end;
+
+function TExchangeSignerList.CreateChild: TExchangeSigner;
+begin
+  Result:=InternalAddObject as TExchangeSigner;
 end;
 
 end.

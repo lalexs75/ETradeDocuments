@@ -80,6 +80,7 @@ type
     function GetItem(AIndex: Integer): TMonetaryObligationInformation; inline;
   public
     constructor Create;
+    function CreateChild:TMonetaryObligationInformation;
     property Item[AIndex:Integer]:TMonetaryObligationInformation read GetItem; default;
   end;
 
@@ -213,6 +214,11 @@ end;
 constructor TMonetaryObligationInformationList.Create;
 begin
   inherited Create(TMonetaryObligationInformation)
+end;
+
+function TMonetaryObligationInformationList.CreateChild: TMonetaryObligationInformation;
+begin
+  Result:=InternalAddObject as TMonetaryObligationInformation;
 end;
 
 { TTreasuryInformation }

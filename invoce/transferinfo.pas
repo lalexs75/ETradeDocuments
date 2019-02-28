@@ -76,6 +76,7 @@ type
     function GetItem(AIndex: Integer): TShipmentBase; inline;
   public
     constructor Create;
+    function CreateChild:TShipmentBase;
     property Item[AIndex:Integer]:TShipmentBase read GetItem; default;
   end;
 
@@ -208,6 +209,7 @@ type
     function GetItem(AIndex: Integer): TWaybill; inline;
   public
     constructor Create;
+    function CreateChild:TWaybill;
     property Item[AIndex:Integer]:TWaybill read GetItem; default;
   end;
 
@@ -377,6 +379,11 @@ end;
 constructor TWaybillList.Create;
 begin
   inherited Create(TWaybill)
+end;
+
+function TWaybillList.CreateChild: TWaybill;
+begin
+  Result:=InternalAddObject as TWaybill;
 end;
 
 { TTransportationCargo }
@@ -594,6 +601,11 @@ end;
 constructor TShipmentBaseList.Create;
 begin
   inherited Create(TShipmentBase)
+end;
+
+function TShipmentBaseList.CreateChild: TShipmentBase;
+begin
+  Result:=InternalAddObject as TShipmentBase;
 end;
 
 { TShipmentBase }

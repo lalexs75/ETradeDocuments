@@ -273,6 +273,7 @@ type
     function GetItem(AIndex: Integer): TOrganizationInfo; inline;
   public
     constructor Create;
+    function CreateChild:TOrganizationInfo;
     property Item[AIndex:Integer]:TOrganizationInfo read GetItem; default;
   end;
 
@@ -727,6 +728,11 @@ end;
 constructor TOrganizationInfoList.Create;
 begin
   inherited Create(TOrganizationInfo)
+end;
+
+function TOrganizationInfoList.CreateChild: TOrganizationInfo;
+begin
+  Result:=InternalAddObject as TOrganizationInfo;
 end;
 
 { TOrganizationInfo }

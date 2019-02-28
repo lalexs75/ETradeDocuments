@@ -92,6 +92,7 @@ type
     function GetItem(AIndex: Integer): TShipper; inline;
   public
     constructor Create;
+    function CreateChild:TShipper;
     property Item[AIndex:Integer]:TShipper read GetItem; default;
   end;
 
@@ -123,6 +124,7 @@ type
     function GetItem(AIndex: Integer): TPaymentDocument; inline;
   public
     constructor Create;
+    function CreateChild:TPaymentDocument;
     property Item[AIndex:Integer]:TPaymentDocument read GetItem; default;
   end;
 
@@ -218,6 +220,7 @@ type
     function GetItem(AIndex: Integer): TShipmentBaseConfirm; inline;
   public
     constructor Create;
+    function CreateChild:TShipmentBaseConfirm;
     property Item[AIndex:Integer]:TShipmentBaseConfirm read GetItem; default;
   end;
 
@@ -360,6 +363,11 @@ end;
 constructor TShipmentBaseConfirmList.Create;
 begin
   inherited Create(TShipmentBaseConfirm);
+end;
+
+function TShipmentBaseConfirmList.CreateChild: TShipmentBaseConfirm;
+begin
+  Result:=InternalAddObject as TShipmentBaseConfirm;
 end;
 
 { TSellerInformationForState }
@@ -546,6 +554,11 @@ begin
   inherited Create(TPaymentDocument)
 end;
 
+function TPaymentDocumentList.CreateChild: TPaymentDocument;
+begin
+  Result:=InternalAddObject as TPaymentDocument;
+end;
+
 { TShipperList }
 
 function TShipperList.GetItem(AIndex: Integer): TShipper;
@@ -556,6 +569,11 @@ end;
 constructor TShipperList.Create;
 begin
   inherited Create(TShipper)
+end;
+
+function TShipperList.CreateChild: TShipper;
+begin
+  Result:=InternalAddObject as TShipper;
 end;
 
 { TShipper }

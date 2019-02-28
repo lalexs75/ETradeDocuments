@@ -68,6 +68,7 @@ type
     function GetItem(AIndex: Integer): TTextInfo; inline;
   public
     constructor Create;
+    function CreateChild:TTextInfo;
     property Item[AIndex:Integer]:TTextInfo read GetItem; default;
   end;
 
@@ -144,6 +145,11 @@ end;
 constructor TTextInfoList.Create;
 begin
   inherited Create(TTextInfo)
+end;
+
+function TTextInfoList.CreateChild: TTextInfo;
+begin
+  Result:=InternalAddObject as TTextInfo;
 end;
 
 { TTextInfo }

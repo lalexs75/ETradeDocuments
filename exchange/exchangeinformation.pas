@@ -159,6 +159,7 @@ type
     function GetItem(AIndex: Integer): TExchangeTextInfo; inline;
   public
     constructor Create;
+    function CreateChild:TExchangeTextInfo;
     property Item[AIndex:Integer]:TExchangeTextInfo read GetItem; default;
   end;
 
@@ -340,6 +341,11 @@ end;
 constructor TExchangeTextInfoList.Create;
 begin
   inherited Create(TExchangeTextInfo)
+end;
+
+function TExchangeTextInfoList.CreateChild: TExchangeTextInfo;
+begin
+  Result:=InternalAddObject as TExchangeTextInfo;
 end;
 
 { TAdditionalInfoId4 }
