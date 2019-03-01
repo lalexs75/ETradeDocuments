@@ -442,10 +442,12 @@ end;
 procedure TPhysicalPersonTransfer.InternalInitChilds;
 begin
   inherited InternalInitChilds;
+  FPerson:=TPerson.Create;
 end;
 
 destructor TPhysicalPersonTransfer.Destroy;
 begin
+  FreeAndNil(FPerson);
   inherited Destroy;
 end;
 
@@ -499,10 +501,12 @@ end;
 procedure TOtherIssuerEmployee.InternalInitChilds;
 begin
   inherited InternalInitChilds;
+  FPerson:=TPerson.Create;
 end;
 
 destructor TOtherIssuerEmployee.Destroy;
 begin
+  FreeAndNil(FPerson);
   inherited Destroy;
 end;
 
@@ -583,11 +587,13 @@ procedure TTransferEmployee.InternalInitChilds;
 begin
   inherited InternalInitChilds;
   FSellerEmployee:=TSellerEmployee.Create;
+  FOtherIssuer:=TOtherIssuer.Create;
 end;
 
 destructor TTransferEmployee.Destroy;
 begin
   FreeAndNil(FSellerEmployee);
+  FreeAndNil(FOtherIssuer);
   inherited Destroy;
 end;
 
