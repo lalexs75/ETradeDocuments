@@ -559,10 +559,42 @@ end;
 function TXmlSerializationObject.IsEmpty: Boolean;
 var
   i: Integer;
+  P: TPropertyDef;
+  O: TObject;
+  FProp: PPropInfo;
 begin
   Result:=true;
   for i:=0 to FPropertyList.Count-1 do
   begin
+    P:=FPropertyList[i];
+
+    FProp:=GetPropInfo(Self, P.FPropertyName);
+    if not Assigned(FProp) then
+      raise Exception.CreateFmt('Not fond property %s.%s(%s)', [ClassName, P.PropertyName, P.Caption]);
+
+    if FProp^.PropType^.Kind = tkClass then
+    begin
+      O:=TObject(PtrInt( GetOrdProp(Self, FProp)));
+      if Assigned(O) then
+      begin
+        if O is TXmlSerializationObject then
+        begin
+          if not TXmlSerializationObject(O).IsEmpty then
+            Exit(false);
+        end
+        else
+        if O is TXmlSerializationObjectList then
+        begin
+          if TXmlSerializationObjectList(O).Count>0 then
+            Exit(false);
+        end
+        else
+          raise Exception.CreateFmt('Unknow property type %s', [P.PropertyName]);
+      end
+      else
+        raise Exception.CreateFmt('Object %s property %s not assigned', [ClassName, P.PropertyName]);
+    end
+    else
     if FPropertyList[i].Modified then
       Exit(false);
   end;
