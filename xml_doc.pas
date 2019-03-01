@@ -100,7 +100,7 @@ type
 
     procedure InternalWrite(FXML: TXMLDocument; AElement: TDOMElement);
     procedure InternalWriteChild(FXML: TXMLDocument; AChild:TObject; AElement: TDOMElement; P: TPropertyDef);
-    procedure SetAtribute(P: TDOMElement; AttribName, AttribValue:DOMString; AMaxLen:Integer);
+    procedure SetAtribute(P: TDOMElement; AttribName, AttribValue:DOMString; Prop:TPropertyDef);
     function CreateElement(FXML: TXMLDocument; AParent:TDOMNode; AName:string):TDOMElement;
     procedure WriteXMLWin1251(Element: TDOMNode; const AFileName: String); overload;
     function IsEmpty:Boolean;
@@ -360,13 +360,13 @@ begin
       tkAString,
       tkWString,
       tkSString,
-      tkLString : if P.Modified then SetAtribute(AElement, P.XMLName, GetStrProp(Self, P.PropertyName), P.FMaxSize);
+      tkLString : if P.Modified then SetAtribute(AElement, P.XMLName, GetStrProp(Self, P.PropertyName), P);
 //                  SetAtribute(P: TDOMElement; AttribName, AttribValue:string; AMaxLen:Integer);
 //      tkBool : SetOrdProp(Self, FProp, Ord(ABuf.ReadAsBoolean));
 //      tkQWord : SetOrdProp(Self, FProp, Ord(ABuf.ReadAsQWord));
 
       tkInt64 ,
-      tkInteger : if P.Modified then SetAtribute(AElement, P.XMLName, IntToStr( GetInt64Prop(Self, P.PropertyName)), -1); //  P.FMaxSize);
+      tkInteger : if P.Modified then SetAtribute(AElement, P.XMLName, IntToStr( GetInt64Prop(Self, P.PropertyName)), P); //  P.FMaxSize);
       tkClass: InternalWriteChild(FXML, TObject(PtrInt( GetOrdProp(Self, FProp))), AElement, P);
     else
       raise exception.CreateFmt('sProtoBufUnknowPropType %s', [P.FPropertyName]);
@@ -484,10 +484,10 @@ begin
 end;
 
 procedure TXmlSerializationObject.SetAtribute(P: TDOMElement; AttribName,
-  AttribValue: DOMString; AMaxLen: Integer);
+  AttribValue: DOMString; Prop: TPropertyDef);
 begin
-  if (AMaxLen > 0) and (UTF8Length(AttribValue) > AMaxLen) then
-    raise Exception.CreateFmt('Значение атрибута слишком велико (%s - %d)', [AttribValue, AMaxLen]);
+  if (Prop.FMaxSize > 0) and (UTF8Length(AttribValue) > Prop.FMaxSize) then
+    raise Exception.CreateFmt('%s.%s - Значение атрибута слишком велико (%s - %d)', [ClassName, Prop.PropertyName, AttribValue, Prop.MaxSize]);
   P.SetAttribute(AttribName, AttribValue);
 end;
 
@@ -505,6 +505,7 @@ var
   E: TDOMElement;
   Itm: TXmlSerializationObject;
   i: Integer;
+  S: String;
 begin
   if not Assigned(AChild) then Exit;
   if AChild is TXmlSerializationObject then
@@ -521,6 +522,16 @@ begin
       Itm:=TXmlSerializationObjectList(AChild).InternalGetItem(I);
       E:=CreateElement(FXML, AElement, P.XMLName);
       Itm.InternalWrite(FXML, E);
+    end;
+  end
+  else
+  if AChild is TStrings then
+  begin
+    for i:=0 to TStrings(AChild).Count-1 do
+    begin
+      S:=TStrings(AChild)[i];
+      E:=CreateElement(FXML, AElement, P.XMLName);
+      E.TextContent:=S;
     end;
   end
   else

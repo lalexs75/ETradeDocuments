@@ -105,6 +105,12 @@
         </descr>
       </element><element name="TTotalForPay.TotalNet"><short>Количество (масса нетто/количество) - всего по документу</short>
       </element>
+    <element name="TInvoiceItem.InvoiceItemAdditional"><short>Дополнительные сведения об отгруженных товарах (выполненных работах, оказанных услугах), переданных имущественных правах </short><descr>Состав элемента представлен в таблице 5.16
+</descr>
+      </element><element name="TInvoiceItem.AdditionalInfo"><short>Информационное поле факта хозяйственной жизни 2 </short><descr>Типовой элемент &lt;ТекстИнфТип&gt;.
+Состав элемента представлен в таблице 5.47
+</descr>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>
