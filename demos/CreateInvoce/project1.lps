@@ -3,7 +3,7 @@
   <ProjectSession>
     <Version Value="11"/>
     <BuildModes Active="Default"/>
-    <Units Count="22">
+    <Units Count="23">
       <Unit0>
         <Filename Value="project1.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -11,27 +11,28 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit0>
       <Unit1>
         <Filename Value="unit1.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Form1"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
-        <TopLine Value="43"/>
-        <CursorPos X="85" Y="49"/>
-        <UsageCount Value="20"/>
+        <TopLine Value="70"/>
+        <CursorPos X="53" Y="96"/>
+        <UsageCount Value="21"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="../../etradedoc.pas"/>
         <UnitName Value="ETradeDoc"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="77"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="76"/>
         <CursorPos X="3" Y="79"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -44,10 +45,11 @@
       </Unit3>
       <Unit4>
         <Filename Value="../../xml_doc.pas"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="559"/>
-        <CursorPos X="3" Y="566"/>
-        <UsageCount Value="10"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="516"/>
+        <CursorPos X="7" Y="532"/>
+        <UsageCount Value="11"/>
         <Bookmarks Count="2">
           <Item0 X="19" Y="350" ID="1"/>
           <Item1 Y="468" ID="2"/>
@@ -115,10 +117,10 @@
       <Unit13>
         <Filename Value="../../invoce/signer.pas"/>
         <UnitName Value="Signer"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="134"/>
         <CursorPos X="29" Y="160"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit13>
       <Unit14>
@@ -132,19 +134,19 @@
       <Unit15>
         <Filename Value="../../invoce/invoiceitem.pas"/>
         <UnitName Value="InvoiceItem"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="273"/>
-        <CursorPos X="28" Y="288"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="594"/>
+        <CursorPos X="3" Y="599"/>
         <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit15>
       <Unit16>
         <Filename Value="../../exchange/exchangesigner.pas"/>
         <UnitName Value="ExchangeSigner"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="335"/>
         <CursorPos X="29" Y="361"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit16>
       <Unit17>
@@ -183,116 +185,154 @@
         <Filename Value="../../invoce/transferinfo.pas"/>
         <UnitName Value="TransferInfo"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="197"/>
-        <CursorPos X="14" Y="212"/>
-        <UsageCount Value="10"/>
+        <TopLine Value="442"/>
+        <CursorPos X="22" Y="450"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit21>
+      <Unit22>
+        <Filename Value="/home/install/source/fpcsrc/rtl/objpas/classes/classesh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="659"/>
+        <CursorPos X="3" Y="605"/>
+        <UsageCount Value="10"/>
+      </Unit22>
     </Units>
-    <JumpHistory Count="25" HistoryIndex="24">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="../../invoce/signer.pas"/>
-        <Caret Line="160" Column="35" TopLine="134"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="77" Column="3" TopLine="73"/>
       </Position1>
       <Position2>
-        <Filename Value="../../invoce/signer.pas"/>
-        <Caret Line="78" Column="50" TopLine="68"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="91" Column="28" TopLine="73"/>
       </Position2>
       <Position3>
-        <Filename Value="../../invoce/signer.pas"/>
-        <Caret Line="83" TopLine="68"/>
+        <Filename Value="../../invoce/invoiceitem.pas"/>
+        <Caret Line="282" Column="14" TopLine="267"/>
       </Position3>
       <Position4>
-        <Filename Value="../../invoce/signer.pas"/>
-        <Caret Line="161" TopLine="134"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="103" Column="60" TopLine="76"/>
       </Position4>
       <Position5>
-        <Filename Value="../../invoce/signer.pas"/>
-        <Caret Line="161" TopLine="134"/>
+        <Filename Value="../../invoce/invoiceitem.pas"/>
+        <Caret Line="146" Column="3" TopLine="130"/>
       </Position5>
       <Position6>
-        <Filename Value="../../invoce/signer.pas"/>
-        <Caret Line="83" TopLine="68"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="102" TopLine="76"/>
       </Position6>
       <Position7>
-        <Filename Value="../../invoce/signer.pas"/>
-        <Caret Line="161" TopLine="134"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="104" Column="16" TopLine="78"/>
       </Position7>
       <Position8>
-        <Filename Value="../../invoce/transferinfo.pas"/>
-        <Caret Line="80" TopLine="58"/>
+        <Filename Value="../../invoce/invoiceitem.pas"/>
+        <Caret Line="170" Column="14" TopLine="154"/>
       </Position8>
       <Position9>
-        <Filename Value="../../invoce/transferinfo.pas"/>
-        <Caret Line="171" Column="22" TopLine="169"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="107" Column="5" TopLine="78"/>
       </Position9>
       <Position10>
-        <Filename Value="../../invoce/transferinfo.pas"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="83" Column="25" TopLine="70"/>
       </Position10>
       <Position11>
-        <Filename Value="../../invoce/transferinfo.pas"/>
-        <Caret Line="79" Column="56" TopLine="49"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="99" Column="6" TopLine="84"/>
       </Position11>
       <Position12>
-        <Filename Value="../../invoce/signer.pas"/>
-        <Caret Line="83" TopLine="68"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="102" Column="6" TopLine="85"/>
       </Position12>
       <Position13>
-        <Filename Value="../../invoce/transferinfo.pas"/>
-        <Caret Line="603" Column="3" TopLine="601"/>
+        <Filename Value="../../invoce/invoiceitem.pas"/>
+        <Caret Line="119" Column="3" TopLine="116"/>
       </Position13>
       <Position14>
-        <Filename Value="../../invoce/transferinfo.pas"/>
-        <Caret Line="79" Column="14" TopLine="64"/>
+        <Filename Value="../../invoce/invoiceitem.pas"/>
       </Position14>
       <Position15>
-        <Filename Value="../../invoce/transferinfo.pas"/>
-        <Caret Line="604" TopLine="601"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="86" TopLine="70"/>
       </Position15>
       <Position16>
-        <Filename Value="../../invoce/transferinfo.pas"/>
-        <Caret Line="79" Column="38" TopLine="64"/>
+        <Filename Value="../../invoce/invoiceitem.pas"/>
+        <Caret Line="214" Column="25" TopLine="205"/>
       </Position16>
       <Position17>
-        <Filename Value="../../invoce/transferinfo.pas"/>
-        <Caret Line="603" Column="45" TopLine="601"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="87" Column="52" TopLine="70"/>
       </Position17>
       <Position18>
-        <Filename Value="../../invoce/transferinfo.pas"/>
-        <Caret Line="79" Column="14" TopLine="64"/>
+        <Filename Value="../../xml_doc.pas"/>
+        <Caret Line="490" TopLine="474"/>
       </Position18>
       <Position19>
-        <Filename Value="../../invoce/transferinfo.pas"/>
-        <Caret Line="212" Column="34" TopLine="183"/>
+        <Filename Value="../../xml_doc.pas"/>
+        <Caret Line="103" Column="78" TopLine="88"/>
       </Position19>
       <Position20>
-        <Filename Value="../../invoce/transferinfo.pas"/>
-        <Caret Line="386" Column="40" TopLine="384"/>
+        <Filename Value="../../xml_doc.pas"/>
+        <Caret Line="363" Column="106" TopLine="349"/>
       </Position20>
       <Position21>
-        <Filename Value="../../invoce/transferinfo.pas"/>
-        <Caret Line="212" Column="14" TopLine="197"/>
+        <Filename Value="../../xml_doc.pas"/>
+        <Caret Line="369" Column="119" TopLine="354"/>
       </Position21>
       <Position22>
-        <Filename Value="../../invoce/signer.pas"/>
-        <Caret Line="83" Column="19" TopLine="63"/>
+        <Filename Value="../../xml_doc.pas"/>
+        <Caret Line="489" Column="70" TopLine="474"/>
       </Position22>
       <Position23>
-        <Filename Value="../../exchange/exchangesigner.pas"/>
-        <Caret Line="361" Column="45" TopLine="334"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="96" Column="53" TopLine="70"/>
       </Position23>
       <Position24>
-        <Filename Value="../../exchange/exchangesigner.pas"/>
-        <Caret Line="153" Column="14" TopLine="138"/>
+        <Filename Value="../../xml_doc.pas"/>
+        <Caret Line="527" TopLine="519"/>
       </Position24>
       <Position25>
-        <Filename Value="../../invoce/signer.pas"/>
-        <Caret Line="83" Column="19" TopLine="63"/>
+        <Filename Value="../../xml_doc.pas"/>
+        <Caret Line="106" Column="15" TopLine="86"/>
       </Position25>
+      <Position26>
+        <Filename Value="../../xml_doc.pas"/>
+        <Caret Line="580" Column="5" TopLine="574"/>
+      </Position26>
+      <Position27>
+        <Filename Value="../../xml_doc.pas"/>
+        <Caret Line="105" Column="14" TopLine="90"/>
+      </Position27>
+      <Position28>
+        <Filename Value="../../xml_doc.pas"/>
+        <Caret Line="536" Column="3" TopLine="530"/>
+      </Position28>
+      <Position29>
+        <Filename Value="../../xml_doc.pas"/>
+        <Caret Line="104" Column="15" TopLine="90"/>
+      </Position29>
+      <Position30>
+        <Filename Value="../../xml_doc.pas"/>
+        <Caret Line="531" TopLine="507"/>
+      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes Count="0" ActiveMode=""/>
     </RunParams>
   </ProjectSession>
+  <Debugging>
+    <BreakPoints Count="1">
+      <Item1>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="../../xml_doc.pas"/>
+        <Line Value="532"/>
+      </Item1>
+    </BreakPoints>
+  </Debugging>
 </CONFIG>

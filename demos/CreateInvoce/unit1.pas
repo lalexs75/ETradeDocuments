@@ -37,6 +37,9 @@ var
   E: TExchangeFile;
   Ch: TSigner;
   II: TInvoiceItem;
+  CD: TCustomsDeclaration;
+  PIN: TProductIdentificationNumber;
+  TI: TTraceabilityInformation;
 begin
   E:=TExchangeFile.Create;
   E.FileID:='AASSDSADADAD-ADDAD-ADAD';
@@ -64,16 +67,45 @@ begin
   II.Product:='Товар 1';
   II.UnitCode:='615';
   //II.UnitCodeDef:string read FUnitCodeDef write SetUnitCodeDef;
-  //II.Quantity:string read FQuantity write SetQuantity;
-  //II.Price:string read FPrice write SetPrice;
-  //II.SubtotalWithVatExcluded:string read FSubtotalWithVatExcluded write SetSubtotalWithVatExcluded;
-  //II.TaxRate:string read FTaxRate write SetTaxRate;
-  //II.Subtotal:string read FSubtotal write SetSubtotal;
+  II.Quantity:='12.0';
+  II.Price:='123';
+  II.SubtotalWithVatExcluded:='12';
+  II.TaxRate:='20%';
+  II.Subtotal:='1234.00';
   //II.SubtotalDef:string read FSubtotalDef write SetSubtotalDef;
   //II.Excise:TExciseSum read FExcise;
-  //II.Vat:TVatSum read FVat;
-  //II.CustomsDeclaration:TCustomsDeclarationList read FCustomsDeclaration;
-  //II.InvoiceItemAdditional:TInvoiceItemAdditional read FInvoiceItemAdditional;
+
+  II.Vat.VatValue:='20.00';
+  //II.Vat.WithoutVat:string read FWithoutVat write SetWithoutVat;
+  //II.Vat.VatValueDef:string read FVatValueDef write SetVatValueDef;
+
+  CD:=II.CustomsDeclaration.CreateChild;
+  CD.CountryCode:='810';
+  //CD.CountryCodeDef:string read FCountryCodeDef write SetCountryCodeDef;
+  CD.DeclarationNumber:='123-123-123';
+  II.InvoiceItemAdditional.ItemMark:='1';
+  II.InvoiceItemAdditional.AdditionalProperty:='#3R';
+  II.InvoiceItemAdditional.UnitName:='ШТ';
+  II.InvoiceItemAdditional.CountryNameShort:='Россия';
+  II.InvoiceItemAdditional.ItemToRelease:='123';
+  II.InvoiceItemAdditional.ItemCharacteristic:='Характеристика';
+  II.InvoiceItemAdditional.ItemSort:='1';
+  II.InvoiceItemAdditional.ItemArticleNumber:='111111';
+  II.InvoiceItemAdditional.ItemVendorCode:='2222';
+  II.InvoiceItemAdditional.ItemCatalogCode:='333333';
+  II.InvoiceItemAdditional.ItemTypeCode:='22 33 2342';
+  TI:=II.InvoiceItemAdditional.TraceabilityInformation.CreateChild;
+  TI.BatchNumber:='12-312-123';
+  TI.UnitCode:='654';
+  TI.UnitName:='Шт.';
+  TI.Quantity:='123';
+  TI.AdditionalInfo:='Примечание';
+
+  PIN:=II.InvoiceItemAdditional.ProductIdentificationNumber.CreateChild;
+  PIN.PackagingIdentificationNumber:='12312312313';
+  //PIN.CheckMark:TStrings read FCheckMark;
+  //PIN.SecondaryPackagingIdentificationNumber:TStrings read FSecondaryPackagingIdentificationNumber;
+
   //II.AdditionalInfo:TTextInfoList read FAdditionalInfo;
 
 
