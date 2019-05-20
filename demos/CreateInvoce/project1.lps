@@ -11,7 +11,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="22"/>
       </Unit0>
       <Unit1>
         <Filename Value="unit1.pas"/>
@@ -22,7 +22,7 @@
         <UnitName Value="Unit1"/>
         <TopLine Value="70"/>
         <CursorPos X="53" Y="96"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="22"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -48,7 +48,7 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
         <TopLine Value="516"/>
-        <CursorPos X="7" Y="532"/>
+        <CursorPos Y="532"/>
         <UsageCount Value="11"/>
         <Bookmarks Count="2">
           <Item0 X="19" Y="350" ID="1"/>
@@ -137,7 +137,7 @@
         <EditorIndex Value="1"/>
         <TopLine Value="594"/>
         <CursorPos X="3" Y="599"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit15>
       <Unit16>
@@ -324,15 +324,4 @@
       <Modes Count="0" ActiveMode=""/>
     </RunParams>
   </ProjectSession>
-  <Debugging>
-    <BreakPoints Count="1">
-      <Item1>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="../../xml_doc.pas"/>
-        <Line Value="532"/>
-      </Item1>
-    </BreakPoints>
-  </Debugging>
 </CONFIG>

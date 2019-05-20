@@ -157,7 +157,7 @@ type
   end;
 
 implementation
-uses XMLRead, XMLWrite, xmliconv, TypInfo, LazUTF8;
+uses XMLRead, XMLWrite, {$IFDEF WINDOWS} xmliconv_windows {$ELSE} xmliconv {$ENDIF}, TypInfo, LazUTF8;
 
 { TAbstractExchangeFile }
 
