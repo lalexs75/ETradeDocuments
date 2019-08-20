@@ -5,8 +5,8 @@ unit Unit1;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ETradeDoc,
-  InvoceExchangeFile, Signer, InvoiceItem;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ComCtrls,
+  ETradeDoc, InvoceExchangeFile, Signer, InvoiceItem, zvlrpok_unit;
 
 type
 
@@ -15,9 +15,17 @@ type
   TForm1 = class(TForm)
     Button1: TButton;
     ETradeDoc1: TETradeDoc;
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    TabSheet2: TTabSheet;
+    TabSheet3: TTabSheet;
     procedure Button1Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormCreate(Sender: TObject);
   private
-
+    FZvlrpokFrame: TZvlrpokFrame;
+    procedure LoadConfig;
+    procedure SaveConfig;
   public
 
   end;
@@ -26,9 +34,17 @@ var
   Form1: TForm1;
 
 implementation
-uses xmliconv;
+uses xmliconv, IniFiles;
 
 {$R *.lfm}
+
+function ConfigFileIni:TIniFile;
+var
+  S: String;
+begin
+  S:=GetAppConfigFile(false, true);
+  Result:=TIniFile.Create(S);
+end;
 
 { TForm1 }
 
@@ -155,6 +171,38 @@ begin
   ETradeDoc1.SaveInvoce(E, 'test1_invoce.xml');
   E.Free;
   ShowMessage('Успешно');
+end;
+
+procedure TForm1.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+  SaveConfig;
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+  FZvlrpokFrame:=TZvlrpokFrame.Create(Self);
+  FZvlrpokFrame.Parent:=TabSheet3;
+  FZvlrpokFrame.Align:=alClient;
+
+  LoadConfig;
+end;
+
+procedure TForm1.LoadConfig;
+var
+  Ini: TIniFile;
+begin
+  Ini:=ConfigFileIni;
+  FZvlrpokFrame.LoadData(Ini);
+  Ini.Free;
+end;
+
+procedure TForm1.SaveConfig;
+var
+  Ini: TIniFile;
+begin
+  Ini:=ConfigFileIni;
+  FZvlrpokFrame.SaveData(Ini);
+  Ini.Free;
 end;
 
 end.
