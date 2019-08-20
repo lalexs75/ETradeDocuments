@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fpdoc-descriptions><package name="ETradeDocuments"><module name="ImportGoodsAndIndirectTaxesExchangeFile"><element name="TImportGoodsAndIndirectTaxesExchangeFile"><short>Файл обмена (Файл)</short>
+      </element>
+    </module>
+  </package>
+</fpdoc-descriptions>

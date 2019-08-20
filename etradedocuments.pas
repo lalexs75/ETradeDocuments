@@ -11,7 +11,8 @@ uses
   ETradeDoc, AdditionalInfo, AdressInfo, InvoceExchangeFile, InvoceDocument, 
   InvoiceItem, OrganizationInfo, Signer, TransferInfo, ClientExchangeFile, 
   xml_doc, ExchangeDocument, ExchangeInformation, TreasuryInformation, 
-  ExchangeSigner, LazarusPackageIntf;
+  ExchangeSigner, ImportGoodsAndIndirectTaxesExchangeFile, 
+  ImportGoodsAndIndirectTaxesDocument, LazarusPackageIntf;
 
 implementation
 

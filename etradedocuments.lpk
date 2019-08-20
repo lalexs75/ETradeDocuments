@@ -7,14 +7,14 @@
     <CompilerOptions>
       <Version Value="11"/>
       <SearchPaths>
-        <OtherUnitFiles Value="invoce;exchange"/>
+        <OtherUnitFiles Value="invoce;exchange;ImportGoodsAndIndirectTaxes"/>
         <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
       </SearchPaths>
     </CompilerOptions>
     <Description Value="Обработка электронных форматов документов РФ"/>
     <License Value="LGPL"/>
     <Version Minor="2"/>
-    <Files Count="15">
+    <Files Count="17">
       <Item1>
         <Filename Value="etradedoc.pas"/>
         <HasRegisterProc Value="True"/>
@@ -74,8 +74,16 @@
       </Item14>
       <Item15>
         <Filename Value="exchange/exchangesigner.pas"/>
-        <UnitName Value="exchangesigner"/>
+        <UnitName Value="ExchangeSigner"/>
       </Item15>
+      <Item16>
+        <Filename Value="ImportGoodsAndIndirectTaxes/importgoodsandindirecttaxesexchangefile.pas"/>
+        <UnitName Value="ImportGoodsAndIndirectTaxesExchangeFile"/>
+      </Item16>
+      <Item17>
+        <Filename Value="ImportGoodsAndIndirectTaxes/importgoodsandindirecttaxesdocument.pas"/>
+        <UnitName Value="ImportGoodsAndIndirectTaxesDocument"/>
+      </Item17>
     </Files>
     <LazDoc Paths="/usr/local/share/lazarus/components/ETradeDocuments/docs"/>
     <i18n>
@@ -97,12 +105,5 @@
       <Version Value="2"/>
       <UseFileFilters Value="True"/>
     </PublishOptions>
-    <CustomOptions Items="Fppkg" Version="2">
-      <_Fppkg Items="CustomCodeCount/PackageVariants">
-        <_PackageVariants Items="Items">
-          <_Items Items="Count"/>
-        </_PackageVariants>
-      </_Fppkg>
-    </CustomOptions>
   </Package>
 </CONFIG>
