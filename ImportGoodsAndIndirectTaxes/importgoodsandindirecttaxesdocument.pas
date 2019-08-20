@@ -47,17 +47,36 @@ type
   { TImportGoodsAndIndirectTaxesDocument }
 
   TImportGoodsAndIndirectTaxesDocument = class(TXmlSerializationObject) //%Таблица 4.2
+  private
+    FDocumentDate: string;
+    FKND: string;
+    procedure SetDocumentDate(AValue: string);
+    procedure SetKND(AValue: string);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
     destructor Destroy; override;
   published
+    property KND:string read FKND write SetKND;
+    property DocumentDate:string read FDocumentDate write SetDocumentDate;
   end;
 
 implementation
 
 { TImportGoodsAndIndirectTaxesDocument }
+
+procedure TImportGoodsAndIndirectTaxesDocument.SetDocumentDate(AValue: string);
+begin
+  if FDocumentDate=AValue then Exit;
+  FDocumentDate:=AValue;
+end;
+
+procedure TImportGoodsAndIndirectTaxesDocument.SetKND(AValue: string);
+begin
+  if FKND=AValue then Exit;
+  FKND:=AValue;
+end;
 
 procedure TImportGoodsAndIndirectTaxesDocument.InternalRegisterPropertys;
 begin

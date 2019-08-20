@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fpdoc-descriptions><package name="ETradeDocuments"><module name="ImportGoodsAndIndirectTaxesDocument"><element name="TImportGoodsAndIndirectTaxesDocument.KND"><short>Код формы по КНД</short><descr><p>Типовой элемент &lt;КНДТип&gt;.</p><p>Принимает значение: 1110017.</p><p>Код по классификатору КНД.</p>
+        </descr>
+      </element><element name="TImportGoodsAndIndirectTaxesDocument.DocumentDate"><short>Дата формирования документа</short><descr><p>Типовой элемент &lt;ДатаТип&gt;</p><p>Дата в формате ДД.ММ.ГГГГ.</p><p>Значение ДатаДок больше или равно 01.07.2010.</p><p>Значение ДатаДок равно значению даты из имени файла</p>
+        </descr>
+      </element>
+    </module>
+  </package>
+</fpdoc-descriptions>
