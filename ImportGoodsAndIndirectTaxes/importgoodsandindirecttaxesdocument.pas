@@ -44,12 +44,43 @@ uses
 
 type
 
+  { TLegalEntityInformation }
+
+  TLegalEntityInformation = class(TXmlSerializationObject) //%Таблица 4.16
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    //Наименование организации
+    //ИНН организации
+    //КПП
+  end;
+
+
+  { TSenderInfo }
+
+  TSenderInfo = class(TXmlSerializationObject) //%Таблица 4.3
+  private
+    FLegalEntityInformation: TLegalEntityInformation;
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property LegalEntityInformation:TLegalEntityInformation read FLegalEntityInformation;
+    //Отправитель - физическое лицо
+  end;
+
   { TImportGoodsAndIndirectTaxesDocument }
 
   TImportGoodsAndIndirectTaxesDocument = class(TXmlSerializationObject) //%Таблица 4.2
   private
     FDocumentDate: string;
     FKND: string;
+    FSenderInfo: TSenderInfo;
     procedure SetDocumentDate(AValue: string);
     procedure SetKND(AValue: string);
   protected
@@ -60,9 +91,53 @@ type
   published
     property KND:string read FKND write SetKND;
     property DocumentDate:string read FDocumentDate write SetDocumentDate;
+    property SenderInfo:TSenderInfo read FSenderInfo;
+//    property SignerInfo:TSignerInfo read FSignerInfo;
+//    property DeclarationInfo:TDeclarationInfo read FDeclarationInfo;
+//    property Contracts:TContracts read FContracts;
+(*
+Отправитель – организация
+Отправитель - физическое лицо
+*)
   end;
 
 implementation
+
+{ TLegalEntityInformation }
+
+procedure TLegalEntityInformation.InternalRegisterPropertys;
+begin
+
+end;
+
+procedure TLegalEntityInformation.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TLegalEntityInformation.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TSenderInfo }
+
+procedure TSenderInfo.InternalRegisterPropertys;
+begin
+
+end;
+
+procedure TSenderInfo.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+  FLegalEntityInformation:=TLegalEntityInformation.Create;
+end;
+
+destructor TSenderInfo.Destroy;
+begin
+  FreeAndNil(FLegalEntityInformation);
+  inherited Destroy;
+end;
 
 { TImportGoodsAndIndirectTaxesDocument }
 
@@ -86,10 +161,12 @@ end;
 procedure TImportGoodsAndIndirectTaxesDocument.InternalInitChilds;
 begin
   inherited InternalInitChilds;
+  FSenderInfo:=TSenderInfo.Create;
 end;
 
 destructor TImportGoodsAndIndirectTaxesDocument.Destroy;
 begin
+  FreeAndNil(FSenderInfo);
   inherited Destroy;
 end;
 

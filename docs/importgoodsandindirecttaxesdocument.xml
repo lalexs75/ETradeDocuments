@@ -3,6 +3,11 @@
         </descr>
       </element><element name="TImportGoodsAndIndirectTaxesDocument.DocumentDate"><short>Дата формирования документа</short><descr><p>Типовой элемент &lt;ДатаТип&gt;</p><p>Дата в формате ДД.ММ.ГГГГ.</p><p>Значение ДатаДок больше или равно 01.07.2010.</p><p>Значение ДатаДок равно значению даты из имени файла</p>
         </descr>
+      </element><element name="TImportGoodsAndIndirectTaxesDocument.SenderInfo"><short>Сведения об отправителе документа</short>
+      </element><element name="TImportGoodsAndIndirectTaxesDocument.SignerInfo"><short>Сведения о лице, подписавшем документ</short>
+      </element><element name="TImportGoodsAndIndirectTaxesDocument.DeclarationInfo"><short>Сведения из заявления</short>
+      </element><element name="TImportGoodsAndIndirectTaxesDocument.Contracts"><short>Сведения о договорах (контрактах) приложения к Заявлению</short>
+      </element><element name="TSenderInfo.LegalEntityInformation"><short>Отправитель – организация</short>
       </element>
     </module>
   </package>

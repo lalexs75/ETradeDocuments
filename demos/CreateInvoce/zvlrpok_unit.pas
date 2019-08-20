@@ -5,7 +5,7 @@ unit zvlrpok_unit;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, StdCtrls, EditBtn, IniPropStorage, IniFiles;
+  Classes, SysUtils, Forms, Controls, StdCtrls, EditBtn, IniFiles;
 
 type
 
