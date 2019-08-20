@@ -1,0 +1,23 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: xml_doc_resource.snotfoundpropertyforfield
+#, object-pascal-format
+msgid "Not found property in %s for data field %s"
+msgstr ""
+
+#: xml_doc_resource.spropertynotfound
+#, object-pascal-format
+msgid "Not fond property %s.%s(%s)"
+msgstr ""
+
+#: xml_doc_resource.spropertynotfound1
+#, object-pascal-format
+msgid "Not fond property %s"
+msgstr ""
+
+#: xml_doc_resource.suknowpropertytype
+#, object-pascal-format
+msgid "Uknow property type %s"
+msgstr ""
+

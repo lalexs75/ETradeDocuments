@@ -157,7 +157,7 @@ type
   end;
 
 implementation
-uses XMLRead, XMLWrite, {$IFDEF WINDOWS} xmliconv_windows {$ELSE} xmliconv {$ENDIF}, TypInfo, LazUTF8;
+uses XMLRead, XMLWrite, {$IFDEF WINDOWS} xmliconv_windows {$ELSE} xmliconv {$ENDIF}, TypInfo, LazUTF8, xml_doc_resource;
 
 { TAbstractExchangeFile }
 
@@ -354,7 +354,7 @@ begin
 
     FProp:=GetPropInfo(Self, P.FPropertyName);
     if not Assigned(FProp) then
-      raise Exception.CreateFmt('Not fond property %s.%s(%s)', [ClassName, P.PropertyName, P.Caption]);
+      raise Exception.CreateFmt(sPropertyNotFound, [ClassName, P.PropertyName, P.Caption]);
     case FProp^.PropType^.Kind of
       tkChar,
       tkAString,
@@ -369,7 +369,7 @@ begin
       tkInteger : if P.Modified then SetAtribute(AElement, P.XMLName, IntToStr( GetInt64Prop(Self, P.PropertyName)), P); //  P.FMaxSize);
       tkClass: InternalWriteChild(FXML, TObject(PtrInt( GetOrdProp(Self, FProp))), AElement, P);
     else
-      raise exception.CreateFmt('sProtoBufUnknowPropType %s', [P.FPropertyName]);
+      raise exception.CreateFmt(sUknowPropertyType, [P.FPropertyName]);
     end;
   end;
 end;
@@ -388,38 +388,40 @@ begin
     A:=AElement.Attributes.Item[I];
     S1:=A.NodeName;
     S2:=A.NodeValue;
-
-    P:=FPropertyList.PropertyByXMLName(S1);
-
-    if Assigned(P) then
+    if (S1<>'xmlns:xsi') and (S1<>'xsi:noNamespaceSchemaLocation') then
     begin
-      FProp:=GetPropInfo(Self, P.FPropertyName);
-      if not Assigned(FProp) then
-        raise Exception.CreateFmt('Not fond property %s.%s(%s)', [ClassName, P.PropertyName, P.Caption]);
+      P:=FPropertyList.PropertyByXMLName(S1);
 
-      case FProp^.PropType^.Kind of
-        tkChar,
-        tkAString,
-        tkWString,
-        tkSString,
-        tkLString : SetStrProp(Self, FProp, S2);
-(*      tkBool : SetOrdProp(Self, FProp, Ord(ABuf.ReadAsBoolean));
-        tkQWord : SetOrdProp(Self, FProp, Ord(ABuf.ReadAsQWord));
-*)
-        tkInt64 : SetInt64Prop(Self, FProp, StrToInt64(S2));
-        tkInteger : SetOrdProp(Self, FProp, StrToInt(S2));
-(*
-        tkSet                       : SetSetProp(t,PropInfo,S);
-        tkFloat                     : SetFloatProp(t,PropInfo, Value);}
-        tkEnumeration : SetOrdProp(Self, FProp, Ord(ABuf.ReadAsInteger));
-        tkDynArray:LoadBytes(FProp, P);
-        *)
+      if Assigned(P) then
+      begin
+        FProp:=GetPropInfo(Self, P.FPropertyName);
+        if not Assigned(FProp) then
+          raise Exception.CreateFmt(sPropertyNotFound, [ClassName, P.PropertyName, P.Caption]);
+
+        case FProp^.PropType^.Kind of
+          tkChar,
+          tkAString,
+          tkWString,
+          tkSString,
+          tkLString : SetStrProp(Self, FProp, S2);
+  (*      tkBool : SetOrdProp(Self, FProp, Ord(ABuf.ReadAsBoolean));
+          tkQWord : SetOrdProp(Self, FProp, Ord(ABuf.ReadAsQWord));
+  *)
+          tkInt64 : SetInt64Prop(Self, FProp, StrToInt64(S2));
+          tkInteger : SetOrdProp(Self, FProp, StrToInt(S2));
+  (*
+          tkSet                       : SetSetProp(t,PropInfo,S);
+          tkFloat                     : SetFloatProp(t,PropInfo, Value);}
+          tkEnumeration : SetOrdProp(Self, FProp, Ord(ABuf.ReadAsInteger));
+          tkDynArray:LoadBytes(FProp, P);
+          *)
+        else
+          raise exception.CreateFmt(sUknowPropertyType, [P.FPropertyName]);
+        end;
+      end
       else
-        raise exception.CreateFmt('sProtoBufUnknowPropType %s', [P.FPropertyName]);
-      end;
-    end
-    else
-      raise exception.CreateFmt('Not found property in %s for data field %s', [ClassName, S1]);
+        raise exception.CreateFmt(sNotFoundPropertyForField, [ClassName, S1]);
+    end;
   end;
 end;
 
@@ -443,7 +445,7 @@ begin
     begin
       FProp:=GetPropInfo(Self, P.FPropertyName); //Retreive property informations
       if not Assigned(FProp) then
-        raise Exception.CreateFmt('sProtoBufNotFondProperty %s', [P.FPropertyName]);
+        raise Exception.CreateFmt(sPropertyNotFound1, [P.FPropertyName]);
 
       K:=FProp^.PropType^.Kind;
       if (P.FSimpleObject) and (K <> tkClass) then

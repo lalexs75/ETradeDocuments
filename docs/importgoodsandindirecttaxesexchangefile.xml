@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <fpdoc-descriptions><package name="ETradeDocuments"><module name="ImportGoodsAndIndirectTaxesExchangeFile"><element name="TImportGoodsAndIndirectTaxesExchangeFile"><short>Файл обмена (Файл)</short>
+      </element><element name="TImportGoodsAndIndirectTaxesExchangeFile.FileID"><short>Идентификатор файла</short><descr>Содержит (повторяет) имя файла без точки и расширения имени файла
+</descr>
+      </element><element name="TImportGoodsAndIndirectTaxesExchangeFile.FormatVersion"><short>Версия формата</short><descr>Принимает значение: 5.07
+</descr>
+      </element><element name="TImportGoodsAndIndirectTaxesExchangeFile.InformationType"><short>Тип информации</short><descr>Принимает значение: ЭСНДСТСНП
+</descr>
+      </element><element name="TImportGoodsAndIndirectTaxesExchangeFile.AppVersion"><short>Версия передающей программы</short>
+      </element><element name="TImportGoodsAndIndirectTaxesExchangeFile.RecipientTaxInspectionCode"><short>Код налогового органа получателя</short><descr>Типовой элемент &lt;СОНОТип&gt;
+Код по классификатору СОНО
+</descr>
+      </element><element name="TImportGoodsAndIndirectTaxesExchangeFile.Document"><short>Сведения заявления российского налогоплательщика о ввозе товаров и уплате косвенных налогов</short><descr>Состав элемента представлен в табл. 4.2
+</descr>
       </element>
     </module>
   </package>

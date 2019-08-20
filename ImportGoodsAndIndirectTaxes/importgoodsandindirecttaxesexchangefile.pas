@@ -48,15 +48,15 @@ type
 
   TImportGoodsAndIndirectTaxesExchangeFile = class(TAbstractExchangeFile)   //%Таблица 4.1
   private
-    FAppVersion: string;
+    //FAppVersion: string;
     FDocument: TImportGoodsAndIndirectTaxesDocument;
-    FFileID: string;
-    FFormatVersion: string;
+    //FFileID: string;
+    //FFormatVersion: string;
     FInformationType: string;
     FRecipientTaxInspectionCode: string;
-    procedure SetAppVersion(AValue: string);
-    procedure SetFileID(AValue: string);
-    procedure SetFormatVersion(AValue: string);
+    //procedure SetAppVersion(AValue: string);
+    //procedure SetFileID(AValue: string);
+    //procedure SetFormatVersion(AValue: string);
     procedure SetInformationType(AValue: string);
     procedure SetRecipientTaxInspectionCode(AValue: string);
   protected
@@ -65,10 +65,10 @@ type
   public
     destructor Destroy; override;
   published
-    property FileID:string read FFileID write SetFileID;
-    property FormatVersion:string read FFormatVersion write SetFormatVersion;
+    //property FileID:string read FFileID write SetFileID;
+    //property FormatVersion:string read FFormatVersion write SetFormatVersion;
     property InformationType:string read FInformationType write SetInformationType;
-    property AppVersion:string read FAppVersion write SetAppVersion;
+    //property AppVersion:string read FAppVersion write SetAppVersion;
     property RecipientTaxInspectionCode:string read FRecipientTaxInspectionCode write SetRecipientTaxInspectionCode;
     property Document:TImportGoodsAndIndirectTaxesDocument read FDocument;
   end;
@@ -76,7 +76,7 @@ type
 implementation
 
 { TImportGoodsAndIndirectTaxesExchangeFile }
-
+(*
 procedure TImportGoodsAndIndirectTaxesExchangeFile.SetAppVersion(AValue: string
   );
 begin
@@ -89,7 +89,7 @@ procedure TImportGoodsAndIndirectTaxesExchangeFile.SetFileID(AValue: string);
 begin
   if FFileID=AValue then Exit;
   FFileID:=AValue;
-  ModifiedProperty(FileID);
+  ModifiedProperty('FileID');
 end;
 
 procedure TImportGoodsAndIndirectTaxesExchangeFile.SetFormatVersion(
@@ -97,13 +97,15 @@ procedure TImportGoodsAndIndirectTaxesExchangeFile.SetFormatVersion(
 begin
   if FFormatVersion=AValue then Exit;
   FFormatVersion:=AValue;
+  ModifiedProperty('FormatVersion');
 end;
-
+*)
 procedure TImportGoodsAndIndirectTaxesExchangeFile.SetInformationType(
   AValue: string);
 begin
   if FInformationType=AValue then Exit;
   FInformationType:=AValue;
+  ModifiedProperty('InformationType');
 end;
 
 procedure TImportGoodsAndIndirectTaxesExchangeFile.SetRecipientTaxInspectionCode
@@ -111,11 +113,18 @@ procedure TImportGoodsAndIndirectTaxesExchangeFile.SetRecipientTaxInspectionCode
 begin
   if FRecipientTaxInspectionCode=AValue then Exit;
   FRecipientTaxInspectionCode:=AValue;
+  ModifiedProperty('RecipientTaxInspectionCode');
 end;
 
 procedure TImportGoodsAndIndirectTaxesExchangeFile.InternalRegisterPropertys;
 begin
   inherited InternalRegisterPropertys;
+  //RegisterProperty('FileID', 'ИдФайл', 'О', 'Идентификатор файла', 1, 100);
+  //RegisterProperty('FormatVersion', 'ВерсФорм', 'О', 'Версия формата', 1, 5);
+  RegisterProperty('InformationType', 'ТипИнф', 'О', 'Тип информации', 1, 50);
+  //RegisterProperty('AppVersion', 'ВерсПрог', 'Н', 'Версия передающей программы', 1, 40);
+  RegisterProperty('RecipientTaxInspectionCode', 'КодНО', 'О', 'Код налогового органа получателя', 1, 4);
+  RegisterProperty('Document', 'Документ', 'О', 'Сведения заявления российского налогоплательщика о ввозе товаров и уплате косвенных налогов', -1, -1);
 end;
 
 procedure TImportGoodsAndIndirectTaxesExchangeFile.InternalInitChilds;

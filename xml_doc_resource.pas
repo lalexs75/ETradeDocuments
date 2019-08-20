@@ -3,9 +3,8 @@
   Copyright (C) 2019 Lagunov Aleksey alexs75@yandex.ru
 
   Генерация xml файлов для электронного документооборота
-  Формат заявления о ввозе товаров и уплате косвенных налогов российского налогоплательщика
 
-  Структуры данных базируются на основании "Приказ от 19.11.2014 № ММВ-7-6/590@"
+  Структуры данных базируются на основании "Приказ ФНС РФ от 19.12.2018 N ММВ-7-15/820@"
 
   This library is free software; you can redistribute it and/or modify it
   under the terms of the GNU Library General Public License as published by
@@ -33,46 +32,22 @@
   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 }
 
-unit ImportGoodsAndIndirectTaxesDocument;
+unit xml_doc_resource;
 
 {$mode objfpc}{$H+}
 
 interface
 
 uses
-  Classes, SysUtils, xml_doc;
+  Classes, SysUtils;
 
-type
-
-  { TImportGoodsAndIndirectTaxesDocument }
-
-  TImportGoodsAndIndirectTaxesDocument = class(TXmlSerializationObject) //%Таблица 4.2
-  protected
-    procedure InternalRegisterPropertys; override;
-    procedure InternalInitChilds; override;
-  public
-    destructor Destroy; override;
-  published
-  end;
+resourcestring
+  sNotFoundPropertyForField     = 'Not found property in %s for data field %s';
+  sPropertyNotFound             = 'Not fond property %s.%s(%s)';
+  sPropertyNotFound1            = 'Not fond property %s';
+  sUknowPropertyType            = 'Uknow property type %s';
 
 implementation
-
-{ TImportGoodsAndIndirectTaxesDocument }
-
-procedure TImportGoodsAndIndirectTaxesDocument.InternalRegisterPropertys;
-begin
-
-end;
-
-procedure TImportGoodsAndIndirectTaxesDocument.InternalInitChilds;
-begin
-  inherited InternalInitChilds;
-end;
-
-destructor TImportGoodsAndIndirectTaxesDocument.Destroy;
-begin
-  inherited Destroy;
-end;
 
 end.
 

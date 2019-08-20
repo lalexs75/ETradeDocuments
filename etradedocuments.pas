@@ -12,7 +12,7 @@ uses
   InvoiceItem, OrganizationInfo, Signer, TransferInfo, ClientExchangeFile, 
   xml_doc, ExchangeDocument, ExchangeInformation, TreasuryInformation, 
   ExchangeSigner, ImportGoodsAndIndirectTaxesExchangeFile, 
-  ImportGoodsAndIndirectTaxesDocument, LazarusPackageIntf;
+  ImportGoodsAndIndirectTaxesDocument, xml_doc_resource, LazarusPackageIntf;
 
 implementation
 
