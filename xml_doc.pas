@@ -458,17 +458,17 @@ begin
           tkSString,
           tkLString   : SetStrProp(Self, FProp, S2);
         else
-          raise exception.CreateFmt('sProtoBufUnknowPropType %s', [P.FPropertyName]);
+          raise exception.CreateFmt(sUknowPropertyType, [P.FPropertyName]);
         end;
       end
       else
       begin
         if K <> tkClass then
-          raise Exception.CreateFmt('Not is class property %s', [P.FPropertyName]);
+          raise Exception.CreateFmt(sPropertyIsNotClassType, [P.FPropertyName]);
 
         FInst := TObject(PtrInt( GetOrdProp(Self, FProp)));
         if not Assigned(FInst) then
-          raise Exception.CreateFmt('Not inited %s', [P.FPropertyName]);
+          raise Exception.CreateFmt(sClassPropertyNotInit, [P.FPropertyName]);
 
         if FInst is TXmlSerializationObject then
           TXmlSerializationObject(FInst).InternalRead(FNode)
@@ -481,7 +481,7 @@ begin
       end;
     end
     else
-      raise exception.CreateFmt('Unknow class prop %s.%s', [ClassName, FNode.NodeName]);
+      raise exception.CreateFmt(sUnknowClassProperty, [ClassName, FNode.NodeName]);
   end;
 end;
 
@@ -489,7 +489,7 @@ procedure TXmlSerializationObject.SetAtribute(P: TDOMElement; AttribName,
   AttribValue: DOMString; Prop: TPropertyDef);
 begin
   if (Prop.FMaxSize > 0) and (UTF8Length(AttribValue) > Prop.FMaxSize) then
-    raise Exception.CreateFmt('%s.%s - Значение атрибута слишком велико (%s - %d)', [ClassName, Prop.PropertyName, AttribValue, Prop.MaxSize]);
+    raise Exception.CreateFmt(sValueExpectedRange, [ClassName, Prop.PropertyName, AttribValue, Prop.MaxSize]);
   P.SetAttribute(AttribName, AttribValue);
 end;
 
@@ -632,7 +632,7 @@ begin
   if Assigned(P) then
     P.FModified:=true
   else
-    raise Exception.CreateFmt('Property not found: %s', [APropertyName]);
+    raise Exception.CreateFmt(sPropertyNotFound1, [APropertyName]);
 end;
 
 constructor TXmlSerializationObject.Create;

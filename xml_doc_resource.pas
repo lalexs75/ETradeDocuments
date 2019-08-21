@@ -46,6 +46,10 @@ resourcestring
   sPropertyNotFound             = 'Not fond property %s.%s(%s)';
   sPropertyNotFound1            = 'Not fond property %s';
   sUknowPropertyType            = 'Uknow property type %s';
+  sPropertyIsNotClassType       = 'Property is not class type %s';
+  sClassPropertyNotInit         = 'Class property not init %s';
+  sUnknowClassProperty          = 'Unknow class property %s.%s';
+  sValueExpectedRange           = '%s.%s - Значение атрибута слишком велико (%s - %d)';
 
 implementation
 
