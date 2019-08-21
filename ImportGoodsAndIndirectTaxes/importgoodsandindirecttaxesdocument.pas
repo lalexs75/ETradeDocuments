@@ -44,6 +44,44 @@ uses
 
 type
 
+  { TPerson }
+
+  TPerson = class(TXmlSerializationObject)   //%Таблица 4.18
+  private
+    FFirstName: string;
+    FPatronymic: string;
+    FSurname: string;
+    procedure SetFirstName(AValue: string);
+    procedure SetPatronymic(AValue: string);
+    procedure SetSurname(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property Surname:string read FSurname write SetSurname;
+    property FirstName:string read FFirstName write SetFirstName;
+    property Patronymic:string read FPatronymic write SetPatronymic;
+  end;
+
+  { TPhysicalPersonEntity }
+
+  TPhysicalPersonEntity = class(TXmlSerializationObject) //%Таблица 4.17
+  private
+    FINN: string;
+    FPerson: TPerson;
+    procedure SetINN(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property INN:string read FINN write SetINN;
+    property Person:TPerson read FPerson;
+  end;
+
   { TLegalEntityInformation }
 
   TLegalEntityInformation = class(TXmlSerializationObject) //%Таблица 4.16
@@ -78,6 +116,7 @@ type
     destructor Destroy; override;
   published
     property LegalEntityInformation:TLegalEntityInformation read FLegalEntityInformation;
+    property PhysicalPerson:TPhysicalPersonEntity read FPhysicalPerson;
     //Отправитель - физическое лицо
   end;
 
@@ -109,6 +148,73 @@ type
   end;
 
 implementation
+
+{ TPerson }
+
+procedure TPerson.SetFirstName(AValue: string);
+begin
+  if FFirstName=AValue then Exit;
+  FFirstName:=AValue;
+  ModifiedProperty('FirstName');
+end;
+
+procedure TPerson.SetPatronymic(AValue: string);
+begin
+  if FPatronymic=AValue then Exit;
+  FPatronymic:=AValue;
+  ModifiedProperty('Patronymic');
+end;
+
+procedure TPerson.SetSurname(AValue: string);
+begin
+  if FSurname=AValue then Exit;
+  FSurname:=AValue;
+  ModifiedProperty('Surname');
+end;
+
+procedure TPerson.InternalRegisterPropertys;
+begin
+  RegisterProperty('Surname', 'Фамилия', 'О', 'Фамилия', 1, 60);
+  RegisterProperty('FirstName', 'Имя', 'О', 'Имя', 1, 60);
+  RegisterProperty('Patronymic', 'Отчество', 'Н', 'Отчество', 1, 60);
+end;
+
+procedure TPerson.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TPerson.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TPhysicalPersonEntity }
+
+procedure TPhysicalPersonEntity.SetINN(AValue: string);
+begin
+  if FINN=AValue then Exit;
+  FINN:=AValue;
+  ModifiedProperty('INN');
+end;
+
+procedure TPhysicalPersonEntity.InternalRegisterPropertys;
+begin
+  RegisterProperty('INN', 'ИННФЛ', 'Н', 'ИНН физического лица', 12, 12)
+  RegisterProperty('Person', 'ФИО', 'О', 'Фамилия, имя, отчество', -1, -1)
+end;
+
+procedure TPhysicalPersonEntity.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+  FPerson:=TPerson.Create;
+end;
+
+destructor TPhysicalPersonEntity.Destroy;
+begin
+  FreeAndNil(FPerson);
+  inherited Destroy;
+end;
 
 { TLegalEntityInformation }
 

@@ -16,6 +16,17 @@
 </descr>
       </element><element name="TLegalEntityInformation"><short>Сведения об организации (СвЮЛ)</short><descr>Таблица 4.16
 </descr>
+      </element><element name="TPhysicalPersonEntity.INN"><short>ИНН физического лица</short><descr>Типовой элемент &lt;ИННФЛТип&gt;
+</descr>
+      </element><element name="TPhysicalPersonEntity.Person"><short>Фамилия, имя, отчество</short><descr><p>Типовой элемент &lt;ФИОТип&gt;.</p><p>Состав элемента представлен в табл. 4.18</p>
+        </descr>
+      </element><element name="TPhysicalPersonEntity"><short>Сведения о физическом лице (СвФЛ)</short><descr>Таблица 4.17
+</descr>
+      </element><element name="TPerson"><short>Фамилия, имя, отчество (ФИОТип)</short><descr>Таблица 4.18
+</descr>
+      </element><element name="TPerson.Surname"><short>Фамилия</short>
+      </element><element name="TPerson.FirstName"><short>Имя</short>
+      </element><element name="TPerson.Patronymic"><short>Отчество</short>
       </element>
     </module>
   </package>
