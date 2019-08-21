@@ -230,6 +230,33 @@
 </descr>
       </element><element name="TTransferDoc.TransferDocDate"><short>Дата транспортного (товаросопроводительного) документа Графа 10</short><descr><p>Типовой элемент &lt;ДатаТип&gt;</p><p>Значение ДатаТСД меньше или равно значению ДатаДокНП</p>
         </descr>
+      </element><element name="TContractInfo3"><short>Сведения о договоре (контракте) Раздел 3 (СвКонтракт3)</short>
+      </element><element name="TContractInfo3.SellerType"><short>Тип продавца Раздел 3</short><descr><p>Принимает значение: 0 | 1 | 2 | 6 , где:</p><ul><li>0 – комитент (умолчание);</li><li>1 – доверитель;</li><li>2 – принципал;</li><li>6 – продавец</li>
+          </ul>
+        </descr>
+      </element><element name="TContractInfo3.SellerBaikonurFlag"><short>Признак нахождения российского продавца в г.Байконур</short><descr><p>Принимает значение: 1</p><ul><li>1 – российский продавец находится на территории г.Байконур</li>
+          </ul>
+        </descr>
+      </element><element name="TContractInfo3.SellerIdentificationCode"><short>Идентификационный код (номер) продавца Раздел 3</short>
+      </element><element name="TContractInfo3.SellerName"><short>Полное наименование (ФИО) продавца Раздел 3 стр. 08</short>
+      </element><element name="TContractInfo3.SellerCountryCode"><short>Код страны продавца Раздел 3 стр. 10</short><descr><p>Типовой элемент &lt;ОКСМТип&gt;.</p><p>Код по классификатору ОКСМ.</p><p>Код государства-члена ЕАЭС.</p><p>КодСтранПродР3=398 если ПрБкнрПродР3=1.</p><p>Реквизиты КодСтранПродР3=398 и ПрБкнрПродР3=1 указывают на российского налогоплательщика</p>
+        </descr>
+      </element><element name="TContractInfo3.SellerAdress"><short>Адрес местонахождения (жительства) продавца Раздел 3 стр. 10</short>
+      </element><element name="TContractInfo3.BuyerType"><short>Тип покупателя Раздел3</short><descr><p>Принимает значение: 3 | 4 | 5 | 7 , где:</p><ul/><li>3 – комиссионер (умолчание);</li><li>4 – поверенный;</li><li>5 – агент;</li><li>7 – покупатель</li><ul/>
+        </descr>
+      </element><element name="TContractInfo3.BuyerBaikonurFlag"><short>Признак нахождения российского покупателя в г.Байконур</short><descr><p>Принимает значение: 1</p><ul><li>1 – российский покупатель находится на территории г.Байконур</li>
+          </ul>
+        </descr>
+      </element><element name="TContractInfo3.BuyerIdentificationCode"><short>Идентификационный код (номер) покупателя Раздел3</short><descr>Обязателен, если покупатель из государства-члена ЕАЭС
+</descr>
+      </element><element name="TContractInfo3.BuyerName"><short>Полное наименование (ФИО) покупателя Раздел 3 стр. 09</short>
+      </element><element name="TContractInfo3.BuyerCountryCode"><short>Код страны покупателя Раздел 3 стр. 11</short><descr><p>Типовой элемент &lt;ОКСМТип&gt;</p><p>Код по классификатору ОКСМ.</p><p>При ПрБкнрПокР3=1 КодСтранПокР3=398, где:</p><p>398 – Казахстан.</p><p>Реквизиты КодСтранПокР3=398 и ПрБкнрПокР3=1 указывают на российского налогоплательщика</p>
+        </descr>
+      </element><element name="TContractInfo3.BuyerAdress"><short>Адрес местонахождения (жительства) покупателя Раздел 3 стр. 11</short>
+      </element><element name="TContractInfo3.ContractInfo"><short>Сведения о контракте (договоре) Раздел 3 стр. 12</short><descr><p>Типовой элемент &lt;СвКонтрК&gt;.</p><p>Состав элемента представлен в табл. 4.13</p>
+        </descr>
+      </element><element name="TPreviouslyStatement"><short>Сведения о ранее представленном заявлении (СвПредДок)</short><descr>Таблица 4.12
+</descr>
       </element>
     </module>
   </package>

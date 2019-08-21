@@ -176,6 +176,79 @@ type
     property SpecificationsInformation:TSpecificationsInformations read FSpecificationsInformation; //Сведения спецификаций
   end;
 
+  { TPreviouslyStatement }
+
+  TPreviouslyStatement = class(TXmlSerializationObject) //%Таблица 4.13
+  private
+    FMonthIncPrice: string;
+    FMonthIncYear: string;
+    FTaxMarkDate: string;
+    FTaxMarkNumber: string;
+    procedure SetMonthIncPrice(AValue: string);
+    procedure SetMonthIncYear(AValue: string);
+    procedure SetTaxMarkDate(AValue: string);
+    procedure SetTaxMarkNumber(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property TaxMarkNumber:string read FTaxMarkNumber write SetTaxMarkNumber; //Номер отметки о регистрации Заявления в налоговом органе
+    property TaxMarkDate:string read FTaxMarkDate write SetTaxMarkDate; //Дата отметки о регистрации Заявления в налоговом органе
+    property MonthIncPrice:string read FMonthIncPrice write SetMonthIncPrice; //Месяц, в котором участниками договора (контракта) увеличена цена
+    property MonthIncYear:string read FMonthIncYear write SetMonthIncYear; //Год, в котором участниками договора (контракта) увеличена цена
+  end;
+
+  { TContractInfo3 }
+
+  TContractInfo3 = class(TXmlSerializationObject) //%Таблица 4.10
+  private
+    FBuyerAdress: string;
+    FBuyerBaikonurFlag: string;
+    FBuyerCountryCode: string;
+    FBuyerIdentificationCode: string;
+    FBuyerName: string;
+    FBuyerType: string;
+    FContractInfo: TContractInfo;
+    FSellerAdress: string;
+    FSellerBaikonurFlag: string;
+    FSellerCountryCode: string;
+    FSellerIdentificationCode: string;
+    FSellerName: string;
+    FSellerType: string;
+    procedure SetBuyerAdress(AValue: string);
+    procedure SetBuyerBaikonurFlag(AValue: string);
+    procedure SetBuyerCountryCode(AValue: string);
+    procedure SetBuyerIdentificationCode(AValue: string);
+    procedure SetBuyerName(AValue: string);
+    procedure SetBuyerType(AValue: string);
+    procedure SetSellerAdress(AValue: string);
+    procedure SetSellerBaikonurFlag(AValue: string);
+    procedure SetSellerCountryCode(AValue: string);
+    procedure SetSellerIdentificationCode(AValue: string);
+    procedure SetSellerName(AValue: string);
+    procedure SetSellerType(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property SellerType:string read FSellerType write SetSellerType; //Тип продавца Раздел 3
+    property SellerBaikonurFlag:string read FSellerBaikonurFlag write SetSellerBaikonurFlag; //Признак нахождения российского продавца в г.Байконур
+    property SellerIdentificationCode:string read FSellerIdentificationCode write SetSellerIdentificationCode; //Идентификационный код (номер) продавца Раздел 3
+    property SellerName:string read FSellerName write SetSellerName; //Полное наименование (ФИО) продавца Раздел 3 стр. 08
+    property SellerCountryCode:string read FSellerCountryCode write SetSellerCountryCode; //Код страны продавца Раздел 3 стр. 10
+    property SellerAdress:string read FSellerAdress write SetSellerAdress; //Адрес местонахождения (жительства) продавца Раздел 3 стр. 10
+    property BuyerType:string read FBuyerType write SetBuyerType; //Тип покупателяРаздел3
+    property BuyerBaikonurFlag:string read FBuyerBaikonurFlag write SetBuyerBaikonurFlag; //Признак нахождения российского покупателя в г.Байконур
+    property BuyerIdentificationCode:string read FBuyerIdentificationCode write SetBuyerIdentificationCode; //Идентификационный код (номер) покупателя Раздел3
+    property BuyerName:string read FBuyerName write SetBuyerName; //Полное наименование (ФИО) покупателя Раздел 3 стр. 09
+    property BuyerCountryCode:string read FBuyerCountryCode write SetBuyerCountryCode; //Код страны покупателя Раздел 3 стр. 11
+    property BuyerAdress:string read FBuyerAdress write SetBuyerAdress; //Адрес местонахождения (жительства) покупателя Раздел 3 стр. 11
+    property ContractInfo:TContractInfo read FContractInfo; //Сведения о контракте (договоре) Раздел 3 стр. 12
+  end;
   { TTransferDoc }
 
   TTransferDoc = class(TXmlSerializationObject) //%Таблица 4.9
@@ -394,9 +467,9 @@ type
     property DocumentTaxData:string;//Дата отметки о регистрации в налоговом органе ранее представленного заявления
     property SellerContractInfo:TSellerContractInfo read FSellerContractInfo;//Сведения о договоре (контракте) Раздел 1 стр.05
     property CommissionContractInfo:TCommissionContractInfo read FCommissionContractInfo;//Сведения о контракте с комиссионером Раздел 1 стр. 06-07
-    property ProductDetails:TProductDetails read FProductDetails;//Сведения о товаре и уплаченных налогах
-    //Сведения о договоре (контракте) Раздел 3
-    //Сведения о ранее представленном заявлении
+    property ProductDetails:TProductDetails read FProductDetails; //Сведения о товаре и уплаченных налогах
+    property ContractInfo3:TContractInfo3 read FContractInfo3; //Сведения о договоре (контракте) Раздел 3
+    property PreviouslyStatement:TPreviouslyStatement read FPreviouslyStatement; //Сведения о ранее представленном заявлении
   end;
 
   { TSignerInfo }
@@ -468,6 +541,169 @@ type
   end;
 
 implementation
+
+{ TPreviouslyStatement }
+
+procedure TPreviouslyStatement.SetMonthIncPrice(AValue: string);
+begin
+  if FMonthIncPrice=AValue then Exit;
+  FMonthIncPrice:=AValue;
+  ModifiedProperty('MonthIncPrice');
+end;
+
+procedure TPreviouslyStatement.SetMonthIncYear(AValue: string);
+begin
+  if FMonthIncYear=AValue then Exit;
+  FMonthIncYear:=AValue;
+  ModifiedProperty('MonthIncYear');
+end;
+
+procedure TPreviouslyStatement.SetTaxMarkDate(AValue: string);
+begin
+  if FTaxMarkDate=AValue then Exit;
+  FTaxMarkDate:=AValue;
+  ModifiedProperty('TaxMarkDate');
+end;
+
+procedure TPreviouslyStatement.SetTaxMarkNumber(AValue: string);
+begin
+  if FTaxMarkNumber=AValue then Exit;
+  FTaxMarkNumber:=AValue;
+  ModifiedProperty('TaxMarkNumber');
+end;
+
+procedure TPreviouslyStatement.InternalRegisterPropertys;
+begin
+  RegisterProperty('TaxMarkNumber', 'НомОтм', 'Н', 'Номер отметки о регистрации Заявления в налоговом органе', 1, 18);
+  RegisterProperty('TaxMarkDate', 'ДатаОтм', 'Н', 'Дата отметки о регистрации Заявления в налоговом органе', 10, 10);
+  RegisterProperty('MonthIncPrice', 'МесУвелЦены', 'Н', 'Месяц, в котором участниками договора (контракта) увеличена цена', 1, 2);
+  RegisterProperty('MonthIncYear', 'ГодУвелЦены', 'Н', 'Год, в котором участниками договора (контракта) увеличена цена', 4, 4);
+end;
+
+procedure TPreviouslyStatement.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TPreviouslyStatement.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TContractInfo3 }
+
+procedure TContractInfo3.SetBuyerAdress(AValue: string);
+begin
+  if FBuyerAdress=AValue then Exit;
+  FBuyerAdress:=AValue;
+  ModifiedProperty('BuyerAdress');
+end;
+
+procedure TContractInfo3.SetBuyerBaikonurFlag(AValue: string);
+begin
+  if FBuyerBaikonurFlag=AValue then Exit;
+  FBuyerBaikonurFlag:=AValue;
+  ModifiedProperty('BuyerBaikonurFlag');
+end;
+
+procedure TContractInfo3.SetBuyerCountryCode(AValue: string);
+begin
+  if FBuyerCountryCode=AValue then Exit;
+  FBuyerCountryCode:=AValue;
+  ModifiedProperty('BuyerCountryCode');
+end;
+
+procedure TContractInfo3.SetBuyerIdentificationCode(AValue: string);
+begin
+  if FBuyerIdentificationCode=AValue then Exit;
+  FBuyerIdentificationCode:=AValue;
+  ModifiedProperty('BuyerIdentificationCode');
+end;
+
+procedure TContractInfo3.SetBuyerName(AValue: string);
+begin
+  if FBuyerName=AValue then Exit;
+  FBuyerName:=AValue;
+  ModifiedProperty('BuyerName');
+end;
+
+procedure TContractInfo3.SetBuyerType(AValue: string);
+begin
+  if FBuyerType=AValue then Exit;
+  FBuyerType:=AValue;
+  ModifiedProperty('BuyerType');
+end;
+
+procedure TContractInfo3.SetSellerAdress(AValue: string);
+begin
+  if FSellerAdress=AValue then Exit;
+  FSellerAdress:=AValue;
+  ModifiedProperty('SellerAdress');
+end;
+
+procedure TContractInfo3.SetSellerBaikonurFlag(AValue: string);
+begin
+  if FSellerBaikonurFlag=AValue then Exit;
+  FSellerBaikonurFlag:=AValue;
+  ModifiedProperty('SellerBaikonurFlag');
+end;
+
+procedure TContractInfo3.SetSellerCountryCode(AValue: string);
+begin
+  if FSellerCountryCode=AValue then Exit;
+  FSellerCountryCode:=AValue;
+  ModifiedProperty('SellerCountryCode');
+end;
+
+procedure TContractInfo3.SetSellerIdentificationCode(AValue: string);
+begin
+  if FSellerIdentificationCode=AValue then Exit;
+  FSellerIdentificationCode:=AValue;
+  ModifiedProperty('SellerIdentificationCode');
+end;
+
+procedure TContractInfo3.SetSellerName(AValue: string);
+begin
+  if FSellerName=AValue then Exit;
+  FSellerName:=AValue;
+  ModifiedProperty('SellerName');
+end;
+
+procedure TContractInfo3.SetSellerType(AValue: string);
+begin
+  if FSellerType=AValue then Exit;
+  FSellerType:=AValue;
+  ModifiedProperty('SellerType');
+end;
+
+procedure TContractInfo3.InternalRegisterPropertys;
+begin
+  RegisterProperty('SellerType', 'ТипПродР3', 'ОК', 'Тип продавца Раздел 3', 1, 1);
+  RegisterProperty('SellerBaikonurFlag', 'ПрБкнрПродР3', 'Н', 'Признак нахождения российского продавца в г.Байконур', 1, 1);
+  RegisterProperty('SellerIdentificationCode', 'ИдНомПродР3', 'О', 'Идентификационный код (номер) продавца Раздел 3', 8, 14);
+  RegisterProperty('SellerName', 'НаимПродР3', 'О', 'Полное наименование (ФИО) продавца Раздел 3 стр. 08', 1, 400);
+  RegisterProperty('SellerCountryCode', 'КодСтранПродР3', 'ОК', 'Код страны продавца Раздел 3 стр. 10', 3, 3);
+  RegisterProperty('SellerAdress', 'АдресПродР3', 'О', 'Адрес местонахождения (жительства) продавца Раздел 3 стр. 10', 1, 200);
+  RegisterProperty('BuyerType', 'ТипПокР3', 'ОК', 'Тип покупателя Раздел3', 1, 1);
+  RegisterProperty('BuyerBaikonurFlag', 'ПрБкнрПокР3', 'Н', 'Признак нахождения российского покупателя в г.Байконур', 1, 1);
+  RegisterProperty('BuyerIdentificationCode', 'ИдНомПокР3', 'Н', 'Идентификационный код (номер) покупателя Раздел3', 1, 50);
+  RegisterProperty('BuyerName', 'НаимПокР3', 'О', 'Полное наименование (ФИО) покупателя Раздел 3 стр. 09', 1, 400);
+  RegisterProperty('BuyerCountryCode', 'КодСтранПокР3', 'ОК', 'Код страны покупателя Раздел 3 стр. 11', 3, 3);
+  RegisterProperty('BuyerAdress', 'АдресПокР3', 'О', 'Адрес местонахождения (жительства) покупателя Раздел 3 стр. 11', 1, 200);
+  RegisterProperty('ContractInfo', 'СвКонтрР3', 'О', 'Сведения о контракте (договоре) Раздел 3 стр. 12', -1, -1);
+end;
+
+procedure TContractInfo3.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+  FContractInfo:=TContractInfo.Create;
+end;
+
+destructor TContractInfo3.Destroy;
+begin
+  FreeAndNil(FContractInfo);
+  inherited Destroy;
+end;
 
 { TProductDetail }
 
