@@ -178,7 +178,7 @@ type
 
   { TPreviouslyStatement }
 
-  TPreviouslyStatement = class(TXmlSerializationObject) //%Таблица 4.13
+  TPreviouslyStatement = class(TXmlSerializationObject) //%Таблица 4.12
   private
     FMonthIncPrice: string;
     FMonthIncYear: string;
@@ -198,6 +198,70 @@ type
     property TaxMarkDate:string read FTaxMarkDate write SetTaxMarkDate; //Дата отметки о регистрации Заявления в налоговом органе
     property MonthIncPrice:string read FMonthIncPrice write SetMonthIncPrice; //Месяц, в котором участниками договора (контракта) увеличена цена
     property MonthIncYear:string read FMonthIncYear write SetMonthIncYear; //Год, в котором участниками договора (контракта) увеличена цена
+  end;
+
+  { TContractAdditional }
+
+  TContractAdditional = class(TXmlSerializationObject) //%Таблица 4.11
+  private
+    FBuyerAdress: string;
+    FBuyerBaikonurFlag: string;
+    FBuyerCountryCode: string;
+    FBuyerIdentificationCode: string;
+    FBuyerName: string;
+    FBuyerType: string;
+    FContractInfo: TContractInfo;
+    FLineNumber: string;
+    FSellerAdress: string;
+    FSellerBaikonurFlag: string;
+    FSellerCountryCode: string;
+    FSellerIdentificationCode: string;
+    FSellerName: string;
+    FSellerType: string;
+    procedure SetBuyerAdress(AValue: string);
+    procedure SetBuyerBaikonurFlag(AValue: string);
+    procedure SetBuyerCountryCode(AValue: string);
+    procedure SetBuyerIdentificationCode(AValue: string);
+    procedure SetBuyerName(AValue: string);
+    procedure SetBuyerType(AValue: string);
+    procedure SetLineNumber(AValue: string);
+    procedure SetSellerAdress(AValue: string);
+    procedure SetSellerBaikonurFlag(AValue: string);
+    procedure SetSellerCountryCode(AValue: string);
+    procedure SetSellerIdentificationCode(AValue: string);
+    procedure SetSellerName(AValue: string);
+    procedure SetSellerType(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property LineNumber:string read FLineNumber write SetLineNumber; //%Номер по порядку
+    property SellerType:string read FSellerType write SetSellerType; //Тип продавца Приложение
+    property SellerBaikonurFlag:string read FSellerBaikonurFlag write SetSellerBaikonurFlag; //Признак нахождения российского продавца в г.Байконур
+    property SellerIdentificationCode:string read FSellerIdentificationCode write SetSellerIdentificationCode; //Идентификационный код (номер) продавца
+    property SellerName:string read FSellerName write SetSellerName; //Полное наименование (ФИО) продавца
+    property SellerCountryCode:string read FSellerCountryCode write SetSellerCountryCode; //Код страны продавца
+    property SellerAdress:string read FSellerAdress write SetSellerAdress; //Адрес местонахождения (жительства) продавца
+    property BuyerType:string read FBuyerType write SetBuyerType; //Тип покупателя Приложение
+    property BuyerBaikonurFlag:string read FBuyerBaikonurFlag write SetBuyerBaikonurFlag; //Признак нахождения российского покупателя в г.Байконур
+    property BuyerIdentificationCode:string read FBuyerIdentificationCode write SetBuyerIdentificationCode; //Идентификационный код (номер) покупателя
+    property BuyerName:string read FBuyerName write SetBuyerName; //Полное наименование (ФИО) покупателя
+    property BuyerCountryCode:string read FBuyerCountryCode write SetBuyerCountryCode; //Код страны покупателя
+    property BuyerAdress:string read FBuyerAdress write SetBuyerAdress; //Адрес местонахождения (жительства) покупателя
+    property ContractInfo:TContractInfo read FContractInfo; //Сведения о контрактах
+  end;
+
+  { TContractAdditionals }
+
+  TContractAdditionals = class(TXmlSerializationObjectList) //%Таблица 4.11
+  private
+    function GetItem(AIndex: Integer): TContractAdditional; inline;
+  public
+    constructor Create;
+    function CreateChild:TContractAdditional; inline;
+    property Item[AIndex:Integer]:TContractAdditional read GetItem; default;
   end;
 
   { TContractInfo3 }
@@ -448,23 +512,51 @@ type
   { TDeclarationInfo }
 
   TDeclarationInfo = class(TXmlSerializationObject) //%Таблица 4.5
+  private
+    FCommissionContractInfo: TCommissionContractInfo;
+    FContractInfo3: TContractInfo3;
+    FContractRawMaterialsFlag: string;
+    FDocumentBaseFlag: string;
+    FDocumentData: string;
+    FDocumentNumber: string;
+    FDocumentTaxData: string;
+    FDocumentTaxNumber: string;
+    FExcise: string;
+    FExciseBase: string;
+    FLeasingFlag: string;
+    FPreviouslyStatement: TPreviouslyStatement;
+    FProductDetails: TProductDetails;
+    FSellerContractInfo: TSellerContractInfo;
+    FVat: string;
+    FVatBase: string;
+    procedure SetContractRawMaterialsFlag(AValue: string);
+    procedure SetDocumentBaseFlag(AValue: string);
+    procedure SetDocumentData(AValue: string);
+    procedure SetDocumentNumber(AValue: string);
+    procedure SetDocumentTaxData(AValue: string);
+    procedure SetDocumentTaxNumber(AValue: string);
+    procedure SetExcise(AValue: string);
+    procedure SetExciseBase(AValue: string);
+    procedure SetLeasingFlag(AValue: string);
+    procedure SetVat(AValue: string);
+    procedure SetVatBase(AValue: string);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
     destructor Destroy; override;
   published
-    property DocumentNumber:string;//Номер заявления, указанный НП
-    property DocumentData:string;//Дата заполнения заявления, указанная НП
-    property LeasingFlag:string;//Признак договора лизинга
-    property ContractRawMaterialsFlag:string;//Признак договора переработки давальческого сырья
-    property ExciseBase:string; //База по акцизам Итого по графе 14 Раздел 1
-    property VatBase:string; //База по НДС Итого по графе 15 Раздел 1
-    property Excise:string; //Акциз в сумме Итого по графе 19 Раздел 1
-    property Vat:string; //НДС в сумме Итого по графе 20 Раздел 1
-    property DocumentBaseFlag:string;//Причина возникновения заявления
-    property DocumentTaxNumber:string;//Номер отметки о регистрации в налоговом органе ранее представленного заявления
-    property DocumentTaxData:string;//Дата отметки о регистрации в налоговом органе ранее представленного заявления
+    property DocumentNumber:string read FDocumentNumber write SetDocumentNumber;//Номер заявления, указанный НП
+    property DocumentData:string read FDocumentData write SetDocumentData;//Дата заполнения заявления, указанная НП
+    property LeasingFlag:string read FLeasingFlag write SetLeasingFlag;//Признак договора лизинга
+    property ContractRawMaterialsFlag:string read FContractRawMaterialsFlag write SetContractRawMaterialsFlag;//Признак договора переработки давальческого сырья
+    property ExciseBase:string read FExciseBase write SetExciseBase; //База по акцизам Итого по графе 14 Раздел 1
+    property VatBase:string read FVatBase write SetVatBase; //База по НДС Итого по графе 15 Раздел 1
+    property Excise:string read FExcise write SetExcise; //Акциз в сумме Итого по графе 19 Раздел 1
+    property Vat:string read FVat write SetVat; //НДС в сумме Итого по графе 20 Раздел 1
+    property DocumentBaseFlag:string read FDocumentBaseFlag write SetDocumentBaseFlag;//Причина возникновения заявления
+    property DocumentTaxNumber:string read FDocumentTaxNumber write SetDocumentTaxNumber;//Номер отметки о регистрации в налоговом органе ранее представленного заявления
+    property DocumentTaxData:string read FDocumentTaxData write SetDocumentTaxData;//Дата отметки о регистрации в налоговом органе ранее представленного заявления
     property SellerContractInfo:TSellerContractInfo read FSellerContractInfo;//Сведения о договоре (контракте) Раздел 1 стр.05
     property CommissionContractInfo:TCommissionContractInfo read FCommissionContractInfo;//Сведения о контракте с комиссионером Раздел 1 стр. 06-07
     property ProductDetails:TProductDetails read FProductDetails; //Сведения о товаре и уплаченных налогах
@@ -535,12 +627,159 @@ type
     property SenderInfo:TSenderInfo read FSenderInfo; //Сведения об отправителе документа
     property SignerInfo:TSignerInfo read FSignerInfo; //Сведения о лице, подписавшем документ
     property DeclarationInfo:TDeclarationInfo read FDeclarationInfo; //Сведения из заявления
-//    property ContractAdditional:TContractAdditionals read FContracts; //Сведения о договорах (контрактах) приложения к Заявлению
+    property ContractAdditional:TContractAdditionals read FContracts; //Сведения о договорах (контрактах) приложения к Заявлению
 //Отправитель – организация
 //Отправитель - физическое лицо
   end;
 
 implementation
+
+{ TContractAdditional }
+
+procedure TContractAdditional.SetBuyerAdress(AValue: string);
+begin
+  if FBuyerAdress=AValue then Exit;
+  FBuyerAdress:=AValue;
+  ModifiedProperty('BuyerAdress');
+end;
+
+procedure TContractAdditional.SetBuyerBaikonurFlag(AValue: string);
+begin
+  if FBuyerBaikonurFlag=AValue then Exit;
+  FBuyerBaikonurFlag:=AValue;
+  ModifiedProperty('BuyerBaikonurFlag');
+end;
+
+procedure TContractAdditional.SetBuyerCountryCode(AValue: string);
+begin
+  if FBuyerCountryCode=AValue then Exit;
+  FBuyerCountryCode:=AValue;
+  ModifiedProperty('BuyerCountryCode');
+end;
+
+procedure TContractAdditional.SetBuyerIdentificationCode(AValue: string);
+begin
+  if FBuyerIdentificationCode=AValue then Exit;
+  FBuyerIdentificationCode:=AValue;
+  ModifiedProperty('BuyerIdentificationCode');
+end;
+
+procedure TContractAdditional.SetBuyerName(AValue: string);
+begin
+  if FBuyerName=AValue then Exit;
+  FBuyerName:=AValue;
+  ModifiedProperty('BuyerName');
+end;
+
+procedure TContractAdditional.SetBuyerType(AValue: string);
+begin
+  if FBuyerType=AValue then Exit;
+  FBuyerType:=AValue;
+  ModifiedProperty('BuyerType');
+end;
+
+procedure TContractAdditional.SetContractInfo(AValue: TContractInfo);
+begin
+  if FContractInfo=AValue then Exit;
+  FContractInfo:=AValue;
+  ModifiedProperty('ContractInfo');
+end;
+
+procedure TContractAdditional.SetLineNumber(AValue: string);
+begin
+  if FLineNumber=AValue then Exit;
+  FLineNumber:=AValue;
+  ModifiedProperty('LineNumber');
+end;
+
+procedure TContractAdditional.SetSellerAdress(AValue: string);
+begin
+  if FSellerAdress=AValue then Exit;
+  FSellerAdress:=AValue;
+  ModifiedProperty('SellerAdress');
+end;
+
+procedure TContractAdditional.SetSellerBaikonurFlag(AValue: string);
+begin
+  if FSellerBaikonurFlag=AValue then Exit;
+  FSellerBaikonurFlag:=AValue;
+  ModifiedProperty('SellerBaikonurFlag');
+end;
+
+procedure TContractAdditional.SetSellerCountryCode(AValue: string);
+begin
+  if FSellerCountryCode=AValue then Exit;
+  FSellerCountryCode:=AValue;
+  ModifiedProperty('SellerCountryCode');
+end;
+
+procedure TContractAdditional.SetSellerIdentificationCode(AValue: string);
+begin
+  if FSellerIdentificationCode=AValue then Exit;
+  FSellerIdentificationCode:=AValue;
+  ModifiedProperty('SellerIdentificationCode');
+end;
+
+procedure TContractAdditional.SetSellerName(AValue: string);
+begin
+  if FSellerName=AValue then Exit;
+  FSellerName:=AValue;
+  ModifiedProperty('SellerName');
+end;
+
+procedure TContractAdditional.SetSellerType(AValue: string);
+begin
+  if FSellerType=AValue then Exit;
+  FSellerType:=AValue;
+  ModifiedProperty('SellerType');
+end;
+
+procedure TContractAdditional.InternalRegisterPropertys;
+begin
+  RegisterProperty('LineNumber', 'НомКонтрПП', 'О', 'Номер по порядку', 4, 4);
+  RegisterProperty('SellerType', 'ТипПродП', 'ОК', 'Тип продавца', 1, 1);
+  RegisterProperty('SellerBaikonurFlag', 'ПрБкнрПродП', 'Н', 'Признак нахождения российского продавца в г.Байконур', 1, 1);
+  RegisterProperty('SellerIdentificationCode', 'ИдНомПродП', 'Н', 'Идентификационный код (номер) продавца', 1, 50);
+  RegisterProperty('SellerName', 'НаимПродП', 'О', 'Полное наименование (ФИО) продавца', 1, 400);
+  RegisterProperty('SellerCountryCode', 'КодСтранПродП', 'ОК', 'Код страны продавца', 3, 3);
+  RegisterProperty('SellerAdress', 'АдресПродП', 'О', 'Адрес местонахождения (жительства) продавца', 1, 200);
+  RegisterProperty('BuyerType', 'ТипПокП', 'ОК', 'Тип покупателя Приложение', 1, 1);
+  RegisterProperty('BuyerBaikonurFlag', 'ПрБкнрПокП', 'Н', 'Признак нахождения российского покупателя в г.Байконур', 1, 1);
+  RegisterProperty('BuyerIdentificationCode', 'ИдНомПокП', 'Н', 'Идентификационный код (номер) покупателя', 1, 50);
+  RegisterProperty('BuyerName', 'НаимПокП', 'О', 'Полное наименование (ФИО) покупателя', 1, 400);
+  RegisterProperty('BuyerCountryCode', 'КодСтранПокП', 'ОК', 'Код страны покупателя', 3, 3);
+  RegisterProperty('BuyerAdress', 'АдресПокП', 'О', 'Адрес местонахождения (жительства) покупателя', 1, 200);
+  RegisterProperty('ContractInfo', 'СвКонтрП', 'О', 'Сведения о контрактах', -1, -1);
+end;
+
+procedure TContractAdditional.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+  FContractInfo:=TContractInfo.Create;
+end;
+
+destructor TContractAdditional.Destroy;
+begin
+  FreeAndNil(FContractInfo);
+  inherited Destroy;
+end;
+
+{ TContractAdditionals }
+
+function TContractAdditionals.GetItem(AIndex: Integer): TContractAdditional;
+begin
+  Result:=TContractAdditional(InternalGetItem(AIndex));
+end;
+
+constructor TContractAdditionals.Create;
+begin
+  inherited Create(TContractAdditional)
+end;
+
+function TContractAdditionals.CreateChild: TContractAdditional;
+begin
+  Result:=TContractAdditional(InternalAddObject);
+end;
 
 { TPreviouslyStatement }
 
@@ -1227,18 +1466,120 @@ end;
 
 { TDeclarationInfo }
 
+procedure TDeclarationInfo.SetContractRawMaterialsFlag(AValue: string);
+begin
+  if FContractRawMaterialsFlag=AValue then Exit;
+  FContractRawMaterialsFlag:=AValue;
+  ModifiedProperty('ContractRawMaterialsFlag');
+end;
+
+procedure TDeclarationInfo.SetDocumentBaseFlag(AValue: string);
+begin
+  if FDocumentBaseFlag=AValue then Exit;
+  FDocumentBaseFlag:=AValue;
+  ModifiedProperty('DocumentBaseFlag');
+end;
+
+procedure TDeclarationInfo.SetDocumentData(AValue: string);
+begin
+  if FDocumentData=AValue then Exit;
+  FDocumentData:=AValue;
+  ModifiedProperty('DocumentData');
+end;
+
+procedure TDeclarationInfo.SetDocumentNumber(AValue: string);
+begin
+  if FDocumentNumber=AValue then Exit;
+  FDocumentNumber:=AValue;
+  ModifiedProperty('DocumentNumber');
+end;
+
+procedure TDeclarationInfo.SetDocumentTaxData(AValue: string);
+begin
+  if FDocumentTaxData=AValue then Exit;
+  FDocumentTaxData:=AValue;
+  ModifiedProperty('DocumentTaxData');
+end;
+
+procedure TDeclarationInfo.SetDocumentTaxNumber(AValue: string);
+begin
+  if FDocumentTaxNumber=AValue then Exit;
+  FDocumentTaxNumber:=AValue;
+  ModifiedProperty('DocumentTaxNumber');
+end;
+
+procedure TDeclarationInfo.SetExcise(AValue: string);
+begin
+  if FExcise=AValue then Exit;
+  FExcise:=AValue;
+  ModifiedProperty('Excise');
+end;
+
+procedure TDeclarationInfo.SetExciseBase(AValue: string);
+begin
+  if FExciseBase=AValue then Exit;
+  FExciseBase:=AValue;
+  ModifiedProperty('ExciseBase');
+end;
+
+procedure TDeclarationInfo.SetLeasingFlag(AValue: string);
+begin
+  if FLeasingFlag=AValue then Exit;
+  FLeasingFlag:=AValue;
+  ModifiedProperty('LeasingFlag');
+end;
+
+procedure TDeclarationInfo.SetVat(AValue: string);
+begin
+  if FVat=AValue then Exit;
+  FVat:=AValue;
+  ModifiedProperty('Vat');
+end;
+
+procedure TDeclarationInfo.SetVatBase(AValue: string);
+begin
+  if FVatBase=AValue then Exit;
+  FVatBase:=AValue;
+  ModifiedProperty('VatBase');
+end;
+
 procedure TDeclarationInfo.InternalRegisterPropertys;
 begin
-
+  RegisterProperty('DocumentNumber', 'НомерДокНП', 'О', 'Номер заявления, указанный НП', 1, 12);
+  RegisterProperty('DocumentData', 'ДатаДокНП', 'О', 'Дата заполнения заявления, указанная НП', 10, 10);
+  RegisterProperty('LeasingFlag', 'ПрЛизинг', 'ОК', 'Признак договора лизинга', 1, 1);
+  RegisterProperty('ContractRawMaterialsFlag', 'ПрДавСырья', 'ОК', 'Признак договора переработки давальческого сырья', 1, 1);
+  RegisterProperty('ExciseBase', 'БазаАкциз', 'Н', 'База по акцизам Итого по графе 14 Раздел 1', 1, 21);
+  RegisterProperty('VatBase', 'БазаНДС', 'О', 'База по НДС Итого по графе 15 Раздел 1', 1, 16);
+  RegisterProperty('Excise', 'ИтогоАкциз', 'Н', 'Акциз в сумме Итого по графе 19 Раздел 1', 1, 16);
+  RegisterProperty('Vat', 'ИтогоНДС', 'Н', 'НДС в сумме Итого по графе 20 Раздел 1', 1, 16);
+  RegisterProperty('DocumentBaseFlag', 'ПВДок', 'ОК', 'Причина возникновения заявления', 1, 1);
+  RegisterProperty('DocumentTaxNumber', 'НомОтм', 'Н', 'Номер отметки о регистрации в налоговом органе ранее представленного заявления', 1, 18);
+  RegisterProperty('DocumentTaxData', 'ДатаОтм', 'Н', 'Дата отметки о регистрации в налоговом органе ранее представленного заявления', 10, 10);
+  RegisterProperty('SellerContractInfo', 'СвКонтракт1', 'О', 'Сведения о договоре (контракте) Раздел 1 стр.05', -1, -1);
+  RegisterProperty('CommissionContractInfo', 'СвКонтрКомисс', 'Н', 'Сведения о контракте с комиссионером Раздел 1 стр. 06-07', -1, -1);
+  RegisterProperty('ProductDetails', 'СвТовар', 'ОМ', 'Сведения о товаре и уплаченных налогах', -1, -1);
+  RegisterProperty('ContractInfo3', 'СвКонтракт3', 'Н', 'Сведения о договоре (контракте) Раздел 3', -1, -1);
+  RegisterProperty('PreviouslyStatement', 'СвПредДок', 'Н', 'Сведения о ранее представленном заявлении', -1, -1);
 end;
 
 procedure TDeclarationInfo.InternalInitChilds;
 begin
   inherited InternalInitChilds;
+  FSellerContractInfo:=TSellerContractInfo.Create;
+  FCommissionContractInfo:=TCommissionContractInfo.Create;
+  FProductDetails:=TProductDetails.Create;
+  FContractInfo3:=TContractInfo3.Create;
+  FPreviouslyStatement:=TPreviouslyStatement.Create;
 end;
 
 destructor TDeclarationInfo.Destroy;
 begin
+  FreeAndNil(FSellerContractInfo);
+  FreeAndNil(FCommissionContractInfo);
+  FreeAndNil(FProductDetails);
+  FreeAndNil(FContractInfo3);
+  FreeAndNil(FPreviouslyStatement);
   inherited Destroy;
 end;
 

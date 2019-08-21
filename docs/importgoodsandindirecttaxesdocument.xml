@@ -257,6 +257,38 @@
         </descr>
       </element><element name="TPreviouslyStatement"><short>Сведения о ранее представленном заявлении (СвПредДок)</short><descr>Таблица 4.12
 </descr>
+      </element><element name="TContractAdditionals"><short>Сведения о договорах (контрактах) приложения к Заявлению (СвКонтрПр)</short><descr>Таблица 4.11
+</descr>
+      </element><element name="TContractAdditional"><short>Сведения о договорах (контрактах) приложения к Заявлению (СвКонтрПр)</short><descr>Таблица 4.11
+</descr>
+      </element><element name="TContractAdditional.LineNumber"><short>Номер по порядку</short><descr>Нумерация по порядку, начиная с номера 1
+</descr>
+      </element><element name="TContractAdditional.SellerType"><short>Тип продавца Приложение</short><descr><p>Принимает значение: 0 | 1 | 2 | 3 | 4 | 5 | 6</p><ul><li>0 – комитент (умолчание);</li><li>1 – доверитель;</li><li>2 – принципал;</li><li>3 – комиссионер;</li><li>4 – поверенный;</li><li>5 – агент;</li><li>6 – продавец</li>
+          </ul>
+        </descr>
+      </element><element name="TContractAdditional.SellerBaikonurFlag"><short>Признак нахождения российского продавца в г.Байконур</short><descr><p>Принимает значение: 1</p><ul><li>1 – российский продавец находится на территории г.Байконур</li>
+          </ul>
+        </descr>
+      </element><element name="TContractAdditional.SellerIdentificationCode"><short>Идентификационный код (номер) продавца</short><descr>Обязателен, если продавец из государства-члена ЕАЭС
+</descr>
+      </element><element name="TContractAdditional.SellerName"><short>Полное наименование (ФИО) продавца</short>
+      </element><element name="TContractAdditional.SellerCountryCode"><short>Код страны продавца</short><descr><p>Типовой элемент &lt;ОКСМТип&gt;</p><p>Код по классификатору ОКСМ.</p><p>При ПрБкнрПродП=1 КодСтранПродП=398, где:</p><p>398 – Казахстан.</p><p>Реквизиты КодСтранПродП=398 и ПрБкнрПродП=1 указывают на российского налогоплательщика</p>
+        </descr>
+      </element><element name="TContractAdditional.SellerAdress"><short>Адрес местонахождения (жительства) продавца</short>
+      </element><element name="TContractAdditional.BuyerType"><short>Тип покупателя Приложение</short><descr><p>Принимает значение: 0 | 1 | 2 | 3 | 4 | 5 | 7</p><ul><li>0 – комитент (умолчание);</li><li>1 – доверитель;</li><li>2 – принципал;</li><li>3 – комиссионер;</li><li>4 – поверенный;</li><li>5 – агент;</li><li>7 – покупатель</li>
+          </ul>
+        </descr>
+      </element><element name="TContractAdditional.BuyerBaikonurFlag"><short>Признак нахождения российского покупателя в г.Байконур</short><descr><p>Принимает значение: 1</p><ul><li>1 – российский покупатель находится на территории г.Байконур</li>
+          </ul>
+        </descr>
+      </element><element name="TContractAdditional.BuyerIdentificationCode"><short>Идентификационный код (номер) покупателя </short><descr>Обязателен, если покупатель из государства-члена ЕАЭС
+</descr>
+      </element><element name="TContractAdditional.BuyerName"><short>Полное наименование (ФИО) покупателя </short>
+      </element><element name="TContractAdditional.BuyerCountryCode"><short>Код страны покупателя </short><descr><p>Типовой элемент &lt;ОКСМТип&gt;</p><p>Код по классификатору ОКСМ.</p><p>При ПрБкнрПокП=1 КодСтранПокП=398, где:</p><p>398 – Казахстан.</p><p>Реквизиты КодСтранПокП=398 и ПрБкнрПокП=1 указывают на российского налогоплательщика</p>
+        </descr>
+      </element><element name="TContractAdditional.BuyerAdress"><short>Адрес местонахождения (жительства) покупателя</short>
+      </element><element name="TContractAdditional.ContractInfo"><short>Сведения о контрактах</short><descr><p>Типовой элемент &lt;СвКонтрК&gt;.</p><p>Состав элемента представлен в табл. 4.13</p>
+        </descr>
       </element>
     </module>
   </package>
