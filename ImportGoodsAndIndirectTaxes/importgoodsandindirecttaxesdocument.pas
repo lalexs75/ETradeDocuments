@@ -176,6 +176,126 @@ type
     property SpecificationsInformation:TSpecificationsInformations read FSpecificationsInformation; //Сведения спецификаций
   end;
 
+  { TTransferDoc }
+
+  TTransferDoc = class(TXmlSerializationObject) //%Таблица 4.9
+  private
+    FTransferDocDate: string;
+    FTransferDocNumber: string;
+    procedure SetTransferDocDate(AValue: string);
+    procedure SetTransferDocNumber(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property TransferDocNumber:string read FTransferDocNumber write SetTransferDocNumber; //Серия, номер транспортного (товаросопроводительного) документа Графа 9
+    property TransferDocDate:string read FTransferDocDate write SetTransferDocDate; //Дата транспортного (товаросопроводительного) документа Графа 10
+  end;
+
+  { TTransferDocs }
+
+  TTransferDocs = class(TXmlSerializationObjectList) //%Таблица 4.9
+  private
+    function GetItem(AIndex: Integer): TTransferDoc; inline;
+  public
+    constructor Create;
+    function CreateChild:TTransferDoc; inline;
+    property Item[AIndex:Integer]:TTransferDoc read GetItem; default;
+  end;
+
+  { TProductDetail }
+
+  TProductDetail = class(TXmlSerializationObject) //%Таблица 4.8
+  private
+    FCurrencyBase: string;
+    FCurrencyCode: string;
+    FCurrencyRate: string;
+    FExcise: string;
+    FExciseBase: string;
+    FExciseFlag: string;
+    FExciseUnitCode: string;
+    FInvoiceDate: string;
+    FInvoiceNumber: string;
+    FLineNo: string;
+    FPrice: string;
+    FProductDetailDocs: TTransferDocs;
+    FProductName: string;
+    FQuantity: string;
+    FRegistrationDate: string;
+    FTaxBase: string;
+    FTaxBase1: string;
+    FTaxBase2: string;
+    FTNVED: string;
+    FUnitCode: string;
+    FVat: string;
+    FVatFlag: string;
+    FVatRate: string;
+    procedure SetCurrencyBase(AValue: string);
+    procedure SetCurrencyCode(AValue: string);
+    procedure SetCurrencyRate(AValue: string);
+    procedure SetExcise(AValue: string);
+    procedure SetExciseBase(AValue: string);
+    procedure SetExciseFlag(AValue: string);
+    procedure SetExciseUnitCode(AValue: string);
+    procedure SetInvoiceDate(AValue: string);
+    procedure SetInvoiceNumber(AValue: string);
+    procedure SetLineNo(AValue: string);
+    procedure SetPrice(AValue: string);
+    procedure SetProductName(AValue: string);
+    procedure SetQuantity(AValue: string);
+    procedure SetRegistrationDate(AValue: string);
+    procedure SetTaxBase(AValue: string);
+    procedure SetTaxBase1(AValue: string);
+    procedure SetTaxBase2(AValue: string);
+    procedure SetTNVED(AValue: string);
+    procedure SetUnitCode(AValue: string);
+    procedure SetVat(AValue: string);
+    procedure SetVatFlag(AValue: string);
+    procedure SetVatRate(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property LineNo:string read FLineNo write SetLineNo;//Номер по порядку товара в документе Графа 1
+    property ProductName:string read FProductName write SetProductName;//Наименование товара Графа 2
+    property TNVED:string read FTNVED write SetTNVED;//Код товара ТНВЭД Графа 3
+    property UnitCode:string read FUnitCode write SetUnitCode; //Единица измерения товара Графа 4
+    property Quantity:string read FQuantity write SetQuantity; //Количество товара Графа 5
+    property Price:string read FPrice write SetPrice; //Стоимость товара Графа 6
+    property CurrencyCode:string read FCurrencyCode write SetCurrencyCode; //Код валюты Графа 7
+    property CurrencyRate:string read FCurrencyRate write SetCurrencyRate; //Курс валюты Графа 8
+    property CurrencyBase:string read FCurrencyBase write SetCurrencyBase; //База валюты
+    property InvoiceNumber:string read FInvoiceNumber write SetInvoiceNumber; //Номер счета-фактуры Графа 11
+    property InvoiceDate:string read FInvoiceDate write SetInvoiceDate; //Дата счета-фактуры Графа 12
+    property RegistrationDate:string read FRegistrationDate write SetRegistrationDate; //Дата принятия на учет товара Графа 13
+    property ExciseBase:string read FExciseBase write SetExciseBase; //Налоговая база (акциз) Графа 14
+    property ExciseUnitCode:string read FExciseUnitCode write SetExciseUnitCode; //Единица измерения дополнительной величины, используемой для исчисления налоговой базы (акциз)
+    property TaxBase:string read FTaxBase write SetTaxBase; //Налоговая база (НДС) Графа 15
+    property TaxBase1:string read FTaxBase1 write SetTaxBase1; //Ставка налога акцизов твердых (специфических) Графа 16
+    property TaxBase2:string read FTaxBase2 write SetTaxBase2; //Ставка налога акцизов адвалорных Графа 17
+    property VatRate:string read FVatRate write SetVatRate; //Ставка налога (НДС) Графа 18
+    property Excise:string read FExcise write SetExcise; //Сумма налога (акциз) Графа 19
+    property Vat:string read FVat write SetVat; //Сумма налога (НДС) Графа 20
+    property ExciseFlag:string read FExciseFlag write SetExciseFlag; //Признак освобождения от уплаты налога (акцизы)
+    property VatFlag:string read FVatFlag write SetVatFlag; //Признак освобождения от уплаты налога (НДС)
+    property ProductDetailDocs:TTransferDocs read FProductDetailDocs; //Сведения о товаросопроводительных документах
+  end;
+
+  { TProductDetails }
+
+  TProductDetails = class(TXmlSerializationObjectList) //%Таблица 4.8
+  private
+    function GetItem(AIndex: Integer): TProductDetail; inline;
+  public
+    constructor Create;
+    function CreateChild:TProductDetail; inline;
+    property Item[AIndex:Integer]:TProductDetail read GetItem; default;
+  end;
+
   { TCommissionContractInfo }
 
   TCommissionContractInfo = class(TXmlSerializationObject) //%Таблица 4.7
@@ -274,7 +394,7 @@ type
     property DocumentTaxData:string;//Дата отметки о регистрации в налоговом органе ранее представленного заявления
     property SellerContractInfo:TSellerContractInfo read FSellerContractInfo;//Сведения о договоре (контракте) Раздел 1 стр.05
     property CommissionContractInfo:TCommissionContractInfo read FCommissionContractInfo;//Сведения о контракте с комиссионером Раздел 1 стр. 06-07
-    //Сведения о товаре и уплаченных налогах
+    property ProductDetails:TProductDetails read FProductDetails;//Сведения о товаре и уплаченных налогах
     //Сведения о договоре (контракте) Раздел 3
     //Сведения о ранее представленном заявлении
   end;
@@ -348,6 +468,267 @@ type
   end;
 
 implementation
+
+{ TProductDetail }
+
+procedure TProductDetail.SetCurrencyBase(AValue: string);
+begin
+  if FCurrencyBase=AValue then Exit;
+  FCurrencyBase:=AValue;
+  ModifiedProperty('CurrencyBase');
+end;
+
+procedure TProductDetail.SetCurrencyCode(AValue: string);
+begin
+  if FCurrencyCode=AValue then Exit;
+  FCurrencyCode:=AValue;
+  ModifiedProperty('CurrencyCode');
+end;
+
+procedure TProductDetail.SetCurrencyRate(AValue: string);
+begin
+  if FCurrencyRate=AValue then Exit;
+  FCurrencyRate:=AValue;
+  ModifiedProperty('CurrencyRate');
+end;
+
+procedure TProductDetail.SetExcise(AValue: string);
+begin
+  if FExcise=AValue then Exit;
+  FExcise:=AValue;
+  ModifiedProperty('Excise');
+end;
+
+procedure TProductDetail.SetExciseBase(AValue: string);
+begin
+  if FExciseBase=AValue then Exit;
+  FExciseBase:=AValue;
+  ModifiedProperty('ExciseBase');
+end;
+
+procedure TProductDetail.SetExciseFlag(AValue: string);
+begin
+  if FExciseFlag=AValue then Exit;
+  FExciseFlag:=AValue;
+  ModifiedProperty('ExciseFlag');
+end;
+
+procedure TProductDetail.SetExciseUnitCode(AValue: string);
+begin
+  if FExciseUnitCode=AValue then Exit;
+  FExciseUnitCode:=AValue;
+  ModifiedProperty('ExciseUnitCode');
+end;
+
+procedure TProductDetail.SetInvoiceDate(AValue: string);
+begin
+  if FInvoiceDate=AValue then Exit;
+  FInvoiceDate:=AValue;
+  ModifiedProperty('InvoiceDate');
+end;
+
+procedure TProductDetail.SetInvoiceNumber(AValue: string);
+begin
+  if FInvoiceNumber=AValue then Exit;
+  FInvoiceNumber:=AValue;
+  ModifiedProperty('InvoiceNumber');
+end;
+
+procedure TProductDetail.SetLineNo(AValue: string);
+begin
+  if FLineNo=AValue then Exit;
+  FLineNo:=AValue;
+  ModifiedProperty('LineNo');
+end;
+
+procedure TProductDetail.SetPrice(AValue: string);
+begin
+  if FPrice=AValue then Exit;
+  FPrice:=AValue;
+  ModifiedProperty('Price');
+end;
+
+procedure TProductDetail.SetProductName(AValue: string);
+begin
+  if FProductName=AValue then Exit;
+  FProductName:=AValue;
+  ModifiedProperty('ProductName');
+end;
+
+procedure TProductDetail.SetQuantity(AValue: string);
+begin
+  if FQuantity=AValue then Exit;
+  FQuantity:=AValue;
+  ModifiedProperty('Quantity');
+end;
+
+procedure TProductDetail.SetRegistrationDate(AValue: string);
+begin
+  if FRegistrationDate=AValue then Exit;
+  FRegistrationDate:=AValue;
+  ModifiedProperty('RegistrationDate');
+end;
+
+procedure TProductDetail.SetTaxBase(AValue: string);
+begin
+  if FTaxBase=AValue then Exit;
+  FTaxBase:=AValue;
+  ModifiedProperty('TaxBase');
+end;
+
+procedure TProductDetail.SetTaxBase1(AValue: string);
+begin
+  if FTaxBase1=AValue then Exit;
+  FTaxBase1:=AValue;
+  ModifiedProperty('TaxBase1');
+end;
+
+procedure TProductDetail.SetTaxBase2(AValue: string);
+begin
+  if FTaxBase2=AValue then Exit;
+  FTaxBase2:=AValue;
+  ModifiedProperty('TaxBase2');
+end;
+
+procedure TProductDetail.SetTNVED(AValue: string);
+begin
+  if FTNVED=AValue then Exit;
+  FTNVED:=AValue;
+  ModifiedProperty('TNVED');
+end;
+
+procedure TProductDetail.SetUnitCode(AValue: string);
+begin
+  if FUnitCode=AValue then Exit;
+  FUnitCode:=AValue;
+  ModifiedProperty('UnitCode');
+end;
+
+procedure TProductDetail.SetVat(AValue: string);
+begin
+  if FVat=AValue then Exit;
+  FVat:=AValue;
+  ModifiedProperty('Vat');
+end;
+
+procedure TProductDetail.SetVatFlag(AValue: string);
+begin
+  if FVatFlag=AValue then Exit;
+  FVatFlag:=AValue;
+  ModifiedProperty('VatFlag');
+end;
+
+procedure TProductDetail.SetVatRate(AValue: string);
+begin
+  if FVatRate=AValue then Exit;
+  FVatRate:=AValue;
+  ModifiedProperty('VatRate');
+end;
+
+procedure TProductDetail.InternalRegisterPropertys;
+begin
+  RegisterProperty('LineNo', 'НомТовПП', 'О', 'Номер по порядку товара в документе Графа 1', 0, 4);
+  RegisterProperty('ProductName', 'НаимТов', 'О', 'Наименование товара Графа 2', 1, 500);
+  RegisterProperty('TNVED', 'ТНВЭД', 'НК', 'Код товара ТНВЭД Графа 3', 10, 10);
+  RegisterProperty('UnitCode', 'ЕдИзмТов', 'ОК', 'Единица измерения товара Графа 4', 3, 4);
+  RegisterProperty('Quantity', 'КоличТов', 'О', 'Количество товара Графа 5', 1, 17);
+  RegisterProperty('Price', 'СтоимТов', 'О', 'Стоимость товара Графа 6', 1, 16);
+  RegisterProperty('CurrencyCode', 'ВалТов', 'ОК', 'Код валюты Графа 7', 3, 3);
+  RegisterProperty('CurrencyRate', 'КурсВал', 'О', 'Курс валюты Графа 8', 1, 10);
+  RegisterProperty('CurrencyBase', 'БазаВал', 'О', 'База валюты', 1, 5);
+  RegisterProperty('InvoiceNumber', 'НомСчФ', 'О', 'Номер счета-фактуры Графа 11', 1, 50);
+  RegisterProperty('InvoiceDate', 'ДатаСчФ', 'О', 'Дата счета-фактуры Графа 12', 10, 10);
+  RegisterProperty('RegistrationDate', 'ДатаПрин', 'О', 'ДатаПрин', 10, 10);
+  RegisterProperty('ExciseBase', 'НБАкциз', 'Н', 'Налоговая база (акциз) Графа 14', 1, 21);
+  RegisterProperty('ExciseUnitCode', 'ЕдИзмТовНБАкц', 'НК', 'Единица измерения дополнительной величины, используемой для исчисления налоговой базы (акциз)', 3, 4);
+  RegisterProperty('TaxBase', 'НБНДС', 'О', 'Налоговая база (НДС) Графа 15', 1, 16);
+  RegisterProperty('TaxBase1', 'СтАкцизТверд', 'Н', 'Ставка налога акцизов твердых (специфических) Графа 16', 1, 16);
+  RegisterProperty('TaxBase2', 'СтАкцизАдвал', 'Н', 'Ставка налога акцизов адвалорных Графа 17', 1, 16);
+  RegisterProperty('VatRate', 'СтНДС', 'О', 'Ставка налога (НДС) Графа 18', 1, 16);
+  RegisterProperty('Excise', 'СумАкциз', 'Н', 'Сумма налога (акциз) Графа 19', 1, 16);
+  RegisterProperty('Vat', 'СумНДС', 'Н', 'Сумма налога (НДС) Графа 20', 1, 16);
+  RegisterProperty('ExciseFlag', 'ПрОсвАкциз', 'ОК', 'Признак освобождения от уплаты налога (акцизы)', 1, 1);
+  RegisterProperty('VatFlag', 'ПрОсвНДС', 'ОК', 'Признак освобождения от уплаты налога (НДС)', 1, 1);
+  RegisterProperty('ProductDetailDocs', 'СвТСД', 'ОМ', 'Сведения о товаросопроводительных документах', -1, -1);
+end;
+
+procedure TProductDetail.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+  FProductDetailDocs:=TTransferDocs.Create;
+end;
+
+destructor TProductDetail.Destroy;
+begin
+  FreeAndNil(FProductDetailDocs);
+  inherited Destroy;
+end;
+
+{ TTransferDoc }
+
+procedure TTransferDoc.SetTransferDocDate(AValue: string);
+begin
+  if FTransferDocDate=AValue then Exit;
+  FTransferDocDate:=AValue;
+  ModifiedProperty('TransferDocDate');
+end;
+
+procedure TTransferDoc.SetTransferDocNumber(AValue: string);
+begin
+  if FTransferDocNumber=AValue then Exit;
+  FTransferDocNumber:=AValue;
+  ModifiedProperty('TransferDocNumber');
+end;
+
+procedure TTransferDoc.InternalRegisterPropertys;
+begin
+  RegisterProperty('TransferDocNumber', 'СерНомТСД', 'О', 'Серия, номер транспортного (товаросопроводительного) документа Графа 9', 1, 50);
+  RegisterProperty('TransferDocDate', 'ДатаТСД', 'О', 'Дата транспортного (товаросопроводительного) документа Графа 10', 10, 10);
+end;
+
+procedure TTransferDoc.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TTransferDoc.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TTransferDocs }
+
+function TTransferDocs.GetItem(AIndex: Integer): TTransferDoc;
+begin
+  Result:=TTransferDoc(InternalGetItem(AIndex));
+end;
+
+constructor TTransferDocs.Create;
+begin
+  inherited Create(TTransferDoc)
+end;
+
+function TTransferDocs.CreateChild: TTransferDoc;
+begin
+  Result:=TTransferDoc(InternalAddObject);
+end;
+
+{ TProductDetails }
+
+function TProductDetails.GetItem(AIndex: Integer): TProductDetail;
+begin
+  Result:=TProductDetail(InternalGetItem(AIndex));
+end;
+
+constructor TProductDetails.Create;
+begin
+  inherited Create(TProductDetail)
+end;
+
+function TProductDetails.CreateChild: TProductDetail;
+begin
+  Result:=TProductDetail(InternalAddObject);
+end;
 
 { TCommissionContractInfo }
 
