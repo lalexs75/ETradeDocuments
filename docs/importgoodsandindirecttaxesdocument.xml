@@ -8,6 +8,9 @@
       </element><element name="TImportGoodsAndIndirectTaxesDocument.DeclarationInfo"><short>Сведения из заявления</short>
       </element><element name="TImportGoodsAndIndirectTaxesDocument.Contracts"><short>Сведения о договорах (контрактах) приложения к Заявлению</short>
       </element><element name="TSenderInfo.LegalEntityInformation"><short>Отправитель – организация</short>
+      <descr>Типовой элемент &lt;СвЮЛ&gt;.
+Состав элемента представлен в табл. 4.16
+</descr>
       </element>
     <element name="TLegalEntityInformation.FullName"><short>Наименование организации</short>
       </element><element name="TLegalEntityInformation.INN"><short>ИНН организации</short><descr>Типовой элемент &lt;ИННЮЛТип&gt;
@@ -27,6 +30,11 @@
       </element><element name="TPerson.Surname"><short>Фамилия</short>
       </element><element name="TPerson.FirstName"><short>Имя</short>
       </element><element name="TPerson.Patronymic"><short>Отчество</short>
+      </element><element name="TSenderInfo.PhysicalPerson"><short>Отправитель - физическое лицо</short><descr>Типовой элемент &lt;СвФЛ&gt;.
+Состав элемента представлен в табл. 4.17
+</descr>
+      </element><element name="TSenderInfo"><short>Сведения об отправителе документа (СвОтпр)</short><descr>Таблица 4.3
+</descr>
       </element>
     </module>
   </package>

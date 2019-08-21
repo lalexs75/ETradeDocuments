@@ -109,6 +109,7 @@ type
   TSenderInfo = class(TXmlSerializationObject) //%Таблица 4.3
   private
     FLegalEntityInformation: TLegalEntityInformation;
+    FPhysicalPerson: TPhysicalPersonEntity;
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
@@ -117,7 +118,6 @@ type
   published
     property LegalEntityInformation:TLegalEntityInformation read FLegalEntityInformation;
     property PhysicalPerson:TPhysicalPersonEntity read FPhysicalPerson;
-    //Отправитель - физическое лицо
   end;
 
   { TImportGoodsAndIndirectTaxesDocument }
@@ -260,18 +260,21 @@ end;
 
 procedure TSenderInfo.InternalRegisterPropertys;
 begin
-
+  RegisterProperty('LegalEntityInformation', 'ОтпрЮЛ', 'О', 'Отправитель – организация', -1, -1);
+  RegisterProperty('PhysicalPerson', 'ОтпрФЛ', 'О', 'Отправитель - физическое лицо', -1, -1);
 end;
 
 procedure TSenderInfo.InternalInitChilds;
 begin
   inherited InternalInitChilds;
   FLegalEntityInformation:=TLegalEntityInformation.Create;
+  FPhysicalPerson:=TPhysicalPersonEntity.Create;
 end;
 
 destructor TSenderInfo.Destroy;
 begin
   FreeAndNil(FLegalEntityInformation);
+  FreeAndNil(FPhysicalPerson);
   inherited Destroy;
 end;
 
