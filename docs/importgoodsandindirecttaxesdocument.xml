@@ -137,6 +137,24 @@
       </element><element name="TSpecificationsInformation.SpecificationNumber"><short>Номер спецификации</short>
       </element><element name="TSpecificationsInformation.SpecificationDate"><short>Дата спецификации</short><descr><p>Типовой элемент &lt;ДатаТип&gt;</p><p>Значение ДатаСпециф меньше или равно значению ДатаДокНП.</p><p>Значение ДатаСпециф больше или равно значению ДатаКонтр</p>
         </descr>
+      </element><element name="TSpecificationsInformations"><short>Сведения спецификаций (СвСпециф)</short>
+      </element><element name="TDeclarationInfo.CommissionContractInfo"><short>Сведения о контракте с комиссионером Раздел 1 стр. 06-07</short><descr>Состав элемента представлен в табл. 4.7
+</descr>
+      </element><element name="TCommissionContractInfo"><short>Сведения о контракте с комиссионером Раздел 1 стр. 06-07 (СвКонтрКомисс)</short><descr>Таблица 4.7
+</descr>
+      </element><element name="TCommissionContractInfo.BaikonurFlag"><short>Признак нахождения российского посредника в г.Байконур</short><descr><p>Принимает значение: 1</p><ul><li>1 – российский посредник находится на территории г.Байконур</li>
+          </ul>
+        </descr>
+      </element><element name="TCommissionContractInfo.IdentificationCode"><short>Идентификационный код (номер) посредника Раздел 1 стр.06</short><descr>Обязателен, если посредник из государства-члена ЕАЭС
+</descr>
+      </element><element name="TCommissionContractInfo.Name"><short>Наименование организации (ФИО индивидуального предпринимателя) посредника Раздел 1 стр.06</short><descr>Наименование организации (ФИО индивидуального предпринимателя) посредника Раздел 1 стр.06
+</descr>
+      </element><element name="TCommissionContractInfo.CountryCode"><short>Код страны посредника Раздел 1 стр.06</short><descr><p>Типовой элемент &lt;ОКСМТип&gt;</p><p>Код по классификатору ОКСМ.</p><p>При ПрБкнрОрг=1 КодСтранОрг=398, где:</p><p>398 – Казахстан.</p><p>Реквизиты КодСтранОрг=398 и ПрБкнрОрг=1 указывают на российского налогоплательщика</p>
+        </descr>
+      </element><element name="TCommissionContractInfo.Adress"><short>Адрес местонахождения (жительства) посредника Раздел 1 стр.06</short>
+      </element>
+    <element name="TCommissionContractInfo.ContractInfo"><short>Сведения о контракте (договоре) Раздел 1 стр.07</short><descr><p>Типовой элемент &lt;СвКонтрК&gt;.</p><p>Состав элемента представлен в табл. 4.13</p>
+        </descr>
       </element>
     </module>
   </package>

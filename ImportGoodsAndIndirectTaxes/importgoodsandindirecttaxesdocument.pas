@@ -145,36 +145,110 @@ type
     property SpecificationDate:string read FSpecificationDate write SetSpecificationDate;//Дата спецификации
   end;
 
-  TContractInfo = class(TXmlSerializationObject) //%Таблица 4.13
-  protected
-    procedure InternalRegisterPropertys; override;
-    procedure InternalInitChilds; override;
+  { TSpecificationsInformations }
+
+  TSpecificationsInformations = class(TXmlSerializationObjectList) //%Таблица 4.14
+  private
+    function GetItem(AIndex: Integer): TSpecificationsInformation; inline;
   public
-    destructor Destroy; override;
-  published
-    property ContractNumber:string;//Номер контракта
-    property ContractDate:string;//Дата контракта
-    property SpecificationsInformation:TSpecificationsInformation read FSpecificationsInformation; //Сведения спецификаций
+    constructor Create;
+    function CreateChild:TSpecificationsInformation;
+    property Item[AIndex:Integer]:TSpecificationsInformation read GetItem; default;
   end;
 
-  TSellerContractInfo = class(TXmlSerializationObject) //%Таблица 4.6
+  { TContractInfo }
+
+  TContractInfo = class(TXmlSerializationObject) //%Таблица 4.13
+  private
+    FContractDate: string;
+    FContractNumber: string;
+    FSpecificationsInformation: TSpecificationsInformations;
+    procedure SetContractDate(AValue: string);
+    procedure SetContractNumber(AValue: string);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
     destructor Destroy; override;
   published
-    property SellerBaikonurFlag:string; //Признак нахождения российского продавца в г.Байконур
-    property SellerIdentificationCode:string; //Идентификационный код (номер) продавца Раздел 1 стр. 01
-    property SellerOrgType:string;//Признак продавца – физического лица (не индивидуального предпринимателя)
-    property SellerName:string;//Полное наименование (ФИО) продавца Раздел 1 стр. 01
-    property SellerCountryCode:string;//Код страны продавца Раздел 1 стр. 03
-    property SellerAdress:string;//Адрес местонахождения (жительства) продавца Раздел 1 стр. 03
-    property BuyerBaikonurFlag:string; //Признак нахождения российского покупателя в г.Байконур
-    property BuyerINN:string; //ИНН покупателя Раздел 1 стр. 02
-    property BuyerName:string; //Полное наименование (ФИО) покупателя Раздел 1 стр. 02
-    property BuyerCountryCode:string;//Код страны покупателя Раздел 1 стр. 04
-    property BuyerAdress:string;//Адрес местонахождения (жительства) покупателя Раздел 1 стр. 04
+    property ContractNumber:string read FContractNumber write SetContractNumber;//Номер контракта
+    property ContractDate:string read FContractDate write SetContractDate;//Дата контракта
+    property SpecificationsInformation:TSpecificationsInformations read FSpecificationsInformation; //Сведения спецификаций
+  end;
+
+  { TCommissionContractInfo }
+
+  TCommissionContractInfo = class(TXmlSerializationObject) //%Таблица 4.7
+  private
+    FAdress: string;
+    FBaikonurFlag: string;
+    FContractInfo: TContractInfo;
+    FCountryCode: string;
+    FIdentificationCode: string;
+    FName: string;
+    procedure SetAdress(AValue: string);
+    procedure SetBaikonurFlag(AValue: string);
+    procedure SetCountryCode(AValue: string);
+    procedure SetIdentificationCode(AValue: string);
+    procedure SetName(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property BaikonurFlag:string read FBaikonurFlag write SetBaikonurFlag; //Признак нахождения российского посредника в г.Байконур
+    property IdentificationCode:string read FIdentificationCode write SetIdentificationCode; //Идентификационный код (номер) посредника Раздел 1 стр.06
+    property Name:string read FName write SetName; //Наименование организации (ФИО индивидуального предпринимателя) посредника Раздел 1 стр.06
+    property CountryCode:string read FCountryCode write SetCountryCode; //Код страны посредника Раздел 1 стр.06
+    property Adress:string read FAdress write SetAdress; //Адрес местонахождения (жительства) посредника Раздел 1 стр.06
+    property ContractInfo:TContractInfo read FContractInfo; //Сведения о контракте (договоре) Раздел 1 стр.07
+  end;
+
+  { TSellerContractInfo }
+
+  TSellerContractInfo = class(TXmlSerializationObject) //%Таблица 4.6
+  private
+    FBuyerAdress: string;
+    FBuyerBaikonurFlag: string;
+    FBuyerCountryCode: string;
+    FBuyerINN: string;
+    FBuyerName: string;
+    FContractInfo: TContractInfo;
+    FSellerAdress: string;
+    FSellerBaikonurFlag: string;
+    FSellerCountryCode: string;
+    FSellerIdentificationCode: string;
+    FSellerName: string;
+    FSellerOrgType: string;
+    procedure SetBuyerAdress(AValue: string);
+    procedure SetBuyerBaikonurFlag(AValue: string);
+    procedure SetBuyerCountryCode(AValue: string);
+    procedure SetBuyerINN(AValue: string);
+    procedure SetBuyerName(AValue: string);
+    procedure SetSellerAdress(AValue: string);
+    procedure SetSellerBaikonurFlag(AValue: string);
+    procedure SetSellerCountryCode(AValue: string);
+    procedure SetSellerIdentificationCode(AValue: string);
+    procedure SetSellerName(AValue: string);
+    procedure SetSellerOrgType(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property SellerBaikonurFlag:string read FSellerBaikonurFlag write SetSellerBaikonurFlag; //Признак нахождения российского продавца в г.Байконур
+    property SellerIdentificationCode:string read FSellerIdentificationCode write SetSellerIdentificationCode; //Идентификационный код (номер) продавца Раздел 1 стр. 01
+    property SellerOrgType:string read FSellerOrgType write SetSellerOrgType;//Признак продавца – физического лица (не индивидуального предпринимателя)
+    property SellerName:string read FSellerName write SetSellerName;//Полное наименование (ФИО) продавца Раздел 1 стр. 01
+    property SellerCountryCode:string read FSellerCountryCode write SetSellerCountryCode;//Код страны продавца Раздел 1 стр. 03
+    property SellerAdress:string read FSellerAdress write SetSellerAdress;//Адрес местонахождения (жительства) продавца Раздел 1 стр. 03
+    property BuyerBaikonurFlag:string read FBuyerBaikonurFlag write SetBuyerBaikonurFlag; //Признак нахождения российского покупателя в г.Байконур
+    property BuyerINN:string read FBuyerINN write SetBuyerINN; //ИНН покупателя Раздел 1 стр. 02
+    property BuyerName:string read FBuyerName write SetBuyerName; //Полное наименование (ФИО) покупателя Раздел 1 стр. 02
+    property BuyerCountryCode:string read FBuyerCountryCode write SetBuyerCountryCode;//Код страны покупателя Раздел 1 стр. 04
+    property BuyerAdress:string read FBuyerAdress write SetBuyerAdress;//Адрес местонахождения (жительства) покупателя Раздел 1 стр. 04
     property ContractInfo:TContractInfo read FContractInfo;//Сведения о контракте (договоре) Раздел 1 стр. 05
   end;
 
@@ -199,7 +273,7 @@ type
     property DocumentTaxNumber:string;//Номер отметки о регистрации в налоговом органе ранее представленного заявления
     property DocumentTaxData:string;//Дата отметки о регистрации в налоговом органе ранее представленного заявления
     property SellerContractInfo:TSellerContractInfo read FSellerContractInfo;//Сведения о договоре (контракте) Раздел 1 стр.05
-    //Сведения о контракте с комиссионером Раздел 1 стр. 06-07
+    property CommissionContractInfo:TCommissionContractInfo read FCommissionContractInfo;//Сведения о контракте с комиссионером Раздел 1 стр. 06-07
     //Сведения о товаре и уплаченных налогах
     //Сведения о договоре (контракте) Раздел 3
     //Сведения о ранее представленном заявлении
@@ -274,6 +348,225 @@ type
   end;
 
 implementation
+
+{ TCommissionContractInfo }
+
+procedure TCommissionContractInfo.SetAdress(AValue: string);
+begin
+  if FAdress=AValue then Exit;
+  FAdress:=AValue;
+  ModifiedProperty('Adress');
+end;
+
+procedure TCommissionContractInfo.SetBaikonurFlag(AValue: string);
+begin
+  if FBaikonurFlag=AValue then Exit;
+  FBaikonurFlag:=AValue;
+  ModifiedProperty('BaikonurFlag');
+end;
+
+procedure TCommissionContractInfo.SetCountryCode(AValue: string);
+begin
+  if FCountryCode=AValue then Exit;
+  FCountryCode:=AValue;
+  ModifiedProperty('CountryCode');
+end;
+
+procedure TCommissionContractInfo.SetIdentificationCode(AValue: string);
+begin
+  if FIdentificationCode=AValue then Exit;
+  FIdentificationCode:=AValue;
+  ModifiedProperty('IdentificationCode');
+end;
+
+procedure TCommissionContractInfo.SetName(AValue: string);
+begin
+  if FName=AValue then Exit;
+  FName:=AValue;
+  ModifiedProperty('Name');
+end;
+
+procedure TCommissionContractInfo.InternalRegisterPropertys;
+begin
+  RegisterProperty('BaikonurFlag', 'ПрБкнрОрг', 'Н' , 'Признак нахождения российского посредника в г.Байконур', 1, 1);
+  RegisterProperty('IdentificationCode', 'ИдНомОрг', 'Н' , 'Идентификационный код (номер) посредника Раздел 1 стр.06', 1, 50);
+  RegisterProperty('Name', 'НаимОрг', 'О' , 'Наименование организации (ФИО индивидуального предпринимателя) посредника Раздел 1 стр.06', 1, 400);
+  RegisterProperty('CountryCode', 'КодСтранОрг', 'ОК' , 'Код страны посредника Раздел 1 стр.06', 3, 3);
+  RegisterProperty('Adress', 'АдресОрг', 'О' , 'Адрес местонахождения (жительства) посредника Раздел 1 стр.06', 1, 200);
+  RegisterProperty('ContractInfo', 'СвКонтракт2', 'О' , 'Сведения о контракте (договоре) Раздел 1 стр.07', -1, -1);
+end;
+
+procedure TCommissionContractInfo.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+  FContractInfo:=TContractInfo.Create;
+end;
+
+destructor TCommissionContractInfo.Destroy;
+begin
+  FreeAndNil(FContractInfo);
+  inherited Destroy;
+end;
+
+{ TSellerContractInfo }
+
+procedure TSellerContractInfo.SetBuyerAdress(AValue: string);
+begin
+  if FBuyerAdress=AValue then Exit;
+  FBuyerAdress:=AValue;
+  ModifiedProperty('BuyerAdress');
+end;
+
+procedure TSellerContractInfo.SetBuyerBaikonurFlag(AValue: string);
+begin
+  if FBuyerBaikonurFlag=AValue then Exit;
+  FBuyerBaikonurFlag:=AValue;
+  ModifiedProperty('BuyerBaikonurFlag');
+end;
+
+procedure TSellerContractInfo.SetBuyerCountryCode(AValue: string);
+begin
+  if FBuyerCountryCode=AValue then Exit;
+  FBuyerCountryCode:=AValue;
+  ModifiedProperty('BuyerCountryCode');
+end;
+
+procedure TSellerContractInfo.SetBuyerINN(AValue: string);
+begin
+  if FBuyerINN=AValue then Exit;
+  FBuyerINN:=AValue;
+  ModifiedProperty('BuyerINN');
+end;
+
+procedure TSellerContractInfo.SetBuyerName(AValue: string);
+begin
+  if FBuyerName=AValue then Exit;
+  FBuyerName:=AValue;
+  ModifiedProperty('BuyerName');
+end;
+
+procedure TSellerContractInfo.SetSellerAdress(AValue: string);
+begin
+  if FSellerAdress=AValue then Exit;
+  FSellerAdress:=AValue;
+  ModifiedProperty('SellerAdress');
+end;
+
+procedure TSellerContractInfo.SetSellerBaikonurFlag(AValue: string);
+begin
+  if FSellerBaikonurFlag=AValue then Exit;
+  FSellerBaikonurFlag:=AValue;
+  ModifiedProperty('SellerBaikonurFlag');
+end;
+
+procedure TSellerContractInfo.SetSellerCountryCode(AValue: string);
+begin
+  if FSellerCountryCode=AValue then Exit;
+  FSellerCountryCode:=AValue;
+  ModifiedProperty('SellerCountryCode');
+end;
+
+procedure TSellerContractInfo.SetSellerIdentificationCode(AValue: string);
+begin
+  if FSellerIdentificationCode=AValue then Exit;
+  FSellerIdentificationCode:=AValue;
+  ModifiedProperty('SellerIdentificationCode');
+end;
+
+procedure TSellerContractInfo.SetSellerName(AValue: string);
+begin
+  if FSellerName=AValue then Exit;
+  FSellerName:=AValue;
+  ModifiedProperty('SellerName');
+end;
+
+procedure TSellerContractInfo.SetSellerOrgType(AValue: string);
+begin
+  if FSellerOrgType=AValue then Exit;
+  FSellerOrgType:=AValue;
+  ModifiedProperty('SellerOrgType');
+end;
+
+procedure TSellerContractInfo.InternalRegisterPropertys;
+begin
+  RegisterProperty('SellerBaikonurFlag', 'ПрБкнрПродР1', 'Н', 'Признак нахождения российского продавца в г.Байконур', 1, 1);
+  RegisterProperty('SellerIdentificationCode', 'ИдНомПродР1', 'Н', 'Идентификационный код (номер) продавца Раздел 1 стр. 01', 1, 50);
+  RegisterProperty('SellerOrgType', 'ПрПродФЛ', 'ОК', 'Признак продавца – физического лица (не индивидуального предпринимателя)', 1, 1);
+  RegisterProperty('SellerName', 'НаимПродР1', 'О', 'Полное наименование (ФИО) продавца Раздел 1 стр. 01', 1, 400);
+  RegisterProperty('SellerCountryCode', 'КодСтранПродР1', 'ОК', 'Код страны продавца Раздел 1 стр. 03', 3, 3);
+  RegisterProperty('SellerAdress', 'АдресПродР1', 'О', 'Адрес местонахождения (жительства) продавца Раздел 1 стр. 03', 1, 200);
+  RegisterProperty('BuyerBaikonurFlag', 'ПрБкнрПокР1', 'Н', 'Признак нахождения российского покупателя в г.Байконур', 1, 1);
+  RegisterProperty('BuyerINN', 'ИдНомПокР1', 'О', 'ИНН покупателя Раздел 1 стр. 02', 10, 12);
+  RegisterProperty('BuyerName', 'НаимПокР1', 'О', 'Полное наименование (ФИО) покупателя Раздел 1 стр. 02', 1, 400);
+  RegisterProperty('BuyerCountryCode', 'КодСтранПокР1', 'ОК', 'Код страны покупателя Раздел 1 стр. 04', 3, 3);
+  RegisterProperty('BuyerAdress', 'АдресПокР1', 'О', 'Адрес местонахождения (жительства) покупателя Раздел 1 стр. 04', 1, 200);
+  RegisterProperty('ContractInfo', 'СвКонтр1', 'О', 'Сведения о контракте (договоре) Раздел 1 стр. 05', -1, -1);
+end;
+
+procedure TSellerContractInfo.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+  FContractInfo:=TContractInfo.Create;
+end;
+
+destructor TSellerContractInfo.Destroy;
+begin
+  FreeAndNil(FContractInfo);
+  inherited Destroy;
+end;
+
+{ TSpecificationsInformations }
+
+function TSpecificationsInformations.GetItem(AIndex: Integer
+  ): TSpecificationsInformation;
+begin
+  Result:=TSpecificationsInformation(InternalGetItem(AIndex));
+end;
+
+constructor TSpecificationsInformations.Create;
+begin
+  inherited Create(TSpecificationsInformation)
+end;
+
+function TSpecificationsInformations.CreateChild: TSpecificationsInformation;
+begin
+  Result:=InternalAddObject as TSpecificationsInformation;
+end;
+
+{ TContractInfo }
+
+procedure TContractInfo.SetContractDate(AValue: string);
+begin
+  if FContractDate=AValue then Exit;
+  FContractDate:=AValue;
+  ModifiedProperty('ContractDate');
+end;
+
+procedure TContractInfo.SetContractNumber(AValue: string);
+begin
+  if FContractNumber=AValue then Exit;
+  FContractNumber:=AValue;
+  ModifiedProperty('ContractNumber');
+end;
+
+procedure TContractInfo.InternalRegisterPropertys;
+begin
+  RegisterProperty('ContractNumber', 'НомКонтр', 'О', 'Номер контракта', 1, 50);
+  RegisterProperty('ContractDate', 'ДатаКонтр', 'О', 'Дата контракта', 10, 10);
+  RegisterProperty('SpecificationsInformation', 'СвСпециф', 'НМ', 'Сведения спецификаций', -1, -1);
+end;
+
+procedure TContractInfo.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+  FSpecificationsInformation:=TSpecificationsInformations.Create;
+end;
+
+destructor TContractInfo.Destroy;
+begin
+  FreeAndNil(FSpecificationsInformation);
+  inherited Destroy;
+end;
 
 { TSpecificationsInformation }
 
