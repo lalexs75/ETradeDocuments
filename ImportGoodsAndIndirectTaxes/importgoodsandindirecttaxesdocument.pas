@@ -609,6 +609,7 @@ type
 
   TImportGoodsAndIndirectTaxesDocument = class(TXmlSerializationObject) //%Таблица 4.2
   private
+    FContractAdditional: TContractAdditionals;
     FDeclarationInfo: TDeclarationInfo;
     FDocumentDate: string;
     FKND: string;
@@ -627,9 +628,7 @@ type
     property SenderInfo:TSenderInfo read FSenderInfo; //Сведения об отправителе документа
     property SignerInfo:TSignerInfo read FSignerInfo; //Сведения о лице, подписавшем документ
     property DeclarationInfo:TDeclarationInfo read FDeclarationInfo; //Сведения из заявления
-    property ContractAdditional:TContractAdditionals read FContracts; //Сведения о договорах (контрактах) приложения к Заявлению
-//Отправитель – организация
-//Отправитель - физическое лицо
+    property ContractAdditional:TContractAdditionals read FContractAdditional; //Сведения о договорах (контрактах) приложения к Заявлению
   end;
 
 implementation
@@ -676,13 +675,6 @@ begin
   if FBuyerType=AValue then Exit;
   FBuyerType:=AValue;
   ModifiedProperty('BuyerType');
-end;
-
-procedure TContractAdditional.SetContractInfo(AValue: TContractInfo);
-begin
-  if FContractInfo=AValue then Exit;
-  FContractInfo:=AValue;
-  ModifiedProperty('ContractInfo');
 end;
 
 procedure TContractAdditional.SetLineNumber(AValue: string);
@@ -1819,14 +1811,7 @@ begin
   RegisterProperty('SenderInfo', 'СвОтпр', 'О', 'Сведения об отправителе документа', -1, -1);
   RegisterProperty('SignerInfo', 'Подписант', 'О', 'Сведения о лице, подписавшем документ', -1, -1);
   RegisterProperty('DeclarationInfo', 'СвЗвл', 'О', 'Сведения из заявления', -1, -1);
-(*
-  Сведения о договорах (контрактах) приложения к Заявлению
-  СвКонтрПр
-  С
-   
-  НМ
-  Состав элемента представлен в табл. 4.11
-*)
+  RegisterProperty('ContractAdditional', 'СвКонтрПр', 'НМ', 'Сведения о договорах (контрактах) приложения к Заявлению', -1, -1);
 end;
 
 procedure TImportGoodsAndIndirectTaxesDocument.InternalInitChilds;
@@ -1835,6 +1820,7 @@ begin
   FSenderInfo:=TSenderInfo.Create;
   FSignerInfo:=TSignerInfo.Create;
   FDeclarationInfo:=TDeclarationInfo.Create;
+  FContractAdditional:=TContractAdditionals.Create;
 end;
 
 destructor TImportGoodsAndIndirectTaxesDocument.Destroy;
@@ -1842,6 +1828,7 @@ begin
   FreeAndNil(FSenderInfo);
   FreeAndNil(FSignerInfo);
   FreeAndNil(FDeclarationInfo);
+  FreeAndNil(FContractAdditional);
   inherited Destroy;
 end;
 

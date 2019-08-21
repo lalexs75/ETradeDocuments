@@ -289,6 +289,8 @@
       </element><element name="TContractAdditional.BuyerAdress"><short>Адрес местонахождения (жительства) покупателя</short>
       </element><element name="TContractAdditional.ContractInfo"><short>Сведения о контрактах</short><descr><p>Типовой элемент &lt;СвКонтрК&gt;.</p><p>Состав элемента представлен в табл. 4.13</p>
         </descr>
+      </element><element name="TImportGoodsAndIndirectTaxesDocument.ContractAdditional"><short>Сведения о договорах (контрактах) приложения к Заявлению</short><descr>Состав элемента представлен в табл. 4.11
+</descr>
       </element>
     </module>
   </package>
