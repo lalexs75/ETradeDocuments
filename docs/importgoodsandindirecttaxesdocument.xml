@@ -4,7 +4,11 @@
       </element><element name="TImportGoodsAndIndirectTaxesDocument.DocumentDate"><short>Дата формирования документа</short><descr><p>Типовой элемент &lt;ДатаТип&gt;</p><p>Дата в формате ДД.ММ.ГГГГ.</p><p>Значение ДатаДок больше или равно 01.07.2010.</p><p>Значение ДатаДок равно значению даты из имени файла</p>
         </descr>
       </element><element name="TImportGoodsAndIndirectTaxesDocument.SenderInfo"><short>Сведения об отправителе документа</short>
+      <descr>Состав элемента представлен в табл. 4.3
+</descr>
       </element><element name="TImportGoodsAndIndirectTaxesDocument.SignerInfo"><short>Сведения о лице, подписавшем документ</short>
+      <descr>Состав элемента представлен в табл. 4.4
+</descr>
       </element><element name="TImportGoodsAndIndirectTaxesDocument.DeclarationInfo"><short>Сведения из заявления</short>
       </element><element name="TImportGoodsAndIndirectTaxesDocument.Contracts"><short>Сведения о договорах (контрактах) приложения к Заявлению</short>
       </element><element name="TSenderInfo.LegalEntityInformation"><short>Отправитель – организация</short>
@@ -35,6 +39,17 @@
 </descr>
       </element><element name="TSenderInfo"><short>Сведения об отправителе документа (СвОтпр)</short><descr>Таблица 4.3
 </descr>
+      </element><element name="TSignerInfo.SignerType"><short>Признак лица, подписавшего документ</short>
+      </element><element name="TSignerInfo.Position"><short>Должность лица, подписавшего документ</short>
+      </element><element name="TSignerInfo.INN"><short>ИНН физического лица</short>
+      </element><element name="TSignerInfo.Person"><short>Фамилия, имя, отчество</short>
+      </element><element name="TSignerInfo.AuthorizedInformation"><short>Сведения об уполномоченном представителе</short>
+      </element><element name="TAuthorizedInformation"><short>Сведения об уполномоченном представителе (СвПредТип)</short><descr>Таблица 4.15
+</descr>
+      </element><element name="TAuthorizedInformation.DocumentName"><short>Наименование документа (доверенности, приказа), подтверждающего полномочия представителя</short>
+      </element><element name="TAuthorizedInformation.DocumentNumber"><short>Номер документа</short>
+      </element><element name="TAuthorizedInformation.DocumentDate"><short>Дата документа</short><descr><p>Типовой элемент &lt;ДатаТип&gt;</p><p>Значение ДатаДов меньше или равно значению ДатаДокНП</p>
+        </descr>
       </element>
     </module>
   </package>

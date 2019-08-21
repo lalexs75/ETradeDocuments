@@ -103,6 +103,40 @@ type
     property KPP:string read FKPP write SetKPP;
   end;
 
+  { TAuthorizedInformation }
+
+  TAuthorizedInformation = class(TXmlSerializationObject) //%Таблица 4.15
+  private
+    FDocumentDate: string;
+    FDocumentName: string;
+    FDocumentNumber: string;
+    procedure SetDocumentDate(AValue: string);
+    procedure SetDocumentName(AValue: string);
+    procedure SetDocumentNumber(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property DocumentName:string read FDocumentName write SetDocumentName; //Наименование документа (доверенности, приказа), подтверждающего полномочия представителя
+    property DocumentNumber:string read FDocumentNumber write SetDocumentNumber; //Номер документа
+    property DocumentDate:string read FDocumentDate write SetDocumentDate; //Дата документа
+  end;
+
+  TSignerInfo = class(TXmlSerializationObject) //%Таблица 4.4
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property SignerType:string;  //Признак лица, подписавшего документ
+    property Position:string read FPosition write SetPosition; //Должность лица, подписавшего документ
+    property INN:string read FINN write SetINN; //ИНН физического лица
+    property Person:TPerson read FPerson;  //Фамилия, имя, отчество
+    property AuthorizedInformation:TAuthorizedInformation read FAuthorizedInformation; //Сведения об уполномоченном представителе
+  end;
 
   { TSenderInfo }
 
@@ -138,7 +172,7 @@ type
     property KND:string read FKND write SetKND;
     property DocumentDate:string read FDocumentDate write SetDocumentDate;
     property SenderInfo:TSenderInfo read FSenderInfo;
-//    property SignerInfo:TSignerInfo read FSignerInfo;
+    property SignerInfo:TSignerInfo read FSignerInfo;
 //    property DeclarationInfo:TDeclarationInfo read FDeclarationInfo;
 //    property Contracts:TContracts read FContracts;
 (*
@@ -148,6 +182,46 @@ type
   end;
 
 implementation
+
+{ TAuthorizedInformation }
+
+procedure TAuthorizedInformation.SetDocumentDate(AValue: string);
+begin
+  if FDocumentDate=AValue then Exit;
+  FDocumentDate:=AValue;
+  ModifiedProperty('DocumentDate');
+end;
+
+procedure TAuthorizedInformation.SetDocumentName(AValue: string);
+begin
+  if FDocumentName=AValue then Exit;
+  FDocumentName:=AValue;
+  ModifiedProperty('DocumentName');
+end;
+
+procedure TAuthorizedInformation.SetDocumentNumber(AValue: string);
+begin
+  if FDocumentNumber=AValue then Exit;
+  FDocumentNumber:=AValue;
+  ModifiedProperty('DocumentNumber');
+end;
+
+procedure TAuthorizedInformation.InternalRegisterPropertys;
+begin
+  RegisterProperty('DocumentName', 'НаимДов', 'О', 'Наименование документа (доверенности, приказа), подтверждающего полномочия представителя', 1, 120);
+  RegisterProperty('DocumentNumber', 'НомерДов', 'О', 'Номер документа', 1, 50);
+  RegisterProperty('DocumentDate', 'ДатаДов', 'О', 'Дата документа', 10, 10);
+end;
+
+procedure TAuthorizedInformation.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TAuthorizedInformation.Destroy;
+begin
+  inherited Destroy;
+end;
 
 { TPerson }
 
