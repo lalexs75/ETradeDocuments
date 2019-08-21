@@ -39,17 +39,24 @@
 </descr>
       </element><element name="TSenderInfo"><short>Сведения об отправителе документа (СвОтпр)</short><descr>Таблица 4.3
 </descr>
-      </element><element name="TSignerInfo.SignerType"><short>Признак лица, подписавшего документ</short>
+      </element><element name="TSignerInfo.SignerType"><short>Признак лица, подписавшего документ</short><descr><p>Принимает значение: 1 | 2 | 3, где:</p><ul><li>1 – индивидуальный предприниматель;</li><li>2 – руководитель организации;</li><li>3 – уполномоченный представитель</li>
+          </ul>
+        </descr>
       </element><element name="TSignerInfo.Position"><short>Должность лица, подписавшего документ</short>
-      </element><element name="TSignerInfo.INN"><short>ИНН физического лица</short>
-      </element><element name="TSignerInfo.Person"><short>Фамилия, имя, отчество</short>
-      </element><element name="TSignerInfo.AuthorizedInformation"><short>Сведения об уполномоченном представителе</short>
+      </element><element name="TSignerInfo.INN"><short>ИНН физического лица</short><descr>Типовой элемент &lt;ИННФЛТип&gt;
+</descr>
+      </element><element name="TSignerInfo.Person"><short>Фамилия, имя, отчество</short><descr><p>Типовой элемент &lt;ФИОТип&gt;.</p><p>Состав элемента представлен в табл. 4.18</p>
+        </descr>
+      </element><element name="TSignerInfo.AuthorizedInformation"><short>Сведения об уполномоченном представителе</short><descr><p>Типовой элемент &lt;СвПредТип&gt;.</p><p>Состав элемента представлен в табл. 4.15</p><p>Обязателен в случае ПрПодп=3</p>
+        </descr>
       </element><element name="TAuthorizedInformation"><short>Сведения об уполномоченном представителе (СвПредТип)</short><descr>Таблица 4.15
 </descr>
       </element><element name="TAuthorizedInformation.DocumentName"><short>Наименование документа (доверенности, приказа), подтверждающего полномочия представителя</short>
       </element><element name="TAuthorizedInformation.DocumentNumber"><short>Номер документа</short>
       </element><element name="TAuthorizedInformation.DocumentDate"><short>Дата документа</short><descr><p>Типовой элемент &lt;ДатаТип&gt;</p><p>Значение ДатаДов меньше или равно значению ДатаДокНП</p>
         </descr>
+      </element><element name="TSignerInfo"><short>Сведения о лице, подписавшем документ (Подписант)</short><descr>Таблица 4.4
+</descr>
       </element>
     </module>
   </package>

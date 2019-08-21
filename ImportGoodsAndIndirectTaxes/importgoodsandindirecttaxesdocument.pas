@@ -124,14 +124,25 @@ type
     property DocumentDate:string read FDocumentDate write SetDocumentDate; //Дата документа
   end;
 
+  { TSignerInfo }
+
   TSignerInfo = class(TXmlSerializationObject) //%Таблица 4.4
+  private
+    FAuthorizedInformation: TAuthorizedInformation;
+    FINN: string;
+    FPerson: TPerson;
+    FPosition: string;
+    FSignerType: string;
+    procedure SetINN(AValue: string);
+    procedure SetPosition(AValue: string);
+    procedure SetSignerType(AValue: string);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
     destructor Destroy; override;
   published
-    property SignerType:string;  //Признак лица, подписавшего документ
+    property SignerType:string read FSignerType write SetSignerType;  //Признак лица, подписавшего документ
     property Position:string read FPosition write SetPosition; //Должность лица, подписавшего документ
     property INN:string read FINN write SetINN; //ИНН физического лица
     property Person:TPerson read FPerson;  //Фамилия, имя, отчество
@@ -182,6 +193,52 @@ type
   end;
 
 implementation
+
+{ TSignerInfo }
+
+procedure TSignerInfo.SetINN(AValue: string);
+begin
+  if FINN=AValue then Exit;
+  FINN:=AValue;
+  ModifiedProperty('INN');
+end;
+
+procedure TSignerInfo.SetPosition(AValue: string);
+begin
+  if FPosition=AValue then Exit;
+  FPosition:=AValue;
+  ModifiedProperty('Position');
+end;
+
+procedure TSignerInfo.SetSignerType(AValue: string);
+begin
+  if FSignerType=AValue then Exit;
+  FSignerType:=AValue;
+  ModifiedProperty('SignerType');
+end;
+
+procedure TSignerInfo.InternalRegisterPropertys;
+begin
+  RegisterProperty('SignerType', 'ПрПодп', 'ОК', 'Признак лица, подписавшего документ', 1, 1);
+  RegisterProperty('Position', 'ДолжнПодп', 'Н', 'Должность лица, подписавшего документ', 0, 128);
+  RegisterProperty('INN', 'ИННФЛ', 'Н', 'ИНН физического лица', 12, 12);
+  RegisterProperty('Person', 'ФИО', 'О', 'Фамилия, имя, отчество', -1, -1);
+  RegisterProperty('AuthorizedInformation', 'СвПред', 'Н', 'Сведения об уполномоченном представителе', -1, -1);
+end;
+
+procedure TSignerInfo.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+  FPerson:=TPerson.Create;
+  FAuthorizedInformation:=TAuthorizedInformation.Create;
+end;
+
+destructor TSignerInfo.Destroy;
+begin
+  FreeAndNil(FPerson);
+  FreeAndNil(FAuthorizedInformation);
+  inherited Destroy;
+end;
 
 { TAuthorizedInformation }
 
