@@ -124,6 +124,87 @@ type
     property DocumentDate:string read FDocumentDate write SetDocumentDate; //Дата документа
   end;
 
+  { TSpecificationsInformation }
+
+  TSpecificationsInformation = class(TXmlSerializationObject) //%Таблица 4.14
+  private
+    FOrderNumber: string;
+    FSpecificationDate: string;
+    FSpecificationNumber: string;
+    procedure SetOrderNumber(AValue: string);
+    procedure SetSpecificationDate(AValue: string);
+    procedure SetSpecificationNumber(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property OrderNumber:string read FOrderNumber write SetOrderNumber;//Номер по порядку
+    property SpecificationNumber:string read FSpecificationNumber write SetSpecificationNumber;//Номер спецификации
+    property SpecificationDate:string read FSpecificationDate write SetSpecificationDate;//Дата спецификации
+  end;
+
+  TContractInfo = class(TXmlSerializationObject) //%Таблица 4.13
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property ContractNumber:string;//Номер контракта
+    property ContractDate:string;//Дата контракта
+    property SpecificationsInformation:TSpecificationsInformation read FSpecificationsInformation; //Сведения спецификаций
+  end;
+
+  TSellerContractInfo = class(TXmlSerializationObject) //%Таблица 4.6
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property SellerBaikonurFlag:string; //Признак нахождения российского продавца в г.Байконур
+    property SellerIdentificationCode:string; //Идентификационный код (номер) продавца Раздел 1 стр. 01
+    property SellerOrgType:string;//Признак продавца – физического лица (не индивидуального предпринимателя)
+    property SellerName:string;//Полное наименование (ФИО) продавца Раздел 1 стр. 01
+    property SellerCountryCode:string;//Код страны продавца Раздел 1 стр. 03
+    property SellerAdress:string;//Адрес местонахождения (жительства) продавца Раздел 1 стр. 03
+    property BuyerBaikonurFlag:string; //Признак нахождения российского покупателя в г.Байконур
+    property BuyerINN:string; //ИНН покупателя Раздел 1 стр. 02
+    property BuyerName:string; //Полное наименование (ФИО) покупателя Раздел 1 стр. 02
+    property BuyerCountryCode:string;//Код страны покупателя Раздел 1 стр. 04
+    property BuyerAdress:string;//Адрес местонахождения (жительства) покупателя Раздел 1 стр. 04
+    property ContractInfo:TContractInfo read FContractInfo;//Сведения о контракте (договоре) Раздел 1 стр. 05
+  end;
+
+  { TDeclarationInfo }
+
+  TDeclarationInfo = class(TXmlSerializationObject) //%Таблица 4.5
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property DocumentNumber:string;//Номер заявления, указанный НП
+    property DocumentData:string;//Дата заполнения заявления, указанная НП
+    property LeasingFlag:string;//Признак договора лизинга
+    property ContractRawMaterialsFlag:string;//Признак договора переработки давальческого сырья
+    property ExciseBase:string; //База по акцизам Итого по графе 14 Раздел 1
+    property VatBase:string; //База по НДС Итого по графе 15 Раздел 1
+    property Excise:string; //Акциз в сумме Итого по графе 19 Раздел 1
+    property Vat:string; //НДС в сумме Итого по графе 20 Раздел 1
+    property DocumentBaseFlag:string;//Причина возникновения заявления
+    property DocumentTaxNumber:string;//Номер отметки о регистрации в налоговом органе ранее представленного заявления
+    property DocumentTaxData:string;//Дата отметки о регистрации в налоговом органе ранее представленного заявления
+    property SellerContractInfo:TSellerContractInfo read FSellerContractInfo;//Сведения о договоре (контракте) Раздел 1 стр.05
+    //Сведения о контракте с комиссионером Раздел 1 стр. 06-07
+    //Сведения о товаре и уплаченных налогах
+    //Сведения о договоре (контракте) Раздел 3
+    //Сведения о ранее представленном заявлении
+  end;
+
   { TSignerInfo }
 
   TSignerInfo = class(TXmlSerializationObject) //%Таблица 4.4
@@ -169,9 +250,11 @@ type
 
   TImportGoodsAndIndirectTaxesDocument = class(TXmlSerializationObject) //%Таблица 4.2
   private
+    FDeclarationInfo: TDeclarationInfo;
     FDocumentDate: string;
     FKND: string;
     FSenderInfo: TSenderInfo;
+    FSignerInfo: TSignerInfo;
     procedure SetDocumentDate(AValue: string);
     procedure SetKND(AValue: string);
   protected
@@ -180,19 +263,74 @@ type
   public
     destructor Destroy; override;
   published
-    property KND:string read FKND write SetKND;
-    property DocumentDate:string read FDocumentDate write SetDocumentDate;
-    property SenderInfo:TSenderInfo read FSenderInfo;
-    property SignerInfo:TSignerInfo read FSignerInfo;
-//    property DeclarationInfo:TDeclarationInfo read FDeclarationInfo;
-//    property Contracts:TContracts read FContracts;
-(*
-Отправитель – организация
-Отправитель - физическое лицо
-*)
+    property KND:string read FKND write SetKND;  //Код формы по КНД
+    property DocumentDate:string read FDocumentDate write SetDocumentDate; //Дата формирования документа
+    property SenderInfo:TSenderInfo read FSenderInfo; //Сведения об отправителе документа
+    property SignerInfo:TSignerInfo read FSignerInfo; //Сведения о лице, подписавшем документ
+    property DeclarationInfo:TDeclarationInfo read FDeclarationInfo; //Сведения из заявления
+//    property ContractAdditional:TContractAdditionals read FContracts; //Сведения о договорах (контрактах) приложения к Заявлению
+//Отправитель – организация
+//Отправитель - физическое лицо
   end;
 
 implementation
+
+{ TSpecificationsInformation }
+
+procedure TSpecificationsInformation.SetOrderNumber(AValue: string);
+begin
+  if FOrderNumber=AValue then Exit;
+  FOrderNumber:=AValue;
+  ModifiedProperty('OrderNumber');
+end;
+
+procedure TSpecificationsInformation.SetSpecificationDate(AValue: string);
+begin
+  if FSpecificationDate=AValue then Exit;
+  FSpecificationDate:=AValue;
+  ModifiedProperty('SpecificationDate');
+end;
+
+procedure TSpecificationsInformation.SetSpecificationNumber(AValue: string);
+begin
+  if FSpecificationNumber=AValue then Exit;
+  FSpecificationNumber:=AValue;
+  ModifiedProperty('SpecificationNumber');
+end;
+
+procedure TSpecificationsInformation.InternalRegisterPropertys;
+begin
+  RegisterProperty('OrderNumber', 'НомПСпециф', 'О', 'Номер по порядку', 0, 5);
+  RegisterProperty('SpecificationNumber', 'НомСпециф', 'О', 'Номер спецификации', 1, 50);
+  RegisterProperty('SpecificationDate', 'ДатаСпециф', 'О', 'Дата спецификации', 10, 10);
+end;
+
+procedure TSpecificationsInformation.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TSpecificationsInformation.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TDeclarationInfo }
+
+procedure TDeclarationInfo.InternalRegisterPropertys;
+begin
+
+end;
+
+procedure TDeclarationInfo.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TDeclarationInfo.Destroy;
+begin
+  inherited Destroy;
+end;
 
 { TSignerInfo }
 
@@ -331,8 +469,8 @@ end;
 
 procedure TPhysicalPersonEntity.InternalRegisterPropertys;
 begin
-  RegisterProperty('INN', 'ИННФЛ', 'Н', 'ИНН физического лица', 12, 12)
-  RegisterProperty('Person', 'ФИО', 'О', 'Фамилия, имя, отчество', -1, -1)
+  RegisterProperty('INN', 'ИННФЛ', 'Н', 'ИНН физического лица', 12, 12);
+  RegisterProperty('Person', 'ФИО', 'О', 'Фамилия, имя, отчество', -1, -1);
 end;
 
 procedure TPhysicalPersonEntity.InternalInitChilds;
@@ -425,18 +563,34 @@ end;
 
 procedure TImportGoodsAndIndirectTaxesDocument.InternalRegisterPropertys;
 begin
-
+  RegisterProperty('KND', 'КНД', 'О', 'Код формы по КНД', 7, 7);
+  RegisterProperty('DocumentDate', 'ДатаДок', 'О', 'Дата формирования документа', 10, 10);
+  RegisterProperty('SenderInfo', 'СвОтпр', 'О', 'Сведения об отправителе документа', -1, -1);
+  RegisterProperty('SignerInfo', 'Подписант', 'О', 'Сведения о лице, подписавшем документ', -1, -1);
+  RegisterProperty('DeclarationInfo', 'СвЗвл', 'О', 'Сведения из заявления', -1, -1);
+(*
+  Сведения о договорах (контрактах) приложения к Заявлению
+  СвКонтрПр
+  С
+   
+  НМ
+  Состав элемента представлен в табл. 4.11
+*)
 end;
 
 procedure TImportGoodsAndIndirectTaxesDocument.InternalInitChilds;
 begin
   inherited InternalInitChilds;
   FSenderInfo:=TSenderInfo.Create;
+  FSignerInfo:=TSignerInfo.Create;
+  FDeclarationInfo:=TDeclarationInfo.Create;
 end;
 
 destructor TImportGoodsAndIndirectTaxesDocument.Destroy;
 begin
   FreeAndNil(FSenderInfo);
+  FreeAndNil(FSignerInfo);
+  FreeAndNil(FDeclarationInfo);
   inherited Destroy;
 end;
 

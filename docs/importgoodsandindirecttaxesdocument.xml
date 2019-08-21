@@ -10,6 +10,8 @@
       <descr>Состав элемента представлен в табл. 4.4
 </descr>
       </element><element name="TImportGoodsAndIndirectTaxesDocument.DeclarationInfo"><short>Сведения из заявления</short>
+      <descr>Состав элемента представлен в табл. 4.5
+</descr>
       </element><element name="TImportGoodsAndIndirectTaxesDocument.Contracts"><short>Сведения о договорах (контрактах) приложения к Заявлению</short>
       </element><element name="TSenderInfo.LegalEntityInformation"><short>Отправитель – организация</short>
       <descr>Типовой элемент &lt;СвЮЛ&gt;.
@@ -57,6 +59,84 @@
         </descr>
       </element><element name="TSignerInfo"><short>Сведения о лице, подписавшем документ (Подписант)</short><descr>Таблица 4.4
 </descr>
+      </element><element name="TDeclarationInfo"><short>Сведения из заявления (СвЗвл)</short><descr>Таблица 4.5
+</descr>
+      </element><element name="TDeclarationInfo.DocumentNumber"><short>Номер заявления, указанный НП</short><descr>Номер заявления, указанный налогоплательщиком
+</descr>
+      </element><element name="TDeclarationInfo.DocumentData"><short>Дата заполнения заявления, указанная НП</short><descr><p>Типовой элемент &lt;ДатаТип&gt;</p><p>ДатаДокНП меньше или равна ДатаДок.</p><p>ДатаДокНП больше или равна 01.07.2010</p>
+        </descr>
+      </element>
+    <element name="TDeclarationInfo.LeasingFlag"><short>Признак договора лизинга</short><descr><p>Принимает значение: 0 | 1</p><ul><li>0 – признак договора лизинга не отмечен;</li><li>1 – признак договора лизинга отмечен.</li>
+          </ul><p>ПрЛизинг не может быть=1 при ПрДавСырья=1</p>
+        </descr>
+      </element><element name="TDeclarationInfo.ContractRawMaterialsFlag"><short>Признак договора переработки давальческого сырья</short><descr><p>Принимает значение: 0 | 1</p><ul><li>0 – признак договора переработки давальческого сырья не отмечен;</li><li>1 – признак договора переработки давальческого сырья отмечен.</li>
+          </ul><p>ПрДавСырья не может быть=1 при ПрЛизинг=1</p>
+        </descr>
+      </element><element name="TDeclarationInfo.ExciseBase"><short>База по акцизам Итого по графе 14 Раздел 1</short><descr><p>Заполняется с учетом следующего:</p><p>Если значение НБАкциз заполнено один раз, то БазаАкциз=НБАкциз;</p><p>Если значение НБАкциз заполнено несколько раз, то БазаАкциз=сумме всех значений НБАкциз, при условии, что все ставки подакцизных товаров адвалорные (наличие СтАкцизАдвал и отсутствие СтАкцизТверд);</p><p>В иных случаях БазаАкциз отсутствует</p>
+        </descr>
+      </element><element name="TDeclarationInfo.VatBase"><descr>БазаНДС=сумме всех значений НБНДС
+</descr><short>База по НДС Итого по графе 15 Раздел 1</short>
+      </element><element name="TDeclarationInfo.Excise"><short>Акциз в сумме Итого по графе 19 Раздел 1</short><descr><p>Итоговое значение равно сумме всех значений граф 19 Раздела 1.</p><p>Итоговое значение указывается в полных рублях. Значения показателя менее 50 копеек отбрасывается, а 50 копеек и более округляются до полного рубля</p>
+        </descr>
+      </element><element name="TDeclarationInfo.Vat"><short>НДС в сумме Итого по графе 20 Раздел 1</short><descr><p>Итоговое значение равно сумме всех значений граф 20 Раздела 1.</p><p>Итоговое значение указывается в полных рублях. Значения показателя менее 50 копеек отбрасывается, а 50 копеек и более округляются до полного рубля</p>
+        </descr>
+      </element><element name="TDeclarationInfo.DocumentBaseFlag"><short>Причина возникновения заявления</short><descr><p>Принимает значение: 1 | 4 | 5 | 6, где:</p><ul><li>1 – первичное заявление;</li><li>4 – взамен ранее представленного;</li><li>5 – корректировка ранее представленного при увеличении цены;</li><li>6 – взамен ранее представленного при частичном возврате товара</li>
+          </ul>
+        </descr>
+      </element><element name="TDeclarationInfo.DocumentTaxNumber"><short>Номер отметки о регистрации в налоговом органе ранее представленного заявления</short><descr>Обязателен при ПВДок = 4 или 6
+</descr>
+      </element><element name="TDeclarationInfo.DocumentTaxData"><short>Дата отметки о регистрации в налоговом органе ранее представленного заявления</short><descr><p>Типовой элемент &lt;ДатаТип&gt;</p><p>Обязателен при ПВДок = 4 или ПВДок = 6</p>
+        </descr>
+      </element><element name="TDeclarationInfo.SellerContractInfo"><short>Сведения о договоре (контракте) Раздел 1 стр.05</short><descr>Состав элемента представлен в табл. 4.6
+</descr>
+      </element><element name="TSellerContractInfo"><short>Сведения о договоре (контракте) Раздел 1 стр.05 (СвКонтракт1)</short><descr>Таблица 4.6
+</descr>
+      </element><element name="TSellerContractInfo.SellerBaikonurFlag"><short>Признак нахождения российского продавца в г.Байконур</short><descr><p>Принимает значение: 1 , где:</p><ul><li>1 – российский продавец находится на территории г.Байконур</li>
+          </ul>
+        </descr>
+      </element><element name="TSellerContractInfo.SellerIdentificationCode"><short>Идентификационный код (номер) продавца Раздел 1 стр. 01</short><descr>Обязателен, если продавец из государства-члена ЕАЭС и ПрПродФЛ = 0
+</descr>
+      </element><element name="TSellerContractInfo.SellerOrgType"><short>Признак продавца – физического лица (не индивидуального предпринимателя)</short><descr><p>Принимает значение: 0 | 1 , где:</p><ul><li>0 – продавец – юридическое лицо или индивидуальный предприниматель;</li><li>1 – продавец – физическое лицо</li>
+          </ul>
+        </descr>
+      </element><element name="TSellerContractInfo.SellerName"><short>Полное наименование (ФИО) продавца Раздел 1 стр. 01</short>
+      </element><element name="TSellerContractInfo.SellerCountryCode"><short>Код страны продавца Раздел 1 стр. 03</short><descr><p>Типовой элемент &lt;ОКСМТип&gt;</p><p>Код по классификатору ОКСМ.</p><p>Если КодСтранПродР3 отсутствует, то КодСтранПродР1 принимает значение кода одного из государств-членов ЕАЭС.</p><p>КодСтранПродР1=398 если ПрБкнрПродР1=1.</p><p>Реквизиты КодСтранПродР1=398 и ПрБкнрПродР1=1 указывают на российского налогоплательщика
+  </p>
+        </descr>
+      </element>
+    <element name="TSellerContractInfo.BuyerBaikonurFlag"><short>Признак нахождения российского покупателя в г.Байконур</short><descr><p>Принимает значение: 1</p><ul><li>1 – российский покупатель находится на территории г.Байконур.</li>
+          </ul><p>ПрБкнрПокР1=1 если КодСтранПокР1=398</p>
+        </descr>
+      </element><element name="TSellerContractInfo.SellerAdress"><short>Адрес местонахождения (жительства) продавца Раздел 1 стр. 03</short>
+      </element><element name="TSellerContractInfo.BuyerINN"><short>ИНН покупателя Раздел 1 стр. 02</short><descr>Для юр. лиц разрядность ИдНомПокР1 равна 10, для физ. лиц – 12
+</descr>
+      </element><element name="TSellerContractInfo.BuyerName"><short>Полное наименование (ФИО) покупателя Раздел 1 стр. 02</short>
+      </element><element name="TSellerContractInfo.BuyerCountryCode"><short>Код страны покупателя Раздел 1 стр. 04</short><descr>Типовой элемент &lt;ОКСМТип&gt;.
+Код по классификатору ОКСМ.
+Принимает значение: 643 | 398, где:
+643 – Россия;
+398 – Казахстан.
+КодСтранПокР1=398, если ПрБкнрПокР1=1.
+При ПрБкнрПокР1=1 КодСтранПокР1=398.
+Реквизиты КодСтранПокР1=398 и ПрБкнрПокР1=1 указывают на российского налогоплательщика
+</descr>
+      </element><element name="TSellerContractInfo.BuyerAdress"><short>Адрес местонахождения (жительства) покупателя Раздел 1 стр. 04</short>
+      </element><element name="TSellerContractInfo.ContractInfo"><short>Сведения о контракте (договоре) Раздел 1 стр. 05</short><descr><p>Типовой элемент &lt;СвКонтрК&gt;.</p><p>Состав элемента представлен в табл. 4.13</p>
+        </descr>
+      </element><element name="TContractInfo"><short>Сведения о контракте (договоре) (СвКонтрК)</short><descr>Таблица 4.13
+</descr>
+      </element><element name="TContractInfo.ContractNumber"><short>Номер контракта</short>
+      </element><element name="TContractInfo.ContractDate"><short>Дата контракта</short><descr><p>Типовой элемент &lt;ДатаТип&gt;</p><p>Значение ДатаКонтр меньше или равно ДатаДокНП</p>
+        </descr>
+      </element><element name="TContractInfo.SpecificationsInformation"><short>Сведения спецификаций</short><descr>Состав элемента представлен в табл. 4.14
+</descr>
+      </element><element name="TSpecificationsInformation"><short>Сведения спецификаций (СвСпециф)</short><descr>Таблица 4.14
+</descr>
+      </element><element name="TSpecificationsInformation.OrderNumber"><short>Номер по порядку</short><descr>Нумерация по порядку, начиная с номера 1
+</descr>
+      </element><element name="TSpecificationsInformation.SpecificationNumber"><short>Номер спецификации</short>
+      </element><element name="TSpecificationsInformation.SpecificationDate"><short>Дата спецификации</short><descr><p>Типовой элемент &lt;ДатаТип&gt;</p><p>Значение ДатаСпециф меньше или равно значению ДатаДокНП.</p><p>Значение ДатаСпециф больше или равно значению ДатаКонтр</p>
+        </descr>
       </element>
     </module>
   </package>
