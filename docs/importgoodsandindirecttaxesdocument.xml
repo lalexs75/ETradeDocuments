@@ -9,6 +9,14 @@
       </element><element name="TImportGoodsAndIndirectTaxesDocument.Contracts"><short>Сведения о договорах (контрактах) приложения к Заявлению</short>
       </element><element name="TSenderInfo.LegalEntityInformation"><short>Отправитель – организация</short>
       </element>
+    <element name="TLegalEntityInformation.FullName"><short>Наименование организации</short>
+      </element><element name="TLegalEntityInformation.INN"><short>ИНН организации</short><descr>Типовой элемент &lt;ИННЮЛТип&gt;
+</descr>
+      </element><element name="TLegalEntityInformation.KPP"><short>КПП</short><descr>Типовой элемент &lt;КППТип&gt;
+</descr>
+      </element><element name="TLegalEntityInformation"><short>Сведения об организации (СвЮЛ)</short><descr>Таблица 4.16
+</descr>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>

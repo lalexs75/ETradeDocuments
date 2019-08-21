@@ -47,15 +47,22 @@ type
   { TLegalEntityInformation }
 
   TLegalEntityInformation = class(TXmlSerializationObject) //%Таблица 4.16
+  private
+    FFullName: string;
+    FINN: string;
+    FKPP: string;
+    procedure SetFullName(AValue: string);
+    procedure SetINN(AValue: string);
+    procedure SetKPP(AValue: string);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
     destructor Destroy; override;
   published
-    //Наименование организации
-    //ИНН организации
-    //КПП
+    property FullName:string read FFullName write SetFullName;
+    property INN:string read FINN write SetINN;
+    property KPP:string read FKPP write SetKPP;
   end;
 
 
@@ -105,9 +112,32 @@ implementation
 
 { TLegalEntityInformation }
 
+procedure TLegalEntityInformation.SetFullName(AValue: string);
+begin
+  if FFullName=AValue then Exit;
+  FFullName:=AValue;
+  ModifiedProperty('FullName');
+end;
+
+procedure TLegalEntityInformation.SetINN(AValue: string);
+begin
+  if FINN=AValue then Exit;
+  FINN:=AValue;
+  ModifiedProperty('INN');
+end;
+
+procedure TLegalEntityInformation.SetKPP(AValue: string);
+begin
+  if FKPP=AValue then Exit;
+  FKPP:=AValue;
+  ModifiedProperty('KPP');
+end;
+
 procedure TLegalEntityInformation.InternalRegisterPropertys;
 begin
-
+  RegisterProperty('FullName', 'НаимОрг', 'О', 'Наименование организации', 1, 400);
+  RegisterProperty('INN', 'ИННЮЛ', 'О', 'ИНН организации', 10, 10);
+  RegisterProperty('KPP', 'КПП', 'О', 'КПП', 9, 9);
 end;
 
 procedure TLegalEntityInformation.InternalInitChilds;
