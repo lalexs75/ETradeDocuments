@@ -43,6 +43,9 @@ uses
   Classes, SysUtils, xml_doc;
 
 type
+  TProductDetailsEnumerator = class;
+  TTransferDocsEnumerator = class;
+  TSpecificationsInformationsEnumerator = class;
 
   { TPerson }
 
@@ -152,8 +155,22 @@ type
     function GetItem(AIndex: Integer): TSpecificationsInformation; inline;
   public
     constructor Create;
+    function GetEnumerator: TTransferDocsEnumerator;
     function CreateChild:TSpecificationsInformation;
     property Item[AIndex:Integer]:TSpecificationsInformation read GetItem; default;
+  end;
+
+  { TSpecificationsInformationsEnumerator }
+
+  TSpecificationsInformationsEnumerator = class
+  private
+    FList: TSpecificationsInformations;
+    FPosition: Integer;
+  public
+    constructor Create(AList: TSpecificationsInformations);
+    function GetCurrent: TSpecificationsInformation;
+    function MoveNext: Boolean;
+    property Current: TSpecificationsInformation read GetCurrent;
   end;
 
   { TContractInfo }
@@ -338,8 +355,22 @@ type
     function GetItem(AIndex: Integer): TTransferDoc; inline;
   public
     constructor Create;
+    function GetEnumerator: TTransferDocsEnumerator;
     function CreateChild:TTransferDoc; inline;
     property Item[AIndex:Integer]:TTransferDoc read GetItem; default;
+  end;
+
+  { TTransferDocsEnumerator }
+
+  TTransferDocsEnumerator = class
+  private
+    FList: TTransferDocs;
+    FPosition: Integer;
+  public
+    constructor Create(AList: TTransferDocs);
+    function GetCurrent: TTransferDoc;
+    function MoveNext: Boolean;
+    property Current: TTransferDoc read GetCurrent;
   end;
 
   { TProductDetail }
@@ -430,7 +461,21 @@ type
   public
     constructor Create;
     function CreateChild:TProductDetail; inline;
+    function GetEnumerator: TProductDetailsEnumerator;
     property Item[AIndex:Integer]:TProductDetail read GetItem; default;
+  end;
+
+  { TProductDetailsEnumerator }
+
+  TProductDetailsEnumerator = class
+  private
+    FList: TProductDetails;
+    FPosition: Integer;
+  public
+    constructor Create(AList: TProductDetails);
+    function GetCurrent: TProductDetail;
+    function MoveNext: Boolean;
+    property Current: TProductDetail read GetCurrent;
   end;
 
   { TCommissionContractInfo }
@@ -632,6 +677,64 @@ type
   end;
 
 implementation
+
+{ TSpecificationsInformationsEnumerator }
+
+constructor TSpecificationsInformationsEnumerator.Create(
+  AList: TSpecificationsInformations);
+begin
+  FList := AList;
+  FPosition := -1;
+end;
+
+function TSpecificationsInformationsEnumerator.GetCurrent: TSpecificationsInformation;
+begin
+  Result := FList[FPosition];
+end;
+
+function TSpecificationsInformationsEnumerator.MoveNext: Boolean;
+begin
+  Inc(FPosition);
+  Result := FPosition < FList.Count;
+end;
+
+{ TTransferDocsEnumerator }
+
+constructor TTransferDocsEnumerator.Create(AList: TTransferDocs);
+begin
+  FList := AList;
+  FPosition := -1;
+end;
+
+function TTransferDocsEnumerator.GetCurrent: TTransferDoc;
+begin
+  Result := FList[FPosition];
+end;
+
+function TTransferDocsEnumerator.MoveNext: Boolean;
+begin
+  Inc(FPosition);
+  Result := FPosition < FList.Count;
+end;
+
+{ TProductDetailsEnumerator }
+
+constructor TProductDetailsEnumerator.Create(AList: TProductDetails);
+begin
+  FList := AList;
+  FPosition := -1;
+end;
+
+function TProductDetailsEnumerator.GetCurrent: TProductDetail;
+begin
+  Result := FList[FPosition];
+end;
+
+function TProductDetailsEnumerator.MoveNext: Boolean;
+begin
+  Inc(FPosition);
+  Result := FPosition < FList.Count;
+end;
 
 { TContractAdditional }
 
@@ -1175,6 +1278,11 @@ begin
   inherited Create(TTransferDoc)
 end;
 
+function TTransferDocs.GetEnumerator: TTransferDocsEnumerator;
+begin
+  Result:=TTransferDocsEnumerator.Create(Self);
+end;
+
 function TTransferDocs.CreateChild: TTransferDoc;
 begin
   Result:=TTransferDoc(InternalAddObject);
@@ -1195,6 +1303,11 @@ end;
 function TProductDetails.CreateChild: TProductDetail;
 begin
   Result:=TProductDetail(InternalAddObject);
+end;
+
+function TProductDetails.GetEnumerator: TProductDetailsEnumerator;
+begin
+  Result:=TProductDetailsEnumerator.Create(Self);
 end;
 
 { TCommissionContractInfo }
@@ -1374,6 +1487,11 @@ end;
 constructor TSpecificationsInformations.Create;
 begin
   inherited Create(TSpecificationsInformation)
+end;
+
+function TSpecificationsInformations.GetEnumerator: TTransferDocsEnumerator;
+begin
+  Result:=TSpecificationsInformationsEnumerator.Create(Self);
 end;
 
 function TSpecificationsInformations.CreateChild: TSpecificationsInformation;
@@ -1796,12 +1914,14 @@ procedure TImportGoodsAndIndirectTaxesDocument.SetDocumentDate(AValue: string);
 begin
   if FDocumentDate=AValue then Exit;
   FDocumentDate:=AValue;
+  ModifiedProperty('DocumentDate');
 end;
 
 procedure TImportGoodsAndIndirectTaxesDocument.SetKND(AValue: string);
 begin
   if FKND=AValue then Exit;
   FKND:=AValue;
+  ModifiedProperty('KND');
 end;
 
 procedure TImportGoodsAndIndirectTaxesDocument.InternalRegisterPropertys;
