@@ -27,13 +27,22 @@
       <FormatVersion Value="2"/>
       <Modes Count="0"/>
     </RunParams>
-    <RequiredPackages Count="2">
+    <RequiredPackages Count="5">
       <Item1>
-        <PackageName Value="ETradeDocuments"/>
+        <PackageName Value="LazControls"/>
       </Item1>
       <Item2>
-        <PackageName Value="LCL"/>
+        <PackageName Value="FCL"/>
       </Item2>
+      <Item3>
+        <PackageName Value="rxnew"/>
+      </Item3>
+      <Item4>
+        <PackageName Value="ETradeDocuments"/>
+      </Item4>
+      <Item5>
+        <PackageName Value="LCL"/>
+      </Item5>
     </RequiredPackages>
     <Units Count="3">
       <Unit0>
@@ -52,6 +61,7 @@
         <Filename Value="zvlrpok_unit.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ZvlrpokFrame"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
       </Unit2>
     </Units>

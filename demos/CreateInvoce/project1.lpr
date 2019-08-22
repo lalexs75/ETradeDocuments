@@ -7,7 +7,7 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, Unit1, zvlrpok_unit
+  Forms, rxnew, lazcontrols, Unit1, zvlrpok_unit
   { you can add units after this };
 
 {$R *.res}
@@ -15,6 +15,7 @@ uses
 begin
   RequireDerivedFormResource:=True;
   Application.Scaled:=True;
+  InitLocale;
   Application.Initialize;
   Application.CreateForm(TForm1, Form1);
   Application.Run;

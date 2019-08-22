@@ -338,7 +338,7 @@ begin
   DoLoadAtributes(AElement);
   DoLoadChild(AElement);
 
-  FPropertyList.ClearModified;
+  //FPropertyList.ClearModified;
 end;
 
 procedure TXmlSerializationObject.InternalWrite(FXML: TXMLDocument;

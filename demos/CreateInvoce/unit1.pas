@@ -33,6 +33,7 @@ type
 var
   Form1: TForm1;
 
+procedure InitLocale;
 implementation
 uses xmliconv, IniFiles;
 
@@ -44,6 +45,58 @@ var
 begin
   S:=GetAppConfigFile(false, true);
   Result:=TIniFile.Create(S);
+end;
+
+procedure ConvetToUTF8LocalConst;
+var
+  i:integer;
+begin
+  DefaultFormatSettings.ShortMonthNames[1]:='Январь';
+  DefaultFormatSettings.ShortMonthNames[2]:='Февраль';
+  DefaultFormatSettings.ShortMonthNames[3]:='Март';
+  DefaultFormatSettings.ShortMonthNames[4]:='Апрель';
+  DefaultFormatSettings.ShortMonthNames[5]:='Май';
+  DefaultFormatSettings.ShortMonthNames[6]:='Июнь';
+  DefaultFormatSettings.ShortMonthNames[7]:='Июль';
+  DefaultFormatSettings.ShortMonthNames[8]:='Август';
+  DefaultFormatSettings.ShortMonthNames[9]:='Сентябрь';
+  DefaultFormatSettings.ShortMonthNames[10]:='Октябрь';
+  DefaultFormatSettings.ShortMonthNames[11]:='Ноябрь';
+  DefaultFormatSettings.ShortMonthNames[12]:='Декабрь';
+
+  for i:=1 to 12 do
+    DefaultFormatSettings.LongMonthNames[i] := DefaultFormatSettings.ShortMonthNames[i];
+
+  DefaultFormatSettings.LongDayNames[1]:='Воскресенье';
+  DefaultFormatSettings.LongDayNames[2]:='Понедельник';
+  DefaultFormatSettings.LongDayNames[3]:='Вторник';
+  DefaultFormatSettings.LongDayNames[4]:='Среда';
+  DefaultFormatSettings.LongDayNames[5]:='Четверг';
+  DefaultFormatSettings.LongDayNames[6]:='Пятница';
+  DefaultFormatSettings.LongDayNames[7]:='Суббота';
+
+  DefaultFormatSettings.ShortDayNames[1]:='Вс';
+  DefaultFormatSettings.ShortDayNames[2]:='Пн';
+  DefaultFormatSettings.ShortDayNames[3]:='Вт';
+  DefaultFormatSettings.ShortDayNames[4]:='Ср';
+  DefaultFormatSettings.ShortDayNames[5]:='Чт';
+  DefaultFormatSettings.ShortDayNames[6]:='Пт';
+  DefaultFormatSettings.ShortDayNames[7]:='Сб';
+end;
+
+procedure InitLocale;
+begin
+  //
+  DefaultFormatSettings.LongDateFormat:='dd.mm.yyyy';
+  DefaultFormatSettings.ShortDateFormat:=DefaultFormatSettings.LongDateFormat;
+{.$IFNDEF MSWindows}
+  DefaultFormatSettings.DateSeparator:='.';
+  DefaultFormatSettings.TimeSeparator:=':';
+{.$ELSE}
+  ConvetToUTF8LocalConst;
+{.$endif}
+  DefaultFormatSettings.ThousandSeparator:=' ';
+  DefaultFormatSettings.CurrencyString:='р.';
 end;
 
 { TForm1 }
