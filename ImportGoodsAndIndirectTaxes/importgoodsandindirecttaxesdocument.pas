@@ -155,7 +155,7 @@ type
     function GetItem(AIndex: Integer): TSpecificationsInformation; inline;
   public
     constructor Create;
-    function GetEnumerator: TTransferDocsEnumerator;
+    function GetEnumerator: TSpecificationsInformationsEnumerator;
     function CreateChild:TSpecificationsInformation;
     property Item[AIndex:Integer]:TSpecificationsInformation read GetItem; default;
   end;
@@ -1489,7 +1489,7 @@ begin
   inherited Create(TSpecificationsInformation)
 end;
 
-function TSpecificationsInformations.GetEnumerator: TTransferDocsEnumerator;
+function TSpecificationsInformations.GetEnumerator: TSpecificationsInformationsEnumerator;
 begin
   Result:=TSpecificationsInformationsEnumerator.Create(Self);
 end;
