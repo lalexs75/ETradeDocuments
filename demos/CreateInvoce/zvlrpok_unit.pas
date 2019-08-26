@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, StdCtrls, EditBtn, ComCtrls, IniFiles, DB,
   ImportGoodsAndIndirectTaxesExchangeFile, ImportGoodsAndIndirectTaxesDocument,
-  rxmemds, rxdbgrid, DividerBevel;
+  EImportAndPayTaxDoc, rxmemds, rxdbgrid, DividerBevel;
 
 type
 
@@ -39,6 +39,7 @@ type
     Edit7: TEdit;
     Edit8: TEdit;
     Edit9: TEdit;
+    EImportAndPayTaxDoc1: TEImportAndPayTaxDoc;
     FileNameEdit1: TFileNameEdit;
     Label1: TLabel;
     Label10: TLabel;
@@ -121,6 +122,9 @@ begin
 
   LoadT4_1(FDoc);
 
+  FDoc.Free;
+
+  FDoc:=EImportAndPayTaxDoc1.LoadGoodsAndPayFile(FileNameEdit1.FileName);
   FDoc.Free;
 end;
 

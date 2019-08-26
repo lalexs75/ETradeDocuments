@@ -53,8 +53,8 @@ type
   public
     constructor Create(AOwner: TComponent); override;
     function LoadGoodsAndPayFile(AFileName:string):TImportGoodsAndIndirectTaxesExchangeFile;
+    procedure SaveGoodsAndPayFile(AExchangeFile:TImportGoodsAndIndirectTaxesExchangeFile; AFileName:string);
   published
-
   end;
 
 implementation
@@ -66,6 +66,8 @@ constructor TEImportAndPayTaxDoc.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
   FPrfix:='ON_ZVLRPOK';
+  FormatVersion:='5.07';
+  FKND:='1110017';
 end;
 
 function TEImportAndPayTaxDoc.LoadGoodsAndPayFile(AFileName: string
@@ -93,6 +95,23 @@ begin
   FileDate:=EncodeDate(Y, M, D);
   S1:=Copy2SymbDel(S, '_');
   UniqueID:=S1;
+end;
+
+procedure TEImportAndPayTaxDoc.SaveGoodsAndPayFile(
+  AExchangeFile: TImportGoodsAndIndirectTaxesExchangeFile; AFileName: string);
+begin
+  if AExchangeFile.FileID  = '' then
+    AExchangeFile.FileID:= GetFileName;
+  if AExchangeFile.ApplicationVersion  = '' then
+    AExchangeFile.ApplicationVersion:=ApplicationName;
+  if AExchangeFile.Document.KND = '' then
+    AExchangeFile.Document.KND:=FKND;
+  if AExchangeFile.Document.DocumentDate = '' then
+    AExchangeFile.Document.DocumentDate:=FormatDateTime('dd.mm.yyyy', Date);
+  AExchangeFile.InformationType:='ЭСНДСТСНП';
+
+  AExchangeFile.FormatVersion:=FormatVersion;
+  AExchangeFile.SaveToXML(AFileName);
 end;
 
 end.

@@ -56,10 +56,12 @@ type
     procedure SetAppVersion(AValue: string);
     procedure SetFileDate(AValue: TDateTime);
     procedure SetFormatVersion(AValue: string);
+    procedure SetKND(AValue: string);
     procedure SetReciverID(AValue: string);
     procedure SetSenderID(AValue: string);
     procedure SetUniqueID(AValue: string);
   protected
+    FKND: string;
     FFileDate:TDateTime;
     FPrfix:string;
   public
@@ -72,6 +74,7 @@ type
     property ReciverID:string read FReciverID write SetReciverID;
     property FileDate:TDateTime read GetFileDate write SetFileDate;
     property UniqueID:string read FUniqueID write SetUniqueID;
+    property KND:string read FKND write SetKND;
   end;
 
 implementation
@@ -104,6 +107,12 @@ begin
   FFormatVersion:=AValue;
 end;
 
+procedure TEAbstractDoc.SetKND(AValue: string);
+begin
+  if FKND=AValue then Exit;
+  FKND:=AValue;
+end;
+
 procedure TEAbstractDoc.SetReciverID(AValue: string);
 begin
   if FReciverID=AValue then Exit;
@@ -123,8 +132,18 @@ begin
 end;
 
 function TEAbstractDoc.GetFileName: string;
-begin     //R_Т          //A                //О
-  Result:=FPrfix + '_' + FReciverID + '_' + FSenderID ;
+var
+  G: TGUID;
+  S: String;
+begin
+  if UniqueID = '' then
+  begin
+    CreateGUID(G);
+    S:=GUIDToString(G);
+    UniqueID:=Copy(S, 2, Length(S) - 2);
+  end;
+          //R_Т          //A                //О
+  Result:=FPrfix + '_' + FReciverID + '_' + FSenderID + '_' + UniqueID;
 end;
 
 constructor TEAbstractDoc.Create(AOwner: TComponent);

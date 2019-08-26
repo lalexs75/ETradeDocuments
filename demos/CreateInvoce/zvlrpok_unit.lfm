@@ -1464,4 +1464,8 @@ object ZvlrpokFrame: TZvlrpokFrame
     Left = 336
     Top = 272
   end
+  object EImportAndPayTaxDoc1: TEImportAndPayTaxDoc
+    Left = 736
+    Top = 8
+  end
 end
