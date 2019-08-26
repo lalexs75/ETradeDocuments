@@ -32,58 +32,37 @@
   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 }
 
-unit ETradeDoc;
+unit eDocsRegisterUnit;
 
 {$mode objfpc}{$H+}
 
 interface
 
 uses
-  Classes, SysUtils, EAbstractDoc, InvoceExchangeFile, ClientExchangeFile;
+  Classes, SysUtils, LResources, LazarusPackageIntf;
 
-type
+const
+  eDocsPageName = 'TradeEquipment';
 
-  { TETradeDoc }
-
-  TETradeDoc = class(TEAbstractDoc)
-  private
-
-  protected
-
-  public
-    constructor Create(AOwner: TComponent); override;
-    function LoadInvoce(AFileName:string):TExchangeFile;
-    procedure SaveInvoce(AData:TExchangeFile; AFileName:string);
-    function LoadClientExchangeFile(AFileName:string):TClientExchangeFile;
-  published
-  end;
-
+procedure Register;
 implementation
+uses ETradeDoc, EImportAndPayTaxDoc;
 
-{ TETradeDoc }
-
-constructor TETradeDoc.Create(AOwner: TComponent);
+procedure RegisterEImportAndPayTaxDoc;
 begin
-  inherited Create(AOwner);
-  FPrfix:='ON_NSCHFDOPPR';
+  RegisterComponents('TradeEquipment',[TEImportAndPayTaxDoc]);
 end;
 
-function TETradeDoc.LoadInvoce(AFileName: string): TExchangeFile;
+procedure RegisterETradeDoc;
 begin
-  Result:=TExchangeFile.Create;
-  Result.LoadFromXML(AFileName);
+  RegisterComponents('TradeEquipment',[TETradeDoc]);
 end;
 
-procedure TETradeDoc.SaveInvoce(AData: TExchangeFile; AFileName: string);
+procedure Register;
 begin
-  AData.SaveToXML(AFileName);
-end;
-
-function TETradeDoc.LoadClientExchangeFile(AFileName: string
-  ): TClientExchangeFile;
-begin
-  Result:=TClientExchangeFile.Create;
-  Result.LoadFromXML(AFileName);
+  RegisterUnit('ETradeDoc', @RegisterETradeDoc);
+  RegisterUnit('EImportAndPayTaxDoc', @RegisterEImportAndPayTaxDoc);
 end;
 
 end.
+

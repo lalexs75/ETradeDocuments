@@ -32,58 +32,67 @@
   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 }
 
-unit ETradeDoc;
+unit EImportAndPayTaxDoc;
 
 {$mode objfpc}{$H+}
 
 interface
 
 uses
-  Classes, SysUtils, EAbstractDoc, InvoceExchangeFile, ClientExchangeFile;
+  Classes, SysUtils, EAbstractDoc, ImportGoodsAndIndirectTaxesExchangeFile;
 
 type
 
-  { TETradeDoc }
+  { TEImportAndPayTaxDoc }
 
-  TETradeDoc = class(TEAbstractDoc)
+  TEImportAndPayTaxDoc = class(TEAbstractDoc)
   private
 
   protected
 
   public
     constructor Create(AOwner: TComponent); override;
-    function LoadInvoce(AFileName:string):TExchangeFile;
-    procedure SaveInvoce(AData:TExchangeFile; AFileName:string);
-    function LoadClientExchangeFile(AFileName:string):TClientExchangeFile;
+    function LoadGoodsAndPayFile(AFileName:string):TImportGoodsAndIndirectTaxesExchangeFile;
   published
+
   end;
 
 implementation
+uses StrUtils;
 
-{ TETradeDoc }
+{ TEImportAndPayTaxDoc }
 
-constructor TETradeDoc.Create(AOwner: TComponent);
+constructor TEImportAndPayTaxDoc.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  FPrfix:='ON_NSCHFDOPPR';
+  FPrfix:='ON_ZVLRPOK';
 end;
 
-function TETradeDoc.LoadInvoce(AFileName: string): TExchangeFile;
+function TEImportAndPayTaxDoc.LoadGoodsAndPayFile(AFileName: string
+  ): TImportGoodsAndIndirectTaxesExchangeFile;
+var
+  S, S1, S2: String;
+  Y, M, D: LongInt;
 begin
-  Result:=TExchangeFile.Create;
+  Result:=TImportGoodsAndIndirectTaxesExchangeFile.Create;
   Result.LoadFromXML(AFileName);
-end;
+  S:=Result.FileID;
+  S1:=Copy2SymbDel(S, '_');
+  S1:=Copy2SymbDel(S, '_');
 
-procedure TETradeDoc.SaveInvoce(AData: TExchangeFile; AFileName: string);
-begin
-  AData.SaveToXML(AFileName);
-end;
+  S1:=Copy2SymbDel(S, '_');
+  S2:=Copy2SymbDel(S, '_');
+  ReciverID:=S1 + '_' + S2;
+  S1:=Copy2SymbDel(S, '_');
+  SenderID:=S1;
+  S1:=Copy2SymbDel(S, '_');
 
-function TETradeDoc.LoadClientExchangeFile(AFileName: string
-  ): TClientExchangeFile;
-begin
-  Result:=TClientExchangeFile.Create;
-  Result.LoadFromXML(AFileName);
+  Y:=StrToInt(Copy(S1, 1, 4));
+  M:=StrToInt(Copy(S1, 5, 2));
+  D:=StrToInt(Copy(S1, 7, 2));
+  FileDate:=EncodeDate(Y, M, D);
+  S1:=Copy2SymbDel(S, '_');
+  UniqueID:=S1;
 end;
 
 end.

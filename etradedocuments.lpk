@@ -14,10 +14,9 @@
     <Description Value="Обработка электронных форматов документов РФ"/>
     <License Value="LGPL"/>
     <Version Minor="2"/>
-    <Files Count="18">
+    <Files Count="21">
       <Item1>
         <Filename Value="etradedoc.pas"/>
-        <HasRegisterProc Value="True"/>
         <UnitName Value="ETradeDoc"/>
       </Item1>
       <Item2>
@@ -88,19 +87,35 @@
         <Filename Value="xml_doc_resource.pas"/>
         <UnitName Value="xml_doc_resource"/>
       </Item18>
+      <Item19>
+        <Filename Value="eimportandpaytaxdoc.pas"/>
+        <UnitName Value="EImportAndPayTaxDoc"/>
+      </Item19>
+      <Item20>
+        <Filename Value="eabstractdoc.pas"/>
+        <UnitName Value="EAbstractDoc"/>
+      </Item20>
+      <Item21>
+        <Filename Value="edocsregisterunit.pas"/>
+        <HasRegisterProc Value="True"/>
+        <UnitName Value="eDocsRegisterUnit"/>
+      </Item21>
     </Files>
     <LazDoc Paths="/usr/local/share/lazarus/components/ETradeDocuments/docs"/>
     <i18n>
       <EnableI18N Value="True"/>
       <OutDir Value="languages"/>
     </i18n>
-    <RequiredPkgs Count="2">
+    <RequiredPkgs Count="3">
       <Item1>
-        <PackageName Value="LazUtils"/>
+        <PackageName Value="IDEIntf"/>
       </Item1>
       <Item2>
-        <PackageName Value="FCL"/>
+        <PackageName Value="LazUtils"/>
       </Item2>
+      <Item3>
+        <PackageName Value="FCL"/>
+      </Item3>
     </RequiredPkgs>
     <UsageOptions>
       <UnitPath Value="$(PkgOutDir)"/>

@@ -12,13 +12,14 @@ uses
   InvoiceItem, OrganizationInfo, Signer, TransferInfo, ClientExchangeFile, 
   xml_doc, ExchangeDocument, ExchangeInformation, TreasuryInformation, 
   ExchangeSigner, ImportGoodsAndIndirectTaxesExchangeFile, 
-  ImportGoodsAndIndirectTaxesDocument, xml_doc_resource, LazarusPackageIntf;
+  ImportGoodsAndIndirectTaxesDocument, xml_doc_resource, EImportAndPayTaxDoc, 
+  EAbstractDoc, eDocsRegisterUnit, LazarusPackageIntf;
 
 implementation
 
 procedure Register;
 begin
-  RegisterUnit('ETradeDoc', @ETradeDoc.Register);
+  RegisterUnit('eDocsRegisterUnit', @eDocsRegisterUnit.Register);
 end;
 
 initialization
