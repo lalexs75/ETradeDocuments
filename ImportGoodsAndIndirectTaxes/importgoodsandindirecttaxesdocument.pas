@@ -122,9 +122,9 @@ type
   public
     destructor Destroy; override;
   published
-    property DocumentName:string read FDocumentName write SetDocumentName; //Наименование документа (доверенности, приказа), подтверждающего полномочия представителя
-    property DocumentNumber:string read FDocumentNumber write SetDocumentNumber; //Номер документа
-    property DocumentDate:string read FDocumentDate write SetDocumentDate; //Дата документа
+    property DocumentName:string read FDocumentName write SetDocumentName; //%Наименование документа (доверенности, приказа), подтверждающего полномочия представителя
+    property DocumentNumber:string read FDocumentNumber write SetDocumentNumber; //%Номер документа
+    property DocumentDate:string read FDocumentDate write SetDocumentDate; //%Дата документа
   end;
 
   { TSpecificationsInformation }
@@ -143,9 +143,9 @@ type
   public
     destructor Destroy; override;
   published
-    property OrderNumber:string read FOrderNumber write SetOrderNumber;//Номер по порядку
-    property SpecificationNumber:string read FSpecificationNumber write SetSpecificationNumber;//Номер спецификации
-    property SpecificationDate:string read FSpecificationDate write SetSpecificationDate;//Дата спецификации
+    property OrderNumber:string read FOrderNumber write SetOrderNumber;//%Номер по порядку
+    property SpecificationNumber:string read FSpecificationNumber write SetSpecificationNumber;//%Номер спецификации
+    property SpecificationDate:string read FSpecificationDate write SetSpecificationDate;//%Дата спецификации
   end;
 
   { TSpecificationsInformations }
@@ -188,9 +188,9 @@ type
   public
     destructor Destroy; override;
   published
-    property ContractNumber:string read FContractNumber write SetContractNumber;//Номер контракта
-    property ContractDate:string read FContractDate write SetContractDate;//Дата контракта
-    property SpecificationsInformation:TSpecificationsInformations read FSpecificationsInformation; //Сведения спецификаций
+    property ContractNumber:string read FContractNumber write SetContractNumber;//%Номер контракта
+    property ContractDate:string read FContractDate write SetContractDate;//%Дата контракта
+    property SpecificationsInformation:TSpecificationsInformations read FSpecificationsInformation; //%Сведения спецификаций
   end;
 
   { TPreviouslyStatement }
@@ -211,10 +211,10 @@ type
   public
     destructor Destroy; override;
   published
-    property TaxMarkNumber:string read FTaxMarkNumber write SetTaxMarkNumber; //Номер отметки о регистрации Заявления в налоговом органе
-    property TaxMarkDate:string read FTaxMarkDate write SetTaxMarkDate; //Дата отметки о регистрации Заявления в налоговом органе
-    property MonthIncPrice:string read FMonthIncPrice write SetMonthIncPrice; //Месяц, в котором участниками договора (контракта) увеличена цена
-    property MonthIncYear:string read FMonthIncYear write SetMonthIncYear; //Год, в котором участниками договора (контракта) увеличена цена
+    property TaxMarkNumber:string read FTaxMarkNumber write SetTaxMarkNumber; //%Номер отметки о регистрации Заявления в налоговом органе
+    property TaxMarkDate:string read FTaxMarkDate write SetTaxMarkDate; //%Дата отметки о регистрации Заявления в налоговом органе
+    property MonthIncPrice:string read FMonthIncPrice write SetMonthIncPrice; //%Месяц, в котором участниками договора (контракта) увеличена цена
+    property MonthIncYear:string read FMonthIncYear write SetMonthIncYear; //%Год, в котором участниками договора (контракта) увеличена цена
   end;
 
   { TContractAdditional }
@@ -255,19 +255,19 @@ type
     destructor Destroy; override;
   published
     property LineNumber:string read FLineNumber write SetLineNumber; //%Номер по порядку
-    property SellerType:string read FSellerType write SetSellerType; //Тип продавца Приложение
-    property SellerBaikonurFlag:string read FSellerBaikonurFlag write SetSellerBaikonurFlag; //Признак нахождения российского продавца в г.Байконур
-    property SellerIdentificationCode:string read FSellerIdentificationCode write SetSellerIdentificationCode; //Идентификационный код (номер) продавца
-    property SellerName:string read FSellerName write SetSellerName; //Полное наименование (ФИО) продавца
-    property SellerCountryCode:string read FSellerCountryCode write SetSellerCountryCode; //Код страны продавца
-    property SellerAdress:string read FSellerAdress write SetSellerAdress; //Адрес местонахождения (жительства) продавца
-    property BuyerType:string read FBuyerType write SetBuyerType; //Тип покупателя Приложение
-    property BuyerBaikonurFlag:string read FBuyerBaikonurFlag write SetBuyerBaikonurFlag; //Признак нахождения российского покупателя в г.Байконур
-    property BuyerIdentificationCode:string read FBuyerIdentificationCode write SetBuyerIdentificationCode; //Идентификационный код (номер) покупателя
-    property BuyerName:string read FBuyerName write SetBuyerName; //Полное наименование (ФИО) покупателя
-    property BuyerCountryCode:string read FBuyerCountryCode write SetBuyerCountryCode; //Код страны покупателя
-    property BuyerAdress:string read FBuyerAdress write SetBuyerAdress; //Адрес местонахождения (жительства) покупателя
-    property ContractInfo:TContractInfo read FContractInfo; //Сведения о контрактах
+    property SellerType:string read FSellerType write SetSellerType; //%Тип продавца Приложение
+    property SellerBaikonurFlag:string read FSellerBaikonurFlag write SetSellerBaikonurFlag; //%Признак нахождения российского продавца в г.Байконур
+    property SellerIdentificationCode:string read FSellerIdentificationCode write SetSellerIdentificationCode; //%Идентификационный код (номер) продавца
+    property SellerName:string read FSellerName write SetSellerName; //%Полное наименование (ФИО) продавца
+    property SellerCountryCode:string read FSellerCountryCode write SetSellerCountryCode; //%Код страны продавца
+    property SellerAdress:string read FSellerAdress write SetSellerAdress; //%Адрес местонахождения (жительства) продавца
+    property BuyerType:string read FBuyerType write SetBuyerType; //%Тип покупателя Приложение
+    property BuyerBaikonurFlag:string read FBuyerBaikonurFlag write SetBuyerBaikonurFlag; //%Признак нахождения российского покупателя в г.Байконур
+    property BuyerIdentificationCode:string read FBuyerIdentificationCode write SetBuyerIdentificationCode; //%Идентификационный код (номер) покупателя
+    property BuyerName:string read FBuyerName write SetBuyerName; //%Полное наименование (ФИО) покупателя
+    property BuyerCountryCode:string read FBuyerCountryCode write SetBuyerCountryCode; //%Код страны покупателя
+    property BuyerAdress:string read FBuyerAdress write SetBuyerAdress; //%Адрес местонахождения (жительства) покупателя
+    property ContractInfo:TContractInfo read FContractInfo; //%Сведения о контрактах
   end;
 
   { TContractAdditionals }
@@ -316,19 +316,19 @@ type
   public
     destructor Destroy; override;
   published
-    property SellerType:string read FSellerType write SetSellerType; //Тип продавца Раздел 3
-    property SellerBaikonurFlag:string read FSellerBaikonurFlag write SetSellerBaikonurFlag; //Признак нахождения российского продавца в г.Байконур
-    property SellerIdentificationCode:string read FSellerIdentificationCode write SetSellerIdentificationCode; //Идентификационный код (номер) продавца Раздел 3
-    property SellerName:string read FSellerName write SetSellerName; //Полное наименование (ФИО) продавца Раздел 3 стр. 08
-    property SellerCountryCode:string read FSellerCountryCode write SetSellerCountryCode; //Код страны продавца Раздел 3 стр. 10
-    property SellerAdress:string read FSellerAdress write SetSellerAdress; //Адрес местонахождения (жительства) продавца Раздел 3 стр. 10
-    property BuyerType:string read FBuyerType write SetBuyerType; //Тип покупателяРаздел3
-    property BuyerBaikonurFlag:string read FBuyerBaikonurFlag write SetBuyerBaikonurFlag; //Признак нахождения российского покупателя в г.Байконур
-    property BuyerIdentificationCode:string read FBuyerIdentificationCode write SetBuyerIdentificationCode; //Идентификационный код (номер) покупателя Раздел3
-    property BuyerName:string read FBuyerName write SetBuyerName; //Полное наименование (ФИО) покупателя Раздел 3 стр. 09
-    property BuyerCountryCode:string read FBuyerCountryCode write SetBuyerCountryCode; //Код страны покупателя Раздел 3 стр. 11
-    property BuyerAdress:string read FBuyerAdress write SetBuyerAdress; //Адрес местонахождения (жительства) покупателя Раздел 3 стр. 11
-    property ContractInfo:TContractInfo read FContractInfo; //Сведения о контракте (договоре) Раздел 3 стр. 12
+    property SellerType:string read FSellerType write SetSellerType; //%Тип продавца Раздел 3
+    property SellerBaikonurFlag:string read FSellerBaikonurFlag write SetSellerBaikonurFlag; //%Признак нахождения российского продавца в г.Байконур
+    property SellerIdentificationCode:string read FSellerIdentificationCode write SetSellerIdentificationCode; //%Идентификационный код (номер) продавца Раздел 3
+    property SellerName:string read FSellerName write SetSellerName; //%Полное наименование (ФИО) продавца Раздел 3 стр. 08
+    property SellerCountryCode:string read FSellerCountryCode write SetSellerCountryCode; //%Код страны продавца Раздел 3 стр. 10
+    property SellerAdress:string read FSellerAdress write SetSellerAdress; //%Адрес местонахождения (жительства) продавца Раздел 3 стр. 10
+    property BuyerType:string read FBuyerType write SetBuyerType; //%Тип покупателяРаздел3
+    property BuyerBaikonurFlag:string read FBuyerBaikonurFlag write SetBuyerBaikonurFlag; //%Признак нахождения российского покупателя в г.Байконур
+    property BuyerIdentificationCode:string read FBuyerIdentificationCode write SetBuyerIdentificationCode; //%Идентификационный код (номер) покупателя Раздел3
+    property BuyerName:string read FBuyerName write SetBuyerName; //%Полное наименование (ФИО) покупателя Раздел 3 стр. 09
+    property BuyerCountryCode:string read FBuyerCountryCode write SetBuyerCountryCode; //%Код страны покупателя Раздел 3 стр. 11
+    property BuyerAdress:string read FBuyerAdress write SetBuyerAdress; //%Адрес местонахождения (жительства) покупателя Раздел 3 стр. 11
+    property ContractInfo:TContractInfo read FContractInfo; //%Сведения о контракте (договоре) Раздел 3 стр. 12
   end;
   { TTransferDoc }
 
@@ -344,8 +344,8 @@ type
   public
     destructor Destroy; override;
   published
-    property TransferDocNumber:string read FTransferDocNumber write SetTransferDocNumber; //Серия, номер транспортного (товаросопроводительного) документа Графа 9
-    property TransferDocDate:string read FTransferDocDate write SetTransferDocDate; //Дата транспортного (товаросопроводительного) документа Графа 10
+    property TransferDocNumber:string read FTransferDocNumber write SetTransferDocNumber; //%Серия, номер транспортного (товаросопроводительного) документа Графа 9
+    property TransferDocDate:string read FTransferDocDate write SetTransferDocDate; //%Дата транспортного (товаросопроводительного) документа Графа 10
   end;
 
   { TTransferDocs }
@@ -428,29 +428,29 @@ type
   public
     destructor Destroy; override;
   published
-    property LineNo:string read FLineNo write SetLineNo;//Номер по порядку товара в документе Графа 1
-    property ProductName:string read FProductName write SetProductName;//Наименование товара Графа 2
-    property TNVED:string read FTNVED write SetTNVED;//Код товара ТНВЭД Графа 3
-    property UnitCode:string read FUnitCode write SetUnitCode; //Единица измерения товара Графа 4
-    property Quantity:string read FQuantity write SetQuantity; //Количество товара Графа 5
-    property Price:string read FPrice write SetPrice; //Стоимость товара Графа 6
-    property CurrencyCode:string read FCurrencyCode write SetCurrencyCode; //Код валюты Графа 7
-    property CurrencyRate:string read FCurrencyRate write SetCurrencyRate; //Курс валюты Графа 8
-    property CurrencyBase:string read FCurrencyBase write SetCurrencyBase; //База валюты
-    property InvoiceNumber:string read FInvoiceNumber write SetInvoiceNumber; //Номер счета-фактуры Графа 11
-    property InvoiceDate:string read FInvoiceDate write SetInvoiceDate; //Дата счета-фактуры Графа 12
-    property RegistrationDate:string read FRegistrationDate write SetRegistrationDate; //Дата принятия на учет товара Графа 13
-    property ExciseBase:string read FExciseBase write SetExciseBase; //Налоговая база (акциз) Графа 14
-    property ExciseUnitCode:string read FExciseUnitCode write SetExciseUnitCode; //Единица измерения дополнительной величины, используемой для исчисления налоговой базы (акциз)
-    property TaxBase:string read FTaxBase write SetTaxBase; //Налоговая база (НДС) Графа 15
-    property TaxBase1:string read FTaxBase1 write SetTaxBase1; //Ставка налога акцизов твердых (специфических) Графа 16
-    property TaxBase2:string read FTaxBase2 write SetTaxBase2; //Ставка налога акцизов адвалорных Графа 17
-    property VatRate:string read FVatRate write SetVatRate; //Ставка налога (НДС) Графа 18
-    property Excise:string read FExcise write SetExcise; //Сумма налога (акциз) Графа 19
-    property Vat:string read FVat write SetVat; //Сумма налога (НДС) Графа 20
-    property ExciseFlag:string read FExciseFlag write SetExciseFlag; //Признак освобождения от уплаты налога (акцизы)
-    property VatFlag:string read FVatFlag write SetVatFlag; //Признак освобождения от уплаты налога (НДС)
-    property ProductDetailDocs:TTransferDocs read FProductDetailDocs; //Сведения о товаросопроводительных документах
+    property LineNo:string read FLineNo write SetLineNo;//%Номер по порядку товара в документе Графа 1
+    property ProductName:string read FProductName write SetProductName;//%Наименование товара Графа 2
+    property TNVED:string read FTNVED write SetTNVED;//%Код товара ТНВЭД Графа 3
+    property UnitCode:string read FUnitCode write SetUnitCode; //%Единица измерения товара Графа 4
+    property Quantity:string read FQuantity write SetQuantity; //%Количество товара Графа 5
+    property Price:string read FPrice write SetPrice; //%Стоимость товара Графа 6
+    property CurrencyCode:string read FCurrencyCode write SetCurrencyCode; //%Код валюты Графа 7
+    property CurrencyRate:string read FCurrencyRate write SetCurrencyRate; //%Курс валюты Графа 8
+    property CurrencyBase:string read FCurrencyBase write SetCurrencyBase; //%База валюты
+    property InvoiceNumber:string read FInvoiceNumber write SetInvoiceNumber; //%Номер счета-фактуры Графа 11
+    property InvoiceDate:string read FInvoiceDate write SetInvoiceDate; //%Дата счета-фактуры Графа 12
+    property RegistrationDate:string read FRegistrationDate write SetRegistrationDate; //%Дата принятия на учет товара Графа 13
+    property ExciseBase:string read FExciseBase write SetExciseBase; //%Налоговая база (акциз) Графа 14
+    property ExciseUnitCode:string read FExciseUnitCode write SetExciseUnitCode; //%Единица измерения дополнительной величины, используемой для исчисления налоговой базы (акциз)
+    property TaxBase:string read FTaxBase write SetTaxBase; //%Налоговая база (НДС) Графа 15
+    property TaxBase1:string read FTaxBase1 write SetTaxBase1; //%Ставка налога акцизов твердых (специфических) Графа 16
+    property TaxBase2:string read FTaxBase2 write SetTaxBase2; //%Ставка налога акцизов адвалорных Графа 17
+    property VatRate:string read FVatRate write SetVatRate; //%Ставка налога (НДС) Графа 18
+    property Excise:string read FExcise write SetExcise; //%Сумма налога (акциз) Графа 19
+    property Vat:string read FVat write SetVat; //%Сумма налога (НДС) Графа 20
+    property ExciseFlag:string read FExciseFlag write SetExciseFlag; //%Признак освобождения от уплаты налога (акцизы)
+    property VatFlag:string read FVatFlag write SetVatFlag; //%Признак освобождения от уплаты налога (НДС)
+    property ProductDetailDocs:TTransferDocs read FProductDetailDocs; //%Сведения о товаросопроводительных документах
   end;
 
   { TProductDetails }
@@ -499,12 +499,12 @@ type
   public
     destructor Destroy; override;
   published
-    property BaikonurFlag:string read FBaikonurFlag write SetBaikonurFlag; //Признак нахождения российского посредника в г.Байконур
-    property IdentificationCode:string read FIdentificationCode write SetIdentificationCode; //Идентификационный код (номер) посредника Раздел 1 стр.06
-    property Name:string read FName write SetName; //Наименование организации (ФИО индивидуального предпринимателя) посредника Раздел 1 стр.06
-    property CountryCode:string read FCountryCode write SetCountryCode; //Код страны посредника Раздел 1 стр.06
-    property Adress:string read FAdress write SetAdress; //Адрес местонахождения (жительства) посредника Раздел 1 стр.06
-    property ContractInfo:TContractInfo read FContractInfo; //Сведения о контракте (договоре) Раздел 1 стр.07
+    property BaikonurFlag:string read FBaikonurFlag write SetBaikonurFlag; //%Признак нахождения российского посредника в г.Байконур
+    property IdentificationCode:string read FIdentificationCode write SetIdentificationCode; //%Идентификационный код (номер) посредника Раздел 1 стр.06
+    property Name:string read FName write SetName; //%Наименование организации (ФИО индивидуального предпринимателя) посредника Раздел 1 стр.06
+    property CountryCode:string read FCountryCode write SetCountryCode; //%Код страны посредника Раздел 1 стр.06
+    property Adress:string read FAdress write SetAdress; //%Адрес местонахождения (жительства) посредника Раздел 1 стр.06
+    property ContractInfo:TContractInfo read FContractInfo; //%Сведения о контракте (договоре) Раздел 1 стр.07
   end;
 
   { TSellerContractInfo }
@@ -540,18 +540,18 @@ type
   public
     destructor Destroy; override;
   published
-    property SellerBaikonurFlag:string read FSellerBaikonurFlag write SetSellerBaikonurFlag; //Признак нахождения российского продавца в г.Байконур
-    property SellerIdentificationCode:string read FSellerIdentificationCode write SetSellerIdentificationCode; //Идентификационный код (номер) продавца Раздел 1 стр. 01
-    property SellerOrgType:string read FSellerOrgType write SetSellerOrgType;//Признак продавца – физического лица (не индивидуального предпринимателя)
-    property SellerName:string read FSellerName write SetSellerName;//Полное наименование (ФИО) продавца Раздел 1 стр. 01
-    property SellerCountryCode:string read FSellerCountryCode write SetSellerCountryCode;//Код страны продавца Раздел 1 стр. 03
-    property SellerAdress:string read FSellerAdress write SetSellerAdress;//Адрес местонахождения (жительства) продавца Раздел 1 стр. 03
-    property BuyerBaikonurFlag:string read FBuyerBaikonurFlag write SetBuyerBaikonurFlag; //Признак нахождения российского покупателя в г.Байконур
-    property BuyerINN:string read FBuyerINN write SetBuyerINN; //ИНН покупателя Раздел 1 стр. 02
-    property BuyerName:string read FBuyerName write SetBuyerName; //Полное наименование (ФИО) покупателя Раздел 1 стр. 02
-    property BuyerCountryCode:string read FBuyerCountryCode write SetBuyerCountryCode;//Код страны покупателя Раздел 1 стр. 04
-    property BuyerAdress:string read FBuyerAdress write SetBuyerAdress;//Адрес местонахождения (жительства) покупателя Раздел 1 стр. 04
-    property ContractInfo:TContractInfo read FContractInfo;//Сведения о контракте (договоре) Раздел 1 стр. 05
+    property SellerBaikonurFlag:string read FSellerBaikonurFlag write SetSellerBaikonurFlag; //%Признак нахождения российского продавца в г.Байконур
+    property SellerIdentificationCode:string read FSellerIdentificationCode write SetSellerIdentificationCode; //%Идентификационный код (номер) продавца Раздел 1 стр. 01
+    property SellerOrgType:string read FSellerOrgType write SetSellerOrgType;//%Признак продавца – физического лица (не индивидуального предпринимателя)
+    property SellerName:string read FSellerName write SetSellerName;//%Полное наименование (ФИО) продавца Раздел 1 стр. 01
+    property SellerCountryCode:string read FSellerCountryCode write SetSellerCountryCode;//%Код страны продавца Раздел 1 стр. 03
+    property SellerAdress:string read FSellerAdress write SetSellerAdress;//%Адрес местонахождения (жительства) продавца Раздел 1 стр. 03
+    property BuyerBaikonurFlag:string read FBuyerBaikonurFlag write SetBuyerBaikonurFlag; //%Признак нахождения российского покупателя в г.Байконур
+    property BuyerINN:string read FBuyerINN write SetBuyerINN; //%ИНН покупателя Раздел 1 стр. 02
+    property BuyerName:string read FBuyerName write SetBuyerName; //%Полное наименование (ФИО) покупателя Раздел 1 стр. 02
+    property BuyerCountryCode:string read FBuyerCountryCode write SetBuyerCountryCode;//%Код страны покупателя Раздел 1 стр. 04
+    property BuyerAdress:string read FBuyerAdress write SetBuyerAdress;//%Адрес местонахождения (жительства) покупателя Раздел 1 стр. 04
+    property ContractInfo:TContractInfo read FContractInfo;//%Сведения о контракте (договоре) Раздел 1 стр. 05
   end;
 
   { TDeclarationInfo }
@@ -591,22 +591,22 @@ type
   public
     destructor Destroy; override;
   published
-    property DocumentNumber:string read FDocumentNumber write SetDocumentNumber;//Номер заявления, указанный НП
-    property DocumentData:string read FDocumentData write SetDocumentData;//Дата заполнения заявления, указанная НП
-    property LeasingFlag:string read FLeasingFlag write SetLeasingFlag;//Признак договора лизинга
-    property ContractRawMaterialsFlag:string read FContractRawMaterialsFlag write SetContractRawMaterialsFlag;//Признак договора переработки давальческого сырья
-    property ExciseBase:string read FExciseBase write SetExciseBase; //База по акцизам Итого по графе 14 Раздел 1
-    property VatBase:string read FVatBase write SetVatBase; //База по НДС Итого по графе 15 Раздел 1
-    property Excise:string read FExcise write SetExcise; //Акциз в сумме Итого по графе 19 Раздел 1
-    property Vat:string read FVat write SetVat; //НДС в сумме Итого по графе 20 Раздел 1
-    property DocumentBaseFlag:string read FDocumentBaseFlag write SetDocumentBaseFlag;//Причина возникновения заявления
-    property DocumentTaxNumber:string read FDocumentTaxNumber write SetDocumentTaxNumber;//Номер отметки о регистрации в налоговом органе ранее представленного заявления
-    property DocumentTaxData:string read FDocumentTaxData write SetDocumentTaxData;//Дата отметки о регистрации в налоговом органе ранее представленного заявления
-    property SellerContractInfo:TSellerContractInfo read FSellerContractInfo;//Сведения о договоре (контракте) Раздел 1 стр.05
-    property CommissionContractInfo:TCommissionContractInfo read FCommissionContractInfo;//Сведения о контракте с комиссионером Раздел 1 стр. 06-07
-    property ProductDetails:TProductDetails read FProductDetails; //Сведения о товаре и уплаченных налогах
-    property ContractInfo3:TContractInfo3 read FContractInfo3; //Сведения о договоре (контракте) Раздел 3
-    property PreviouslyStatement:TPreviouslyStatement read FPreviouslyStatement; //Сведения о ранее представленном заявлении
+    property DocumentNumber:string read FDocumentNumber write SetDocumentNumber;//%Номер заявления, указанный НП
+    property DocumentData:string read FDocumentData write SetDocumentData;//%Дата заполнения заявления, указанная НП
+    property LeasingFlag:string read FLeasingFlag write SetLeasingFlag;//%Признак договора лизинга
+    property ContractRawMaterialsFlag:string read FContractRawMaterialsFlag write SetContractRawMaterialsFlag;//%Признак договора переработки давальческого сырья
+    property ExciseBase:string read FExciseBase write SetExciseBase; //%База по акцизам Итого по графе 14 Раздел 1
+    property VatBase:string read FVatBase write SetVatBase; //%База по НДС Итого по графе 15 Раздел 1
+    property Excise:string read FExcise write SetExcise; //%Акциз в сумме Итого по графе 19 Раздел 1
+    property Vat:string read FVat write SetVat; //%НДС в сумме Итого по графе 20 Раздел 1
+    property DocumentBaseFlag:string read FDocumentBaseFlag write SetDocumentBaseFlag;//%Причина возникновения заявления
+    property DocumentTaxNumber:string read FDocumentTaxNumber write SetDocumentTaxNumber;//%Номер отметки о регистрации в налоговом органе ранее представленного заявления
+    property DocumentTaxData:string read FDocumentTaxData write SetDocumentTaxData;//%Дата отметки о регистрации в налоговом органе ранее представленного заявления
+    property SellerContractInfo:TSellerContractInfo read FSellerContractInfo;//%Сведения о договоре (контракте) Раздел 1 стр.05
+    property CommissionContractInfo:TCommissionContractInfo read FCommissionContractInfo;//%Сведения о контракте с комиссионером Раздел 1 стр. 06-07
+    property ProductDetails:TProductDetails read FProductDetails; //%Сведения о товаре и уплаченных налогах
+    property ContractInfo3:TContractInfo3 read FContractInfo3; //%Сведения о договоре (контракте) Раздел 3
+    property PreviouslyStatement:TPreviouslyStatement read FPreviouslyStatement; //%Сведения о ранее представленном заявлении
   end;
 
   { TSignerInfo }
@@ -627,11 +627,11 @@ type
   public
     destructor Destroy; override;
   published
-    property SignerType:string read FSignerType write SetSignerType;  //Признак лица, подписавшего документ
-    property Position:string read FPosition write SetPosition; //Должность лица, подписавшего документ
-    property INN:string read FINN write SetINN; //ИНН физического лица
-    property Person:TPerson read FPerson;  //Фамилия, имя, отчество
-    property AuthorizedInformation:TAuthorizedInformation read FAuthorizedInformation; //Сведения об уполномоченном представителе
+    property SignerType:string read FSignerType write SetSignerType;  //%Признак лица, подписавшего документ
+    property Position:string read FPosition write SetPosition; //%Должность лица, подписавшего документ
+    property INN:string read FINN write SetINN; //%ИНН физического лица
+    property Person:TPerson read FPerson;  //%Фамилия, имя, отчество
+    property AuthorizedInformation:TAuthorizedInformation read FAuthorizedInformation; //%Сведения об уполномоченном представителе
   end;
 
   { TSenderInfo }
@@ -668,12 +668,12 @@ type
   public
     destructor Destroy; override;
   published
-    property KND:string read FKND write SetKND;  //Код формы по КНД
-    property DocumentDate:string read FDocumentDate write SetDocumentDate; //Дата формирования документа
-    property SenderInfo:TSenderInfo read FSenderInfo; //Сведения об отправителе документа
-    property SignerInfo:TSignerInfo read FSignerInfo; //Сведения о лице, подписавшем документ
-    property DeclarationInfo:TDeclarationInfo read FDeclarationInfo; //Сведения из заявления
-    property ContractAdditional:TContractAdditionals read FContractAdditional; //Сведения о договорах (контрактах) приложения к Заявлению
+    property KND:string read FKND write SetKND;  //%Код формы по КНД
+    property DocumentDate:string read FDocumentDate write SetDocumentDate; //%Дата формирования документа
+    property SenderInfo:TSenderInfo read FSenderInfo; //%Сведения об отправителе документа
+    property SignerInfo:TSignerInfo read FSignerInfo; //%Сведения о лице, подписавшем документ
+    property DeclarationInfo:TDeclarationInfo read FDeclarationInfo; //%Сведения из заявления
+    property ContractAdditional:TContractAdditionals read FContractAdditional; //%Сведения о договорах (контрактах) приложения к Заявлению
   end;
 
 implementation
