@@ -387,7 +387,7 @@ type
     FInvoiceDate: string;
     FInvoiceNumber: string;
     FLineNo: string;
-    FPrice: string;
+    FCost: string;
     FProductDetailDocs: TTransferDocs;
     FProductName: string;
     FQuantity: string;
@@ -410,7 +410,7 @@ type
     procedure SetInvoiceDate(AValue: string);
     procedure SetInvoiceNumber(AValue: string);
     procedure SetLineNo(AValue: string);
-    procedure SetPrice(AValue: string);
+    procedure SetCost(AValue: string);
     procedure SetProductName(AValue: string);
     procedure SetQuantity(AValue: string);
     procedure SetRegistrationDate(AValue: string);
@@ -433,7 +433,7 @@ type
     property TNVED:string read FTNVED write SetTNVED;//%Код товара ТНВЭД Графа 3
     property UnitCode:string read FUnitCode write SetUnitCode; //%Единица измерения товара Графа 4
     property Quantity:string read FQuantity write SetQuantity; //%Количество товара Графа 5
-    property Price:string read FPrice write SetPrice; //%Стоимость товара Графа 6
+    property Cost:string read FCost write SetCost; //%Стоимость товара Графа 6
     property CurrencyCode:string read FCurrencyCode write SetCurrencyCode; //%Код валюты Графа 7
     property CurrencyRate:string read FCurrencyRate write SetCurrencyRate; //%Курс валюты Графа 8
     property CurrencyBase:string read FCurrencyBase write SetCurrencyBase; //%База валюты
@@ -1111,11 +1111,11 @@ begin
   ModifiedProperty('LineNo');
 end;
 
-procedure TProductDetail.SetPrice(AValue: string);
+procedure TProductDetail.SetCost(AValue: string);
 begin
-  if FPrice=AValue then Exit;
-  FPrice:=AValue;
-  ModifiedProperty('Price');
+  if FCost=AValue then Exit;
+  FCost:=AValue;
+  ModifiedProperty('Cost');
 end;
 
 procedure TProductDetail.SetProductName(AValue: string);
@@ -1202,7 +1202,7 @@ begin
   RegisterProperty('TNVED', 'ТНВЭД', 'НК', 'Код товара ТНВЭД Графа 3', 10, 10);
   RegisterProperty('UnitCode', 'ЕдИзмТов', 'ОК', 'Единица измерения товара Графа 4', 3, 4);
   RegisterProperty('Quantity', 'КоличТов', 'О', 'Количество товара Графа 5', 1, 17);
-  RegisterProperty('Price', 'СтоимТов', 'О', 'Стоимость товара Графа 6', 1, 16);
+  RegisterProperty('Cost', 'СтоимТов', 'О', 'Стоимость товара Графа 6', 1, 16);
   RegisterProperty('CurrencyCode', 'ВалТов', 'ОК', 'Код валюты Графа 7', 3, 3);
   RegisterProperty('CurrencyRate', 'КурсВал', 'О', 'Курс валюты Графа 8', 1, 10);
   RegisterProperty('CurrencyBase', 'БазаВал', 'О', 'База валюты', 1, 5);

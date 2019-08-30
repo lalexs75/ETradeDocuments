@@ -292,6 +292,8 @@
       </element><element name="TImportGoodsAndIndirectTaxesDocument.ContractAdditional"><short>Сведения о договорах (контрактах) приложения к Заявлению</short><descr>Состав элемента представлен в табл. 4.11
 </descr>
       </element>
+    <element name="TProductDetail.Cost"><short>Стоимость товара</short>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>
