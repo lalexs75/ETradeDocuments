@@ -39,51 +39,172 @@ unit ETradeDoc;
 interface
 
 uses
-  Classes, SysUtils, EAbstractDoc, InvoceExchangeFile, ClientExchangeFile;
+  Classes, SysUtils, EAbstractDoc, InvoceExchangeFile,
+  InvoceExchangeFile_5_02, ClientExchangeFile, DOM;
 
 type
+  TInvoceVersion = (ivNONE,  iv5_01, iv5_02);
 
   { TETradeDoc }
 
   TETradeDoc = class(TEAbstractDoc)
   private
-
+    FInovoce5_01: TExchangeFile;
+    FInovoce5_02: TExchangeFile5_02;
+    FInvoceVersion: TInvoceVersion;
   protected
-
+    function GetInvoiceVersion(const AXmlDoc:TXMLDocument):TInvoceVersion;
   public
     constructor Create(AOwner: TComponent); override;
-    function LoadInvoce(AFileName:string):TExchangeFile;
+    destructor Destroy; override;
+    procedure LoadInvoce(AFileName:string);
     procedure SaveInvoce(AData:TExchangeFile; AFileName:string);
     function LoadClientExchangeFile(AFileName:string):TClientExchangeFile;
+    procedure Clear;
+
+    property Inovoce5_01:TExchangeFile read FInovoce5_01;
+    property Inovoce5_02:TExchangeFile5_02 read FInovoce5_02;
   published
+    property InvoceVersion:TInvoceVersion read FInvoceVersion default iv5_01;
   end;
 
 implementation
+uses XMLRead;
 
 { TETradeDoc }
+
+procedure TETradeDoc.Clear;
+begin
+  if Assigned(FInovoce5_01) then
+    FreeAndNil(FInovoce5_01);
+  if Assigned(FInovoce5_02) then
+    FreeAndNil(FInovoce5_02);
+  FInvoceVersion:=ivNONE;
+end;
+
+function TETradeDoc.GetInvoiceVersion(const AXmlDoc: TXMLDocument
+  ): TInvoceVersion;
+function NodeValue(ANode:TDOMNode):String;
+begin
+  Result:=ANode.NodeValue;
+end;
+
+var
+  P: Int64;
+  S: String;
+  RFile, RDoc, EVerF, EKnd, EFunc: TDOMNode;
+  S1, S2, S3: String;
+begin
+  Result:=ivNONE;
+  RFile:=nil;
+  RDoc:=nil;
+  EVerF:=nil;
+  EKnd:=nil;
+  EFunc:=nil;
+
+  try
+    if Assigned(AXmlDoc) then
+    begin
+      S:='Файл';
+      RFile:=AXmlDoc.FindNode(S);
+      S:='Документ';
+      if Assigned(RFile) then
+        RDoc:=RFile.FindNode(S);
+
+      if Assigned(RFile) and Assigned(RDoc) then
+      begin
+        S:='ВерсФорм'; //="5.02"
+        EVerF:=RFile.Attributes.GetNamedItem(S);
+        //КНД="1115125" Функция="СЧФДОП"
+        S:='КНД';
+        EKnd:=RDoc.Attributes.GetNamedItem(S);
+        S:='Функция';
+        EFunc:=RDoc.Attributes.GetNamedItem(S);
+        if Assigned(EVerF) and Assigned(EKnd) and Assigned(EFunc) then
+        begin
+          S1:=EVerF.NodeValue;
+          S2:=EKnd.NodeValue;
+          //S3:=EFunc.NodeValue;
+          S3:=NodeValue(EFunc);
+
+          if S3 = 'СЧФ' then
+          begin
+            if S1 = '5.02' then
+              Result:=iv5_02
+            else
+            if S1 = '5.01' then
+              Result:=iv5_01
+          end
+          else
+          if S3 = 'СЧФДОП' then
+          begin
+            if S1 = '5.02' then
+              Result:=iv5_02
+            else
+            if S1 = '5.01' then
+              Result:=iv5_01
+          end;
+        end;
+      end;
+          //invoice_05_01_01
+          //invoice_05_01_03
+          //invoice_05_02_01
+          //utd_05_01_01
+          //utd_05_01_02
+          //utd_05_01_04
+          //utd_05_01_05
+          //utd_05_02_01
+          //utd820_05_01_01
+    end;
+  finally
+  end;
+end;
 
 constructor TETradeDoc.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
+  FInvoceVersion:=iv5_01;
   FPrfix:='ON_NSCHFDOPPR';
 end;
 
-function TETradeDoc.LoadInvoce(AFileName: string): TExchangeFile;
+destructor TETradeDoc.Destroy;
 begin
-  Result:=TExchangeFile.Create;
-  Result.LoadFromXML(AFileName);
+  Clear;
+  inherited Destroy;
+end;
+
+procedure TETradeDoc.LoadInvoce(AFileName: string);
+var
+  FXML: TXMLDocument;
+  R: TInvoceVersion;
+begin
+  Clear;
+  ReadXMLFile(FXML, AFileName);
+  R:=GetInvoiceVersion(FXML);
+  case R of
+    iv5_01:begin
+      FInovoce5_01:=TExchangeFile.Create;
+      FInovoce5_01.LoadFromXML(FXML);
+    end;
+    iv5_02:begin
+      FInovoce5_02:=TExchangeFile5_02.Create;
+      FInovoce5_02.LoadFromXML(FXML);
+    end;
+  end;
+  FXML.Free;
 end;
 
 procedure TETradeDoc.SaveInvoce(AData: TExchangeFile; AFileName: string);
 begin
-  AData.SaveToXML(AFileName);
+  AData.SaveToFile(AFileName);
 end;
 
 function TETradeDoc.LoadClientExchangeFile(AFileName: string
   ): TClientExchangeFile;
 begin
   Result:=TClientExchangeFile.Create;
-  Result.LoadFromXML(AFileName);
+  Result.LoadFromFile(AFileName);
 end;
 
 end.
+

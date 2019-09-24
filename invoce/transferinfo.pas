@@ -743,7 +743,7 @@ end;
 procedure TTransferInfo.InternalRegisterPropertys;
 begin
   RegisterProperty('ItemsTransferInfo', 'СвПер', 'О', 'Сведения о передаче (сдаче) товаров (результатов работ), имущественных прав (о предъявлении оказанных услуг)', -1, -1);
-  RegisterProperty('AdditionalInfo3', 'ИнфПолФХЖЗ', 'Н', 'Информационное поле факта хозяйственной жизни 3', -1, -1);
+  RegisterProperty('AdditionalInfo3', 'ИнфПолФХЖ3', 'Н', 'Информационное поле факта хозяйственной жизни 3', -1, -1, 'ИнфПолФХЖЗ');
 end;
 
 procedure TTransferInfo.InternalInitChilds;

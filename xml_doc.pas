@@ -58,6 +58,7 @@ type
     FRequared: boolean;
     FSimpleObject: Boolean;
     FXMLName: string;
+    FAliases:string;
   public
     property PropertyName:string read FPropertyName;
     property Caption:string read FCaption;
@@ -83,6 +84,7 @@ type
 
     function PropertyByName(APropertyName:string):TPropertyDef;
     function PropertyByXMLName(AXMLName:string):TPropertyDef;
+    function PropertyByAlias(AAliasName:string):TPropertyDef;
     function Add(const APropertyName, AXMLName, ARequaredAttribs, ACaption:string; AMinSize, AMaxSize:integer):TPropertyDef;
     procedure Clear;
     property Count:integer read GetCount;
@@ -105,15 +107,17 @@ type
     procedure WriteXMLWin1251(Element: TDOMNode; const AFileName: String); overload;
     function IsEmpty:Boolean;
   protected
-    procedure RegisterProperty(APropertyName, AXMLName, ARequaredAttribs, ACaption:string; AMinSize, AMaxSize:integer);
+    procedure RegisterProperty(APropertyName, AXMLName, ARequaredAttribs, ACaption:string; AMinSize, AMaxSize:integer; Aliases:string = '');
     procedure ModifiedProperty(APropertyName:string);
     procedure InternalRegisterPropertys; virtual; abstract;
     procedure InternalInitChilds; virtual;
   public
     constructor Create;
     destructor Destroy; override;
-    procedure SaveToXML(AFileName:string);
-    procedure LoadFromXML(AFileName:string);
+    procedure SaveToFile(AFileName:string);
+    procedure LoadFromFile(AFileName:string);
+    procedure SaveToXML(const XML: TXMLDocument);
+    procedure LoadFromXML(const XML: TXMLDocument);
   end;
 
   TXmlSerializationObjectClass = class of TXmlSerializationObject;
@@ -305,6 +309,20 @@ begin
   end;
 end;
 
+function TPropertyList.PropertyByAlias(AAliasName: string): TPropertyDef;
+var
+  P: TPropertyDef;
+  i: Integer;
+begin
+  Result:=nil;
+  for i:=0 to FList.Count-1 do
+  begin
+    P:=GetItems(I);
+    if P.FAliases = AAliasName then
+      Exit(P);
+  end;
+end;
+
 function TPropertyList.Add(const APropertyName, AXMLName, ARequaredAttribs,
   ACaption: string; AMinSize, AMaxSize: integer): TPropertyDef;
 begin
@@ -388,9 +406,12 @@ begin
     A:=AElement.Attributes.Item[I];
     S1:=A.NodeName;
     S2:=A.NodeValue;
-    if (S1<>'xmlns:xsi') and (S1<>'xsi:noNamespaceSchemaLocation') then
+    //if (S1<>'xmlns:xsi') and (S1<>'xsi:noNamespaceSchemaLocation') then
+    if (Copy(S1, 1, 6) <>'xmlns:') then
     begin
       P:=FPropertyList.PropertyByXMLName(S1);
+      if not Assigned(P) then
+        P:=FPropertyList.PropertyByAlias(S1);
 
       if Assigned(P) then
       begin
@@ -441,6 +462,9 @@ begin
     FNode:=AElement.ChildNodes.Item[I];
 
     P:=FPropertyList.PropertyByXMLName(FNode.NodeName);
+    if not Assigned(P) then
+      P:=FPropertyList.PropertyByAlias(FNode.NodeName);
+
     if Assigned(P) then
     begin
       FProp:=GetPropInfo(Self, P.FPropertyName); //Retreive property informations
@@ -619,9 +643,13 @@ begin
 end;
 
 procedure TXmlSerializationObject.RegisterProperty(APropertyName, AXMLName,
-  ARequaredAttribs, ACaption: string; AMinSize, AMaxSize: integer);
+  ARequaredAttribs, ACaption: string; AMinSize, AMaxSize: integer;
+  Aliases: string);
+var
+  P: TPropertyDef;
 begin
-  FPropertyList.Add(APropertyName, AXMLName, ARequaredAttribs, ACaption, AMinSize, AMaxSize);
+  P:=FPropertyList.Add(APropertyName, AXMLName, ARequaredAttribs, ACaption, AMinSize, AMaxSize);
+  P.FAliases:=Aliases;
 end;
 
 procedure TXmlSerializationObject.ModifiedProperty(APropertyName: string);
@@ -650,7 +678,7 @@ begin
   inherited Destroy;
 end;
 
-procedure TXmlSerializationObject.SaveToXML(AFileName: string);
+procedure TXmlSerializationObject.SaveToFile(AFileName: string);
 var
   FXML: TXMLDocument;
   E: TDOMElement;
@@ -663,7 +691,7 @@ begin
   FXML.Free;
 end;
 
-procedure TXmlSerializationObject.LoadFromXML(AFileName: string);
+procedure TXmlSerializationObject.LoadFromFile(AFileName: string);
 var
   FXML: TXMLDocument;
 begin
@@ -671,6 +699,22 @@ begin
   InternalRead(FXML.DocumentElement);
   //FreeAndNil(FXML);
   FXML.Free;
+end;
+
+procedure TXmlSerializationObject.SaveToXML(const XML: TXMLDocument);
+var
+  E: TDOMElement;
+begin
+  E:=CreateElement(XML, XML, 'Файл');
+  InternalWrite(XML, E);
+end;
+
+procedure TXmlSerializationObject.LoadFromXML(const XML: TXMLDocument);
+begin
+  if Assigned(XML) then
+    InternalRead(XML.DocumentElement)
+  else
+    raise Exception.Create('Not assigned XML file');
 end;
 
 end.

@@ -13,7 +13,7 @@ uses
   xml_doc, ExchangeDocument, ExchangeInformation, TreasuryInformation, 
   ExchangeSigner, ImportGoodsAndIndirectTaxesExchangeFile, 
   ImportGoodsAndIndirectTaxesDocument, xml_doc_resource, EImportAndPayTaxDoc, 
-  EAbstractDoc, eDocsRegisterUnit, LazarusPackageIntf;
+  EAbstractDoc, eDocsRegisterUnit, InvoceExchangeFile_5_02, LazarusPackageIntf;
 
 implementation
 

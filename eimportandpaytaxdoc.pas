@@ -77,7 +77,7 @@ var
   Y, M, D: LongInt;
 begin
   Result:=TImportGoodsAndIndirectTaxesExchangeFile.Create;
-  Result.LoadFromXML(AFileName);
+  Result.LoadFromFile(AFileName);
   S:=Result.FileID;
   S1:=Copy2SymbDel(S, '_');
   S1:=Copy2SymbDel(S, '_');
@@ -111,7 +111,7 @@ begin
   AExchangeFile.InformationType:='ЭСНДСТСНП';
 
   AExchangeFile.FormatVersion:=FormatVersion;
-  AExchangeFile.SaveToXML(AFileName);
+  AExchangeFile.SaveToFile(AFileName);
 end;
 
 end.

@@ -196,7 +196,7 @@ end;
 procedure TAdditionalInfo1.InternalRegisterPropertys;
 begin
   RegisterProperty('InfoFileID', 'ИдФайлИнфПол', 'Н', 'Идентификатор файла информационного поля', 36, 36);
-  RegisterProperty('TextInfo', 'ТекстИнфТип', 'НМ', 'Текстовая информация', -1, -1);
+  RegisterProperty('TextInfo', 'ТекстИнф', 'НМ', 'Текстовая информация', -1, -1);
 end;
 
 procedure TAdditionalInfo1.InternalInitChilds;

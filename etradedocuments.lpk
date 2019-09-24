@@ -7,14 +7,14 @@
     <CompilerOptions>
       <Version Value="11"/>
       <SearchPaths>
-        <OtherUnitFiles Value="invoce;exchange;ImportGoodsAndIndirectTaxes"/>
+        <OtherUnitFiles Value="invoce;exchange;ImportGoodsAndIndirectTaxes;invoce/v5_2"/>
         <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
       </SearchPaths>
     </CompilerOptions>
     <Description Value="Обработка электронных форматов документов РФ"/>
     <License Value="LGPL"/>
     <Version Minor="2"/>
-    <Files Count="21">
+    <Files Count="22">
       <Item1>
         <Filename Value="etradedoc.pas"/>
         <UnitName Value="ETradeDoc"/>
@@ -100,6 +100,10 @@
         <HasRegisterProc Value="True"/>
         <UnitName Value="eDocsRegisterUnit"/>
       </Item21>
+      <Item22>
+        <Filename Value="invoce/v5_2/invoceexchangefile_5_02.pas"/>
+        <UnitName Value="InvoceExchangeFile_5_02"/>
+      </Item22>
     </Files>
     <LazDoc Paths="/usr/local/share/lazarus/components/ETradeDocuments/docs"/>
     <i18n>
