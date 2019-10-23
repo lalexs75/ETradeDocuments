@@ -39,7 +39,7 @@ unit ExchangeSigner;
 interface
 
 uses
-  Classes, SysUtils, xml_doc, ExchangeInformation;
+  Classes, SysUtils, xmlobject, ExchangeInformation;
 
 type
 

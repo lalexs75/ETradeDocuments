@@ -14,7 +14,7 @@
     <Description Value="Обработка электронных форматов документов РФ"/>
     <License Value="LGPL"/>
     <Version Minor="2"/>
-    <Files Count="22">
+    <Files Count="21">
       <Item1>
         <Filename Value="etradedoc.pas"/>
         <UnitName Value="ETradeDoc"/>
@@ -56,70 +56,69 @@
         <UnitName Value="ClientExchangeFile"/>
       </Item10>
       <Item11>
-        <Filename Value="xml_doc.pas"/>
-        <UnitName Value="xml_doc"/>
-      </Item11>
-      <Item12>
         <Filename Value="exchange/exchangedocument.pas"/>
         <UnitName Value="ExchangeDocument"/>
-      </Item12>
-      <Item13>
+      </Item11>
+      <Item12>
         <Filename Value="exchange/exchangeinformation.pas"/>
         <UnitName Value="ExchangeInformation"/>
-      </Item13>
-      <Item14>
+      </Item12>
+      <Item13>
         <Filename Value="exchange/treasuryinformation.pas"/>
         <UnitName Value="TreasuryInformation"/>
-      </Item14>
-      <Item15>
+      </Item13>
+      <Item14>
         <Filename Value="exchange/exchangesigner.pas"/>
         <UnitName Value="ExchangeSigner"/>
-      </Item15>
-      <Item16>
+      </Item14>
+      <Item15>
         <Filename Value="ImportGoodsAndIndirectTaxes/importgoodsandindirecttaxesexchangefile.pas"/>
         <UnitName Value="ImportGoodsAndIndirectTaxesExchangeFile"/>
-      </Item16>
-      <Item17>
+      </Item15>
+      <Item16>
         <Filename Value="ImportGoodsAndIndirectTaxes/importgoodsandindirecttaxesdocument.pas"/>
         <UnitName Value="ImportGoodsAndIndirectTaxesDocument"/>
-      </Item17>
-      <Item18>
-        <Filename Value="xml_doc_resource.pas"/>
-        <UnitName Value="xml_doc_resource"/>
-      </Item18>
-      <Item19>
+      </Item16>
+      <Item17>
         <Filename Value="eimportandpaytaxdoc.pas"/>
         <UnitName Value="EImportAndPayTaxDoc"/>
-      </Item19>
-      <Item20>
+      </Item17>
+      <Item18>
         <Filename Value="eabstractdoc.pas"/>
         <UnitName Value="EAbstractDoc"/>
-      </Item20>
-      <Item21>
+      </Item18>
+      <Item19>
         <Filename Value="edocsregisterunit.pas"/>
         <HasRegisterProc Value="True"/>
         <UnitName Value="eDocsRegisterUnit"/>
-      </Item21>
-      <Item22>
+      </Item19>
+      <Item20>
         <Filename Value="invoce/v5_2/invoceexchangefile_5_02.pas"/>
         <UnitName Value="InvoceExchangeFile_5_02"/>
-      </Item22>
+      </Item20>
+      <Item21>
+        <Filename Value="exchange/abstractexchangefileunit.pas"/>
+        <UnitName Value="abstractexchangefileunit"/>
+      </Item21>
     </Files>
     <LazDoc Paths="/usr/local/share/lazarus/components/ETradeDocuments/docs"/>
     <i18n>
       <EnableI18N Value="True"/>
       <OutDir Value="languages"/>
     </i18n>
-    <RequiredPkgs Count="3">
+    <RequiredPkgs Count="4">
       <Item1>
-        <PackageName Value="IDEIntf"/>
+        <PackageName Value="xmlobjects"/>
       </Item1>
       <Item2>
-        <PackageName Value="LazUtils"/>
+        <PackageName Value="IDEIntf"/>
       </Item2>
       <Item3>
-        <PackageName Value="FCL"/>
+        <PackageName Value="LazUtils"/>
       </Item3>
+      <Item4>
+        <PackageName Value="FCL"/>
+      </Item4>
     </RequiredPkgs>
     <UsageOptions>
       <UnitPath Value="$(PkgOutDir)"/>

@@ -39,7 +39,7 @@ unit InvoceDocument;
 interface
 
 uses
-  Classes, SysUtils, xml_doc, OrganizationInfo, AdditionalInfo, InvoiceItem,
+  Classes, SysUtils, xmlobject, OrganizationInfo, AdditionalInfo, InvoiceItem,
   TransferInfo, Signer;
 
 type

@@ -39,7 +39,7 @@ unit OrganizationInfo;
 interface
 
 uses
-  Classes, SysUtils, xml_doc, AdressInfo;
+  Classes, SysUtils, xmlobject, AdressInfo;
 
 type
 

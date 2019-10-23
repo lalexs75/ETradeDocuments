@@ -39,7 +39,7 @@ unit AdressInfo;
 interface
 
 uses
-  Classes, SysUtils, xml_doc;
+  Classes, SysUtils, xmlobject;
 
 type
 

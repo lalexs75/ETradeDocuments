@@ -39,7 +39,7 @@ unit InvoceExchangeFile;
 interface
 
 uses
-  Classes, SysUtils, xml_doc, InvoceDocument;
+  Classes, SysUtils, xmlobject, AbstractExchangeFileUnit, InvoceDocument;
 
 type
 

@@ -39,7 +39,7 @@ unit ClientExchangeFile;
 interface
 
 uses
-  Classes, SysUtils, xml_doc, ExchangeDocument;
+  Classes, SysUtils, xmlobject, AbstractExchangeFileUnit, ExchangeDocument;
 
 type
 

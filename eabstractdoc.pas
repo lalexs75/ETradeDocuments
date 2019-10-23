@@ -39,7 +39,7 @@ unit EAbstractDoc;
 interface
 
 uses
-  Classes, SysUtils;
+  Classes, SysUtils, xmlobject;
 
 type
 
@@ -76,6 +76,7 @@ type
     property UniqueID:string read FUniqueID write SetUniqueID;
     property KND:string read FKND write SetKND;
   end;
+
 
 implementation
 

@@ -40,7 +40,7 @@ unit ImportGoodsAndIndirectTaxesExchangeFile;
 interface
 
 uses
-  Classes, SysUtils, xml_doc, ImportGoodsAndIndirectTaxesDocument;
+  Classes, SysUtils, xmlobject, AbstractExchangeFileUnit, ImportGoodsAndIndirectTaxesDocument;
 
 type
 
