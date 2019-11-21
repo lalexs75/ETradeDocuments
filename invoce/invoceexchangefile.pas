@@ -86,23 +86,14 @@ type
 
   TExchangeFile = class(TAbstractExchangeFile)   //%Таблица 5.1
   private
-    FAppVersion: string;
     FDocument: TInvoceDocument;
-    FFileID: string;
-    FFormatVersion: string;
     FParticipantsInformation: TParticipantsInformation;
-    procedure SetAppVersion(AValue: string);
-    procedure SetFileID(AValue: string);
-    procedure SetFormatVersion(AValue: string);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
     destructor Destroy; override;
   published
-    property FileID:string read FFileID write SetFileID;
-    property FormatVersion:string read FFormatVersion write SetFormatVersion;
-    property AppVersion:string read FAppVersion write SetAppVersion;
     property ParticipantsInformation:TParticipantsInformation read FParticipantsInformation;
     property Document:TInvoceDocument read FDocument;
   end;
@@ -176,33 +167,9 @@ end;
 
 { TExchangeFile }
 
-procedure TExchangeFile.SetAppVersion(AValue: string);
-begin
-  if FAppVersion=AValue then Exit;
-  FAppVersion:=AValue;
-  ModifiedProperty('AppVersion');
-end;
-
-procedure TExchangeFile.SetFileID(AValue: string);
-begin
-  if FFileID=AValue then Exit;
-  FFileID:=AValue;
-  ModifiedProperty('FileID');
-end;
-
-procedure TExchangeFile.SetFormatVersion(AValue: string);
-begin
-  if FFormatVersion=AValue then Exit;
-  FFormatVersion:=AValue;
-  ModifiedProperty('FormatVersion');
-end;
-
 procedure TExchangeFile.InternalRegisterPropertys;
 begin
   inherited InternalRegisterPropertys;
-  //RegisterProperty('FileID', 'ИдФайл', 'О', 'Идентификатор файла', 1, 255);
-  //RegisterProperty('FormatVersion', 'ВерсФорм', 'О', 'Версия формата', 1, 5);
-  //RegisterProperty('AppVersion', 'ВерсПрог', 'О', 'Версия программы, с помощью которой сформирован файл', 1, 40);
   RegisterProperty('ParticipantsInformation', 'СвУчДокОбор', 'О', 'Сведения об участниках электронного документооборота', -1, -1);
   RegisterProperty('Document', 'Документ', 'О', 'Счет-фактура, или документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг), включающий в себя счет-фактуру (информация продавца), или документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг) (информация продавца)', -1, -1);
 end;
