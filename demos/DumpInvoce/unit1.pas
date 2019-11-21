@@ -24,6 +24,7 @@ type
     PageControl1: TPageControl;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
+    TabSheet3: TTabSheet;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
@@ -114,12 +115,10 @@ begin
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
-var
-  D: TExchangeFile;
 begin
-  D:=ETradeDoc1.LoadInvoce(Edit1.Text);
-  DumpExchangeFile(D, 'СФ');
-  D.Free;
+  //D:=ETradeDoc1.LoadInvoce(Edit1.Text);
+  //DumpExchangeFile(D, 'СФ');
+  //D.Free;
 end;
 
 procedure TForm1.DumpExchangeFile(D: TExchangeFile; APrefix: string);

@@ -14,7 +14,7 @@ uses
   ImportGoodsAndIndirectTaxesExchangeFile, 
   ImportGoodsAndIndirectTaxesDocument, EImportAndPayTaxDoc, EAbstractDoc, 
   eDocsRegisterUnit, InvoceExchangeFile_5_02, AbstractExchangeFileUnit, 
-  LazarusPackageIntf;
+  et_torg2, LazarusPackageIntf;
 
 implementation
 

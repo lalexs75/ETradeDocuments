@@ -7,14 +7,14 @@
     <CompilerOptions>
       <Version Value="11"/>
       <SearchPaths>
-        <OtherUnitFiles Value="invoce;exchange;ImportGoodsAndIndirectTaxes;invoce/v5_2"/>
+        <OtherUnitFiles Value="invoce;exchange;ImportGoodsAndIndirectTaxes;invoce/v5_2;torg2"/>
         <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
       </SearchPaths>
     </CompilerOptions>
     <Description Value="Обработка электронных форматов документов РФ"/>
     <License Value="LGPL"/>
     <Version Minor="2"/>
-    <Files Count="21">
+    <Files Count="22">
       <Item1>
         <Filename Value="etradedoc.pas"/>
         <UnitName Value="ETradeDoc"/>
@@ -98,8 +98,12 @@
       </Item20>
       <Item21>
         <Filename Value="exchange/abstractexchangefileunit.pas"/>
-        <UnitName Value="abstractexchangefileunit"/>
+        <UnitName Value="AbstractExchangeFileUnit"/>
       </Item21>
+      <Item22>
+        <Filename Value="torg2/et_torg2.pas"/>
+        <UnitName Value="et_torg2"/>
+      </Item22>
     </Files>
     <LazDoc Paths="/usr/local/share/lazarus/components/ETradeDocuments/docs"/>
     <i18n>
