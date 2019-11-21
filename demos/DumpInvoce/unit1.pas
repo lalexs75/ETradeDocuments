@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ComCtrls, StdCtrls,
-  ETradeDoc, DividerBevel, Unit2,
+  ETradeDoc, DividerBevel, Unit2, frmTorg2,
   AdressInfo, InvoceExchangeFile, InvoceDocument, InvoiceItem, TransferInfo, Signer,
   AdditionalInfo, OrganizationInfo;
 
@@ -29,6 +29,7 @@ type
     procedure FormCreate(Sender: TObject);
   private
     FExchInfo:TExchInfoFrame;
+    FTorg2Info:TfrmTorg2Frame;
   private
     //invoce
     procedure DumpExchangeFile(D: TExchangeFile; APrefix: string);
@@ -107,6 +108,10 @@ begin
   FExchInfo:=TExchInfoFrame.Create(Self);
   FExchInfo.Parent:=TabSheet2;
   FExchInfo.Align:=alClient;
+
+  FTorg2Info:=TfrmTorg2Frame.Create(Self);
+  FTorg2Info.Parent:=TabSheet3;
+  FTorg2Info.Align:=alClient;
 
   Memo1.Lines.Clear;
 
