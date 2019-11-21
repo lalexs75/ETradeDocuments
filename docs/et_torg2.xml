@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fpdoc-descriptions><package name="ETradeDocuments"><module name="et_torg2"><element name="TTorg2ExchangeFile.ParticipantsInformation"><short>Сведения об участниках электронного документооборота</short><descr>Состав элемента представлен в таблице 5.2
+</descr>
+      </element>
+    </module>
+  </package>
+</fpdoc-descriptions>

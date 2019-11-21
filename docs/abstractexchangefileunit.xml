@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fpdoc-descriptions><package name="ETradeDocuments"><module name="AbstractExchangeFileUnit"><element name="TAbstractExchangeFile.FileID"><short>Идентификатор файла</short><descr>Содержит (повторяет) имя сформированного файла (без расширения)
+</descr>
+      </element><element name="TAbstractExchangeFile.FormatVersion"><short>Версия формата</short>
+      </element><element name="TAbstractExchangeFile.ApplicationVersion"><short>Версия программы, с помощью которой сформирован файл</short>
+      </element>
+    </module>
+  </package>
+</fpdoc-descriptions>
