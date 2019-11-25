@@ -47,115 +47,236 @@ uses
 
 type
 
+  { TOrganizationInfo }
+
+  TOrganizationInfo = class(TXmlSerializationObject) //%Таблица 5.38
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+  end;
+
+
+  { TBuyerSignerInformation }
+
+  TBuyerSignerInformation = class(TXmlSerializationObject) //%Таблица 5.23
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+  end;
+
+  { TBuyerSignerInformationList }
+
+  TBuyerSignerInformationList = class(TXmlSerializationObjectList) //%Таблица 5.23
+  private
+    function GetItem(AIndex: Integer): TBuyerSignerInformation; inline;
+  public
+    constructor Create;
+    function CreateChild:TBuyerSignerInformation;
+    property Item[AIndex:Integer]:TBuyerSignerInformation read GetItem; default;
+  end;
+
+  { TAcceptanceInformation2 }
+
+  TAcceptanceInformation2 = class(TXmlSerializationObject) //%Таблица 5.18
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+  end;
+
+  { TResultsInspectionCargo }
+
+  TResultsInspectionCargo = class(TXmlSerializationObject) //%Таблица 5.9
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+  end;
+
+
+  { TCommisionDocument }
+
+  TCommisionDocument = class(TXmlSerializationObject) //%Таблица 5.8
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+  end;
+
+
+  { TAcceptanceInformation1 }
+
+  TAcceptanceInformation1 = class(TXmlSerializationObject) //%Таблица 5.7
+  private
+    FBuyer: TOrganizationInfo;
+    FCommisionDocument: TCommisionDocument;
+    FConsignee: TOrganizationInfo;
+    FGenerateCodeDocument: string;
+    FGovernmentContractInfo: string;
+    FInsuranceCompany: TOrganizationInfo;
+    FResultsInspectionCargo: TResultsInspectionCargo;
+    FSeller: TOrganizationInfo;
+    FShipper: TOrganizationInfo;
+    procedure SetGenerateCodeDocument(AValue: string);
+    procedure SetGovernmentContractInfo(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property GenerateCodeDocument:string read FGenerateCodeDocument write SetGenerateCodeDocument;
+    property GovernmentContractInfo:string read FGovernmentContractInfo write SetGovernmentContractInfo;
+    property Seller:TOrganizationInfo read FSeller;
+    property Buyer:TOrganizationInfo read FBuyer;
+    property Shipper:TOrganizationInfo read FShipper;
+    property Consignee:TOrganizationInfo read FConsignee;
+    property InsuranceCompany:TOrganizationInfo read FInsuranceCompany;
+    property CommisionDocument:TCommisionDocument read FCommisionDocument;
+    property ResultsInspectionCargo:TResultsInspectionCargo read FResultsInspectionCargo;
+(*
+------------------------------------------------
+Сведения о грузе по сопроводительным транспортным документам
+СвСопрДок
+с
+
+НМ
+Состав элемента представлен в таблице 5.10
+
+------------------------------------------------
+Сведения о дате и времени событий, связанных с приемкой груза
+СвВремПрием
+с
+
+Н
+Состав элемента представлен в таблице 5.11
+
+------------------------------------------------
+Другие обстоятельства приемки ценностей
+ДрОбстПрием
+с
+
+Н
+Состав элемента представлен в таблице 5.12
+
+------------------------------------------------
+Сведения о лице, принявшем товар (получившем груз) (в том числе на ответственное хранение)
+СвЛицПрин
+с
+
+Н
+Состав элемента представлен в таблице 5.13
+
+------------------------------------------------
+Информационное поле события (факта хозяйственной жизни) 1
+ИнфПолФХЖ1
+с
+
+Н
+Типовой элемент <ИнфПолТип>.
+Состав элемента представлен в таблице 5.29
+
+*)
+  end;
+
+  { TCorrectionDocumentDateNumber }
+
+  TCorrectionDocumentDateNumber = class(TXmlSerializationObject) //%Таблица 5.6
+  private
+    FCorrectionDate: string;
+    FCorrectionNumber: string;
+    procedure SetCorrectionDate(AValue: string);
+    procedure SetCorrectionNumber(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property CorrectionNumber:string read FCorrectionNumber write SetCorrectionNumber;
+    property CorrectionDate:string read FCorrectionDate write SetCorrectionDate;
+  end;
+
+  { TAcceptanceDocumentDateNumber }
+
+  TAcceptanceDocumentDateNumber = class(TXmlSerializationObject) //%Таблица 5.5
+  private
+    FDocumentDate: string;
+    FDocumentNumber: string;
+    procedure SetDocumentDate(AValue: string);
+    procedure SetDocumentNumber(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property DocumentNumber:string read FDocumentNumber write SetDocumentNumber;
+    property DocumentDate:string read FDocumentDate write SetDocumentDate;
+  end;
+
   { TAcceptanceDocument }
 
   TAcceptanceDocument = class(TXmlSerializationObject) //%Таблица 5.4
   private
+    FAcceptanceDocumentDateNumber: TAcceptanceDocumentDateNumber;
+    FAcceptanceInformation1: TAcceptanceInformation1;
+    FAcceptanceInformation2: TAcceptanceInformation2;
+    FAdditionalInformationState: string;
+    FCorrectionDocumentDateNumber: TCorrectionDocumentDateNumber;
+    FDocumentCreateConditions: string;
+    FDocumentCreator: string;
+    FDocumentCreatorBase: string;
+    FDocumentDateCreate: string;
+    FDocumentDestination: string;
+    FDocumentName: string;
+    FDocumentNameEL: string;
+    FDocumentTimeCreate: string;
     FKND: string;
+    FSigner: TBuyerSignerInformationList;
+    procedure SetAdditionalInformationState(AValue: string);
+    procedure SetDocumentCreateConditions(AValue: string);
+    procedure SetDocumentCreator(AValue: string);
+    procedure SetDocumentCreatorBase(AValue: string);
+    procedure SetDocumentDateCreate(AValue: string);
+    procedure SetDocumentDestination(AValue: string);
+    procedure SetDocumentName(AValue: string);
+    procedure SetDocumentNameEL(AValue: string);
+    procedure SetDocumentTimeCreate(AValue: string);
     procedure SetKND(AValue: string);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
-(*
-    Дата формирования файла обмена информации покупателя
-    ДатаИнфПок
-    А
-    Т(=10)
-    О
-    Типовой элемент <ДатаТип>
-    Время формирования файла обмена информации покупателя
-    ВремИнфПок
-    А
-    Т(=8)
-    О
-    Типовой элемент <ВремяТип>
-    Наименование документа по событию (факту хозяйственной жизни)
-    ПоФактХЖ
-    А
-    Т( 1-255)
-    О
-    Принимает значение: "Документ о приемке ценностей и (или) расхождениях, выявленных при их приемке"
-    Наименование документа, определенное организацией (согласованное сторонами сделки)
-    НаимДокОпр
-    А
-    Т(1-255)
-    О
-    Документ о приемке ценностей и (или) расхождениях или иное
-    Наименование экономического субъекта - составителя файла обмена информации покупателя
-    НаимЭконСубСост
-    А
-    Т(1-1000)
-    О
-
-    Основание, по которому экономический субъект является составителем файла обмена информации покупателя
-    ОснДоверОргСост
-    А
-    Т(1-120)
-    Н
-    Обязателен, если составитель информации покупателя не является покупателем
-    Обстоятельства составления документа
-    ОбстСостДок
-    А
-    Т(=1)
-    НК
-    Принимает значение 1 | 2, где:
-    1 - документ составлен при приемке ценностей от продавца (отправителя, перевозчика);
-    2 - документ составлен после приемки ценностей от продавца (отправителя, перевозчика) в течение согласованного сторонами периода
-    Назначение и подписанты дополнительных сведений
-    НазнДопСв
-    А
-    Т(1-2000)
-    Н
-    Обязателен, если ИнфДопСв равно 4, или равно 6, или равно 8.
-    Могут указываться назначение и подписанты формируемых дополнительных сведений
-    Дата и номер документа о приемке и (или) расхождениях
-    ИдентДокПР
-    С
-
-    О
-    Состав элемента представлен в таблице 5.5
-    Исправление документа о приемке и (или) расхождениях
-    ИспрДокПР
-    С
-
-    Н
-    Состав элемента представлен в таблице 5.6
-    Содержание события (факта хозяйственной жизни (1)) - сведения об обстоятельствах приемки
-    СодФХЖ1
-    С
-
-    О
-    Состав элемента представлен в таблице 5.7
-    Содержание события (факта хозяйственной жизни (2)) - сведения о факте приемки и (или) о расхождениях
-    СодФХЖ2
-    С
-
-    О
-    Состав элемента представлен в таблице 5.18
-    Информация о формировании дополнительных сведений к документу
-    ИнфДопСв
-    П
-    Т(1-2)
-    ОКМ
-    Принимает значение 1 по умолчанию или 2 | 3 | 4 | 5 | 6 | 7 | 8, где:
-    1 - к документу дополнительные сведения не формируются;
-    2 - к документу формируются дополнительные сведения об оприходовании ценностей покупателем (в том числе на склад), подписанные ответственным лицом покупателя (уполномоченным покупателем лицом);
-    3 - к документу формируются дополнительные сведения о его утверждении, подписанные ответственным лицом покупателя (уполномоченным покупателем лицом);
-    4 - к документу формируются иные дополнительные сведения, подписанные ответственным лицом покупателя (уполномоченным покупателем лицом);
-    5 - к документу формируются дополнительные сведения о согласии (несогласии) с результатами приемки, подписанные ответственным лицом со стороны продавца (уполномоченным продавцом лицом);
-    6 - к документу формируются иные дополнительные сведения, подписанные ответственным лицом со стороны продавца (уполномоченным продавцом лицом);
-    7 - к документу формируются дополнительные сведения о согласии (несогласии) с результатами приемки, подписанные ответственным лицом со стороны перевозчика (уполномоченным перевозчиком лицом);
-    8 - к документу формируются иные дополнительные сведения, подписанные ответственным лицом со стороны перевозчика (уполномоченным перевозчиком лицом)
-    Сведения о лице, подписавшем файл обмена информации покупателя в электронной форме
-    Подписант
-    С
-
-    ОМ
-    Состав элемента представлен в таблице 5.23
-*)
+    destructor Destroy; override;
   published
     property KND:string read FKND write SetKND;
+    property DocumentDateCreate:string read FDocumentDateCreate write SetDocumentDateCreate;
+    property DocumentTimeCreate:string read FDocumentTimeCreate write SetDocumentTimeCreate;
+    property DocumentNameEL:string read FDocumentNameEL write SetDocumentNameEL;
+    property DocumentName:string read FDocumentName write SetDocumentName;
+    property DocumentCreator:string read FDocumentCreator write SetDocumentCreator;
+    property DocumentCreatorBase:string read FDocumentCreatorBase write SetDocumentCreatorBase;
+    property DocumentCreateConditions:string read FDocumentCreateConditions write SetDocumentCreateConditions;
+    property DocumentDestination:string read FDocumentDestination write SetDocumentDestination;
+    property AcceptanceDocumentDateNumber:TAcceptanceDocumentDateNumber read FAcceptanceDocumentDateNumber;
+    property CorrectionDocumentDateNumber:TCorrectionDocumentDateNumber read FCorrectionDocumentDateNumber;
+    property AcceptanceInformation1:TAcceptanceInformation1 read FAcceptanceInformation1;
+    property AcceptanceInformation2:TAcceptanceInformation2 read FAcceptanceInformation2;
+    property AdditionalInformationState:string read FAdditionalInformationState write SetAdditionalInformationState;
+    property Signer:TBuyerSignerInformationList read FSigner;
   end;
 
   { TSellerExchangeInformation }
@@ -215,6 +336,322 @@ type
 
 implementation
 
+{ TCommisionDocument }
+
+procedure TCommisionDocument.InternalRegisterPropertys;
+begin
+
+end;
+
+procedure TCommisionDocument.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TCommisionDocument.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TResultsInspectionCargo }
+
+procedure TResultsInspectionCargo.InternalRegisterPropertys;
+begin
+
+end;
+
+procedure TResultsInspectionCargo.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TResultsInspectionCargo.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TOrganizationInfo }
+
+procedure TOrganizationInfo.InternalRegisterPropertys;
+begin
+
+end;
+
+procedure TOrganizationInfo.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TOrganizationInfo.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TAcceptanceDocumentDateNumber }
+
+procedure TAcceptanceDocumentDateNumber.SetDocumentDate(AValue: string);
+begin
+  if FDocumentDate=AValue then Exit;
+  FDocumentDate:=AValue;
+  ModifiedProperty('DocumentDate');
+end;
+
+procedure TAcceptanceDocumentDateNumber.SetDocumentNumber(AValue: string);
+begin
+  if FDocumentNumber=AValue then Exit;
+  FDocumentNumber:=AValue;
+  ModifiedProperty('DocumentNumber');
+end;
+
+procedure TAcceptanceDocumentDateNumber.InternalRegisterPropertys;
+begin
+  RegisterProperty('DocumentNumber', 'НомДокПР', 'О', 'Номер документа о приемке и (или) расхождениях', 1, 255);
+  RegisterProperty('DocumentDate', 'ДатаДокПР', 'О', 'Дата составления (выписки) документа о приемке и (или) расхождениях', 10, 10);
+end;
+
+procedure TAcceptanceDocumentDateNumber.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TAcceptanceDocumentDateNumber.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TCorrectionDocumentDateNumber }
+
+procedure TCorrectionDocumentDateNumber.SetCorrectionDate(AValue: string);
+begin
+  if FCorrectionDate=AValue then Exit;
+  FCorrectionDate:=AValue;
+  ModifiedProperty('CorrectionDate');
+end;
+
+procedure TCorrectionDocumentDateNumber.SetCorrectionNumber(AValue: string);
+begin
+  if FCorrectionNumber=AValue then Exit;
+  FCorrectionNumber:=AValue;
+  ModifiedProperty('CorrectionNumber');
+end;
+
+procedure TCorrectionDocumentDateNumber.InternalRegisterPropertys;
+begin
+  RegisterProperty('CorrectionNumber', 'НомИспрДокПР', 'О', 'Исправление: №', 1, 3);
+  RegisterProperty('CorrectionDate', 'ДатаИспрДокПР', 'О', 'Исправление: Дата', 10, 10);
+end;
+
+procedure TCorrectionDocumentDateNumber.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TCorrectionDocumentDateNumber.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TAcceptanceInformation1 }
+
+procedure TAcceptanceInformation1.SetGenerateCodeDocument(AValue: string);
+begin
+  if FGenerateCodeDocument=AValue then Exit;
+  FGenerateCodeDocument:=AValue;
+end;
+
+procedure TAcceptanceInformation1.SetGovernmentContractInfo(AValue: string);
+begin
+  if FGovernmentContractInfo=AValue then Exit;
+  FGovernmentContractInfo:=AValue;
+end;
+
+procedure TAcceptanceInformation1.InternalRegisterPropertys;
+begin
+  (*
+  Обозначение (код) обстоятельств формирования (использования) документа
+  ОбстИсп
+  А
+  Т(=4)
+  Н
+  Принимает значение 1ХХХ | 2ХХХ | 3ХХХ | 4ХХХ, где:
+  1ХХХ - для оформления приемки ценностей без сопроводительного документа (об отгрузке товаров, расчетного документа) или без расхождений с сопроводительным документом;
+  2ХХХ - для оформления приемки ценностей с расхождениями с сопроводительными документами по наименованию и (или) количеству, и (или) качеству, и (или) с ценовыми отклонениями;
+  3ХХХ - для оформления расхождений с сопроводительными документами по наименованию и (или) количеству, и (или) качеству, и (или) с ценовыми отклонениями, выявленных при приемке;
+  4ХХХ - для оформления расхождений кроме расхождений с сопроводительными документами по наименованию и (или) количеству, и (или) качеству, и (или) без ценовых отклонений, например, в части сведений о номерах средств идентификации товаров.
+  Последние три знака XXX могут быть использованы по согласованию сторон для автоматизированной обработки информации или принимают значение 000
+
+  ------------------------------------------------
+  Идентификатор государственного контракта
+  ИдГосКон
+  А
+  Т(1-255)
+  Н
+  Формируется при наличии
+
+  ------------------------------------------------
+  Продавец (поставщик, исполнитель)
+  Продавец
+  С
+
+  О
+  Типовой элемент <УчастникТип>.
+  Состав элемента представлен в таблице 5.38
+
+  ------------------------------------------------
+  Покупатель (заказчик)
+  Покупатель
+  С
+
+  О
+  Типовой элемент <УчастникТип>.
+  Состав элемента представлен в таблице 5.38
+
+  ------------------------------------------------
+  Грузоотправитель (отправитель)
+  Грузоотправитель
+  С
+
+  Н
+  Типовой элемент <УчастникТип>.
+  Состав элемента представлен в таблице 5.38
+
+  ------------------------------------------------
+  Грузополучатель (получатель)
+  Грузополучатель
+  с
+
+  Н
+  Типовой элемент <УчастникТип>.
+  Состав элемента представлен в таблице 5.38
+  Страховая компания
+  СтрахКом
+  с
+
+  Н
+  Типовой элемент <УчастникТип>.
+
+  ------------------------------------------------
+  Состав элемента представлен в таблице 5.38
+  Дата и номер приказа (распоряжения) о назначении комиссии
+  Приказ
+  с
+
+  Н
+  Состав элемента представлен в таблице 5.8
+
+  ------------------------------------------------
+  Сведения о событиях, связанных с осмотром груза (о результатах осмотра прибывшего груза)
+  СвОсмГруз
+  с
+
+  Н
+  Состав элемента представлен в таблице 5.9
+  Сведения о грузе по сопроводительным транспортным документам
+  СвСопрДок
+  с
+
+  НМ
+  Состав элемента представлен в таблице 5.10
+
+  ------------------------------------------------
+  Сведения о дате и времени событий, связанных с приемкой груза
+  СвВремПрием
+  с
+
+  Н
+  Состав элемента представлен в таблице 5.11
+
+  ------------------------------------------------
+  Другие обстоятельства приемки ценностей
+  ДрОбстПрием
+  с
+
+  Н
+  Состав элемента представлен в таблице 5.12
+
+  ------------------------------------------------
+  Сведения о лице, принявшем товар (получившем груз) (в том числе на ответственное хранение)
+  СвЛицПрин
+  с
+
+  Н
+  Состав элемента представлен в таблице 5.13
+
+  ------------------------------------------------
+  Информационное поле события (факта хозяйственной жизни) 1
+  ИнфПолФХЖ1
+  с
+
+  Н
+  Типовой элемент <ИнфПолТип>.
+  Состав элемента представлен в таблице 5.29
+
+  *)
+
+end;
+
+procedure TAcceptanceInformation1.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TAcceptanceInformation1.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TAcceptanceInformation2 }
+
+procedure TAcceptanceInformation2.InternalRegisterPropertys;
+begin
+
+end;
+
+procedure TAcceptanceInformation2.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TAcceptanceInformation2.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TBuyerSignerInformation }
+
+procedure TBuyerSignerInformation.InternalRegisterPropertys;
+begin
+
+end;
+
+procedure TBuyerSignerInformation.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TBuyerSignerInformation.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TBuyerSignerInformationList }
+
+function TBuyerSignerInformationList.GetItem(AIndex: Integer
+  ): TBuyerSignerInformation;
+begin
+  Result:=TBuyerSignerInformation(InternalGetItem(AIndex));
+end;
+
+constructor TBuyerSignerInformationList.Create;
+begin
+  inherited Create(TBuyerSignerInformation);
+end;
+
+function TBuyerSignerInformationList.CreateChild: TBuyerSignerInformation;
+begin
+  Result:=InternalAddObject as TBuyerSignerInformation;
+end;
+
 { TAcceptanceDocument }
 
 procedure TAcceptanceDocument.SetKND(AValue: string);
@@ -224,14 +661,106 @@ begin
   ModifiedProperty('KND');
 end;
 
+procedure TAcceptanceDocument.SetDocumentDateCreate(AValue: string);
+begin
+  if FDocumentDateCreate=AValue then Exit;
+  FDocumentDateCreate:=AValue;
+  ModifiedProperty('DocumentDateCreate');
+end;
+
+procedure TAcceptanceDocument.SetDocumentDestination(AValue: string);
+begin
+  if FDocumentDestination=AValue then Exit;
+  FDocumentDestination:=AValue;
+  ModifiedProperty('DocumentDestination');
+end;
+
+procedure TAcceptanceDocument.SetDocumentCreator(AValue: string);
+begin
+  if FDocumentCreator=AValue then Exit;
+  FDocumentCreator:=AValue;
+  ModifiedProperty('DocumentCreator');
+end;
+
+procedure TAcceptanceDocument.SetDocumentCreateConditions(AValue: string);
+begin
+  if FDocumentCreateConditions=AValue then Exit;
+  FDocumentCreateConditions:=AValue;
+  ModifiedProperty('DocumentCreateConditions');
+end;
+
+procedure TAcceptanceDocument.SetAdditionalInformationState(AValue: string);
+begin
+  if FAdditionalInformationState=AValue then Exit;
+  FAdditionalInformationState:=AValue;
+  ModifiedProperty('AdditionalInformationState');
+end;
+
+procedure TAcceptanceDocument.SetDocumentCreatorBase(AValue: string);
+begin
+  if FDocumentCreatorBase=AValue then Exit;
+  FDocumentCreatorBase:=AValue;
+  ModifiedProperty('DocumentCreatorBase');
+end;
+
+procedure TAcceptanceDocument.SetDocumentName(AValue: string);
+begin
+  if FDocumentName=AValue then Exit;
+  FDocumentName:=AValue;
+  ModifiedProperty('DocumentName');
+end;
+
+procedure TAcceptanceDocument.SetDocumentNameEL(AValue: string);
+begin
+  if FDocumentNameEL=AValue then Exit;
+  FDocumentNameEL:=AValue;
+  ModifiedProperty('DocumentNameEL');
+end;
+
+procedure TAcceptanceDocument.SetDocumentTimeCreate(AValue: string);
+begin
+  if FDocumentTimeCreate=AValue then Exit;
+  FDocumentTimeCreate:=AValue;
+  ModifiedProperty('DocumentTimeCreate');
+end;
+
 procedure TAcceptanceDocument.InternalRegisterPropertys;
 begin
   RegisterProperty('KND', 'КНД', 'ОК', 'Код документа по КНД', 7, 7);
+  RegisterProperty('DocumentDateCreate', 'ДатаИнфПок', 'О', 'Дата формирования файла обмена информации покупателя', 10, 10);
+  RegisterProperty('DocumentTimeCreate', 'ВремИнфПок', 'О', 'Время формирования файла обмена информации покупателя', 8, 8);
+  RegisterProperty('DocumentNameEL', 'ПоФактХЖ', 'О', 'Наименование документа по событию (факту хозяйственной жизни)', 1, 255);
+  RegisterProperty('DocumentName', 'НаимДокОпр', 'О', 'Наименование документа, определенное организацией (согласованное сторонами сделки)', 1, 255);
+  RegisterProperty('DocumentCreator', 'НаимЭконСубСост', 'О', 'Наименование экономического субъекта - составителя файла обмена информации покупателя', 1, 1000);
+  RegisterProperty('DocumentCreatorBase', 'ОснДоверОргСост', 'Н', 'Основание, по которому экономический субъект является составителем файла обмена информации покупателя', 1, 120);
+  RegisterProperty('DocumentCreateConditions', 'ОбстСостДок', 'НК', 'Обстоятельства составления документа', 1, 1);
+  RegisterProperty('DocumentDestination', 'НазнДопСв', 'Н', 'Назначение и подписанты дополнительных сведений', 1, 2000);
+  RegisterProperty('AcceptanceDocumentDateNumber', 'ИдентДокПР', 'О', 'Дата и номер документа о приемке и (или) расхождениях', -1, -1);
+  RegisterProperty('CorrectionDocumentDateNumber', 'ИспрДокПР', 'Н', 'Исправление документа о приемке и (или) расхождениях', -1, -1);
+  RegisterProperty('AcceptanceInformation1', 'СодФХЖ1', 'О', 'Содержание события (факта хозяйственной жизни (1)) - сведения об обстоятельствах приемки', -1, -1);
+  RegisterProperty('AcceptanceInformation2', 'СодФХЖ2', 'О', 'Содержание события (факта хозяйственной жизни (2)) - сведения о факте приемки и (или) о расхождениях', -1, -1);
+  RegisterProperty('AdditionalInformationState', 'ИнфДопСв', 'ПОКМ', 'Информация о формировании дополнительных сведений к документу', -1, -1);
+  RegisterProperty('Signer', 'Подписант', 'ОМ', 'Сведения о лице, подписавшем файл обмена информации покупателя в электронной форме', -1, -1);
 end;
 
 procedure TAcceptanceDocument.InternalInitChilds;
 begin
   inherited InternalInitChilds;
+  FAcceptanceDocumentDateNumber:=TAcceptanceDocumentDateNumber.Create;
+  FCorrectionDocumentDateNumber:=TCorrectionDocumentDateNumber.Create;
+  FAcceptanceInformation1:=TAcceptanceInformation1.Create;
+  FAcceptanceInformation2:=TAcceptanceInformation2.Create;
+  FSigner:=TBuyerSignerInformationList.Create;
+end;
+
+destructor TAcceptanceDocument.Destroy;
+begin
+  FreeAndNil(FAcceptanceDocumentDateNumber);
+  FreeAndNil(FCorrectionDocumentDateNumber);
+  FreeAndNil(FAcceptanceInformation1);
+  FreeAndNil(FAcceptanceInformation2);
+  FreeAndNil(FSigner);
+  inherited Destroy;
 end;
 
 { TSellerExchangeInformation }
