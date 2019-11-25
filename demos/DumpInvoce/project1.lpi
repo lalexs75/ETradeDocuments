@@ -63,6 +63,7 @@
         <Filename Value="frames/frmtorg2.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmTorg2Frame"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="frmTorg2"/>
       </Unit3>
