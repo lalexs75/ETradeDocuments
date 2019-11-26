@@ -46,10 +46,88 @@ uses
   Classes, SysUtils, AbstractExchangeFileUnit, xmlobject;
 
 type
+  TAdress = class;
+  TContactInformation = class;
+
+
+  { TBankInformation }
+
+  TBankInformation = class(TXmlSerializationObject) //%Таблица 5.43
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+  end;
+
+  { TIdentificationInformation }
+
+  TIdentificationInformation = class(TXmlSerializationObject) //%Таблица 5.39
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+  end;
+
 
   { TOrganizationInfo }
 
   TOrganizationInfo = class(TXmlSerializationObject) //%Таблица 5.38
+  private
+    FAdress: TAdress;
+    FBankInformation: TBankInformation;
+    FContactInformation: TContactInformation;
+    FDepartment: string;
+    FIdentificationInformation: TIdentificationInformation;
+    FInformationWorkflow: string;
+    FOKPO: string;
+    procedure SetDepartment(AValue: string);
+    procedure SetInformationWorkflow(AValue: string);
+    procedure SetOKPO(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property OKPO:string read FOKPO write SetOKPO;
+    property Department:string read FDepartment write SetDepartment;
+    property InformationWorkflow:string read FInformationWorkflow write SetInformationWorkflow;
+    property IdentificationInformation:TIdentificationInformation read FIdentificationInformation;
+    property Adress:TAdress read FAdress;
+    property ContactInformation:TContactInformation read FContactInformation;
+    property BankInformation:TBankInformation read FBankInformation;
+  end;
+
+  { TAdditionalInformationOfLife1 }
+
+  TAdditionalInformationOfLife1 = class(TXmlSerializationObject) //%Таблица 5.29
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+  end;
+
+  { TContactInformation }
+
+  TContactInformation = class(TXmlSerializationObject) //%Таблица 5.28
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+  end;
+
+
+  { TAdress }
+
+  TAdress = class(TXmlSerializationObject) //%Таблица 5.25
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
@@ -92,6 +170,64 @@ type
   published
   end;
 
+  { TAcceptedPersonInformation }
+
+  TAcceptedPersonInformation = class(TXmlSerializationObject) //%Таблица 5.13
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+  end;
+
+
+  { TOtherAcceptanceInfo }
+
+  TOtherAcceptanceInfo = class(TXmlSerializationObject) //%Таблица 5.12
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+  end;
+
+
+  { TAcceptanceDateInfo }
+
+  TAcceptanceDateInfo = class(TXmlSerializationObject) //%Таблица 5.11
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+  end;
+
+
+  { TGoodsItem }
+
+  TGoodsItem = class(TXmlSerializationObject) //%Таблица 5.10
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+  end;
+
+  { TGoodsItemList }
+
+  TGoodsItemList = class(TXmlSerializationObjectList) //%Таблица 5.10
+  private
+    function GetItem(AIndex: Integer): TGoodsItem; inline;
+  public
+    constructor Create;
+    function CreateChild:TGoodsItem;
+    property Item[AIndex:Integer]:TGoodsItem read GetItem; default;
+  end;
+
   { TResultsInspectionCargo }
 
   TResultsInspectionCargo = class(TXmlSerializationObject) //%Таблица 5.9
@@ -107,12 +243,19 @@ type
   { TCommisionDocument }
 
   TCommisionDocument = class(TXmlSerializationObject) //%Таблица 5.8
+  private
+    FOrderDate: string;
+    FOrderNumber: string;
+    procedure SetOrderDate(AValue: string);
+    procedure SetOrderNumber(AValue: string);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
     destructor Destroy; override;
   published
+    property OrderDate:string read FOrderDate write SetOrderDate;
+    property OrderNumber:string read FOrderNumber write SetOrderNumber;
   end;
 
 
@@ -120,12 +263,17 @@ type
 
   TAcceptanceInformation1 = class(TXmlSerializationObject) //%Таблица 5.7
   private
+    FAcceptanceDateInfo: TAcceptanceDateInfo;
+    FAcceptedPersonInformation: TAcceptedPersonInformation;
+    FAdditionalInformationOfLife1: TAdditionalInformationOfLife1;
     FBuyer: TOrganizationInfo;
     FCommisionDocument: TCommisionDocument;
     FConsignee: TOrganizationInfo;
     FGenerateCodeDocument: string;
+    FGoodsItemList: TGoodsItemList;
     FGovernmentContractInfo: string;
     FInsuranceCompany: TOrganizationInfo;
+    FOtherAcceptanceInfo: TOtherAcceptanceInfo;
     FResultsInspectionCargo: TResultsInspectionCargo;
     FSeller: TOrganizationInfo;
     FShipper: TOrganizationInfo;
@@ -146,49 +294,11 @@ type
     property InsuranceCompany:TOrganizationInfo read FInsuranceCompany;
     property CommisionDocument:TCommisionDocument read FCommisionDocument;
     property ResultsInspectionCargo:TResultsInspectionCargo read FResultsInspectionCargo;
-(*
-------------------------------------------------
-Сведения о грузе по сопроводительным транспортным документам
-СвСопрДок
-с
-
-НМ
-Состав элемента представлен в таблице 5.10
-
-------------------------------------------------
-Сведения о дате и времени событий, связанных с приемкой груза
-СвВремПрием
-с
-
-Н
-Состав элемента представлен в таблице 5.11
-
-------------------------------------------------
-Другие обстоятельства приемки ценностей
-ДрОбстПрием
-с
-
-Н
-Состав элемента представлен в таблице 5.12
-
-------------------------------------------------
-Сведения о лице, принявшем товар (получившем груз) (в том числе на ответственное хранение)
-СвЛицПрин
-с
-
-Н
-Состав элемента представлен в таблице 5.13
-
-------------------------------------------------
-Информационное поле события (факта хозяйственной жизни) 1
-ИнфПолФХЖ1
-с
-
-Н
-Типовой элемент <ИнфПолТип>.
-Состав элемента представлен в таблице 5.29
-
-*)
+    property GoodsItemList:TGoodsItemList read FGoodsItemList;
+    property AcceptanceDateInfo:TAcceptanceDateInfo read FAcceptanceDateInfo;
+    property OtherAcceptanceInfo:TOtherAcceptanceInfo read FOtherAcceptanceInfo;
+    property AcceptedPersonInformation:TAcceptedPersonInformation read FAcceptedPersonInformation;
+    property AdditionalInformationOfLife1:TAdditionalInformationOfLife1 read FAdditionalInformationOfLife1;
   end;
 
   { TCorrectionDocumentDateNumber }
@@ -336,11 +446,196 @@ type
 
 implementation
 
+{ TIdentificationInformation }
+
+procedure TIdentificationInformation.InternalRegisterPropertys;
+begin
+
+end;
+
+procedure TIdentificationInformation.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TIdentificationInformation.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TBankInformation }
+
+procedure TBankInformation.InternalRegisterPropertys;
+begin
+
+end;
+
+procedure TBankInformation.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TBankInformation.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TContactInformation }
+
+procedure TContactInformation.InternalRegisterPropertys;
+begin
+
+end;
+
+procedure TContactInformation.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TContactInformation.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TAdress }
+
+procedure TAdress.InternalRegisterPropertys;
+begin
+
+end;
+
+procedure TAdress.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TAdress.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TGoodsItem }
+
+procedure TGoodsItem.InternalRegisterPropertys;
+begin
+
+end;
+
+procedure TGoodsItem.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TGoodsItem.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TAcceptanceDateInfo }
+
+procedure TAcceptanceDateInfo.InternalRegisterPropertys;
+begin
+
+end;
+
+procedure TAcceptanceDateInfo.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TAcceptanceDateInfo.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TOtherAcceptanceInfo }
+
+procedure TOtherAcceptanceInfo.InternalRegisterPropertys;
+begin
+
+end;
+
+procedure TOtherAcceptanceInfo.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TOtherAcceptanceInfo.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TAcceptedPersonInformation }
+
+procedure TAcceptedPersonInformation.InternalRegisterPropertys;
+begin
+
+end;
+
+procedure TAcceptedPersonInformation.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TAcceptedPersonInformation.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TAdditionalInformationOfLife1 }
+
+procedure TAdditionalInformationOfLife1.InternalRegisterPropertys;
+begin
+
+end;
+
+procedure TAdditionalInformationOfLife1.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TAdditionalInformationOfLife1.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TGoodsItemList }
+
+function TGoodsItemList.GetItem(AIndex: Integer): TGoodsItem;
+begin
+  Result:=TGoodsItem(InternalGetItem(AIndex));
+end;
+
+constructor TGoodsItemList.Create;
+begin
+  inherited Create(TGoodsItem)
+end;
+
+function TGoodsItemList.CreateChild: TGoodsItem;
+begin
+  Result:=InternalAddObject as TGoodsItem;
+end;
+
 { TCommisionDocument }
+
+procedure TCommisionDocument.SetOrderDate(AValue: string);
+begin
+  if FOrderDate=AValue then Exit;
+  FOrderDate:=AValue;
+  ModifiedProperty('OrderDate');
+end;
+
+procedure TCommisionDocument.SetOrderNumber(AValue: string);
+begin
+  if FOrderNumber=AValue then Exit;
+  FOrderNumber:=AValue;
+  ModifiedProperty('OrderNumber');
+end;
 
 procedure TCommisionDocument.InternalRegisterPropertys;
 begin
-
+  RegisterProperty('OrderDate', 'ДатаПрик', 'О', 'Дата приказа (распоряжения)', 10, 10);
+  RegisterProperty('OrderNumber', 'НомПрик', 'О', 'Номер приказа (распоряжения)', 1, 255);
 end;
 
 procedure TCommisionDocument.InternalInitChilds;
@@ -372,18 +667,53 @@ end;
 
 { TOrganizationInfo }
 
+procedure TOrganizationInfo.SetDepartment(AValue: string);
+begin
+  if FDepartment=AValue then Exit;
+  FDepartment:=AValue;
+  ModifiedProperty('Department');
+end;
+
+procedure TOrganizationInfo.SetInformationWorkflow(AValue: string);
+begin
+  if FInformationWorkflow=AValue then Exit;
+  FInformationWorkflow:=AValue;
+  ModifiedProperty('InformationWorkflow');
+end;
+
+procedure TOrganizationInfo.SetOKPO(AValue: string);
+begin
+  if FOKPO=AValue then Exit;
+  FOKPO:=AValue;
+  ModifiedProperty('OKPO');
+end;
+
 procedure TOrganizationInfo.InternalRegisterPropertys;
 begin
-
+  RegisterProperty('OKPO', 'ОКПО', 'Н', 'Код в общероссийском классификаторе предприятий и организаций', 1, 10);
+  RegisterProperty('Department', 'СтруктПодр', 'Н', 'Структурное подразделение', 1, 1000);
+  RegisterProperty('InformationWorkflow', 'ИнфДляУчаст', 'Н','Информация для участника документооборота', 1, 255);
+  RegisterProperty('IdentificationInformation', 'ИдСв', 'О', 'Идентификационные сведения', -1, -1);
+  RegisterProperty('Adress', 'Адрес', 'Н', 'Адрес', -1, -1);
+  RegisterProperty('ContactInformation', 'Контакт', 'Н', 'Контактные данные', -1, -1);
+  RegisterProperty('BankInformation', 'БанкРекв', 'Н', 'Банковские реквизиты', -1, -1);
 end;
 
 procedure TOrganizationInfo.InternalInitChilds;
 begin
   inherited InternalInitChilds;
+  FIdentificationInformation:=TIdentificationInformation.Create;
+  FAdress:=TAdress.Create;
+  FContactInformation:=TContactInformation.Create;
+  FBankInformation:=TBankInformation.Create;
 end;
 
 destructor TOrganizationInfo.Destroy;
 begin
+  FreeAndNil(FIdentificationInformation);
+  FreeAndNil(FAdress);
+  FreeAndNil(FContactInformation);
+  FreeAndNil(FBankInformation);
   inherited Destroy;
 end;
 
@@ -457,146 +787,65 @@ procedure TAcceptanceInformation1.SetGenerateCodeDocument(AValue: string);
 begin
   if FGenerateCodeDocument=AValue then Exit;
   FGenerateCodeDocument:=AValue;
+  ModifiedProperty('GenerateCodeDocument');
 end;
 
 procedure TAcceptanceInformation1.SetGovernmentContractInfo(AValue: string);
 begin
   if FGovernmentContractInfo=AValue then Exit;
   FGovernmentContractInfo:=AValue;
+  ModifiedProperty('GovernmentContractInfo');
 end;
 
 procedure TAcceptanceInformation1.InternalRegisterPropertys;
 begin
-  (*
-  Обозначение (код) обстоятельств формирования (использования) документа
-  ОбстИсп
-  А
-  Т(=4)
-  Н
-  Принимает значение 1ХХХ | 2ХХХ | 3ХХХ | 4ХХХ, где:
-  1ХХХ - для оформления приемки ценностей без сопроводительного документа (об отгрузке товаров, расчетного документа) или без расхождений с сопроводительным документом;
-  2ХХХ - для оформления приемки ценностей с расхождениями с сопроводительными документами по наименованию и (или) количеству, и (или) качеству, и (или) с ценовыми отклонениями;
-  3ХХХ - для оформления расхождений с сопроводительными документами по наименованию и (или) количеству, и (или) качеству, и (или) с ценовыми отклонениями, выявленных при приемке;
-  4ХХХ - для оформления расхождений кроме расхождений с сопроводительными документами по наименованию и (или) количеству, и (или) качеству, и (или) без ценовых отклонений, например, в части сведений о номерах средств идентификации товаров.
-  Последние три знака XXX могут быть использованы по согласованию сторон для автоматизированной обработки информации или принимают значение 000
-
-  ------------------------------------------------
-  Идентификатор государственного контракта
-  ИдГосКон
-  А
-  Т(1-255)
-  Н
-  Формируется при наличии
-
-  ------------------------------------------------
-  Продавец (поставщик, исполнитель)
-  Продавец
-  С
-
-  О
-  Типовой элемент <УчастникТип>.
-  Состав элемента представлен в таблице 5.38
-
-  ------------------------------------------------
-  Покупатель (заказчик)
-  Покупатель
-  С
-
-  О
-  Типовой элемент <УчастникТип>.
-  Состав элемента представлен в таблице 5.38
-
-  ------------------------------------------------
-  Грузоотправитель (отправитель)
-  Грузоотправитель
-  С
-
-  Н
-  Типовой элемент <УчастникТип>.
-  Состав элемента представлен в таблице 5.38
-
-  ------------------------------------------------
-  Грузополучатель (получатель)
-  Грузополучатель
-  с
-
-  Н
-  Типовой элемент <УчастникТип>.
-  Состав элемента представлен в таблице 5.38
-  Страховая компания
-  СтрахКом
-  с
-
-  Н
-  Типовой элемент <УчастникТип>.
-
-  ------------------------------------------------
-  Состав элемента представлен в таблице 5.38
-  Дата и номер приказа (распоряжения) о назначении комиссии
-  Приказ
-  с
-
-  Н
-  Состав элемента представлен в таблице 5.8
-
-  ------------------------------------------------
-  Сведения о событиях, связанных с осмотром груза (о результатах осмотра прибывшего груза)
-  СвОсмГруз
-  с
-
-  Н
-  Состав элемента представлен в таблице 5.9
-  Сведения о грузе по сопроводительным транспортным документам
-  СвСопрДок
-  с
-
-  НМ
-  Состав элемента представлен в таблице 5.10
-
-  ------------------------------------------------
-  Сведения о дате и времени событий, связанных с приемкой груза
-  СвВремПрием
-  с
-
-  Н
-  Состав элемента представлен в таблице 5.11
-
-  ------------------------------------------------
-  Другие обстоятельства приемки ценностей
-  ДрОбстПрием
-  с
-
-  Н
-  Состав элемента представлен в таблице 5.12
-
-  ------------------------------------------------
-  Сведения о лице, принявшем товар (получившем груз) (в том числе на ответственное хранение)
-  СвЛицПрин
-  с
-
-  Н
-  Состав элемента представлен в таблице 5.13
-
-  ------------------------------------------------
-  Информационное поле события (факта хозяйственной жизни) 1
-  ИнфПолФХЖ1
-  с
-
-  Н
-  Типовой элемент <ИнфПолТип>.
-  Состав элемента представлен в таблице 5.29
-
-  *)
-
+  RegisterProperty('GenerateCodeDocument', 'ОбстИсп', 'Обозначение (код) обстоятельств формирования (использования) документа', 'Н', 4, 4);
+  RegisterProperty('GovernmentContractInfo', 'ИдГосКон', 'Идентификатор государственного контракта', 'Н', 1, 255);
+  RegisterProperty('Seller', 'Продавец', 'Продавец (поставщик, исполнитель)', 'О', -1, -1);
+  RegisterProperty('Buyer', 'Покупатель', 'Покупатель (заказчик)', 'О', -1, -1);
+  RegisterProperty('Shipper', 'Грузоотправитель', 'Грузоотправитель (отправитель)', 'Н', -1, -1);
+  RegisterProperty('Consignee', 'Грузополучатель', 'Грузополучатель (получатель)', 'Н', -1, -1);
+  RegisterProperty('InsuranceCompany', 'СтрахКом', 'Страховая компания', 'Н', -1, -1);
+  RegisterProperty('CommisionDocument', 'Приказ', 'Дата и номер приказа (распоряжения) о назначении комиссии', 'Н', -1, -1);
+  RegisterProperty('ResultsInspectionCargo', 'СвОсмГруз', 'Сведения о событиях, связанных с осмотром груза (о результатах осмотра прибывшего груза)', 'Н', -1, -1);
+  RegisterProperty('GoodsItemList', 'СвСопрДок', 'Сведения о грузе по сопроводительным транспортным документам', 'НМ', -1, -1);
+  RegisterProperty('AcceptanceDateInfo', 'СвВремПрием', 'Сведения о дате и времени событий, связанных с приемкой груза', 'Н', -1, -1);
+  RegisterProperty('OtherAcceptanceInfo', 'ДрОбстПрием', 'Другие обстоятельства приемки ценностей', 'Н', -1, -1);
+  RegisterProperty('AcceptedPersonInformation', 'СвЛицПрин', 'Сведения о лице, принявшем товар (получившем груз) (в том числе на ответственное хранение)', 'Н', -1, -1);
+  RegisterProperty('AdditionalInformationOfLife1', 'ИнфПолФХЖ1', 'Информационное поле события (факта хозяйственной жизни) 1', 'Н', -1, -1);
 end;
 
 procedure TAcceptanceInformation1.InternalInitChilds;
 begin
   inherited InternalInitChilds;
+  FSeller:=TOrganizationInfo.Create;
+  FBuyer:=TOrganizationInfo.Create;
+  FShipper:=TOrganizationInfo.Create;
+  FConsignee:=TOrganizationInfo.Create;
+  FInsuranceCompany:=TOrganizationInfo.Create;
+  FCommisionDocument:=TCommisionDocument.Create;
+  FResultsInspectionCargo:=TResultsInspectionCargo.Create;
+  FGoodsItemList:=TGoodsItemList.Create;
+  FAcceptanceDateInfo:=TAcceptanceDateInfo.Create;
+  FOtherAcceptanceInfo:=TOtherAcceptanceInfo.Create;
+  FAcceptedPersonInformation:=TAcceptedPersonInformation.Create;
+  FAdditionalInformationOfLife1:=TAdditionalInformationOfLife1.Create;
 end;
 
 destructor TAcceptanceInformation1.Destroy;
 begin
+  FreeAndNil(FSeller);
+  FreeAndNil(FBuyer);
+  FreeAndNil(FShipper);
+  FreeAndNil(FConsignee);
+  FreeAndNil(FInsuranceCompany);
+  FreeAndNil(FCommisionDocument);
+  FreeAndNil(FResultsInspectionCargo);
+  FreeAndNil(FGoodsItemList);
+  FreeAndNil(FAcceptanceDateInfo);
+  FreeAndNil(FOtherAcceptanceInfo);
+  FreeAndNil(FAcceptedPersonInformation);
+  FreeAndNil(FAdditionalInformationOfLife1);
   inherited Destroy;
 end;
 
