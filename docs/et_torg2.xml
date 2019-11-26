@@ -85,7 +85,35 @@
 </descr>
       </element><element name="TResultsInspectionCargo"><short>Сведения о событиях, связанных с осмотром груза (о результатах осмотра прибывшего груза) (СвОсмГруз)</short>
       </element><element name="TAcceptanceInformation1.ResultsInspectionCargo"><short>Сведения о событиях, связанных с осмотром груза (о результатах осмотра прибывшего груза)</short><descr>Состав элемента представлен в таблице 5.9
+</descr>
+      </element>
+    <element name="TAcceptanceInformation1.GoodsItemList"><short>Сведения о грузе по сопроводительным транспортным документам</short><descr>Состав элемента представлен в таблице 5.10
+</descr>
+      </element><element name="TAcceptanceInformation1.AcceptanceDateInfo"><short>Сведения о дате и времени событий, связанных с приемкой груза</short><descr>Состав элемента представлен в таблице 5.11
+</descr>
+      </element><element name="TAcceptanceInformation1.OtherAcceptanceInfo"><short>Другие обстоятельства приемки ценностей</short><descr>Состав элемента представлен в таблице 5.12
+</descr>
+      </element><element name="TAcceptanceInformation1.AcceptedPersonInformation"><short>Сведения о лице, принявшем товар (получившем груз) (в том числе на ответственное хранение)</short><descr>Состав элемента представлен в таблице 5.13
+</descr>
+      </element><element name="TAcceptanceInformation1.AdditionalInformationOfLife1"><short>Информационное поле события (факта хозяйственной жизни) 1</short><descr>Типовой элемент &lt;ИнфПолТип&gt;.
+Состав элемента представлен в таблице 5.29
 
+</descr>
+      </element><element name="TOrganizationInfo"><short>Сведения об участнике факта хозяйственной жизни (УчастникТип)</short>
+      </element><element name="TOrganizationInfo.OKPO"><short>Код в общероссийском классификаторе предприятий и организаций</short>
+      </element><element name="TOrganizationInfo.Department"><short>Структурное подразделение</short>
+      </element><element name="TOrganizationInfo.InformationWorkflow"><short>Информация для участника документооборота</short><descr>Информация, позволяющая получающему документ участнику документооборота обеспечить его автоматизированную обработку
+</descr>
+      </element><element name="TOrganizationInfo.IdentificationInformation"><short>Идентификационные сведения</short>
+      </element><element name="TOrganizationInfo.Adress"><short>Адрес</short><descr>Типовой элемент &lt;АдресТип&gt;.
+Состав элемента представлен в таблице 5.25
+</descr>
+      </element><element name="TOrganizationInfo.ContactInformation"><short>Контактные данные</short><descr>Типовой элемент &lt;КонтактТип&gt;.
+Состав элемента представлен в таблице 5.28
+</descr>
+      </element><element name="TCommisionDocument.OrderDate"><short>Дата приказа (распоряжения)</short><descr>Типовой элемент &lt;ДатаТип&gt;
+</descr>
+      </element><element name="TCommisionDocument.OrderNumber"><short>Номер приказа (распоряжения)</short><descr>При отсутствии указывается "б/Н" (без номера)
 </descr>
       </element>
     </module>
