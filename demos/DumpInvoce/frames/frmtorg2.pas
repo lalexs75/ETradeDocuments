@@ -59,7 +59,58 @@ begin
   F.Document.AcceptanceDocumentDateNumber.DocumentDate:='01.01.2019';
   F.Document.CorrectionDocumentDateNumber.CorrectionNumber:='1';
   F.Document.CorrectionDocumentDateNumber.CorrectionDate:='01.02.2019';
-  //F.Document.AcceptanceInformation1:TAcceptanceInformation1 read FAcceptanceInformation1;
+
+  F.Document.AcceptanceInformation1.GenerateCodeDocument:='1000';
+  F.Document.AcceptanceInformation1.GovernmentContractInfo:='# 12312 от 25.11.2019';
+  F.Document.AcceptanceInformation1.Seller.OKPO:='123123';
+  F.Document.AcceptanceInformation1.Seller.Department:='склад 1';
+  F.Document.AcceptanceInformation1.Seller.InformationWorkflow:='Обратите внимание на то и на это';
+  //F.Document.AcceptanceInformation1.Seller.IdentificationInformation:TIdentificationInformation read FIdentificationInformation;
+  //F.Document.AcceptanceInformation1.Seller.Adress:TAdress read FAdress;
+  //F.Document.AcceptanceInformation1.Seller.ContactInformation:TContactInformation read FContactInformation;
+  //F.Document.AcceptanceInformation1.Seller.BankInformation:TBankInformation read FBankInformation;
+
+  F.Document.AcceptanceInformation1.Buyer.OKPO:='1131231';
+  F.Document.AcceptanceInformation1.Buyer.Department:='asfdasdf';
+  F.Document.AcceptanceInformation1.Buyer.InformationWorkflow:='asdfasdf';
+  //F.Document.AcceptanceInformation1.Buyer.IdentificationInformation:TIdentificationInformation read FIdentificationInformation;
+  //F.Document.AcceptanceInformation1.Buyer.Adress:TAdress read FAdress;
+  //F.Document.AcceptanceInformation1.Buyer.ContactInformation:TContactInformation read FContactInformation;
+  //F.Document.AcceptanceInformation1.Buyer.BankInformation:TBankInformation read FBankInformation;
+
+  F.Document.AcceptanceInformation1.Shipper.OKPO:='123123123';
+  F.Document.AcceptanceInformation1.Shipper.Department:='as dfa sfdasdf';
+  F.Document.AcceptanceInformation1.Shipper.InformationWorkflow:='kasjf sadksd jal';
+  //F.Document.AcceptanceInformation1.Shipper.IdentificationInformation:TIdentificationInformation read FIdentificationInformation;
+  //F.Document.AcceptanceInformation1.Shipper.Adress:TAdress read FAdress;
+  //F.Document.AcceptanceInformation1.Shipper.ContactInformation:TContactInformation read FContactInformation;
+  //F.Document.AcceptanceInformation1.Shipper.BankInformation:TBankInformation read FBankInformation;
+
+  F.Document.AcceptanceInformation1.Consignee.OKPO:='321312312';
+  F.Document.AcceptanceInformation1.Consignee.Department:='asfas asfasdf asdf asd';
+  F.Document.AcceptanceInformation1.Consignee.InformationWorkflow:='asd asfasdf';
+  //F.Document.AcceptanceInformation1.Consignee.IdentificationInformation:TIdentificationInformation read FIdentificationInformation;
+  //F.Document.AcceptanceInformation1.Consignee.Adress:TAdress read FAdress;
+  //F.Document.AcceptanceInformation1.Consignee.ContactInformation:TContactInformation read FContactInformation;
+  //F.Document.AcceptanceInformation1.Consignee.BankInformation:TBankInformation read FBankInformation;
+
+  F.Document.AcceptanceInformation1.InsuranceCompany.OKPO:='23456789';
+  F.Document.AcceptanceInformation1.InsuranceCompany.Department:='sdf asf asdf';
+  F.Document.AcceptanceInformation1.InsuranceCompany.InformationWorkflow:='12312 3123';
+  //F.Document.AcceptanceInformation1.InsuranceCompany.IdentificationInformation:TIdentificationInformation read FIdentificationInformation;
+  //F.Document.AcceptanceInformation1.InsuranceCompany.Adress:TAdress read FAdress;
+  //F.Document.AcceptanceInformation1.InsuranceCompany.ContactInformation:TContactInformation read FContactInformation;
+  //F.Document.AcceptanceInformation1.InsuranceCompany.BankInformation:TBankInformation read FBankInformation;
+
+  F.Document.AcceptanceInformation1.CommisionDocument.OrderDate:='01.01.2019';
+  F.Document.AcceptanceInformation1.CommisionDocument.OrderNumber:='#1234 jjfjg sdfg';
+  //F.Document.AcceptanceInformation1.ResultsInspectionCargo:TResultsInspectionCargo read FResultsInspectionCargo;
+  //F.Document.AcceptanceInformation1.GoodsItemList:TGoodsItemList read FGoodsItemList;
+  //F.Document.AcceptanceInformation1.AcceptanceDateInfo:TAcceptanceDateInfo read FAcceptanceDateInfo;
+  //F.Document.AcceptanceInformation1.OtherAcceptanceInfo:TOtherAcceptanceInfo read FOtherAcceptanceInfo;
+  //F.Document.AcceptanceInformation1.AcceptedPersonInformation:TAcceptedPersonInformation read FAcceptedPersonInformation;
+  //F.Document.AcceptanceInformation1.AdditionalInformationOfLife1:TAdditionalInformationOfLife1 read FAdditionalInformationOfLife1;
+
   //F.Document.AcceptanceInformation2:TAcceptanceInformation2 read FAcceptanceInformation2;
   //F.Document.AdditionalInformationState:string read FAdditionalInformationState write SetAdditionalInformationState;
   //F.Document.Signer
