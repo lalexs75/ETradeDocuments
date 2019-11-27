@@ -102,6 +102,18 @@ type
     property BankInformation:TBankInformation read FBankInformation;
   end;
 
+
+  { TAccompanyingDocument }
+
+  TAccompanyingDocument = class(TXmlSerializationObject) //%Таблица 5.36
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+  end;
+
   { TAdditionalInformationOfLife1 }
 
   TAdditionalInformationOfLife1 = class(TXmlSerializationObject) //%Таблица 5.29
@@ -231,12 +243,34 @@ type
   { TResultsInspectionCargo }
 
   TResultsInspectionCargo = class(TXmlSerializationObject) //%Таблица 5.9
+  private
+    FAcceptanceTime: string;
+    FAcceptanceTimeEnd: string;
+    FAccompanyingDocument: TAccompanyingDocument;
+    FConformityCertificate: TStringList;
+    FInformationResult: TAdditionalInformationOfLife1;
+    FInspectDate: string;
+    FInspectionPlace: string;
+    FShipmentDate: string;
+    procedure SetAcceptanceTime(AValue: string);
+    procedure SetAcceptanceTimeEnd(AValue: string);
+    procedure SetInspectDate(AValue: string);
+    procedure SetInspectionPlace(AValue: string);
+    procedure SetShipmentDate(AValue: string);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
     destructor Destroy; override;
   published
+    property InspectDate:string read FInspectDate write SetInspectDate;
+    property InspectionPlace:string read FInspectionPlace write SetInspectionPlace;
+    property AcceptanceTime:string read FAcceptanceTime write SetAcceptanceTime;
+    property AcceptanceTimeEnd:string read FAcceptanceTimeEnd write SetAcceptanceTimeEnd;
+    property ShipmentDate:string read FShipmentDate write SetShipmentDate;
+    property ConformityCertificate:TStringList read FConformityCertificate;
+    property AccompanyingDocument:TAccompanyingDocument read FAccompanyingDocument;
+    property InformationResult:TAdditionalInformationOfLife1 read FInformationResult;
   end;
 
 
@@ -446,6 +480,23 @@ type
 
 implementation
 
+{ TAccompanyingDocument }
+
+procedure TAccompanyingDocument.InternalRegisterPropertys;
+begin
+
+end;
+
+procedure TAccompanyingDocument.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TAccompanyingDocument.Destroy;
+begin
+  inherited Destroy;
+end;
+
 { TIdentificationInformation }
 
 procedure TIdentificationInformation.InternalRegisterPropertys;
@@ -650,18 +701,66 @@ end;
 
 { TResultsInspectionCargo }
 
+procedure TResultsInspectionCargo.SetAcceptanceTime(AValue: string);
+begin
+  if FAcceptanceTime=AValue then Exit;
+  FAcceptanceTime:=AValue;
+  ModifiedProperty('AcceptanceTime');
+end;
+
+procedure TResultsInspectionCargo.SetAcceptanceTimeEnd(AValue: string);
+begin
+  if FAcceptanceTimeEnd=AValue then Exit;
+  FAcceptanceTimeEnd:=AValue;
+  ModifiedProperty('AcceptanceTimeEnd');
+end;
+
+procedure TResultsInspectionCargo.SetInspectDate(AValue: string);
+begin
+  if FInspectDate=AValue then Exit;
+  FInspectDate:=AValue;
+  ModifiedProperty('InspectDate');
+end;
+
+procedure TResultsInspectionCargo.SetInspectionPlace(AValue: string);
+begin
+  if FInspectionPlace=AValue then Exit;
+  FInspectionPlace:=AValue;
+  ModifiedProperty('InspectionPlace');
+end;
+
+procedure TResultsInspectionCargo.SetShipmentDate(AValue: string);
+begin
+  if FShipmentDate=AValue then Exit;
+  FShipmentDate:=AValue;
+  ModifiedProperty('ShipmentDate');
+end;
+
 procedure TResultsInspectionCargo.InternalRegisterPropertys;
 begin
-
+  RegisterProperty('InspectDate', 'ДатаОсм', 'Н', 'Дата осмотра прибывшего груза', 10, 10);
+  RegisterProperty('InspectionPlace', 'МестоСост', 'Н', 'Место составления документа о приемке и (или) расхождениях', 1, 100);
+  RegisterProperty('AcceptanceTime', 'ВремяНач', 'Н', 'Время начала приемки', 8, 8);
+  RegisterProperty('AcceptanceTimeEnd', 'ВремяОконч', 'Н', 'Время окончания приемки', 8, 8);
+  RegisterProperty('ShipmentDate', 'ДатаОтпр', 'Н', 'Дата отправки груза со станции (пристани, порта)', 10, 10);
+  RegisterProperty('ConformityCertificate', 'СертСоотв','НМ', 'Номер сертификата соответствия', 1, 50);
+  RegisterProperty('AccompanyingDocument', 'СопрДок', 'О', 'Наименование, номер и дата сопроводительного документа (идентификатор сопроводительного документа)', -1, -1);
+  RegisterProperty('InformationResult', 'ИнфПолСвОсм', 'Н', 'Информационное поле сведений о результатах осмотра', -1, -1);
 end;
 
 procedure TResultsInspectionCargo.InternalInitChilds;
 begin
   inherited InternalInitChilds;
+  FAccompanyingDocument:=TAccompanyingDocument.Create;
+  FInformationResult:=TAdditionalInformationOfLife1.Create;
+  FConformityCertificate:=TStringList.Create;
 end;
 
 destructor TResultsInspectionCargo.Destroy;
 begin
+  FreeAndNil(FAccompanyingDocument);
+  FreeAndNil(FInformationResult);
+  FreeAndNil(FConformityCertificate);
   inherited Destroy;
 end;
 

@@ -116,6 +116,25 @@
       </element><element name="TCommisionDocument.OrderNumber"><short>Номер приказа (распоряжения)</short><descr>При отсутствии указывается "б/Н" (без номера)
 </descr>
       </element>
+    <element name="TResultsInspectionCargo.InspectDate"><short>Дата осмотра прибывшего груза</short><descr>Типовой элемент &lt;ДатаТип&gt;
+</descr>
+      </element><element name="TResultsInspectionCargo.InspectionPlace"><short>Место составления документа о приемке и (или) расхождениях</short>
+      </element><element name="TResultsInspectionCargo.AcceptanceTime"><short>Время начала приемки</short><descr>Типовой элемент &lt;ВремяТип&gt;
+</descr>
+      </element><element name="TResultsInspectionCargo.AcceptanceTimeEnd"><short>Время окончания приемки</short><descr>Типовой элемент &lt;ВремяТип&gt;
+</descr>
+      </element><element name="TResultsInspectionCargo.ShipmentDate"><short>Дата отправки груза со станции (пристани, порта)</short><descr>Типовой элемент &lt;ДатаТип&gt;
+</descr>
+      </element><element name="TResultsInspectionCargo.ConformityCertificate"><short>Номер сертификата соответствия</short>
+      </element><element name="TResultsInspectionCargo.AccompanyingDocument"><short>Наименование, номер и дата сопроводительного документа (идентификатор сопроводительного документа)</short><descr>Типовой элемент &lt;СопрДокТип&gt;.
+Состав элемента представлен в таблице 5.36 Для идентификации сопроводительного документа об отгрузке товаров (выполнении работ), передаче имущественных прав (документа об оказании услуг)
+</descr>
+      </element><element name="TAccompanyingDocument"><short>Наименование, номер и дата сопроводительного документа (идентификатор сопроводительного документа)</short>
+      </element><element name="TResultsInspectionCargo.InformationResult"><short>Информационное поле сведений о результатах осмотра</short><descr>Типовой элемент &lt;ИнфПолТип&gt;.
+Состав элемента представлен в таблице 5.29
+</descr>
+      </element><element name="TAdditionalInformationOfLife1"><short>Информационное поле (ИнфПолТип)</short>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>

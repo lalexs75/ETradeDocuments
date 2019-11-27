@@ -104,7 +104,17 @@ begin
 
   F.Document.AcceptanceInformation1.CommisionDocument.OrderDate:='01.01.2019';
   F.Document.AcceptanceInformation1.CommisionDocument.OrderNumber:='#1234 jjfjg sdfg';
-  //F.Document.AcceptanceInformation1.ResultsInspectionCargo:TResultsInspectionCargo read FResultsInspectionCargo;
+
+  F.Document.AcceptanceInformation1.ResultsInspectionCargo.InspectDate:='01.01.2019';
+  F.Document.AcceptanceInformation1.ResultsInspectionCargo.InspectionPlace:='Склад № 123';
+  F.Document.AcceptanceInformation1.ResultsInspectionCargo.AcceptanceTime:='11:00:00';
+  F.Document.AcceptanceInformation1.ResultsInspectionCargo.AcceptanceTimeEnd:='12:00:00';
+  F.Document.AcceptanceInformation1.ResultsInspectionCargo.ShipmentDate:='01.01.2019';
+  F.Document.AcceptanceInformation1.ResultsInspectionCargo.ConformityCertificate.Add('12 jn 1231212313');
+  F.Document.AcceptanceInformation1.ResultsInspectionCargo.ConformityCertificate.Add('11 от 12,12,12');
+  //F.Document.AcceptanceInformation1.ResultsInspectionCargo.AccompanyingDocument:TAccompanyingDocument read FAccompanyingDocument;
+  //F.Document.AcceptanceInformation1.ResultsInspectionCargo.InformationResult:TAdditionalInformationOfLife1 read FInformationResult;
+
   //F.Document.AcceptanceInformation1.GoodsItemList:TGoodsItemList read FGoodsItemList;
   //F.Document.AcceptanceInformation1.AcceptanceDateInfo:TAcceptanceDateInfo read FAcceptanceDateInfo;
   //F.Document.AcceptanceInformation1.OtherAcceptanceInfo:TOtherAcceptanceInfo read FOtherAcceptanceInfo;
