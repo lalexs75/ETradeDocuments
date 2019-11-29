@@ -135,6 +135,26 @@
 </descr>
       </element><element name="TAdditionalInformationOfLife1"><short>Информационное поле (ИнфПолТип)</short>
       </element>
+    <element name="TIdentificationInformation.PhysicalPerson"><short>Сведения о физическом лице</short><descr>Типовой элемент &lt;СвФлТип&gt;.
+Состав элемента представлен в таблице 5.35
+</descr>
+      </element><element name="TIdentificationInformation.IndividualEntrepreneurInformation"><short>Сведения об индивидуальном предпринимателе</short><descr>Типовой элемент &lt;СвИПТип&gt;.
+Состав элемента представлен в таблице 5.34
+</descr>
+      </element><element name="TIdentificationInformation.LegalEntityInformation"><short>Сведения об организации</short><descr>Состав элемента представлен в таблице 5.40
+</descr>
+      </element><element name="TIndividualEntrepreneurInformation.INN"><short>ИНН</short><descr>Типовой элемент &lt;ИННФЛТип&gt;
+</descr>
+      </element><element name="TIndividualEntrepreneurInformation.IndividualEntityRegistrationCertificate"><short>Реквизиты свидетельства о государственной регистрации индивидуального предпринимателя</short>
+      </element><element name="TIndividualEntrepreneurInformation.OtherInfo"><short>Иные сведения, идентифицирующие физическое лицо</short>
+      </element><element name="TIndividualEntrepreneurInformation.Person"><short>Фамилия, имя, отчество</short><descr>Типовой элемент &lt;ФИОТип&gt;.
+Состав элемента представлен в таблице 5.45
+</descr>
+      </element><element name="TPerson.Surname"><short>Фамилия</short>
+      </element><element name="TPerson.FirstName"><short>Имя</short>
+      </element><element name="TPerson.Patronymic"><short>Отчество</short>
+      </element><element name="TLegalEntityInformation"><short>Сведения об организации (СвОрг)</short>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>

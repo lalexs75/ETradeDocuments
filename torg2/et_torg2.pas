@@ -46,8 +46,31 @@ uses
   Classes, SysUtils, AbstractExchangeFileUnit, xmlobject;
 
 type
+  TPhysicalPersonEntity = class;
+  TIndividualEntrepreneurInformation = class;
   TAdress = class;
   TContactInformation = class;
+
+  { TPerson }
+
+  TPerson = class(TXmlSerializationObject) //%Таблица 5.45
+  private
+    FFirstName: string;
+    FPatronymic: string;
+    FSurname: string;
+    procedure SetFirstName(AValue: string);
+    procedure SetPatronymic(AValue: string);
+    procedure SetSurname(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property Surname:string read FSurname write SetSurname;
+    property FirstName:string read FFirstName write SetFirstName;
+    property Patronymic:string read FPatronymic write SetPatronymic;
+  end;
 
 
   { TBankInformation }
@@ -61,15 +84,50 @@ type
   published
   end;
 
-  { TIdentificationInformation }
+  { TOrganizationInformation }
 
-  TIdentificationInformation = class(TXmlSerializationObject) //%Таблица 5.39
+  TOrganizationInformation = class(TXmlSerializationObject) //%Таблица 5.40
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
     destructor Destroy; override;
   published
+(*
+Сведения об организации, состоящей на учете в налоговом органе
+|
+СвОргУч
+С
+
+О
+Состав элемента представлен в таблице 5.41
+--------------------------------------------------
+Сведения об иностранном лице, не состоящем на учете в налоговых органах в качестве налогоплательщика
+СвИнНеУч
+С
+
+О
+Состав элемента представлен в таблице 5.42
+*)
+  end;
+
+
+  { TIdentificationInformation }
+
+  TIdentificationInformation = class(TXmlSerializationObject) //%Таблица 5.39
+  private
+    FIndividualEntrepreneurInformation: TIndividualEntrepreneurInformation;
+    FOrganizationInformation: TOrganizationInformation;
+    FPhysicalPerson: TPhysicalPersonEntity;
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property PhysicalPerson:TPhysicalPersonEntity read FPhysicalPerson;
+    property IndividualEntrepreneurInformation:TIndividualEntrepreneurInformation read FIndividualEntrepreneurInformation;
+    property OrganizationInformation:TOrganizationInformation read FOrganizationInformation;
   end;
 
 
@@ -113,6 +171,42 @@ type
     destructor Destroy; override;
   published
   end;
+
+  { TPhysicalPersonEntity }
+
+  TPhysicalPersonEntity = class(TXmlSerializationObject) //%Таблица 5.35
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+  end;
+
+  { TIndividualEntrepreneurInformation }
+
+  TIndividualEntrepreneurInformation = class(TXmlSerializationObject) //%Таблица 5.34
+  private
+    FIndividualEntityRegistrationCertificate: string;
+    FINN: string;
+    FOtherInfo: string;
+    FPerson: TPerson;
+    procedure SetIndividualEntityRegistrationCertificate(AValue: string);
+    procedure SetINN(AValue: string);
+    procedure SetOtherInfo(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property INN:string read FINN write SetINN;
+    property IndividualEntityRegistrationCertificate:string read FIndividualEntityRegistrationCertificate write SetIndividualEntityRegistrationCertificate;
+    property OtherInfo:string read FOtherInfo write SetOtherInfo;
+    property Person:TPerson read FPerson;
+  end;
+
+
 
   { TAdditionalInformationOfLife1 }
 
@@ -480,6 +574,124 @@ type
 
 implementation
 
+{ TPerson }
+
+procedure TPerson.SetFirstName(AValue: string);
+begin
+  if FFirstName=AValue then Exit;
+  FFirstName:=AValue;
+  ModifiedProperty('FirstName');
+end;
+
+procedure TPerson.SetPatronymic(AValue: string);
+begin
+  if FPatronymic=AValue then Exit;
+  FPatronymic:=AValue;
+  ModifiedProperty('Patronymic');
+end;
+
+procedure TPerson.SetSurname(AValue: string);
+begin
+  if FSurname=AValue then Exit;
+  FSurname:=AValue;
+  ModifiedProperty('Surname');
+end;
+
+procedure TPerson.InternalRegisterPropertys;
+begin
+  RegisterProperty('FirstName', 'Фамилия', 'О', 'Фамилия', 1, 60);
+  RegisterProperty('Patronymic', 'Имя', 'О', 'Имя', 1, 60);
+  RegisterProperty('Surname', 'Отчество', 'Н', 'Отчество', 1, 60);
+end;
+
+procedure TPerson.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TPerson.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TOrganizationInformation }
+
+procedure TOrganizationInformation.InternalRegisterPropertys;
+begin
+
+end;
+
+procedure TOrganizationInformation.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TOrganizationInformation.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TIndividualEntrepreneurInformation }
+
+procedure TIndividualEntrepreneurInformation.SetIndividualEntityRegistrationCertificate
+  (AValue: string);
+begin
+  if FIndividualEntityRegistrationCertificate=AValue then Exit;
+  FIndividualEntityRegistrationCertificate:=AValue;
+  ModifiedProperty('IndividualEntityRegistrationCertificate');
+end;
+
+procedure TIndividualEntrepreneurInformation.SetINN(AValue: string);
+begin
+  if FINN=AValue then Exit;
+  FINN:=AValue;
+  ModifiedProperty('INN');
+end;
+
+procedure TIndividualEntrepreneurInformation.SetOtherInfo(AValue: string);
+begin
+  if FOtherInfo=AValue then Exit;
+  FOtherInfo:=AValue;
+  ModifiedProperty('OtherInfo');
+end;
+
+procedure TIndividualEntrepreneurInformation.InternalRegisterPropertys;
+begin
+  RegisterProperty('INN', 'ИННФЛ', 'О', 'ИНН', 12, 12);
+  RegisterProperty('IndividualEntityRegistrationCertificate', 'СвГосРегИП', 'Н', 'Реквизиты свидетельства о государственной регистрации индивидуального предпринимателя', 1, 100);
+  RegisterProperty('OtherInfo', 'ИныеСвед', 'Н', 'Иные сведения, идентифицирующие физическое лицо', 1, 255);
+  RegisterProperty('Person', 'ФИО', 'О', 'Фамилия, имя, отчество', -1, -1);
+end;
+
+procedure TIndividualEntrepreneurInformation.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+  FPerson:=TPerson.Create;
+end;
+
+destructor TIndividualEntrepreneurInformation.Destroy;
+begin
+  FreeAndNil(FPerson);
+  inherited Destroy;
+end;
+
+{ TPhysicalPersonEntity }
+
+procedure TPhysicalPersonEntity.InternalRegisterPropertys;
+begin
+
+end;
+
+procedure TPhysicalPersonEntity.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TPhysicalPersonEntity.Destroy;
+begin
+  inherited Destroy;
+end;
+
 { TAccompanyingDocument }
 
 procedure TAccompanyingDocument.InternalRegisterPropertys;
@@ -501,16 +713,24 @@ end;
 
 procedure TIdentificationInformation.InternalRegisterPropertys;
 begin
-
+  RegisterProperty('PhysicalPerson', 'СвФЛ', 'О', 'Сведения о физическом лице', -1, -1);
+  RegisterProperty('IndividualEntrepreneurInformation', 'СвИП', 'О', 'Сведения об индивидуальном предпринимателе', -1, -1);
+  RegisterProperty('OrganizationInformation', 'СвОрг', 'О', 'Сведения об организации', -1, -1);
 end;
 
 procedure TIdentificationInformation.InternalInitChilds;
 begin
   inherited InternalInitChilds;
+  FPhysicalPerson:=TPhysicalPersonEntity.Create;
+  FIndividualEntrepreneurInformation:=TIndividualEntrepreneurInformation.Create;
+  FOrganizationInformation:=TOrganizationInformation.Create;
 end;
 
 destructor TIdentificationInformation.Destroy;
 begin
+  FreeAndNil(FPhysicalPerson);
+  FreeAndNil(FIndividualEntrepreneurInformation);
+  FreeAndNil(FOrganizationInformation);
   inherited Destroy;
 end;
 

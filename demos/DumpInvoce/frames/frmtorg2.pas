@@ -65,7 +65,15 @@ begin
   F.Document.AcceptanceInformation1.Seller.OKPO:='123123';
   F.Document.AcceptanceInformation1.Seller.Department:='склад 1';
   F.Document.AcceptanceInformation1.Seller.InformationWorkflow:='Обратите внимание на то и на это';
-  //F.Document.AcceptanceInformation1.Seller.IdentificationInformation:TIdentificationInformation read FIdentificationInformation;
+  F.Document.AcceptanceInformation1.Seller.IdentificationInformation.IndividualEntrepreneurInformation.INN:='123456789012';
+  F.Document.AcceptanceInformation1.Seller.IdentificationInformation.IndividualEntrepreneurInformation.IndividualEntityRegistrationCertificate:='sad asgd as asgasdg asgd';
+  F.Document.AcceptanceInformation1.Seller.IdentificationInformation.IndividualEntrepreneurInformation.OtherInfo:='Прочая информация';
+  F.Document.AcceptanceInformation1.Seller.IdentificationInformation.IndividualEntrepreneurInformation.Person.Surname:='Иванов';
+  F.Document.AcceptanceInformation1.Seller.IdentificationInformation.IndividualEntrepreneurInformation.Person.FirstName:='Иван';
+  F.Document.AcceptanceInformation1.Seller.IdentificationInformation.IndividualEntrepreneurInformation.Person.Patronymic:='Иванович';
+
+//  F.Document.AcceptanceInformation1.Seller.IdentificationInformation.LegalEntityInformation;
+  //F.Document.AcceptanceInformation1.Seller.IdentificationInformation.PhysicalPerson;
   //F.Document.AcceptanceInformation1.Seller.Adress:TAdress read FAdress;
   //F.Document.AcceptanceInformation1.Seller.ContactInformation:TContactInformation read FContactInformation;
   //F.Document.AcceptanceInformation1.Seller.BankInformation:TBankInformation read FBankInformation;
