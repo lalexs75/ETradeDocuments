@@ -11,7 +11,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="47"/>
+        <UsageCount Value="49"/>
       </Unit0>
       <Unit1>
         <Filename Value="unit1.pas"/>
@@ -22,7 +22,7 @@
         <UnitName Value="Unit1"/>
         <TopLine Value="99"/>
         <CursorPos X="29" Y="114"/>
-        <UsageCount Value="47"/>
+        <UsageCount Value="49"/>
         <Bookmarks Count="1">
           <Item0 X="44" Y="359" ID="1"/>
         </Bookmarks>
@@ -37,7 +37,7 @@
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="Unit2"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="43"/>
+        <UsageCount Value="45"/>
       </Unit2>
       <Unit3>
         <Filename Value="frames/frmtorg2.pas"/>
@@ -46,10 +46,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="frmTorg2"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="60"/>
-        <CursorPos X="94" Y="75"/>
-        <UsageCount Value="40"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="71"/>
+        <CursorPos X="103" Y="74"/>
+        <UsageCount Value="42"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -63,10 +64,10 @@
       <Unit5>
         <Filename Value="../../invoce/invocedocument.pas"/>
         <UnitName Value="InvoceDocument"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="668"/>
-        <CursorPos Y="675"/>
-        <UsageCount Value="23"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="661"/>
+        <CursorPos Y="668"/>
+        <UsageCount Value="24"/>
         <Loaded Value="True"/>
       </Unit5>
       <Unit6>
@@ -133,10 +134,10 @@
       <Unit14>
         <Filename Value="../../invoce/invoiceitem.pas"/>
         <UnitName Value="InvoiceItem"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="309"/>
         <CursorPos X="3" Y="325"/>
-        <UsageCount Value="18"/>
+        <UsageCount Value="19"/>
         <Loaded Value="True"/>
       </Unit14>
       <Unit15>
@@ -214,10 +215,10 @@
       <Unit24>
         <Filename Value="../../invoce/organizationinfo.pas"/>
         <UnitName Value="OrganizationInfo"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="153"/>
-        <CursorPos X="53" Y="167"/>
-        <UsageCount Value="11"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="215"/>
+        <CursorPos X="21" Y="242"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
       </Unit24>
       <Unit25>
@@ -230,10 +231,11 @@
       <Unit26>
         <Filename Value="../../invoce/adressinfo.pas"/>
         <UnitName Value="AdressInfo"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="71"/>
-        <CursorPos Y="101"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="247"/>
+        <CursorPos X="3" Y="255"/>
         <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit26>
       <Unit27>
         <Filename Value="../../../../lcl/forms.pp"/>
@@ -283,20 +285,19 @@
       </Unit32>
       <Unit33>
         <Filename Value="../../torg2/et_torg2.pas"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="73"/>
-        <CursorPos X="3" Y="95"/>
-        <UsageCount Value="20"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="652"/>
+        <CursorPos X="3" Y="654"/>
+        <UsageCount Value="21"/>
         <Loaded Value="True"/>
       </Unit33>
       <Unit34>
         <Filename Value="../../exchange/abstractexchangefileunit.pas"/>
         <UnitName Value="AbstractExchangeFileUnit"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="43"/>
-        <CursorPos X="16" Y="63"/>
-        <UsageCount Value="8"/>
+        <TopLine Value="114"/>
+        <CursorPos X="3" Y="142"/>
+        <UsageCount Value="10"/>
       </Unit34>
       <Unit35>
         <Filename Value="../../etradedocuments.pas"/>
@@ -307,10 +308,11 @@
       </Unit35>
       <Unit36>
         <Filename Value="../../../protobuf-fpc/xmlobject/xmlobject.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="486"/>
-        <CursorPos Y="501"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="446"/>
+        <CursorPos Y="463"/>
         <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit36>
       <Unit37>
         <Filename Value="/home/install/source/fpcsrc/rtl/objpas/typinfo.pp"/>
@@ -324,121 +326,122 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="../../torg2/et_torg2.pas"/>
-        <Caret Line="555" Column="3" TopLine="553"/>
+        <Caret Line="664" TopLine="641"/>
       </Position1>
       <Position2>
-        <Filename Value="frames/frmtorg2.pas"/>
-        <Caret Line="68" Column="103" TopLine="53"/>
+        <Filename Value="../../torg2/et_torg2.pas"/>
+        <Caret Line="98" TopLine="82"/>
       </Position2>
       <Position3>
-        <Filename Value="../../torg2/et_torg2.pas"/>
-        <Caret Line="103" Column="14" TopLine="88"/>
+        <Filename Value="frames/frmtorg2.pas"/>
+        <Caret Line="79" Column="93" TopLine="64"/>
       </Position3>
       <Position4>
         <Filename Value="../../torg2/et_torg2.pas"/>
-        <Caret Line="50" Column="37" TopLine="34"/>
+        <Caret Line="163" Column="14" TopLine="148"/>
       </Position4>
       <Position5>
-        <Filename Value="../../torg2/et_torg2.pas"/>
-        <Caret Line="93" Column="75" TopLine="67"/>
+        <Filename Value="frames/frmtorg2.pas"/>
+        <Caret Line="79" Column="94" TopLine="64"/>
       </Position5>
       <Position6>
-        <Filename Value="../../torg2/et_torg2.pas"/>
-        <Caret Line="103" Column="82" TopLine="77"/>
+        <Filename Value="frames/frmtorg2.pas"/>
+        <Caret Line="82" Column="94" TopLine="64"/>
       </Position6>
       <Position7>
         <Filename Value="frames/frmtorg2.pas"/>
-        <Caret Line="70" Column="151" TopLine="53"/>
+        <Caret Line="85" Column="3" TopLine="64"/>
       </Position7>
       <Position8>
-        <Filename Value="../../invoce/organizationinfo.pas"/>
-        <Caret Line="91" TopLine="65"/>
+        <Filename Value="../../torg2/et_torg2.pas"/>
+        <Caret Line="280" TopLine="278"/>
       </Position8>
       <Position9>
-        <Filename Value="../../torg2/et_torg2.pas"/>
-        <Caret Line="72" Column="68" TopLine="51"/>
+        <Filename Value="../../invoce/organizationinfo.pas"/>
+        <Caret Line="136" TopLine="115"/>
       </Position9>
       <Position10>
-        <Filename Value="../../torg2/et_torg2.pas"/>
-        <Caret Line="585" Column="3" TopLine="583"/>
+        <Filename Value="../../invoce/organizationinfo.pas"/>
       </Position10>
       <Position11>
-        <Filename Value="../../torg2/et_torg2.pas"/>
-        <Caret Line="61" Column="15" TopLine="45"/>
+        <Filename Value="../../invoce/organizationinfo.pas"/>
+        <Caret Line="242" Column="21" TopLine="215"/>
       </Position11>
       <Position12>
         <Filename Value="../../torg2/et_torg2.pas"/>
-        <Caret Line="601" Column="28" TopLine="583"/>
+        <Caret Line="944" Column="18" TopLine="932"/>
       </Position12>
       <Position13>
-        <Filename Value="../../invoce/organizationinfo.pas"/>
-        <Caret Line="57" Column="26" TopLine="34"/>
+        <Filename Value="../../invoce/adressinfo.pas"/>
+        <Caret Line="105" Column="10" TopLine="95"/>
       </Position13>
       <Position14>
         <Filename Value="../../torg2/et_torg2.pas"/>
-        <Caret Line="65" Column="20" TopLine="63"/>
+        <Caret Line="284" Column="3" TopLine="276"/>
       </Position14>
       <Position15>
-        <Filename Value="../../torg2/et_torg2.pas"/>
-        <Caret Line="606" Column="15" TopLine="603"/>
+        <Filename Value="../../invoce/adressinfo.pas"/>
+        <Caret Line="48" Column="10" TopLine="32"/>
       </Position15>
       <Position16>
-        <Filename Value="frames/frmtorg2.pas"/>
-        <Caret Line="71" Column="115" TopLine="53"/>
+        <Filename Value="../../invoce/adressinfo.pas"/>
+        <Caret Line="110" Column="35" TopLine="83"/>
       </Position16>
       <Position17>
-        <Filename Value="frames/frmtorg2.pas"/>
-        <Caret Line="74" TopLine="53"/>
+        <Filename Value="../../torg2/et_torg2.pas"/>
+        <Caret Line="312" TopLine="289"/>
       </Position17>
       <Position18>
-        <Filename Value="frames/frmtorg2.pas"/>
-        <Caret Line="75" Column="3" TopLine="53"/>
+        <Filename Value="../../torg2/et_torg2.pas"/>
+        <Caret Line="947" Column="3" TopLine="945"/>
       </Position18>
       <Position19>
         <Filename Value="../../torg2/et_torg2.pas"/>
-        <Caret Line="114" Column="14" TopLine="98"/>
+        <Caret Line="302" Column="15" TopLine="286"/>
       </Position19>
       <Position20>
-        <Filename Value="../../invoce/organizationinfo.pas"/>
-        <Caret Line="629" TopLine="624"/>
+        <Filename Value="../../invoce/adressinfo.pas"/>
+        <Caret Line="112" Column="21" TopLine="91"/>
       </Position20>
       <Position21>
-        <Filename Value="../../invoce/organizationinfo.pas"/>
+        <Filename Value="../../torg2/et_torg2.pas"/>
+        <Caret Line="950" TopLine="945"/>
       </Position21>
       <Position22>
-        <Filename Value="../../invoce/organizationinfo.pas"/>
-        <Caret Line="95" Column="23" TopLine="88"/>
+        <Filename Value="../../torg2/et_torg2.pas"/>
+        <Caret Line="305" TopLine="286"/>
       </Position22>
       <Position23>
         <Filename Value="../../torg2/et_torg2.pas"/>
-        <Caret Line="87" Column="14" TopLine="79"/>
+        <Caret Line="992" Column="29" TopLine="983"/>
       </Position23>
       <Position24>
         <Filename Value="../../torg2/et_torg2.pas"/>
-        <Caret Line="89" Column="26" TopLine="79"/>
+        <Caret Line="304" TopLine="291"/>
       </Position24>
       <Position25>
         <Filename Value="../../torg2/et_torg2.pas"/>
+        <Caret Line="958" TopLine="952"/>
       </Position25>
       <Position26>
         <Filename Value="../../torg2/et_torg2.pas"/>
-        <Caret Line="89" Column="3" TopLine="61"/>
+        <Caret Line="279" Column="15" TopLine="261"/>
       </Position26>
       <Position27>
         <Filename Value="../../torg2/et_torg2.pas"/>
-        <Caret Line="726" Column="52" TopLine="700"/>
+        <Caret Line="652" Column="3" TopLine="650"/>
       </Position27>
       <Position28>
-        <Filename Value="frames/frmtorg2.pas"/>
-        <Caret Line="75" Column="3" TopLine="60"/>
+        <Filename Value="../../torg2/et_torg2.pas"/>
+        <Caret Line="292" Column="15" TopLine="274"/>
       </Position28>
       <Position29>
         <Filename Value="../../torg2/et_torg2.pas"/>
-        <Caret Line="123" Column="29" TopLine="115"/>
+        <Caret Line="654" Column="3" TopLine="652"/>
       </Position29>
       <Position30>
-        <Filename Value="../../torg2/et_torg2.pas"/>
-        <Caret Line="733" Column="38" TopLine="714"/>
+        <Filename Value="frames/frmtorg2.pas"/>
+        <Caret Line="86" Column="5" TopLine="71"/>
       </Position30>
     </JumpHistory>
     <RunParams>

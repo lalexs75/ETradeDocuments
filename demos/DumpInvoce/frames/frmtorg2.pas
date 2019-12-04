@@ -71,10 +71,19 @@ begin
   F.Document.AcceptanceInformation1.Seller.IdentificationInformation.IndividualEntrepreneurInformation.Person.Surname:='Иванов';
   F.Document.AcceptanceInformation1.Seller.IdentificationInformation.IndividualEntrepreneurInformation.Person.FirstName:='Иван';
   F.Document.AcceptanceInformation1.Seller.IdentificationInformation.IndividualEntrepreneurInformation.Person.Patronymic:='Иванович';
-
-//  F.Document.AcceptanceInformation1.Seller.IdentificationInformation.LegalEntityInformation;
-  //F.Document.AcceptanceInformation1.Seller.IdentificationInformation.PhysicalPerson;
-  //F.Document.AcceptanceInformation1.Seller.Adress:TAdress read FAdress;
+  F.Document.AcceptanceInformation1.Seller.IdentificationInformation.PhysicalPerson.INN:='123456789012';
+  F.Document.AcceptanceInformation1.Seller.IdentificationInformation.PhysicalPerson.OtherInfo:='afd rtwqe qwt qwt 123123123';
+  F.Document.AcceptanceInformation1.Seller.IdentificationInformation.PhysicalPerson.Person.FirstName:='Иван';
+  F.Document.AcceptanceInformation1.Seller.IdentificationInformation.PhysicalPerson.Person.Surname:='Иванов';
+  F.Document.AcceptanceInformation1.Seller.IdentificationInformation.PhysicalPerson.Person.Patronymic:='Иванович';
+  F.Document.AcceptanceInformation1.Seller.IdentificationInformation.OrganizationInformation.LegalEntityInformation.FullName:='AAA ksdfkgkg';
+  F.Document.AcceptanceInformation1.Seller.IdentificationInformation.OrganizationInformation.LegalEntityInformation.INN:='123456789';
+  F.Document.AcceptanceInformation1.Seller.IdentificationInformation.OrganizationInformation.LegalEntityInformation.KPP:='123123';
+  F.Document.AcceptanceInformation1.Seller.IdentificationInformation.OrganizationInformation.ForeignEntityInformation.FullName:='sfg asfgasg a';
+  F.Document.AcceptanceInformation1.Seller.IdentificationInformation.OrganizationInformation.ForeignEntityInformation.Identifier:='123';
+  F.Document.AcceptanceInformation1.Seller.IdentificationInformation.OrganizationInformation.ForeignEntityInformation.OtherInfo:='123 123 12 12';
+  //F.Document.AcceptanceInformation1.Seller.Adress.RussianAdress.
+  //F.Document.AcceptanceInformation1.Seller.Adress.AdressInfo
   //F.Document.AcceptanceInformation1.Seller.ContactInformation:TContactInformation read FContactInformation;
   //F.Document.AcceptanceInformation1.Seller.BankInformation:TBankInformation read FBankInformation;
 

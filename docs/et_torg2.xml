@@ -153,7 +153,37 @@
       </element><element name="TPerson.Surname"><short>Фамилия</short>
       </element><element name="TPerson.FirstName"><short>Имя</short>
       </element><element name="TPerson.Patronymic"><short>Отчество</short>
-      </element><element name="TLegalEntityInformation"><short>Сведения об организации (СвОрг)</short>
+      </element><element name="TLegalEntityInformation"><short>Сведения об организации, состоящей на учете в налоговом органе (СвОргУч)</short>
+      </element>
+    <element name="TPhysicalPersonEntity.INN"><short>ИНН</short><descr>Типовой элемент &lt;ИННФЛТип&gt;.
+Обязателен для подписанта при наличии в сертификате ключа проверки электронной подписи
+</descr>
+      </element><element name="TPhysicalPersonEntity.OtherInfo"><short>Иные сведения, идентифицирующие физическое лицо</short>
+      </element><element name="TPhysicalPersonEntity.Person"><short>Фамилия, имя, отчество</short><descr>Типовой элемент &lt;ФИОТип&gt;.
+Состав элемента представлен в таблице 5.45
+</descr>
+      </element><element name="TOrganizationInformation.LegalEntityInformation"><short>Сведения об организации, состоящей на учете в налоговом органе</short><descr>Состав элемента представлен в таблице 5.41
+</descr>
+      </element><element name="TOrganizationInformation.ForeignEntityInformation"><short>Сведения об иностранном лице, не состоящем на учете в налоговых органах в качестве налогоплательщика</short><descr>Состав элемента представлен в таблице 5.42
+</descr>
+      </element><element name="TLegalEntityInformation.FullName"><short>Наименование полное</short>
+      </element><element name="TLegalEntityInformation.INN"><short>ИНН</short><descr>Типовой элемент &lt;ИННЮЛТип&gt;
+</descr>
+      </element><element name="TLegalEntityInformation.KPP"><short>КПП</short><descr>Типовой элемент &lt;КППТип&gt;
+</descr>
+      </element><element name="TForeignEntityInformation.FullName"><short>Наименование полное</short>
+      </element><element name="TForeignEntityInformation.Identifier"><short>Идентификатор юридического лица</short><descr>Информация для автоматизированной обработки
+</descr>
+      </element><element name="TForeignEntityInformation.OtherInfo"><short>Иные сведения, идентифицирующие организацию</short><descr>Например, указывается страна при отсутствии КодСтр
+</descr>
+      </element><element name="TAdress.RussianAdress"><short>Адрес, указанный в Едином государственном реестре юридических лиц/почтовый адрес/адрес места жительства индивидуального предпринимателя (реквизиты адреса на территории Российской Федерации)</short><descr>Типовой элемент &lt;АдрРФТип&gt;.
+Состав элемента представлен в таблице 5.27
+</descr>
+      </element><element name="TAdress.AdressInfo"><short>Адрес, указанный в Едином государственном реестре юридических лиц/почтовый адрес/адрес места жительства индивидуального предпринимателя (информация об адресе, в том числе об адресе за пределами территории Российской Федерации)</short><descr>Типовой элемент &lt;АдрИнфТип&gt;.
+Состав элемента представлен в таблице 5.26
+</descr>
+      </element><element name="TAdress.CodeGAR"><short>Уникальный номер адреса объекта адресации в государственном адресном реестре</short><descr>Типовой элемент string-36
+</descr>
       </element>
     </module>
   </package>
