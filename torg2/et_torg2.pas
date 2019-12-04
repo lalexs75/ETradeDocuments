@@ -84,31 +84,64 @@ type
   published
   end;
 
-  { TOrganizationInformation }
+  { TForeignEntityInformation }
 
-  TOrganizationInformation = class(TXmlSerializationObject) //%Таблица 5.40
+  TForeignEntityInformation = class(TXmlSerializationObject) //%Таблица 5.42
+  private
+    FFullName: string;
+    FIdentifier: string;
+    FOtherInfo: string;
+    procedure SetFullName(AValue: string);
+    procedure SetIdentifier(AValue: string);
+    procedure SetOtherInfo(AValue: string);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
     destructor Destroy; override;
   published
-(*
-Сведения об организации, состоящей на учете в налоговом органе
-|
-СвОргУч
-С
+    property FullName:string read FFullName write SetFullName;
+    property Identifier:string read FIdentifier write SetIdentifier;
+    property OtherInfo:string read FOtherInfo write SetOtherInfo;
+  end;
 
-О
-Состав элемента представлен в таблице 5.41
---------------------------------------------------
-Сведения об иностранном лице, не состоящем на учете в налоговых органах в качестве налогоплательщика
-СвИнНеУч
-С
 
-О
-Состав элемента представлен в таблице 5.42
-*)
+  { TLegalEntityInformation }
+
+  TLegalEntityInformation = class(TXmlSerializationObject) //%Таблица 5.41
+  private
+    FFullName: string;
+    FINN: string;
+    FKPP: string;
+    procedure SetFullName(AValue: string);
+    procedure SetINN(AValue: string);
+    procedure SetKPP(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property FullName:string read FFullName write SetFullName;
+    property INN:string read FINN write SetINN;
+    property KPP:string read FKPP write SetKPP;
+  end;
+
+
+  { TOrganizationInformation }
+
+  TOrganizationInformation = class(TXmlSerializationObject) //%Таблица 5.40
+  private
+    FForeignEntityInformation: TForeignEntityInformation;
+    FLegalEntityInformation: TLegalEntityInformation;
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property LegalEntityInformation:TLegalEntityInformation read FLegalEntityInformation;
+    property ForeignEntityInformation:TForeignEntityInformation read FForeignEntityInformation;
   end;
 
 
@@ -175,12 +208,21 @@ type
   { TPhysicalPersonEntity }
 
   TPhysicalPersonEntity = class(TXmlSerializationObject) //%Таблица 5.35
+  private
+    FINN: string;
+    FOtherInfo: string;
+    FPerson: TPerson;
+    procedure SetINN(AValue: string);
+    procedure SetOtherInfo(AValue: string);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
     destructor Destroy; override;
   published
+    property INN:string read FINN write SetINN;
+    property OtherInfo:string read FOtherInfo write SetOtherInfo;
+    property Person:TPerson read FPerson;
   end;
 
   { TIndividualEntrepreneurInformation }
@@ -230,16 +272,47 @@ type
   published
   end;
 
+  { TAdressInfo }
 
-  { TAdress }
-
-  TAdress = class(TXmlSerializationObject) //%Таблица 5.25
+  TAdressInfo = class(TXmlSerializationObject) //%Таблица 5.26
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
     destructor Destroy; override;
   published
+  end;
+
+
+
+  { TRussianAdress }
+
+  TRussianAdress = class(TXmlSerializationObject) //%Таблица 5.27
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+  end;
+
+  { TAdress }
+
+  TAdress = class(TXmlSerializationObject) //%Таблица 5.25
+  private
+    FAdressInfo: TAdressInfo;
+    FCodeGAR: string;
+    FRussianAdress: TRussianAdress;
+    procedure SetCodeGAR(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property RussianAdress:TRussianAdress read FRussianAdress;
+    property AdressInfo:TAdressInfo read FAdressInfo;
+    //property CodeGAR:string read FCodeGAR write SetCodeGAR;
   end;
 
 
@@ -574,6 +647,120 @@ type
 
 implementation
 
+{ TRussianAdress }
+
+procedure TRussianAdress.InternalRegisterPropertys;
+begin
+
+end;
+
+procedure TRussianAdress.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TRussianAdress.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TAdressInfo }
+
+procedure TAdressInfo.InternalRegisterPropertys;
+begin
+
+end;
+
+procedure TAdressInfo.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TAdressInfo.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TForeignEntityInformation }
+
+procedure TForeignEntityInformation.SetFullName(AValue: string);
+begin
+  if FFullName=AValue then Exit;
+  FFullName:=AValue;
+  ModifiedProperty('FullName');
+end;
+
+procedure TForeignEntityInformation.SetIdentifier(AValue: string);
+begin
+  if FIdentifier=AValue then Exit;
+  FIdentifier:=AValue;
+  ModifiedProperty('Identifier');
+end;
+
+procedure TForeignEntityInformation.SetOtherInfo(AValue: string);
+begin
+  if FOtherInfo=AValue then Exit;
+  FOtherInfo:=AValue;
+  ModifiedProperty('OtherInfo');
+end;
+
+procedure TForeignEntityInformation.InternalRegisterPropertys;
+begin
+  RegisterProperty('FullName', 'НаимОрг', 'О', 'Наименование полное', 1, 1000);
+  RegisterProperty('Identifier', 'Идентиф', 'Н', 'Идентификатор юридического лица', 1, 255);
+  RegisterProperty('OtherInfo', 'ИныеСвед', 'Н', 'Иные сведения, идентифицирующие организацию', 1, 255);
+end;
+
+procedure TForeignEntityInformation.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TForeignEntityInformation.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TLegalEntityInformation }
+
+procedure TLegalEntityInformation.SetFullName(AValue: string);
+begin
+  if FFullName=AValue then Exit;
+  FFullName:=AValue;
+  ModifiedProperty('FullName');
+end;
+
+procedure TLegalEntityInformation.SetINN(AValue: string);
+begin
+  if FINN=AValue then Exit;
+  FINN:=AValue;
+  ModifiedProperty('INN');
+end;
+
+procedure TLegalEntityInformation.SetKPP(AValue: string);
+begin
+  if FKPP=AValue then Exit;
+  FKPP:=AValue;
+  ModifiedProperty('KPP');
+end;
+
+procedure TLegalEntityInformation.InternalRegisterPropertys;
+begin
+  RegisterProperty('FullName', 'НаимОрг', 'О', 'Наименование полное', 1, 100);
+  RegisterProperty('INN', 'ИННЮЛ', 'О', 'ИНН', 10, 10);
+  RegisterProperty('KPP', 'КПП', 'Н', 'КПП', 9, 9);
+end;
+
+procedure TLegalEntityInformation.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TLegalEntityInformation.Destroy;
+begin
+  inherited Destroy;
+end;
+
 { TPerson }
 
 procedure TPerson.SetFirstName(AValue: string);
@@ -618,16 +805,21 @@ end;
 
 procedure TOrganizationInformation.InternalRegisterPropertys;
 begin
-
+  RegisterProperty('LegalEntityInformation', 'СвОргУч', 'О', 'Сведения об организации, состоящей на учете в налоговом органе', -1, -1);
+  RegisterProperty('ForeignEntityInformation', 'СвИнНеУч', 'О', 'Сведения об иностранном лице, не состоящем на учете в налоговых органах в качестве налогоплательщика', -1, -1);
 end;
 
 procedure TOrganizationInformation.InternalInitChilds;
 begin
   inherited InternalInitChilds;
+  FForeignEntityInformation:=TForeignEntityInformation.Create;
+  FLegalEntityInformation:=TLegalEntityInformation.Create;
 end;
 
 destructor TOrganizationInformation.Destroy;
 begin
+  FreeAndNil(FForeignEntityInformation);
+  FreeAndNil(FLegalEntityInformation);
   inherited Destroy;
 end;
 
@@ -677,18 +869,36 @@ end;
 
 { TPhysicalPersonEntity }
 
+procedure TPhysicalPersonEntity.SetINN(AValue: string);
+begin
+  if FINN=AValue then Exit;
+  FINN:=AValue;
+  ModifiedProperty('INN');
+end;
+
+procedure TPhysicalPersonEntity.SetOtherInfo(AValue: string);
+begin
+  if FOtherInfo=AValue then Exit;
+  FOtherInfo:=AValue;
+  ModifiedProperty('OtherInfo');
+end;
+
 procedure TPhysicalPersonEntity.InternalRegisterPropertys;
 begin
-
+  RegisterProperty('INN', 'ИННФЛ', 'Н', 'ИНН', 12, 12);
+  RegisterProperty('OtherInfo', 'ИныеСвед', 'Н', 'Иные сведения, идентифицирующие физическое лицо', 1, 255);
+  RegisterProperty('Person', 'ФИО', 'О', 'Фамилия, имя, отчество', -1, -1);
 end;
 
 procedure TPhysicalPersonEntity.InternalInitChilds;
 begin
   inherited InternalInitChilds;
+  FPerson:=TPerson.Create;
 end;
 
 destructor TPhysicalPersonEntity.Destroy;
 begin
+  FreeAndNil(FPerson);
   inherited Destroy;
 end;
 
@@ -770,18 +980,41 @@ end;
 
 { TAdress }
 
+procedure TAdress.SetCodeGAR(AValue: string);
+begin
+  if FCodeGAR=AValue then Exit;
+  FCodeGAR:=AValue;
+  ModifiedProperty('CurrencyCode');
+end;
+
 procedure TAdress.InternalRegisterPropertys;
 begin
+  RegisterProperty('RussianAdress', 'АдрРФ', 'О', 'Адрес, указанный в Едином государственном реестре юридических лиц/почтовый адрес/адрес места жительства индивидуального предпринимателя (реквизиты адреса на территории Российской Федерации)', -1, -1);
+  RegisterProperty('AdressInfo', 'АдрИнф', 'О', 'Адрес, указанный в Едином государственном реестре юридических лиц/почтовый адрес/адрес места жительства индивидуального предпринимателя (информация об адресе, в том числе об адресе за пределами территории Российской Федерации)', -1, -1);
+  //property CodeGAR:string read FCodeGAR write SetCodeGAR;
+  (*
+  ----------------------------------------------------
+  Уникальный номер адреса объекта адресации в государственном адресном реестре
+  КодГар
+  П
+  Т(1-36)
+  о
+  Типовой элемент <string-36>
+  *)
 
 end;
 
 procedure TAdress.InternalInitChilds;
 begin
   inherited InternalInitChilds;
+  FRussianAdress:=TRussianAdress.Create;
+  FAdressInfo:=TAdressInfo.Create;
 end;
 
 destructor TAdress.Destroy;
 begin
+  FreeAndNil(FRussianAdress);
+  FreeAndNil(FAdressInfo);
   inherited Destroy;
 end;
 
