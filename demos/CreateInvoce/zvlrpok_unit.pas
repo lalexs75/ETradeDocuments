@@ -117,8 +117,8 @@ var
   FDoc: TImportGoodsAndIndirectTaxesExchangeFile;
 begin
   FDoc:=TImportGoodsAndIndirectTaxesExchangeFile.Create;
-  FDoc.LoadFromXML(FileNameEdit1.FileName);
-  FDoc.SaveToXML('aaa.xml');
+  FDoc.LoadFromFile(FileNameEdit1.FileName);
+  FDoc.SaveToFile('aaa.xml');
 
   LoadT4_1(FDoc);
 
@@ -213,7 +213,7 @@ begin
     rxItemsTNVED.AsString:=Itm.TNVED;
     rxItemsUnitCode.AsString:=Itm.UnitCode;;
     rxItemsQuantity.AsString:=Itm.Quantity;
-    rxItemsPrice.AsString:=Itm.Price;
+//    rxItemsPrice.AsString:=Itm.Price;
     rxItemsCurrencyCode.AsString:=Itm.CurrencyCode;
     rxItemsCurrencyRate.AsString:=Itm.CurrencyRate;
     rxItemsCurrencyBase.AsString:=Itm.CurrencyBase;

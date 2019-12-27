@@ -113,7 +113,7 @@ begin
   E:=TExchangeFile.Create;
   E.FileID:='AASSDSADADAD-ADDAD-ADAD';
   E.FormatVersion:='5.1';
-  E.AppVersion:='TestAPP XML 1.0';
+//  E.AppVersion:='TestAPP XML 1.0';
   E.ParticipantsInformation.SenderInfo:='GUID-Отправитель';
   E.ParticipantsInformation.RecipientInfo:='GUID-Получатель';
   E.ParticipantsInformation.SellerExchangeInformation.FullName:='Организация отправитель';
