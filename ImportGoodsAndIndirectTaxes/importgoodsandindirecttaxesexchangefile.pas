@@ -110,9 +110,9 @@ end;
 procedure TImportGoodsAndIndirectTaxesExchangeFile.InternalRegisterPropertys;
 begin
   inherited InternalRegisterPropertys;
-  RegisterProperty('InformationType', 'ТипИнф', 'О', 'Тип информации', 1, 50);
-  RegisterProperty('RecipientTaxInspectionCode', 'КодНО', 'О', 'Код налогового органа получателя', 1, 4);
-  RegisterProperty('Document', 'Документ', 'О', 'Сведения заявления российского налогоплательщика о ввозе товаров и уплате косвенных налогов', -1, -1);
+  RegisterProperty('InformationType', 'ТипИнф', [xsaRequared], 'Тип информации', 1, 50);
+  RegisterProperty('RecipientTaxInspectionCode', 'КодНО', [xsaRequared], 'Код налогового органа получателя', 1, 4);
+  RegisterProperty('Document', 'Документ', [xsaRequared], 'Сведения заявления российского налогоплательщика о ввозе товаров и уплате косвенных налогов', -1, -1);
 end;
 
 procedure TImportGoodsAndIndirectTaxesExchangeFile.InternalInitChilds;

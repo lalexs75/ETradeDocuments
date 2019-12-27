@@ -1012,19 +1012,19 @@ end;
 
 procedure TContractInfo3.InternalRegisterPropertys;
 begin
-  RegisterProperty('SellerType', 'ТипПродР3', 'ОК', 'Тип продавца Раздел 3', 1, 1);
-  RegisterProperty('SellerBaikonurFlag', 'ПрБкнрПродР3', 'Н', 'Признак нахождения российского продавца в г.Байконур', 1, 1);
-  RegisterProperty('SellerIdentificationCode', 'ИдНомПродР3', 'О', 'Идентификационный код (номер) продавца Раздел 3', 8, 14);
-  RegisterProperty('SellerName', 'НаимПродР3', 'О', 'Полное наименование (ФИО) продавца Раздел 3 стр. 08', 1, 400);
-  RegisterProperty('SellerCountryCode', 'КодСтранПродР3', 'ОК', 'Код страны продавца Раздел 3 стр. 10', 3, 3);
-  RegisterProperty('SellerAdress', 'АдресПродР3', 'О', 'Адрес местонахождения (жительства) продавца Раздел 3 стр. 10', 1, 200);
-  RegisterProperty('BuyerType', 'ТипПокР3', 'ОК', 'Тип покупателя Раздел3', 1, 1);
-  RegisterProperty('BuyerBaikonurFlag', 'ПрБкнрПокР3', 'Н', 'Признак нахождения российского покупателя в г.Байконур', 1, 1);
-  RegisterProperty('BuyerIdentificationCode', 'ИдНомПокР3', 'Н', 'Идентификационный код (номер) покупателя Раздел3', 1, 50);
-  RegisterProperty('BuyerName', 'НаимПокР3', 'О', 'Полное наименование (ФИО) покупателя Раздел 3 стр. 09', 1, 400);
-  RegisterProperty('BuyerCountryCode', 'КодСтранПокР3', 'ОК', 'Код страны покупателя Раздел 3 стр. 11', 3, 3);
-  RegisterProperty('BuyerAdress', 'АдресПокР3', 'О', 'Адрес местонахождения (жительства) покупателя Раздел 3 стр. 11', 1, 200);
-  RegisterProperty('ContractInfo', 'СвКонтрР3', 'О', 'Сведения о контракте (договоре) Раздел 3 стр. 12', -1, -1);
+  RegisterProperty('SellerType', 'ТипПродР3', [xsaRequared], 'Тип продавца Раздел 3', 1, 1);
+  RegisterProperty('SellerBaikonurFlag', 'ПрБкнрПродР3', [], 'Признак нахождения российского продавца в г.Байконур', 1, 1);
+  RegisterProperty('SellerIdentificationCode', 'ИдНомПродР3', [xsaRequared], 'Идентификационный код (номер) продавца Раздел 3', 8, 14);
+  RegisterProperty('SellerName', 'НаимПродР3', [xsaRequared], 'Полное наименование (ФИО) продавца Раздел 3 стр. 08', 1, 400);
+  RegisterProperty('SellerCountryCode', 'КодСтранПродР3', [xsaRequared], 'Код страны продавца Раздел 3 стр. 10', 3, 3);
+  RegisterProperty('SellerAdress', 'АдресПродР3', [xsaRequared], 'Адрес местонахождения (жительства) продавца Раздел 3 стр. 10', 1, 200);
+  RegisterProperty('BuyerType', 'ТипПокР3', [xsaRequared], 'Тип покупателя Раздел3', 1, 1);
+  RegisterProperty('BuyerBaikonurFlag', 'ПрБкнрПокР3', [], 'Признак нахождения российского покупателя в г.Байконур', 1, 1);
+  RegisterProperty('BuyerIdentificationCode', 'ИдНомПокР3', [], 'Идентификационный код (номер) покупателя Раздел3', 1, 50);
+  RegisterProperty('BuyerName', 'НаимПокР3', [xsaRequared], 'Полное наименование (ФИО) покупателя Раздел 3 стр. 09', 1, 400);
+  RegisterProperty('BuyerCountryCode', 'КодСтранПокР3', [xsaRequared], 'Код страны покупателя Раздел 3 стр. 11', 3, 3);
+  RegisterProperty('BuyerAdress', 'АдресПокР3', [xsaRequared], 'Адрес местонахождения (жительства) покупателя Раздел 3 стр. 11', 1, 200);
+  RegisterProperty('ContractInfo', 'СвКонтрР3', [xsaRequared], 'Сведения о контракте (договоре) Раздел 3 стр. 12', -1, -1);
 end;
 
 procedure TContractInfo3.InternalInitChilds;
@@ -1197,29 +1197,29 @@ end;
 
 procedure TProductDetail.InternalRegisterPropertys;
 begin
-  RegisterProperty('LineNo', 'НомТовПП', 'О', 'Номер по порядку товара в документе Графа 1', 0, 4);
-  RegisterProperty('ProductName', 'НаимТов', 'О', 'Наименование товара Графа 2', 1, 500);
-  RegisterProperty('TNVED', 'ТНВЭД', 'НК', 'Код товара ТНВЭД Графа 3', 10, 10);
-  RegisterProperty('UnitCode', 'ЕдИзмТов', 'ОК', 'Единица измерения товара Графа 4', 3, 4);
-  RegisterProperty('Quantity', 'КоличТов', 'О', 'Количество товара Графа 5', 1, 17);
-  RegisterProperty('Cost', 'СтоимТов', 'О', 'Стоимость товара Графа 6', 1, 16);
-  RegisterProperty('CurrencyCode', 'ВалТов', 'ОК', 'Код валюты Графа 7', 3, 3);
-  RegisterProperty('CurrencyRate', 'КурсВал', 'О', 'Курс валюты Графа 8', 1, 10);
-  RegisterProperty('CurrencyBase', 'БазаВал', 'О', 'База валюты', 1, 5);
-  RegisterProperty('InvoiceNumber', 'НомСчФ', 'О', 'Номер счета-фактуры Графа 11', 1, 50);
-  RegisterProperty('InvoiceDate', 'ДатаСчФ', 'О', 'Дата счета-фактуры Графа 12', 10, 10);
-  RegisterProperty('RegistrationDate', 'ДатаПрин', 'О', 'ДатаПрин', 10, 10);
-  RegisterProperty('ExciseBase', 'НБАкциз', 'Н', 'Налоговая база (акциз) Графа 14', 1, 21);
-  RegisterProperty('ExciseUnitCode', 'ЕдИзмТовНБАкц', 'НК', 'Единица измерения дополнительной величины, используемой для исчисления налоговой базы (акциз)', 3, 4);
-  RegisterProperty('TaxBase', 'НБНДС', 'О', 'Налоговая база (НДС) Графа 15', 1, 16);
-  RegisterProperty('TaxBase1', 'СтАкцизТверд', 'Н', 'Ставка налога акцизов твердых (специфических) Графа 16', 1, 16);
-  RegisterProperty('TaxBase2', 'СтАкцизАдвал', 'Н', 'Ставка налога акцизов адвалорных Графа 17', 1, 16);
-  RegisterProperty('VatRate', 'СтНДС', 'О', 'Ставка налога (НДС) Графа 18', 1, 16);
-  RegisterProperty('Excise', 'СумАкциз', 'Н', 'Сумма налога (акциз) Графа 19', 1, 16);
-  RegisterProperty('Vat', 'СумНДС', 'Н', 'Сумма налога (НДС) Графа 20', 1, 16);
-  RegisterProperty('ExciseFlag', 'ПрОсвАкциз', 'ОК', 'Признак освобождения от уплаты налога (акцизы)', 1, 1);
-  RegisterProperty('VatFlag', 'ПрОсвНДС', 'ОК', 'Признак освобождения от уплаты налога (НДС)', 1, 1);
-  RegisterProperty('ProductDetailDocs', 'СвТСД', 'ОМ', 'Сведения о товаросопроводительных документах', -1, -1);
+  RegisterProperty('LineNo', 'НомТовПП', [xsaRequared], 'Номер по порядку товара в документе Графа 1', 0, 4);
+  RegisterProperty('ProductName', 'НаимТов', [xsaRequared], 'Наименование товара Графа 2', 1, 500);
+  RegisterProperty('TNVED', 'ТНВЭД', [], 'Код товара ТНВЭД Графа 3', 10, 10);
+  RegisterProperty('UnitCode', 'ЕдИзмТов', [xsaRequared], 'Единица измерения товара Графа 4', 3, 4);
+  RegisterProperty('Quantity', 'КоличТов', [xsaRequared], 'Количество товара Графа 5', 1, 17);
+  RegisterProperty('Cost', 'СтоимТов', [], 'Стоимость товара Графа 6', 1, 16);
+  RegisterProperty('CurrencyCode', 'ВалТов', [xsaRequared], 'Код валюты Графа 7', 3, 3);
+  RegisterProperty('CurrencyRate', 'КурсВал', [xsaRequared], 'Курс валюты Графа 8', 1, 10);
+  RegisterProperty('CurrencyBase', 'БазаВал', [xsaRequared], 'База валюты', 1, 5);
+  RegisterProperty('InvoiceNumber', 'НомСчФ', [xsaRequared], 'Номер счета-фактуры Графа 11', 1, 50);
+  RegisterProperty('InvoiceDate', 'ДатаСчФ', [xsaRequared], 'Дата счета-фактуры Графа 12', 10, 10);
+  RegisterProperty('RegistrationDate', 'ДатаПрин', [xsaRequared], 'ДатаПрин', 10, 10);
+  RegisterProperty('ExciseBase', 'НБАкциз', [], 'Налоговая база (акциз) Графа 14', 1, 21);
+  RegisterProperty('ExciseUnitCode', 'ЕдИзмТовНБАкц', [], 'Единица измерения дополнительной величины, используемой для исчисления налоговой базы (акциз)', 3, 4);
+  RegisterProperty('TaxBase', 'НБНДС', [xsaRequared], 'Налоговая база (НДС) Графа 15', 1, 16);
+  RegisterProperty('TaxBase1', 'СтАкцизТверд', [], 'Ставка налога акцизов твердых (специфических) Графа 16', 1, 16);
+  RegisterProperty('TaxBase2', 'СтАкцизАдвал', [], 'Ставка налога акцизов адвалорных Графа 17', 1, 16);
+  RegisterProperty('VatRate', 'СтНДС', [xsaRequared], 'Ставка налога (НДС) Графа 18', 1, 16);
+  RegisterProperty('Excise', 'СумАкциз', [], 'Сумма налога (акциз) Графа 19', 1, 16);
+  RegisterProperty('Vat', 'СумНДС', [], 'Сумма налога (НДС) Графа 20', 1, 16);
+  RegisterProperty('ExciseFlag', 'ПрОсвАкциз', [xsaRequared], 'Признак освобождения от уплаты налога (акцизы)', 1, 1);
+  RegisterProperty('VatFlag', 'ПрОсвНДС', [xsaRequared], 'Признак освобождения от уплаты налога (НДС)', 1, 1);
+  RegisterProperty('ProductDetailDocs', 'СвТСД', [xsaRequared], 'Сведения о товаросопроводительных документах', -1, -1);
 end;
 
 procedure TProductDetail.InternalInitChilds;
@@ -1252,8 +1252,8 @@ end;
 
 procedure TTransferDoc.InternalRegisterPropertys;
 begin
-  RegisterProperty('TransferDocNumber', 'СерНомТСД', 'О', 'Серия, номер транспортного (товаросопроводительного) документа Графа 9', 1, 50);
-  RegisterProperty('TransferDocDate', 'ДатаТСД', 'О', 'Дата транспортного (товаросопроводительного) документа Графа 10', 10, 10);
+  RegisterProperty('TransferDocNumber', 'СерНомТСД', [xsaRequared], 'Серия, номер транспортного (товаросопроводительного) документа Графа 9', 1, 50);
+  RegisterProperty('TransferDocDate', 'ДатаТСД', [xsaRequared], 'Дата транспортного (товаросопроводительного) документа Графа 10', 10, 10);
 end;
 
 procedure TTransferDoc.InternalInitChilds;
@@ -1349,12 +1349,12 @@ end;
 
 procedure TCommissionContractInfo.InternalRegisterPropertys;
 begin
-  RegisterProperty('BaikonurFlag', 'ПрБкнрОрг', 'Н' , 'Признак нахождения российского посредника в г.Байконур', 1, 1);
-  RegisterProperty('IdentificationCode', 'ИдНомОрг', 'Н' , 'Идентификационный код (номер) посредника Раздел 1 стр.06', 1, 50);
-  RegisterProperty('Name', 'НаимОрг', 'О' , 'Наименование организации (ФИО индивидуального предпринимателя) посредника Раздел 1 стр.06', 1, 400);
-  RegisterProperty('CountryCode', 'КодСтранОрг', 'ОК' , 'Код страны посредника Раздел 1 стр.06', 3, 3);
-  RegisterProperty('Adress', 'АдресОрг', 'О' , 'Адрес местонахождения (жительства) посредника Раздел 1 стр.06', 1, 200);
-  RegisterProperty('ContractInfo', 'СвКонтракт2', 'О' , 'Сведения о контракте (договоре) Раздел 1 стр.07', -1, -1);
+  RegisterProperty('BaikonurFlag', 'ПрБкнрОрг', [] , 'Признак нахождения российского посредника в г.Байконур', 1, 1);
+  RegisterProperty('IdentificationCode', 'ИдНомОрг', [] , 'Идентификационный код (номер) посредника Раздел 1 стр.06', 1, 50);
+  RegisterProperty('Name', 'НаимОрг', [xsaRequared] , 'Наименование организации (ФИО индивидуального предпринимателя) посредника Раздел 1 стр.06', 1, 400);
+  RegisterProperty('CountryCode', 'КодСтранОрг', [xsaRequared], 'Код страны посредника Раздел 1 стр.06', 3, 3);
+  RegisterProperty('Adress', 'АдресОрг', [xsaRequared] , 'Адрес местонахождения (жительства) посредника Раздел 1 стр.06', 1, 200);
+  RegisterProperty('ContractInfo', 'СвКонтракт2', [xsaRequared] , 'Сведения о контракте (договоре) Раздел 1 стр.07', -1, -1);
 end;
 
 procedure TCommissionContractInfo.InternalInitChilds;
@@ -1450,18 +1450,18 @@ end;
 
 procedure TSellerContractInfo.InternalRegisterPropertys;
 begin
-  RegisterProperty('SellerBaikonurFlag', 'ПрБкнрПродР1', 'Н', 'Признак нахождения российского продавца в г.Байконур', 1, 1);
-  RegisterProperty('SellerIdentificationCode', 'ИдНомПродР1', 'Н', 'Идентификационный код (номер) продавца Раздел 1 стр. 01', 1, 50);
-  RegisterProperty('SellerOrgType', 'ПрПродФЛ', 'ОК', 'Признак продавца – физического лица (не индивидуального предпринимателя)', 1, 1);
-  RegisterProperty('SellerName', 'НаимПродР1', 'О', 'Полное наименование (ФИО) продавца Раздел 1 стр. 01', 1, 400);
-  RegisterProperty('SellerCountryCode', 'КодСтранПродР1', 'ОК', 'Код страны продавца Раздел 1 стр. 03', 3, 3);
-  RegisterProperty('SellerAdress', 'АдресПродР1', 'О', 'Адрес местонахождения (жительства) продавца Раздел 1 стр. 03', 1, 200);
-  RegisterProperty('BuyerBaikonurFlag', 'ПрБкнрПокР1', 'Н', 'Признак нахождения российского покупателя в г.Байконур', 1, 1);
-  RegisterProperty('BuyerINN', 'ИдНомПокР1', 'О', 'ИНН покупателя Раздел 1 стр. 02', 10, 12);
-  RegisterProperty('BuyerName', 'НаимПокР1', 'О', 'Полное наименование (ФИО) покупателя Раздел 1 стр. 02', 1, 400);
-  RegisterProperty('BuyerCountryCode', 'КодСтранПокР1', 'ОК', 'Код страны покупателя Раздел 1 стр. 04', 3, 3);
-  RegisterProperty('BuyerAdress', 'АдресПокР1', 'О', 'Адрес местонахождения (жительства) покупателя Раздел 1 стр. 04', 1, 200);
-  RegisterProperty('ContractInfo', 'СвКонтр1', 'О', 'Сведения о контракте (договоре) Раздел 1 стр. 05', -1, -1);
+  RegisterProperty('SellerBaikonurFlag', 'ПрБкнрПродР1', [], 'Признак нахождения российского продавца в г.Байконур', 1, 1);
+  RegisterProperty('SellerIdentificationCode', 'ИдНомПродР1', [], 'Идентификационный код (номер) продавца Раздел 1 стр. 01', 1, 50);
+  RegisterProperty('SellerOrgType', 'ПрПродФЛ', [xsaRequared], 'Признак продавца – физического лица (не индивидуального предпринимателя)', 1, 1);
+  RegisterProperty('SellerName', 'НаимПродР1', [xsaRequared], 'Полное наименование (ФИО) продавца Раздел 1 стр. 01', 1, 400);
+  RegisterProperty('SellerCountryCode', 'КодСтранПродР1', [xsaRequared], 'Код страны продавца Раздел 1 стр. 03', 3, 3);
+  RegisterProperty('SellerAdress', 'АдресПродР1', [xsaRequared], 'Адрес местонахождения (жительства) продавца Раздел 1 стр. 03', 1, 200);
+  RegisterProperty('BuyerBaikonurFlag', 'ПрБкнрПокР1', [], 'Признак нахождения российского покупателя в г.Байконур', 1, 1);
+  RegisterProperty('BuyerINN', 'ИдНомПокР1', [xsaRequared], 'ИНН покупателя Раздел 1 стр. 02', 10, 12);
+  RegisterProperty('BuyerName', 'НаимПокР1', [xsaRequared], 'Полное наименование (ФИО) покупателя Раздел 1 стр. 02', 1, 400);
+  RegisterProperty('BuyerCountryCode', 'КодСтранПокР1', [xsaRequared], 'Код страны покупателя Раздел 1 стр. 04', 3, 3);
+  RegisterProperty('BuyerAdress', 'АдресПокР1', [xsaRequared], 'Адрес местонахождения (жительства) покупателя Раздел 1 стр. 04', 1, 200);
+  RegisterProperty('ContractInfo', 'СвКонтр1', [xsaRequared], 'Сведения о контракте (договоре) Раздел 1 стр. 05', -1, -1);
 end;
 
 procedure TSellerContractInfo.InternalInitChilds;
@@ -1517,9 +1517,9 @@ end;
 
 procedure TContractInfo.InternalRegisterPropertys;
 begin
-  RegisterProperty('ContractNumber', 'НомКонтр', 'О', 'Номер контракта', 1, 50);
-  RegisterProperty('ContractDate', 'ДатаКонтр', 'О', 'Дата контракта', 10, 10);
-  RegisterProperty('SpecificationsInformation', 'СвСпециф', 'НМ', 'Сведения спецификаций', -1, -1);
+  RegisterProperty('ContractNumber', 'НомКонтр', [xsaRequared], 'Номер контракта', 1, 50);
+  RegisterProperty('ContractDate', 'ДатаКонтр', [xsaRequared], 'Дата контракта', 10, 10);
+  RegisterProperty('SpecificationsInformation', 'СвСпециф', [xsaRequared], 'Сведения спецификаций', -1, -1);
 end;
 
 procedure TContractInfo.InternalInitChilds;
@@ -1559,9 +1559,9 @@ end;
 
 procedure TSpecificationsInformation.InternalRegisterPropertys;
 begin
-  RegisterProperty('OrderNumber', 'НомПСпециф', 'О', 'Номер по порядку', 0, 5);
-  RegisterProperty('SpecificationNumber', 'НомСпециф', 'О', 'Номер спецификации', 1, 50);
-  RegisterProperty('SpecificationDate', 'ДатаСпециф', 'О', 'Дата спецификации', 10, 10);
+  RegisterProperty('OrderNumber', 'НомПСпециф', [xsaRequared], 'Номер по порядку', 0, 5);
+  RegisterProperty('SpecificationNumber', 'НомСпециф', [xsaRequared], 'Номер спецификации', 1, 50);
+  RegisterProperty('SpecificationDate', 'ДатаСпециф', [xsaRequared], 'Дата спецификации', 10, 10);
 end;
 
 procedure TSpecificationsInformation.InternalInitChilds;
@@ -1655,22 +1655,22 @@ end;
 
 procedure TDeclarationInfo.InternalRegisterPropertys;
 begin
-  RegisterProperty('DocumentNumber', 'НомерДокНП', 'О', 'Номер заявления, указанный НП', 1, 12);
-  RegisterProperty('DocumentData', 'ДатаДокНП', 'О', 'Дата заполнения заявления, указанная НП', 10, 10);
-  RegisterProperty('LeasingFlag', 'ПрЛизинг', 'ОК', 'Признак договора лизинга', 1, 1);
-  RegisterProperty('ContractRawMaterialsFlag', 'ПрДавСырья', 'ОК', 'Признак договора переработки давальческого сырья', 1, 1);
-  RegisterProperty('ExciseBase', 'БазаАкциз', 'Н', 'База по акцизам Итого по графе 14 Раздел 1', 1, 21);
-  RegisterProperty('VatBase', 'БазаНДС', 'О', 'База по НДС Итого по графе 15 Раздел 1', 1, 16);
-  RegisterProperty('Excise', 'ИтогоАкциз', 'Н', 'Акциз в сумме Итого по графе 19 Раздел 1', 1, 16);
-  RegisterProperty('Vat', 'ИтогоНДС', 'Н', 'НДС в сумме Итого по графе 20 Раздел 1', 1, 16);
-  RegisterProperty('DocumentBaseFlag', 'ПВДок', 'ОК', 'Причина возникновения заявления', 1, 1);
-  RegisterProperty('DocumentTaxNumber', 'НомОтм', 'Н', 'Номер отметки о регистрации в налоговом органе ранее представленного заявления', 1, 18);
-  RegisterProperty('DocumentTaxData', 'ДатаОтм', 'Н', 'Дата отметки о регистрации в налоговом органе ранее представленного заявления', 10, 10);
-  RegisterProperty('SellerContractInfo', 'СвКонтракт1', 'О', 'Сведения о договоре (контракте) Раздел 1 стр.05', -1, -1);
-  RegisterProperty('CommissionContractInfo', 'СвКонтрКомисс', 'Н', 'Сведения о контракте с комиссионером Раздел 1 стр. 06-07', -1, -1);
-  RegisterProperty('ProductDetails', 'СвТовар', 'ОМ', 'Сведения о товаре и уплаченных налогах', -1, -1);
-  RegisterProperty('ContractInfo3', 'СвКонтракт3', 'Н', 'Сведения о договоре (контракте) Раздел 3', -1, -1);
-  RegisterProperty('PreviouslyStatement', 'СвПредДок', 'Н', 'Сведения о ранее представленном заявлении', -1, -1);
+  RegisterProperty('DocumentNumber', 'НомерДокНП', [xsaRequared], 'Номер заявления, указанный НП', 1, 12);
+  RegisterProperty('DocumentData', 'ДатаДокНП', [xsaRequared], 'Дата заполнения заявления, указанная НП', 10, 10);
+  RegisterProperty('LeasingFlag', 'ПрЛизинг', [xsaRequared], 'Признак договора лизинга', 1, 1);
+  RegisterProperty('ContractRawMaterialsFlag', 'ПрДавСырья', [xsaRequared], 'Признак договора переработки давальческого сырья', 1, 1);
+  RegisterProperty('ExciseBase', 'БазаАкциз', [], 'База по акцизам Итого по графе 14 Раздел 1', 1, 21);
+  RegisterProperty('VatBase', 'БазаНДС', [xsaRequared], 'База по НДС Итого по графе 15 Раздел 1', 1, 16);
+  RegisterProperty('Excise', 'ИтогоАкциз', [], 'Акциз в сумме Итого по графе 19 Раздел 1', 1, 16);
+  RegisterProperty('Vat', 'ИтогоНДС', [], 'НДС в сумме Итого по графе 20 Раздел 1', 1, 16);
+  RegisterProperty('DocumentBaseFlag', 'ПВДок', [xsaRequared], 'Причина возникновения заявления', 1, 1);
+  RegisterProperty('DocumentTaxNumber', 'НомОтм', [], 'Номер отметки о регистрации в налоговом органе ранее представленного заявления', 1, 18);
+  RegisterProperty('DocumentTaxData', 'ДатаОтм', [], 'Дата отметки о регистрации в налоговом органе ранее представленного заявления', 10, 10);
+  RegisterProperty('SellerContractInfo', 'СвКонтракт1', [xsaRequared], 'Сведения о договоре (контракте) Раздел 1 стр.05', -1, -1);
+  RegisterProperty('CommissionContractInfo', 'СвКонтрКомисс', [], 'Сведения о контракте с комиссионером Раздел 1 стр. 06-07', -1, -1);
+  RegisterProperty('ProductDetails', 'СвТовар', [xsaRequared], 'Сведения о товаре и уплаченных налогах', -1, -1);
+  RegisterProperty('ContractInfo3', 'СвКонтракт3', [], 'Сведения о договоре (контракте) Раздел 3', -1, -1);
+  RegisterProperty('PreviouslyStatement', 'СвПредДок', [], 'Сведения о ранее представленном заявлении', -1, -1);
 end;
 
 procedure TDeclarationInfo.InternalInitChilds;
@@ -1718,11 +1718,11 @@ end;
 
 procedure TSignerInfo.InternalRegisterPropertys;
 begin
-  RegisterProperty('SignerType', 'ПрПодп', 'ОК', 'Признак лица, подписавшего документ', 1, 1);
-  RegisterProperty('Position', 'ДолжнПодп', 'Н', 'Должность лица, подписавшего документ', 0, 128);
-  RegisterProperty('INN', 'ИННФЛ', 'Н', 'ИНН физического лица', 12, 12);
-  RegisterProperty('Person', 'ФИО', 'О', 'Фамилия, имя, отчество', -1, -1);
-  RegisterProperty('AuthorizedInformation', 'СвПред', 'Н', 'Сведения об уполномоченном представителе', -1, -1);
+  RegisterProperty('SignerType', 'ПрПодп', [xsaRequared], 'Признак лица, подписавшего документ', 1, 1);
+  RegisterProperty('Position', 'ДолжнПодп', [], 'Должность лица, подписавшего документ', 0, 128);
+  RegisterProperty('INN', 'ИННФЛ', [], 'ИНН физического лица', 12, 12);
+  RegisterProperty('Person', 'ФИО', [xsaRequared], 'Фамилия, имя, отчество', -1, -1);
+  RegisterProperty('AuthorizedInformation', 'СвПред', [], 'Сведения об уполномоченном представителе', -1, -1);
 end;
 
 procedure TSignerInfo.InternalInitChilds;
@@ -1764,9 +1764,9 @@ end;
 
 procedure TAuthorizedInformation.InternalRegisterPropertys;
 begin
-  RegisterProperty('DocumentName', 'НаимДов', 'О', 'Наименование документа (доверенности, приказа), подтверждающего полномочия представителя', 1, 120);
-  RegisterProperty('DocumentNumber', 'НомерДов', 'О', 'Номер документа', 1, 50);
-  RegisterProperty('DocumentDate', 'ДатаДов', 'О', 'Дата документа', 10, 10);
+  RegisterProperty('DocumentName', 'НаимДов', [xsaRequared], 'Наименование документа (доверенности, приказа), подтверждающего полномочия представителя', 1, 120);
+  RegisterProperty('DocumentNumber', 'НомерДов', [xsaRequared], 'Номер документа', 1, 50);
+  RegisterProperty('DocumentDate', 'ДатаДов', [xsaRequared], 'Дата документа', 10, 10);
 end;
 
 procedure TAuthorizedInformation.InternalInitChilds;
@@ -1804,9 +1804,9 @@ end;
 
 procedure TPerson.InternalRegisterPropertys;
 begin
-  RegisterProperty('Surname', 'Фамилия', 'О', 'Фамилия', 1, 60);
-  RegisterProperty('FirstName', 'Имя', 'О', 'Имя', 1, 60);
-  RegisterProperty('Patronymic', 'Отчество', 'Н', 'Отчество', 1, 60);
+  RegisterProperty('Surname', 'Фамилия', [xsaRequared], 'Фамилия', 1, 60);
+  RegisterProperty('FirstName', 'Имя', [xsaRequared], 'Имя', 1, 60);
+  RegisterProperty('Patronymic', 'Отчество', [], 'Отчество', 1, 60);
 end;
 
 procedure TPerson.InternalInitChilds;
@@ -1830,8 +1830,8 @@ end;
 
 procedure TPhysicalPersonEntity.InternalRegisterPropertys;
 begin
-  RegisterProperty('INN', 'ИННФЛ', 'Н', 'ИНН физического лица', 12, 12);
-  RegisterProperty('Person', 'ФИО', 'О', 'Фамилия, имя, отчество', -1, -1);
+  RegisterProperty('INN', 'ИННФЛ', [], 'ИНН физического лица', 12, 12);
+  RegisterProperty('Person', 'ФИО', [xsaRequared], 'Фамилия, имя, отчество', -1, -1);
 end;
 
 procedure TPhysicalPersonEntity.InternalInitChilds;
@@ -1871,9 +1871,9 @@ end;
 
 procedure TLegalEntityInformation.InternalRegisterPropertys;
 begin
-  RegisterProperty('FullName', 'НаимОрг', 'О', 'Наименование организации', 1, 400);
-  RegisterProperty('INN', 'ИННЮЛ', 'О', 'ИНН организации', 10, 10);
-  RegisterProperty('KPP', 'КПП', 'О', 'КПП', 9, 9);
+  RegisterProperty('FullName', 'НаимОрг', [xsaRequared], 'Наименование организации', 1, 400);
+  RegisterProperty('INN', 'ИННЮЛ', [xsaRequared], 'ИНН организации', 10, 10);
+  RegisterProperty('KPP', 'КПП', [xsaRequared], 'КПП', 9, 9);
 end;
 
 procedure TLegalEntityInformation.InternalInitChilds;
@@ -1890,8 +1890,8 @@ end;
 
 procedure TSenderInfo.InternalRegisterPropertys;
 begin
-  RegisterProperty('LegalEntityInformation', 'ОтпрЮЛ', 'О', 'Отправитель – организация', -1, -1);
-  RegisterProperty('PhysicalPerson', 'ОтпрФЛ', 'О', 'Отправитель - физическое лицо', -1, -1);
+  RegisterProperty('LegalEntityInformation', 'ОтпрЮЛ', [xsaRequared], 'Отправитель – организация', -1, -1);
+  RegisterProperty('PhysicalPerson', 'ОтпрФЛ', [xsaRequared], 'Отправитель - физическое лицо', -1, -1);
 end;
 
 procedure TSenderInfo.InternalInitChilds;
@@ -1926,12 +1926,12 @@ end;
 
 procedure TImportGoodsAndIndirectTaxesDocument.InternalRegisterPropertys;
 begin
-  RegisterProperty('KND', 'КНД', 'О', 'Код формы по КНД', 7, 7);
-  RegisterProperty('DocumentDate', 'ДатаДок', 'О', 'Дата формирования документа', 10, 10);
-  RegisterProperty('SenderInfo', 'СвОтпр', 'О', 'Сведения об отправителе документа', -1, -1);
-  RegisterProperty('SignerInfo', 'Подписант', 'О', 'Сведения о лице, подписавшем документ', -1, -1);
-  RegisterProperty('DeclarationInfo', 'СвЗвл', 'О', 'Сведения из заявления', -1, -1);
-  RegisterProperty('ContractAdditional', 'СвКонтрПр', 'НМ', 'Сведения о договорах (контрактах) приложения к Заявлению', -1, -1);
+  RegisterProperty('KND', 'КНД', [xsaRequared], 'Код формы по КНД', 7, 7);
+  RegisterProperty('DocumentDate', 'ДатаДок', [xsaRequared], 'Дата формирования документа', 10, 10);
+  RegisterProperty('SenderInfo', 'СвОтпр', [xsaRequared], 'Сведения об отправителе документа', -1, -1);
+  RegisterProperty('SignerInfo', 'Подписант', [xsaRequared], 'Сведения о лице, подписавшем документ', -1, -1);
+  RegisterProperty('DeclarationInfo', 'СвЗвл', [xsaRequared], 'Сведения из заявления', -1, -1);
+  RegisterProperty('ContractAdditional', 'СвКонтрПр', [xsaRequared], 'Сведения о договорах (контрактах) приложения к Заявлению', -1, -1);
 end;
 
 procedure TImportGoodsAndIndirectTaxesDocument.InternalInitChilds;
