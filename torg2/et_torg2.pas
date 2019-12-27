@@ -752,9 +752,9 @@ end;
 
 procedure TBank.InternalRegisterPropertys;
 begin
-  RegisterProperty('BankName', 'НаимБанк', 'Н', 'Наименование банка', 1, 1000);
-  RegisterProperty('BankBIK', 'БИК', 'НК', 'Банковский идентификационный код (БИК) в соответствии со "Справочником БИК РФ"', 9, 9);
-  RegisterProperty('CorrAccount', 'КорСчет', 'Н', 'Корреспондентский счет банка', 1, 20);
+  RegisterProperty('BankName', 'НаимБанк', [], 'Наименование банка', 1, 1000);
+  RegisterProperty('BankBIK', 'БИК', [], 'Банковский идентификационный код (БИК) в соответствии со "Справочником БИК РФ"', 9, 9);
+  RegisterProperty('CorrAccount', 'КорСчет', [], 'Корреспондентский счет банка', 1, 20);
 end;
 
 procedure TBank.InternalInitChilds;
@@ -834,15 +834,15 @@ end;
 
 procedure TRussianAdress.InternalRegisterPropertys;
 begin
-  RegisterProperty('ZipCode', 'Индекс', 'Н', 'Индекс', 6, 6);
-  RegisterProperty('Region', 'КодРегион', 'ОК', 'Код региона', 2, 2);
-  RegisterProperty('Territory', 'Район', 'Н', 'Район', 1, 50);
-  RegisterProperty('City', 'Город', 'Н', 'Город', 1, 50);
-  RegisterProperty('Locality', 'НаселПункт', 'Н', 'Населенный пункт', 1, 50);
-  RegisterProperty('Street', 'Улица', 'Н', 'Улица', 1, 50);
-  RegisterProperty('Building', 'Дом', 'Н', 'Дом', 1, 20);
-  RegisterProperty('Block', 'Корпус', 'Н', 'Корпус', 1, 20);
-  RegisterProperty('Apartment', 'Кварт', 'Н', 'Квартира', 1, 20);
+  RegisterProperty('ZipCode', 'Индекс', [], 'Индекс', 6, 6);
+  RegisterProperty('Region', 'КодРегион', [xsaRequared], 'Код региона', 2, 2);
+  RegisterProperty('Territory', 'Район', [], 'Район', 1, 50);
+  RegisterProperty('City', 'Город', [], 'Город', 1, 50);
+  RegisterProperty('Locality', 'НаселПункт', [], 'Населенный пункт', 1, 50);
+  RegisterProperty('Street', 'Улица', [], 'Улица', 1, 50);
+  RegisterProperty('Building', 'Дом', [], 'Дом', 1, 20);
+  RegisterProperty('Block', 'Корпус', [], 'Корпус', 1, 20);
+  RegisterProperty('Apartment', 'Кварт', [], 'Квартира', 1, 20);
 end;
 
 procedure TRussianAdress.InternalInitChilds;
@@ -873,8 +873,8 @@ end;
 
 procedure TAdressInfo.InternalRegisterPropertys;
 begin
-  RegisterProperty('CountryCode', 'КодСтр', 'ОК', 'Код страны', 3, 3);
-  RegisterProperty('Address', 'АдрТекст', 'О', 'Адрес', 1, 255);
+  RegisterProperty('CountryCode', 'КодСтр', [xsaRequared], 'Код страны', 3, 3);
+  RegisterProperty('Address', 'АдрТекст', [xsaRequared], 'Адрес', 1, 255);
 end;
 
 procedure TAdressInfo.InternalInitChilds;
@@ -912,9 +912,9 @@ end;
 
 procedure TForeignEntityInformation.InternalRegisterPropertys;
 begin
-  RegisterProperty('FullName', 'НаимОрг', 'О', 'Наименование полное', 1, 1000);
-  RegisterProperty('Identifier', 'Идентиф', 'Н', 'Идентификатор юридического лица', 1, 255);
-  RegisterProperty('OtherInfo', 'ИныеСвед', 'Н', 'Иные сведения, идентифицирующие организацию', 1, 255);
+  RegisterProperty('FullName', 'НаимОрг', [xsaRequared], 'Наименование полное', 1, 1000);
+  RegisterProperty('Identifier', 'Идентиф', [], 'Идентификатор юридического лица', 1, 255);
+  RegisterProperty('OtherInfo', 'ИныеСвед', [], 'Иные сведения, идентифицирующие организацию', 1, 255);
 end;
 
 procedure TForeignEntityInformation.InternalInitChilds;
@@ -952,9 +952,9 @@ end;
 
 procedure TLegalEntityInformation.InternalRegisterPropertys;
 begin
-  RegisterProperty('FullName', 'НаимОрг', 'О', 'Наименование полное', 1, 100);
-  RegisterProperty('INN', 'ИННЮЛ', 'О', 'ИНН', 10, 10);
-  RegisterProperty('KPP', 'КПП', 'Н', 'КПП', 9, 9);
+  RegisterProperty('FullName', 'НаимОрг', [xsaRequared], 'Наименование полное', 1, 100);
+  RegisterProperty('INN', 'ИННЮЛ', [xsaRequared], 'ИНН', 10, 10);
+  RegisterProperty('KPP', 'КПП', [], 'КПП', 9, 9);
 end;
 
 procedure TLegalEntityInformation.InternalInitChilds;
@@ -992,9 +992,9 @@ end;
 
 procedure TPerson.InternalRegisterPropertys;
 begin
-  RegisterProperty('FirstName', 'Фамилия', 'О', 'Фамилия', 1, 60);
-  RegisterProperty('Patronymic', 'Имя', 'О', 'Имя', 1, 60);
-  RegisterProperty('Surname', 'Отчество', 'Н', 'Отчество', 1, 60);
+  RegisterProperty('FirstName', 'Фамилия', [xsaRequared], 'Фамилия', 1, 60);
+  RegisterProperty('Patronymic', 'Имя', [xsaRequared], 'Имя', 1, 60);
+  RegisterProperty('Surname', 'Отчество', [], 'Отчество', 1, 60);
 end;
 
 procedure TPerson.InternalInitChilds;
@@ -1011,8 +1011,8 @@ end;
 
 procedure TOrganizationInformation.InternalRegisterPropertys;
 begin
-  RegisterProperty('LegalEntityInformation', 'СвОргУч', 'О', 'Сведения об организации, состоящей на учете в налоговом органе', -1, -1);
-  RegisterProperty('ForeignEntityInformation', 'СвИнНеУч', 'О', 'Сведения об иностранном лице, не состоящем на учете в налоговых органах в качестве налогоплательщика', -1, -1);
+  RegisterProperty('LegalEntityInformation', 'СвОргУч', [xsaRequared], 'Сведения об организации, состоящей на учете в налоговом органе', -1, -1);
+  RegisterProperty('ForeignEntityInformation', 'СвИнНеУч', [xsaRequared], 'Сведения об иностранном лице, не состоящем на учете в налоговых органах в качестве налогоплательщика', -1, -1);
 end;
 
 procedure TOrganizationInformation.InternalInitChilds;
@@ -1055,10 +1055,10 @@ end;
 
 procedure TIndividualEntrepreneurInformation.InternalRegisterPropertys;
 begin
-  RegisterProperty('INN', 'ИННФЛ', 'О', 'ИНН', 12, 12);
-  RegisterProperty('IndividualEntityRegistrationCertificate', 'СвГосРегИП', 'Н', 'Реквизиты свидетельства о государственной регистрации индивидуального предпринимателя', 1, 100);
-  RegisterProperty('OtherInfo', 'ИныеСвед', 'Н', 'Иные сведения, идентифицирующие физическое лицо', 1, 255);
-  RegisterProperty('Person', 'ФИО', 'О', 'Фамилия, имя, отчество', -1, -1);
+  RegisterProperty('INN', 'ИННФЛ', [xsaRequared], 'ИНН', 12, 12);
+  RegisterProperty('IndividualEntityRegistrationCertificate', 'СвГосРегИП', [], 'Реквизиты свидетельства о государственной регистрации индивидуального предпринимателя', 1, 100);
+  RegisterProperty('OtherInfo', 'ИныеСвед', [], 'Иные сведения, идентифицирующие физическое лицо', 1, 255);
+  RegisterProperty('Person', 'ФИО', [xsaRequared], 'Фамилия, имя, отчество', -1, -1);
 end;
 
 procedure TIndividualEntrepreneurInformation.InternalInitChilds;
@@ -1091,9 +1091,9 @@ end;
 
 procedure TPhysicalPersonEntity.InternalRegisterPropertys;
 begin
-  RegisterProperty('INN', 'ИННФЛ', 'Н', 'ИНН', 12, 12);
-  RegisterProperty('OtherInfo', 'ИныеСвед', 'Н', 'Иные сведения, идентифицирующие физическое лицо', 1, 255);
-  RegisterProperty('Person', 'ФИО', 'О', 'Фамилия, имя, отчество', -1, -1);
+  RegisterProperty('INN', 'ИННФЛ', [], 'ИНН', 12, 12);
+  RegisterProperty('OtherInfo', 'ИныеСвед', [], 'Иные сведения, идентифицирующие физическое лицо', 1, 255);
+  RegisterProperty('Person', 'ФИО', [xsaRequared], 'Фамилия, имя, отчество', -1, -1);
 end;
 
 procedure TPhysicalPersonEntity.InternalInitChilds;
@@ -1140,10 +1140,10 @@ end;
 
 procedure TAccompanyingDocument.InternalRegisterPropertys;
 begin
-  RegisterProperty('DocumentName', 'НаимСопрДок', 'О', 'Наименование сопроводительного документа', 1, 200);
-  RegisterProperty('DocumentNumber', 'НомСопрДок', 'Н', 'Номер сопроводительного документа', 1, 100);
-  RegisterProperty('DocumentDate', 'ДатаСопрДок', 'Н', 'Дата сопроводительного документа', 10, 10);
-  RegisterProperty('DocumentID', 'ДопИдСопрДок', 'Н', 'Дополнительный идентификатор сопроводительного документа', 1, 255);
+  RegisterProperty('DocumentName', 'НаимСопрДок', [xsaRequared], 'Наименование сопроводительного документа', 1, 200);
+  RegisterProperty('DocumentNumber', 'НомСопрДок', [], 'Номер сопроводительного документа', 1, 100);
+  RegisterProperty('DocumentDate', 'ДатаСопрДок', [], 'Дата сопроводительного документа', 10, 10);
+  RegisterProperty('DocumentID', 'ДопИдСопрДок', [], 'Дополнительный идентификатор сопроводительного документа', 1, 255);
 end;
 
 procedure TAccompanyingDocument.InternalInitChilds;
@@ -1160,9 +1160,9 @@ end;
 
 procedure TIdentificationInformation.InternalRegisterPropertys;
 begin
-  RegisterProperty('PhysicalPerson', 'СвФЛ', 'О', 'Сведения о физическом лице', -1, -1);
-  RegisterProperty('IndividualEntrepreneurInformation', 'СвИП', 'О', 'Сведения об индивидуальном предпринимателе', -1, -1);
-  RegisterProperty('OrganizationInformation', 'СвОрг', 'О', 'Сведения об организации', -1, -1);
+  RegisterProperty('PhysicalPerson', 'СвФЛ', [xsaRequared], 'Сведения о физическом лице', -1, -1);
+  RegisterProperty('IndividualEntrepreneurInformation', 'СвИП', [xsaRequared], 'Сведения об индивидуальном предпринимателе', -1, -1);
+  RegisterProperty('OrganizationInformation', 'СвОрг', [xsaRequared], 'Сведения об организации', -1, -1);
 end;
 
 procedure TIdentificationInformation.InternalInitChilds;
@@ -1191,8 +1191,8 @@ end;
 
 procedure TBankInformation.InternalRegisterPropertys;
 begin
-  RegisterProperty('BankAccount', 'НомерСчета', 'Н', 'Номер банковского счета', 1, 20);
-  RegisterProperty('Bank', 'СвБанк', 'Н', 'Сведения о банке', -1, -1);
+  RegisterProperty('BankAccount', 'НомерСчета', [], 'Номер банковского счета', 1, 20);
+  RegisterProperty('Bank', 'СвБанк', [], 'Сведения о банке', -1, -1);
 end;
 
 procedure TBankInformation.InternalInitChilds;
@@ -1225,8 +1225,8 @@ end;
 
 procedure TContactInformation.InternalRegisterPropertys;
 begin
-  RegisterProperty('PhoneNumber', 'Тлф', 'Н', 'Номер контактного телефона/факс', 1, 255);
-  RegisterProperty('EMail', 'ЭлПочта', 'Н', 'Адрес электронной почты', 1, 255);
+  RegisterProperty('PhoneNumber', 'Тлф', [], 'Номер контактного телефона/факс', 1, 255);
+  RegisterProperty('EMail', 'ЭлПочта', [], 'Адрес электронной почты', 1, 255);
 end;
 
 procedure TContactInformation.InternalInitChilds;
@@ -1250,8 +1250,8 @@ end;
 
 procedure TAdress.InternalRegisterPropertys;
 begin
-  RegisterProperty('RussianAdress', 'АдрРФ', 'О', 'Адрес, указанный в Едином государственном реестре юридических лиц/почтовый адрес/адрес места жительства индивидуального предпринимателя (реквизиты адреса на территории Российской Федерации)', -1, -1);
-  RegisterProperty('AdressInfo', 'АдрИнф', 'О', 'Адрес, указанный в Едином государственном реестре юридических лиц/почтовый адрес/адрес места жительства индивидуального предпринимателя (информация об адресе, в том числе об адресе за пределами территории Российской Федерации)', -1, -1);
+  RegisterProperty('RussianAdress', 'АдрРФ', [xsaRequared], 'Адрес, указанный в Едином государственном реестре юридических лиц/почтовый адрес/адрес места жительства индивидуального предпринимателя (реквизиты адреса на территории Российской Федерации)', -1, -1);
+  RegisterProperty('AdressInfo', 'АдрИнф', [xsaRequared], 'Адрес, указанный в Едином государственном реестре юридических лиц/почтовый адрес/адрес места жительства индивидуального предпринимателя (информация об адресе, в том числе об адресе за пределами территории Российской Федерации)', -1, -1);
   //property CodeGAR:string read FCodeGAR write SetCodeGAR;
   (*
   ----------------------------------------------------
@@ -1399,8 +1399,8 @@ end;
 
 procedure TCommisionDocument.InternalRegisterPropertys;
 begin
-  RegisterProperty('OrderDate', 'ДатаПрик', 'О', 'Дата приказа (распоряжения)', 10, 10);
-  RegisterProperty('OrderNumber', 'НомПрик', 'О', 'Номер приказа (распоряжения)', 1, 255);
+  RegisterProperty('OrderDate', 'ДатаПрик', [xsaRequared], 'Дата приказа (распоряжения)', 10, 10);
+  RegisterProperty('OrderNumber', 'НомПрик', [xsaRequared], 'Номер приказа (распоряжения)', 1, 255);
 end;
 
 procedure TCommisionDocument.InternalInitChilds;
@@ -1452,14 +1452,14 @@ end;
 
 procedure TResultsInspectionCargo.InternalRegisterPropertys;
 begin
-  RegisterProperty('InspectDate', 'ДатаОсм', 'Н', 'Дата осмотра прибывшего груза', 10, 10);
-  RegisterProperty('InspectionPlace', 'МестоСост', 'Н', 'Место составления документа о приемке и (или) расхождениях', 1, 100);
-  RegisterProperty('AcceptanceTime', 'ВремяНач', 'Н', 'Время начала приемки', 8, 8);
-  RegisterProperty('AcceptanceTimeEnd', 'ВремяОконч', 'Н', 'Время окончания приемки', 8, 8);
-  RegisterProperty('ShipmentDate', 'ДатаОтпр', 'Н', 'Дата отправки груза со станции (пристани, порта)', 10, 10);
-  RegisterProperty('ConformityCertificate', 'СертСоотв','НМ', 'Номер сертификата соответствия', 1, 50);
-  RegisterProperty('AccompanyingDocument', 'СопрДок', 'О', 'Наименование, номер и дата сопроводительного документа (идентификатор сопроводительного документа)', -1, -1);
-  RegisterProperty('InformationResult', 'ИнфПолСвОсм', 'Н', 'Информационное поле сведений о результатах осмотра', -1, -1);
+  RegisterProperty('InspectDate', 'ДатаОсм', [], 'Дата осмотра прибывшего груза', 10, 10);
+  RegisterProperty('InspectionPlace', 'МестоСост', [], 'Место составления документа о приемке и (или) расхождениях', 1, 100);
+  RegisterProperty('AcceptanceTime', 'ВремяНач', [], 'Время начала приемки', 8, 8);
+  RegisterProperty('AcceptanceTimeEnd', 'ВремяОконч', [], 'Время окончания приемки', 8, 8);
+  RegisterProperty('ShipmentDate', 'ДатаОтпр', [], 'Дата отправки груза со станции (пристани, порта)', 10, 10);
+  RegisterProperty('ConformityCertificate', 'СертСоотв',[], 'Номер сертификата соответствия', 1, 50);
+  RegisterProperty('AccompanyingDocument', 'СопрДок', [xsaRequared], 'Наименование, номер и дата сопроводительного документа (идентификатор сопроводительного документа)', -1, -1);
+  RegisterProperty('InformationResult', 'ИнфПолСвОсм', [], 'Информационное поле сведений о результатах осмотра', -1, -1);
 end;
 
 procedure TResultsInspectionCargo.InternalInitChilds;
@@ -1503,13 +1503,13 @@ end;
 
 procedure TOrganizationInfo.InternalRegisterPropertys;
 begin
-  RegisterProperty('OKPO', 'ОКПО', 'Н', 'Код в общероссийском классификаторе предприятий и организаций', 1, 10);
-  RegisterProperty('Department', 'СтруктПодр', 'Н', 'Структурное подразделение', 1, 1000);
-  RegisterProperty('InformationWorkflow', 'ИнфДляУчаст', 'Н','Информация для участника документооборота', 1, 255);
-  RegisterProperty('IdentificationInformation', 'ИдСв', 'О', 'Идентификационные сведения', -1, -1);
-  RegisterProperty('Adress', 'Адрес', 'Н', 'Адрес', -1, -1);
-  RegisterProperty('ContactInformation', 'Контакт', 'Н', 'Контактные данные', -1, -1);
-  RegisterProperty('BankInformation', 'БанкРекв', 'Н', 'Банковские реквизиты', -1, -1);
+  RegisterProperty('OKPO', 'ОКПО', [], 'Код в общероссийском классификаторе предприятий и организаций', 1, 10);
+  RegisterProperty('Department', 'СтруктПодр', [], 'Структурное подразделение', 1, 1000);
+  RegisterProperty('InformationWorkflow', 'ИнфДляУчаст', [],'Информация для участника документооборота', 1, 255);
+  RegisterProperty('IdentificationInformation', 'ИдСв', [xsaRequared], 'Идентификационные сведения', -1, -1);
+  RegisterProperty('Adress', 'Адрес', [], 'Адрес', -1, -1);
+  RegisterProperty('ContactInformation', 'Контакт', [], 'Контактные данные', -1, -1);
+  RegisterProperty('BankInformation', 'БанкРекв', [], 'Банковские реквизиты', -1, -1);
 end;
 
 procedure TOrganizationInfo.InternalInitChilds;
@@ -1548,8 +1548,8 @@ end;
 
 procedure TAcceptanceDocumentDateNumber.InternalRegisterPropertys;
 begin
-  RegisterProperty('DocumentNumber', 'НомДокПР', 'О', 'Номер документа о приемке и (или) расхождениях', 1, 255);
-  RegisterProperty('DocumentDate', 'ДатаДокПР', 'О', 'Дата составления (выписки) документа о приемке и (или) расхождениях', 10, 10);
+  RegisterProperty('DocumentNumber', 'НомДокПР', [xsaRequared], 'Номер документа о приемке и (или) расхождениях', 1, 255);
+  RegisterProperty('DocumentDate', 'ДатаДокПР', [xsaRequared], 'Дата составления (выписки) документа о приемке и (или) расхождениях', 10, 10);
 end;
 
 procedure TAcceptanceDocumentDateNumber.InternalInitChilds;
@@ -1580,8 +1580,8 @@ end;
 
 procedure TCorrectionDocumentDateNumber.InternalRegisterPropertys;
 begin
-  RegisterProperty('CorrectionNumber', 'НомИспрДокПР', 'О', 'Исправление: №', 1, 3);
-  RegisterProperty('CorrectionDate', 'ДатаИспрДокПР', 'О', 'Исправление: Дата', 10, 10);
+  RegisterProperty('CorrectionNumber', 'НомИспрДокПР', [xsaRequared], 'Исправление: №', 1, 3);
+  RegisterProperty('CorrectionDate', 'ДатаИспрДокПР', [xsaRequared], 'Исправление: Дата', 10, 10);
 end;
 
 procedure TCorrectionDocumentDateNumber.InternalInitChilds;
@@ -1612,20 +1612,20 @@ end;
 
 procedure TAcceptanceInformation1.InternalRegisterPropertys;
 begin
-  RegisterProperty('GenerateCodeDocument', 'ОбстИсп', 'Обозначение (код) обстоятельств формирования (использования) документа', 'Н', 4, 4);
-  RegisterProperty('GovernmentContractInfo', 'ИдГосКон', 'Идентификатор государственного контракта', 'Н', 1, 255);
-  RegisterProperty('Seller', 'Продавец', 'Продавец (поставщик, исполнитель)', 'О', -1, -1);
-  RegisterProperty('Buyer', 'Покупатель', 'Покупатель (заказчик)', 'О', -1, -1);
-  RegisterProperty('Shipper', 'Грузоотправитель', 'Грузоотправитель (отправитель)', 'Н', -1, -1);
-  RegisterProperty('Consignee', 'Грузополучатель', 'Грузополучатель (получатель)', 'Н', -1, -1);
-  RegisterProperty('InsuranceCompany', 'СтрахКом', 'Страховая компания', 'Н', -1, -1);
-  RegisterProperty('CommisionDocument', 'Приказ', 'Дата и номер приказа (распоряжения) о назначении комиссии', 'Н', -1, -1);
-  RegisterProperty('ResultsInspectionCargo', 'СвОсмГруз', 'Сведения о событиях, связанных с осмотром груза (о результатах осмотра прибывшего груза)', 'Н', -1, -1);
-  RegisterProperty('GoodsItemList', 'СвСопрДок', 'Сведения о грузе по сопроводительным транспортным документам', 'НМ', -1, -1);
-  RegisterProperty('AcceptanceDateInfo', 'СвВремПрием', 'Сведения о дате и времени событий, связанных с приемкой груза', 'Н', -1, -1);
-  RegisterProperty('OtherAcceptanceInfo', 'ДрОбстПрием', 'Другие обстоятельства приемки ценностей', 'Н', -1, -1);
-  RegisterProperty('AcceptedPersonInformation', 'СвЛицПрин', 'Сведения о лице, принявшем товар (получившем груз) (в том числе на ответственное хранение)', 'Н', -1, -1);
-  RegisterProperty('AdditionalInformationOfLife1', 'ИнфПолФХЖ1', 'Информационное поле события (факта хозяйственной жизни) 1', 'Н', -1, -1);
+  RegisterProperty('GenerateCodeDocument', 'ОбстИсп', [], 'Обозначение (код) обстоятельств формирования (использования) документа', 4, 4);
+  RegisterProperty('GovernmentContractInfo', 'ИдГосКон', [], 'Идентификатор государственного контракта',  1, 255);
+  RegisterProperty('Seller', 'Продавец', [], 'Продавец (поставщик, исполнитель)',  -1, -1);
+  RegisterProperty('Buyer', 'Покупатель', [xsaRequared], 'Покупатель (заказчик)',  -1, -1);
+  RegisterProperty('Shipper', 'Грузоотправитель', [], 'Грузоотправитель (отправитель)',  -1, -1);
+  RegisterProperty('Consignee', 'Грузополучатель', [], 'Грузополучатель (получатель)', -1, -1);
+  RegisterProperty('InsuranceCompany', 'СтрахКом', [], 'Страховая компания',  -1, -1);
+  RegisterProperty('CommisionDocument', 'Приказ', [], 'Дата и номер приказа (распоряжения) о назначении комиссии',  -1, -1);
+  RegisterProperty('ResultsInspectionCargo', 'СвОсмГруз', [], 'Сведения о событиях, связанных с осмотром груза (о результатах осмотра прибывшего груза)', -1, -1);
+  RegisterProperty('GoodsItemList', 'СвСопрДок', [], 'Сведения о грузе по сопроводительным транспортным документам',  -1, -1);
+  RegisterProperty('AcceptanceDateInfo', 'СвВремПрием', [], 'Сведения о дате и времени событий, связанных с приемкой груза',  -1, -1);
+  RegisterProperty('OtherAcceptanceInfo', 'ДрОбстПрием', [], 'Другие обстоятельства приемки ценностей',  -1, -1);
+  RegisterProperty('AcceptedPersonInformation', 'СвЛицПрин', [], 'Сведения о лице, принявшем товар (получившем груз) (в том числе на ответственное хранение)', -1, -1);
+  RegisterProperty('AdditionalInformationOfLife1', 'ИнфПолФХЖ1', [], 'Информационное поле события (факта хозяйственной жизни) 1',  -1, -1);
 end;
 
 procedure TAcceptanceInformation1.InternalInitChilds;
@@ -1788,21 +1788,21 @@ end;
 
 procedure TAcceptanceDocument.InternalRegisterPropertys;
 begin
-  RegisterProperty('KND', 'КНД', 'ОК', 'Код документа по КНД', 7, 7);
-  RegisterProperty('DocumentDateCreate', 'ДатаИнфПок', 'О', 'Дата формирования файла обмена информации покупателя', 10, 10);
-  RegisterProperty('DocumentTimeCreate', 'ВремИнфПок', 'О', 'Время формирования файла обмена информации покупателя', 8, 8);
-  RegisterProperty('DocumentNameEL', 'ПоФактХЖ', 'О', 'Наименование документа по событию (факту хозяйственной жизни)', 1, 255);
-  RegisterProperty('DocumentName', 'НаимДокОпр', 'О', 'Наименование документа, определенное организацией (согласованное сторонами сделки)', 1, 255);
-  RegisterProperty('DocumentCreator', 'НаимЭконСубСост', 'О', 'Наименование экономического субъекта - составителя файла обмена информации покупателя', 1, 1000);
-  RegisterProperty('DocumentCreatorBase', 'ОснДоверОргСост', 'Н', 'Основание, по которому экономический субъект является составителем файла обмена информации покупателя', 1, 120);
-  RegisterProperty('DocumentCreateConditions', 'ОбстСостДок', 'НК', 'Обстоятельства составления документа', 1, 1);
-  RegisterProperty('DocumentDestination', 'НазнДопСв', 'Н', 'Назначение и подписанты дополнительных сведений', 1, 2000);
-  RegisterProperty('AcceptanceDocumentDateNumber', 'ИдентДокПР', 'О', 'Дата и номер документа о приемке и (или) расхождениях', -1, -1);
-  RegisterProperty('CorrectionDocumentDateNumber', 'ИспрДокПР', 'Н', 'Исправление документа о приемке и (или) расхождениях', -1, -1);
-  RegisterProperty('AcceptanceInformation1', 'СодФХЖ1', 'О', 'Содержание события (факта хозяйственной жизни (1)) - сведения об обстоятельствах приемки', -1, -1);
-  RegisterProperty('AcceptanceInformation2', 'СодФХЖ2', 'О', 'Содержание события (факта хозяйственной жизни (2)) - сведения о факте приемки и (или) о расхождениях', -1, -1);
-  RegisterProperty('AdditionalInformationState', 'ИнфДопСв', 'ПОКМ', 'Информация о формировании дополнительных сведений к документу', -1, -1);
-  RegisterProperty('Signer', 'Подписант', 'ОМ', 'Сведения о лице, подписавшем файл обмена информации покупателя в электронной форме', -1, -1);
+  RegisterProperty('KND', 'КНД', [xsaRequared], 'Код документа по КНД', 7, 7);
+  RegisterProperty('DocumentDateCreate', 'ДатаИнфПок', [xsaRequared], 'Дата формирования файла обмена информации покупателя', 10, 10);
+  RegisterProperty('DocumentTimeCreate', 'ВремИнфПок', [xsaRequared], 'Время формирования файла обмена информации покупателя', 8, 8);
+  RegisterProperty('DocumentNameEL', 'ПоФактХЖ', [xsaRequared], 'Наименование документа по событию (факту хозяйственной жизни)', 1, 255);
+  RegisterProperty('DocumentName', 'НаимДокОпр', [xsaRequared], 'Наименование документа, определенное организацией (согласованное сторонами сделки)', 1, 255);
+  RegisterProperty('DocumentCreator', 'НаимЭконСубСост', [xsaRequared], 'Наименование экономического субъекта - составителя файла обмена информации покупателя', 1, 1000);
+  RegisterProperty('DocumentCreatorBase', 'ОснДоверОргСост', [], 'Основание, по которому экономический субъект является составителем файла обмена информации покупателя', 1, 120);
+  RegisterProperty('DocumentCreateConditions', 'ОбстСостДок', [xsaRequared], 'Обстоятельства составления документа', 1, 1);
+  RegisterProperty('DocumentDestination', 'НазнДопСв', [], 'Назначение и подписанты дополнительных сведений', 1, 2000);
+  RegisterProperty('AcceptanceDocumentDateNumber', 'ИдентДокПР', [xsaRequared], 'Дата и номер документа о приемке и (или) расхождениях', -1, -1);
+  RegisterProperty('CorrectionDocumentDateNumber', 'ИспрДокПР', [], 'Исправление документа о приемке и (или) расхождениях', -1, -1);
+  RegisterProperty('AcceptanceInformation1', 'СодФХЖ1', [xsaRequared], 'Содержание события (факта хозяйственной жизни (1)) - сведения об обстоятельствах приемки', -1, -1);
+  RegisterProperty('AcceptanceInformation2', 'СодФХЖ2', [xsaRequared], 'Содержание события (факта хозяйственной жизни (2)) - сведения о факте приемки и (или) о расхождениях', -1, -1);
+  RegisterProperty('AdditionalInformationState', 'ИнфДопСв', [xsaRequared, xsaSimpleObject], 'Информация о формировании дополнительных сведений к документу', -1, -1);
+  RegisterProperty('Signer', 'Подписант', [xsaRequared], 'Сведения о лице, подписавшем файл обмена информации покупателя в электронной форме', -1, -1);
 end;
 
 procedure TAcceptanceDocument.InternalInitChilds;
@@ -1851,9 +1851,9 @@ end;
 
 procedure TSellerExchangeInformation.InternalRegisterPropertys;
 begin
-  RegisterProperty('FullName', 'НаимОрг', 'О', 'Наименование', 1, 1000);
-  RegisterProperty('Inn', 'ИННЮЛ', 'О', 'ИНН', 10, 10);
-  RegisterProperty('IdentifierSenderOperator', 'ИдЭДО', 'О', 'Идентификатор оператора электронного документооборота отправителя файла обмена счета-фактуры (информации продавца)', 3, 3);
+  RegisterProperty('FullName', 'НаимОрг', [xsaRequared], 'Наименование', 1, 1000);
+  RegisterProperty('Inn', 'ИННЮЛ', [xsaRequared], 'ИНН', 10, 10);
+  RegisterProperty('IdentifierSenderOperator', 'ИдЭДО', [xsaRequared], 'Идентификатор оператора электронного документооборота отправителя файла обмена счета-фактуры (информации продавца)', 3, 3);
 end;
 
 { TParticipantsInformation }
@@ -1874,9 +1874,9 @@ end;
 
 procedure TParticipantsInformation.InternalRegisterPropertys;
 begin
-  RegisterProperty('SenderInfo', 'ИдОтпр', 'О', 'Идентификатор участника документооборота - отправителя файла обмена счета-фактуры (информации продавца)', 4, 46);
-  RegisterProperty('RecipientInfo', 'ИдПол', 'О', 'Идентификатор участника документооборота - получателя файла обмена счета-фактуры (информации продавца)', 4, 46);
-  RegisterProperty('SellerExchangeInformation', 'СвОЭДОтпр', 'Н', 'Сведения об операторе электронного документооборота отправителя файла обмена счета-фактуры (информации продавца)', -1, -1);
+  RegisterProperty('SenderInfo', 'ИдОтпр', [xsaRequared], 'Идентификатор участника документооборота - отправителя файла обмена счета-фактуры (информации продавца)', 4, 46);
+  RegisterProperty('RecipientInfo', 'ИдПол', [xsaRequared], 'Идентификатор участника документооборота - получателя файла обмена счета-фактуры (информации продавца)', 4, 46);
+  RegisterProperty('SellerExchangeInformation', 'СвОЭДОтпр', [], 'Сведения об операторе электронного документооборота отправителя файла обмена счета-фактуры (информации продавца)', -1, -1);
 end;
 
 procedure TParticipantsInformation.InternalInitChilds;
@@ -1896,8 +1896,8 @@ end;
 procedure TTorg2ExchangeFile.InternalRegisterPropertys;
 begin
   inherited InternalRegisterPropertys;
-  RegisterProperty('ParticipantsInformation', 'СвУчДокОбор', 'О', 'Сведения об участниках электронного документооборота', -1, -1);
-  RegisterProperty('Document', 'Документ', 'О', 'Документ о приемке и (или) расхождениях (информация покупателя) (Документ)', -1, -1);
+  RegisterProperty('ParticipantsInformation', 'СвУчДокОбор', [xsaRequared], 'Сведения об участниках электронного документооборота', -1, -1);
+  RegisterProperty('Document', 'Документ', [xsaRequared], 'Документ о приемке и (или) расхождениях (информация покупателя) (Документ)', -1, -1);
 end;
 
 procedure TTorg2ExchangeFile.InternalInitChilds;
