@@ -126,9 +126,9 @@ end;
 
 procedure TSellerExchangeInformation.InternalRegisterPropertys;
 begin
-  RegisterProperty('FullName', 'НаимОрг', 'О', 'Наименование', 1, 1000);
-  RegisterProperty('Inn', 'ИННЮЛ', 'О', 'ИНН', 10, 10);
-  RegisterProperty('IdentifierSenderOperator', 'ИдЭДО', 'О', 'Идентификатор оператора электронного документооборота отправителя файла обмена счета-фактуры (информации продавца)', 3, 3);
+  RegisterProperty('FullName', 'НаимОрг', [xsaRequared], 'Наименование', 1, 1000);
+  RegisterProperty('Inn', 'ИННЮЛ', [xsaRequared], 'ИНН', 10, 10);
+  RegisterProperty('IdentifierSenderOperator', 'ИдЭДО', [xsaRequared], 'Идентификатор оператора электронного документооборота отправителя файла обмена счета-фактуры (информации продавца)', 3, 3);
 end;
 
 { TParticipantsInformation }
@@ -149,9 +149,9 @@ end;
 
 procedure TParticipantsInformation.InternalRegisterPropertys;
 begin
-  RegisterProperty('SenderInfo', 'ИдОтпр', 'О', 'Идентификатор участника документооборота - отправителя файла обмена счета-фактуры (информации продавца)', 4, 46);
-  RegisterProperty('RecipientInfo', 'ИдПол', 'О', 'Идентификатор участника документооборота - получателя файла обмена счета-фактуры (информации продавца)', 4, 46);
-  RegisterProperty('SellerExchangeInformation', 'СвОЭДОтпр', 'Н', 'Сведения об операторе электронного документооборота отправителя файла обмена счета-фактуры (информации продавца)', -1, -1);
+  RegisterProperty('SenderInfo', 'ИдОтпр', [xsaRequared], 'Идентификатор участника документооборота - отправителя файла обмена счета-фактуры (информации продавца)', 4, 46);
+  RegisterProperty('RecipientInfo', 'ИдПол', [xsaRequared], 'Идентификатор участника документооборота - получателя файла обмена счета-фактуры (информации продавца)', 4, 46);
+  RegisterProperty('SellerExchangeInformation', 'СвОЭДОтпр', [], 'Сведения об операторе электронного документооборота отправителя файла обмена счета-фактуры (информации продавца)', -1, -1);
 end;
 
 procedure TParticipantsInformation.InternalInitChilds;
@@ -170,8 +170,8 @@ end;
 procedure TExchangeFile.InternalRegisterPropertys;
 begin
   inherited InternalRegisterPropertys;
-  RegisterProperty('ParticipantsInformation', 'СвУчДокОбор', 'О', 'Сведения об участниках электронного документооборота', -1, -1);
-  RegisterProperty('Document', 'Документ', 'О', 'Счет-фактура, или документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг), включающий в себя счет-фактуру (информация продавца), или документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг) (информация продавца)', -1, -1);
+  RegisterProperty('ParticipantsInformation', 'СвУчДокОбор', [xsaRequared], 'Сведения об участниках электронного документооборота', -1, -1);
+  RegisterProperty('Document', 'Документ', [xsaRequared], 'Счет-фактура, или документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг), включающий в себя счет-фактуру (информация продавца), или документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг) (информация продавца)', -1, -1);
 end;
 
 procedure TExchangeFile.InternalInitChilds;

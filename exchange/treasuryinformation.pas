@@ -185,12 +185,12 @@ end;
 
 procedure TMonetaryObligationInformation.InternalRegisterPropertys;
 begin
-  RegisterProperty('RowNumber', 'НомСтр', 'О', 'Номер строки таблицы информации продавца', 6, 6);
-  RegisterProperty('ObjectCode', 'КодОбъектФАИП', 'Н', 'Код объекта капитального строительства федеральной адресной инвестиционной программы/код мероприятия по информатизации', 1, 24);
-  RegisterProperty('FundsType', 'ВидСредств', 'ОК', 'Вид средств', 1, 1);
-  RegisterProperty('KBK', 'КодПокБюджКласс', 'О', 'Код по бюджетной классификации (покупатель)', 20, 20);
-  RegisterProperty('DestinationCode', 'КодЦелиПокуп', 'Н', 'Код цели (покупатель)', 1, 20);
-  RegisterProperty('AvanceSum', 'СумАванс', 'О', 'Сумма перечисленного аванса', 1, 19);
+  RegisterProperty('RowNumber', 'НомСтр', [xsaRequared], 'Номер строки таблицы информации продавца', 6, 6);
+  RegisterProperty('ObjectCode', 'КодОбъектФАИП', [], 'Код объекта капитального строительства федеральной адресной инвестиционной программы/код мероприятия по информатизации', 1, 24);
+  RegisterProperty('FundsType', 'ВидСредств', [xsaRequared], 'Вид средств', 1, 1);
+  RegisterProperty('KBK', 'КодПокБюджКласс', [xsaRequared], 'Код по бюджетной классификации (покупатель)', 20, 20);
+  RegisterProperty('DestinationCode', 'КодЦелиПокуп', [], 'Код цели (покупатель)', 1, 20);
+  RegisterProperty('AvanceSum', 'СумАванс', [xsaRequared], 'Сумма перечисленного аванса', 1, 19);
 end;
 
 procedure TMonetaryObligationInformation.InternalInitChilds;
@@ -316,20 +316,20 @@ end;
 
 procedure TTreasuryInformation.InternalRegisterPropertys;
 begin
-  RegisterProperty('PurchaseID', 'ИдКодЗак', 'Н', 'Идентификационный код закупки', 1, 36);
-  RegisterProperty('AccountNumber', 'ЛицСчетПок', 'О', 'Номер лицевого счета покупателя', 11, 11);
-  RegisterProperty('FinancialName', 'НаимФинОргПок', 'О', 'Наименование финансового органа покупателя', 1, 2000);
-  RegisterProperty('ReestrNumber', 'НомРеестрЗапПок', 'О', 'Номер реестровой записи покупателя по Реестру участников бюджетного процесса, а также юридических лиц, не являющихся участниками бюджетного процесса', 8, 8);
-  RegisterProperty('BudgetAccountNumebr', 'УчНомБюдОбязПок', 'Н', 'Учетный номер бюджетного обязательства покупателя', 16, 19);
-  RegisterProperty('TreasuryCode', 'КодКазначПок', 'Н', 'Код территориального органа Федерального казначейства покупателя', 4, 4);
-  RegisterProperty('TreasuryName', 'НаимКазначПок', 'Н', 'Наименование территориального органа Федерального казначейства покупателя', 1, 2000);
-  RegisterProperty('OKTMOCode', 'ОКТМОПок', 'ОК', 'Код покупателя в Общероссийском классификаторе территорий муниципальных образований', 8, 11);
-  RegisterProperty('OKTMOCodeLocation', 'ОКТМОМесПост', 'НК', 'Код места поставки в Общероссийском классификаторе территорий муниципальных образований', 8, 11);
-  RegisterProperty('MaxPayDate', 'ДатаОплПред', 'Н', 'Предельная дата оплаты', 10, 10);
-  RegisterProperty('MonetaryObligationNumber', 'УчНомДенОбяз', 'Н', 'Учетный номер денежного обязательства', 22, 22);
-  RegisterProperty('PayOrder', 'ОчерПлат', 'Н', 'Очередность платежа', 1, 1);
-  RegisterProperty('PayType', 'ВидПлат', 'НК', 'Вид платежа', 1, 1);
-  RegisterProperty('MonetaryObligationInformation', 'ИнфСведДенОбяз', 'ОМ', 'Информация для сведений о денежном обязательстве', -1, -1);
+  RegisterProperty('PurchaseID', 'ИдКодЗак', [], 'Идентификационный код закупки', 1, 36);
+  RegisterProperty('AccountNumber', 'ЛицСчетПок', [xsaRequared], 'Номер лицевого счета покупателя', 11, 11);
+  RegisterProperty('FinancialName', 'НаимФинОргПок', [xsaRequared], 'Наименование финансового органа покупателя', 1, 2000);
+  RegisterProperty('ReestrNumber', 'НомРеестрЗапПок', [xsaRequared], 'Номер реестровой записи покупателя по Реестру участников бюджетного процесса, а также юридических лиц, не являющихся участниками бюджетного процесса', 8, 8);
+  RegisterProperty('BudgetAccountNumebr', 'УчНомБюдОбязПок', [], 'Учетный номер бюджетного обязательства покупателя', 16, 19);
+  RegisterProperty('TreasuryCode', 'КодКазначПок', [], 'Код территориального органа Федерального казначейства покупателя', 4, 4);
+  RegisterProperty('TreasuryName', 'НаимКазначПок', [], 'Наименование территориального органа Федерального казначейства покупателя', 1, 2000);
+  RegisterProperty('OKTMOCode', 'ОКТМОПок', [xsaRequared], 'Код покупателя в Общероссийском классификаторе территорий муниципальных образований', 8, 11);
+  RegisterProperty('OKTMOCodeLocation', 'ОКТМОМесПост', [], 'Код места поставки в Общероссийском классификаторе территорий муниципальных образований', 8, 11);
+  RegisterProperty('MaxPayDate', 'ДатаОплПред', [], 'Предельная дата оплаты', 10, 10);
+  RegisterProperty('MonetaryObligationNumber', 'УчНомДенОбяз', [], 'Учетный номер денежного обязательства', 22, 22);
+  RegisterProperty('PayOrder', 'ОчерПлат', [], 'Очередность платежа', 1, 1);
+  RegisterProperty('PayType', 'ВидПлат', [], 'Вид платежа', 1, 1);
+  RegisterProperty('MonetaryObligationInformation', 'ИнфСведДенОбяз', [xsaRequared], 'Информация для сведений о денежном обязательстве', -1, -1);
 end;
 
 procedure TTreasuryInformation.InternalInitChilds;

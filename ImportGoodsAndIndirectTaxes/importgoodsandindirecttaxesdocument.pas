@@ -831,20 +831,20 @@ end;
 
 procedure TContractAdditional.InternalRegisterPropertys;
 begin
-  RegisterProperty('LineNumber', 'НомКонтрПП', 'О', 'Номер по порядку', 4, 4);
-  RegisterProperty('SellerType', 'ТипПродП', 'ОК', 'Тип продавца', 1, 1);
-  RegisterProperty('SellerBaikonurFlag', 'ПрБкнрПродП', 'Н', 'Признак нахождения российского продавца в г.Байконур', 1, 1);
-  RegisterProperty('SellerIdentificationCode', 'ИдНомПродП', 'Н', 'Идентификационный код (номер) продавца', 1, 50);
-  RegisterProperty('SellerName', 'НаимПродП', 'О', 'Полное наименование (ФИО) продавца', 1, 400);
-  RegisterProperty('SellerCountryCode', 'КодСтранПродП', 'ОК', 'Код страны продавца', 3, 3);
-  RegisterProperty('SellerAdress', 'АдресПродП', 'О', 'Адрес местонахождения (жительства) продавца', 1, 200);
-  RegisterProperty('BuyerType', 'ТипПокП', 'ОК', 'Тип покупателя Приложение', 1, 1);
-  RegisterProperty('BuyerBaikonurFlag', 'ПрБкнрПокП', 'Н', 'Признак нахождения российского покупателя в г.Байконур', 1, 1);
-  RegisterProperty('BuyerIdentificationCode', 'ИдНомПокП', 'Н', 'Идентификационный код (номер) покупателя', 1, 50);
-  RegisterProperty('BuyerName', 'НаимПокП', 'О', 'Полное наименование (ФИО) покупателя', 1, 400);
-  RegisterProperty('BuyerCountryCode', 'КодСтранПокП', 'ОК', 'Код страны покупателя', 3, 3);
-  RegisterProperty('BuyerAdress', 'АдресПокП', 'О', 'Адрес местонахождения (жительства) покупателя', 1, 200);
-  RegisterProperty('ContractInfo', 'СвКонтрП', 'О', 'Сведения о контрактах', -1, -1);
+  RegisterProperty('LineNumber', 'НомКонтрПП', [xsaRequared], 'Номер по порядку', 4, 4);
+  RegisterProperty('SellerType', 'ТипПродП', [xsaRequared], 'Тип продавца', 1, 1);
+  RegisterProperty('SellerBaikonurFlag', 'ПрБкнрПродП', [], 'Признак нахождения российского продавца в г.Байконур', 1, 1);
+  RegisterProperty('SellerIdentificationCode', 'ИдНомПродП', [], 'Идентификационный код (номер) продавца', 1, 50);
+  RegisterProperty('SellerName', 'НаимПродП', [xsaRequared], 'Полное наименование (ФИО) продавца', 1, 400);
+  RegisterProperty('SellerCountryCode', 'КодСтранПродП', [xsaRequared], 'Код страны продавца', 3, 3);
+  RegisterProperty('SellerAdress', 'АдресПродП', [xsaRequared], 'Адрес местонахождения (жительства) продавца', 1, 200);
+  RegisterProperty('BuyerType', 'ТипПокП', [xsaRequared], 'Тип покупателя Приложение', 1, 1);
+  RegisterProperty('BuyerBaikonurFlag', 'ПрБкнрПокП', [], 'Признак нахождения российского покупателя в г.Байконур', 1, 1);
+  RegisterProperty('BuyerIdentificationCode', 'ИдНомПокП', [], 'Идентификационный код (номер) покупателя', 1, 50);
+  RegisterProperty('BuyerName', 'НаимПокП', [xsaRequared], 'Полное наименование (ФИО) покупателя', 1, 400);
+  RegisterProperty('BuyerCountryCode', 'КодСтранПокП', [xsaRequared], 'Код страны покупателя', 3, 3);
+  RegisterProperty('BuyerAdress', 'АдресПокП', [], 'Адрес местонахождения (жительства) покупателя', 1, 200);
+  RegisterProperty('ContractInfo', 'СвКонтрП', [xsaRequared], 'Сведения о контрактах', -1, -1);
 end;
 
 procedure TContractAdditional.InternalInitChilds;
@@ -908,10 +908,10 @@ end;
 
 procedure TPreviouslyStatement.InternalRegisterPropertys;
 begin
-  RegisterProperty('TaxMarkNumber', 'НомОтм', 'Н', 'Номер отметки о регистрации Заявления в налоговом органе', 1, 18);
-  RegisterProperty('TaxMarkDate', 'ДатаОтм', 'Н', 'Дата отметки о регистрации Заявления в налоговом органе', 10, 10);
-  RegisterProperty('MonthIncPrice', 'МесУвелЦены', 'Н', 'Месяц, в котором участниками договора (контракта) увеличена цена', 1, 2);
-  RegisterProperty('MonthIncYear', 'ГодУвелЦены', 'Н', 'Год, в котором участниками договора (контракта) увеличена цена', 4, 4);
+  RegisterProperty('TaxMarkNumber', 'НомОтм', [], 'Номер отметки о регистрации Заявления в налоговом органе', 1, 18);
+  RegisterProperty('TaxMarkDate', 'ДатаОтм', [], 'Дата отметки о регистрации Заявления в налоговом органе', 10, 10);
+  RegisterProperty('MonthIncPrice', 'МесУвелЦены', [], 'Месяц, в котором участниками договора (контракта) увеличена цена', 1, 2);
+  RegisterProperty('MonthIncYear', 'ГодУвелЦены', [], 'Год, в котором участниками договора (контракта) увеличена цена', 4, 4);
 end;
 
 procedure TPreviouslyStatement.InternalInitChilds;

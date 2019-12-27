@@ -348,12 +348,12 @@ end;
 
 procedure TLegalEntityEmployee.InternalRegisterPropertys;
 begin
-  RegisterProperty('RegistrationInfo', 'ГосРегИПВыдДов', 'Н', 'Реквизиты свидетельства о государственной регистрации индивидуального предпринимателя, выдавшего доверенность организации на подписание счета-фактуры', 1, 100);
-  RegisterProperty('Inn', 'ИННЮЛ', 'О', 'ИНН юридического лица', 10, 10);
-  RegisterProperty('OrganizationName', 'НаимОрг', 'Н', 'Наименование', 1, 1000);
-  RegisterProperty('Position', 'Должн', 'О', 'Должность', 1, 128);
-  RegisterProperty('OtherInfo', 'ИныеСвед', 'Н', 'Иные сведения, идентифицирующие физическое лицо', 1, 255);
-  RegisterProperty('Person', 'ФИО', 'О', 'Фамилия, имя, отчество', -1, -1);
+  RegisterProperty('RegistrationInfo', 'ГосРегИПВыдДов', [], 'Реквизиты свидетельства о государственной регистрации индивидуального предпринимателя, выдавшего доверенность организации на подписание счета-фактуры', 1, 100);
+  RegisterProperty('Inn', 'ИННЮЛ', [xsaRequared], 'ИНН юридического лица', 10, 10);
+  RegisterProperty('OrganizationName', 'НаимОрг', [], 'Наименование', 1, 1000);
+  RegisterProperty('Position', 'Должн', [xsaRequared], 'Должность', 1, 128);
+  RegisterProperty('OtherInfo', 'ИныеСвед', [], 'Иные сведения, идентифицирующие физическое лицо', 1, 255);
+  RegisterProperty('Person', 'ФИО', [xsaRequared], 'Фамилия, имя, отчество', -1, -1);
 end;
 
 procedure TLegalEntityEmployee.InternalInitChilds;
@@ -393,9 +393,9 @@ end;
 
 procedure TBankInfo.InternalRegisterPropertys;
 begin
-  RegisterProperty('Name', 'НаимБанк', 'Н', 'Наименование банка', 1, 1000);
-  RegisterProperty('BIK', 'БИК', 'НК', 'Банковский идентификационный код (БИК) в соответствии со "Справочником БИК РФ"', 9, 9);
-  RegisterProperty('KorrAcount', 'КорСчет', 'Н', 'Корреспондентский счет банка', 1, 20);
+  RegisterProperty('Name', 'НаимБанк', [], 'Наименование банка', 1, 1000);
+  RegisterProperty('BIK', 'БИК', [], 'Банковский идентификационный код (БИК) в соответствии со "Справочником БИК РФ"', 9, 9);
+  RegisterProperty('KorrAcount', 'КорСчет', [], 'Корреспондентский счет банка', 1, 20);
 end;
 
 procedure TBankInfo.InternalInitChilds;
@@ -419,8 +419,8 @@ end;
 
 procedure TBankDetails.InternalRegisterPropertys;
 begin
-  RegisterProperty('Account', 'НомерСчета', 'Н', 'Номер банковского счета', 1, 20);
-  RegisterProperty('BankInfo', 'СвБанк', 'Н', 'Сведения о банке', -1, -1)
+  RegisterProperty('Account', 'НомерСчета', [], 'Номер банковского счета', 1, 20);
+  RegisterProperty('BankInfo', 'СвБанк', [], 'Сведения о банке', -1, -1)
 end;
 
 procedure TBankDetails.InternalInitChilds;
@@ -453,8 +453,8 @@ end;
 
 procedure TContactInfo.InternalRegisterPropertys;
 begin
-  RegisterProperty('Phone', 'Тлф', 'Н', 'Номер контактного телефона/факс', 1, 255);
-  RegisterProperty('EMail', 'ЭлПочта', 'Н', 'Адрес электронной почты', 1, 255);
+  RegisterProperty('Phone', 'Тлф', [], 'Номер контактного телефона/факс', 1, 255);
+  RegisterProperty('EMail', 'ЭлПочта', [], 'Адрес электронной почты', 1, 255);
 end;
 
 procedure TContactInfo.InternalInitChilds;
@@ -492,10 +492,10 @@ end;
 
 procedure TPhysicalPersonEntity.InternalRegisterPropertys;
 begin
-  RegisterProperty('CertificateStateRegistration', 'ГосРегИПВыдДов', 'Н', 'Реквизиты свидетельства о государственной регистрации индивидуального предпринимателя, выдавшего доверенность физическому лицу на подписание счета-фактуры', 1, 100);
-  RegisterProperty('INN', 'ИННФЛ', 'Н', 'ИНН физического лица', 12, 12);
-  RegisterProperty('OtherInfo', 'ИныеСвед', 'Н', 'Иные сведения, идентифицирующие физическое лицо', 1, 255);
-  RegisterProperty('Person', 'ФИО', 'О', 'Фамилия, имя, отчество', -1, -1);
+  RegisterProperty('CertificateStateRegistration', 'ГосРегИПВыдДов', [], 'Реквизиты свидетельства о государственной регистрации индивидуального предпринимателя, выдавшего доверенность физическому лицу на подписание счета-фактуры', 1, 100);
+  RegisterProperty('INN', 'ИННФЛ', [], 'ИНН физического лица', 12, 12);
+  RegisterProperty('OtherInfo', 'ИныеСвед', [], 'Иные сведения, идентифицирующие физическое лицо', 1, 255);
+  RegisterProperty('Person', 'ФИО', [xsaRequared], 'Фамилия, имя, отчество', -1, -1);
 end;
 
 procedure TPhysicalPersonEntity.InternalInitChilds;
@@ -535,9 +535,9 @@ end;
 
 procedure TForeignEntityInformation.InternalRegisterPropertys;
 begin
-  RegisterProperty('FullName', 'НаимОрг', 'О', 'Наименование полное', 1, 1000);
-  RegisterProperty('Identifier', 'Идентиф', 'Н', 'Идентификатор юридического лица', 1, 255);
-  RegisterProperty('OtherInfo', 'ИныеСвед', 'Н', 'Иные сведения, идентифицирующие юридическое лицо', 1, 255);
+  RegisterProperty('FullName', 'НаимОрг', [xsaRequared], 'Наименование полное', 1, 1000);
+  RegisterProperty('Identifier', 'Идентиф', [], 'Идентификатор юридического лица', 1, 255);
+  RegisterProperty('OtherInfo', 'ИныеСвед', [], 'Иные сведения, идентифицирующие юридическое лицо', 1, 255);
 end;
 
 procedure TForeignEntityInformation.InternalInitChilds;
@@ -582,10 +582,10 @@ end;
 
 procedure TLegalEntityInformation.InternalRegisterPropertys;
 begin
-  RegisterProperty('FullName', 'НаимОрг', 'О', 'Наименование полное', 1, 1000);
-  RegisterProperty('INN', 'ИННЮЛ', 'Н', 'ИНН', 10, 10);
-  RegisterProperty('INNDef', 'ИННЮЛ', 'Н', 'ИНН при составлении документа с Функция=СЧФ или Функция=СЧФДОП налоговым агентом, указанным в пунктах 2 и 3 статьи 161 НК РФ, в части информации о продавце/грузоотправителе/грузополучателе или для документа с Функция=СЧФ, выставляемом при получении оплаты, частичной оплаты в счет предстоящих поставок товаров (выполнения работ, оказания услуг), передачи имущественных прав, в части информации о грузоотправителе/грузополучателе', 1, 1);
-  RegisterProperty('KPP', 'КПП', 'Н', 'КПП', 9, 9);
+  RegisterProperty('FullName', 'НаимОрг', [xsaRequared], 'Наименование полное', 1, 1000);
+  RegisterProperty('INN', 'ИННЮЛ', [], 'ИНН', 10, 10);
+  RegisterProperty('INNDef', 'ИННЮЛ', [], 'ИНН при составлении документа с Функция=СЧФ или Функция=СЧФДОП налоговым агентом, указанным в пунктах 2 и 3 статьи 161 НК РФ, в части информации о продавце/грузоотправителе/грузополучателе или для документа с Функция=СЧФ, выставляемом при получении оплаты, частичной оплаты в счет предстоящих поставок товаров (выполнения работ, оказания услуг), передачи имущественных прав, в части информации о грузоотправителе/грузополучателе', 1, 1);
+  RegisterProperty('KPP', 'КПП', [], 'КПП', 9, 9);
 end;
 
 procedure TLegalEntityInformation.InternalInitChilds;
@@ -623,9 +623,9 @@ end;
 
 procedure TPerson.InternalRegisterPropertys;
 begin
-  RegisterProperty('FirstName', 'Фамилия', 'О', 'Фамилия', 1, 60);
-  RegisterProperty('Patronymic', 'Имя', 'О', 'Имя', 1, 60);
-  RegisterProperty('Surname', 'Отчество', 'Н', 'Отчество', 1, 60);
+  RegisterProperty('FirstName', 'Фамилия', [xsaRequared], 'Фамилия', 1, 60);
+  RegisterProperty('Patronymic', 'Имя', [xsaRequared], 'Имя', 1, 60);
+  RegisterProperty('Surname', 'Отчество', [], 'Отчество', 1, 60);
 end;
 
 procedure TPerson.InternalInitChilds;
@@ -671,11 +671,11 @@ end;
 
 procedure TIndividualEntrepreneurInformation.InternalRegisterPropertys;
 begin
-  RegisterProperty('INN', 'ИННФЛ', 'Н', 'ИНН', 12, 12);
-  RegisterProperty('INNDef', 'ИННФЛ', 'Н', 'ИНН при составлении документа с Функция=СЧФ или Функция=СЧФДОП налоговым агентом, указанным в пунктах 2 и 3 статьи 161 НК РФ, в части информации о продавце/грузоотправителе', 1, 1);
-  RegisterProperty('IndividualEntityRegistrationCertificate', 'СвГосРегИП', 'Н', 'ИНН при составлении документа с Функция=СЧФ или Функция=СЧФДОП налоговым агентом, указанным в пунктах 2 и 3 статьи 161 НК РФ, в части информации о продавце/грузоотправителе', 1, 100);
-  RegisterProperty('OtherInfo', 'СвГосРегИП', 'Н', 'Иные сведения, идентифицирующие физическое лицо', 1, 255);
-  RegisterProperty('Person', 'ФИО', 'О', 'Фамилия, имя, отчество', -1, -1);
+  RegisterProperty('INN', 'ИННФЛ', [], 'ИНН', 12, 12);
+  RegisterProperty('INNDef', 'ИННФЛ', [], 'ИНН при составлении документа с Функция=СЧФ или Функция=СЧФДОП налоговым агентом, указанным в пунктах 2 и 3 статьи 161 НК РФ, в части информации о продавце/грузоотправителе', 1, 1);
+  RegisterProperty('IndividualEntityRegistrationCertificate', 'СвГосРегИП', [], 'ИНН при составлении документа с Функция=СЧФ или Функция=СЧФДОП налоговым агентом, указанным в пунктах 2 и 3 статьи 161 НК РФ, в части информации о продавце/грузоотправителе', 1, 100);
+  RegisterProperty('OtherInfo', 'СвГосРегИП', [], 'Иные сведения, идентифицирующие физическое лицо', 1, 255);
+  RegisterProperty('Person', 'ФИО', [xsaRequared], 'Фамилия, имя, отчество', -1, -1);
 end;
 
 procedure TIndividualEntrepreneurInformation.InternalInitChilds;
@@ -694,10 +694,10 @@ end;
 
 procedure TIdentificationInformation.InternalRegisterPropertys;
 begin
-  RegisterProperty('IndividualEntrepreneurInformation', 'СвИП', 'О', 'Сведения об индивидуальном предпринимателе', -1, -1);
-  RegisterProperty('LegalEntityInformation', 'СвЮЛУч', 'О', 'Сведения о юридическом лице, состоящем на учете в налоговых органах', -1, -1);
-  RegisterProperty('ForeignEntityInformation', 'СвИнНеУч', 'О', 'Сведения об иностранном лице, не состоящем на учете в налоговых органах в качестве налогоплательщика', -1, -1);
-  RegisterProperty('PhysicalPerson', 'СвФЛУчастФХЖ', 'О', 'Сведения о физическом лице', -1, -1);
+  RegisterProperty('IndividualEntrepreneurInformation', 'СвИП', [xsaRequared], 'Сведения об индивидуальном предпринимателе', -1, -1);
+  RegisterProperty('LegalEntityInformation', 'СвЮЛУч', [xsaRequared], 'Сведения о юридическом лице, состоящем на учете в налоговых органах', -1, -1);
+  RegisterProperty('ForeignEntityInformation', 'СвИнНеУч', [xsaRequared], 'Сведения об иностранном лице, не состоящем на учете в налоговых органах в качестве налогоплательщика', -1, -1);
+  RegisterProperty('PhysicalPerson', 'СвФЛУчастФХЖ', [xsaRequared], 'Сведения о физическом лице', -1, -1);
 end;
 
 procedure TIdentificationInformation.InternalInitChilds;
@@ -767,14 +767,14 @@ end;
 
 procedure TOrganizationInfo.InternalRegisterPropertys;
 begin
-  RegisterProperty('OKPO', 'ОКПО', 'НК', 'Код в общероссийском классификаторе предприятий и организаций', 1, 10);
-  RegisterProperty('Department', 'СтруктПодр', 'Н', 'Структурное подразделение', 1, 1000);
-  RegisterProperty('OrganizationOrPersonInfo', 'ИнфДляУчаст', 'Н', 'Информация для участника документооборота', 1, 255);
-  RegisterProperty('ShortName', 'КраткНазв', 'Н', 'Краткое название', 1, 255);
-  RegisterProperty('IdentificationInformation', 'ИдСв', 'О', 'Идентификационные сведения', -1, -1);
-  RegisterProperty('Adress', 'Адрес', 'Н', 'Адрес', -1, -1);
-  RegisterProperty('ContactInfo', 'Контакт', 'Н', 'Контактные данные', -1, -1);
-  RegisterProperty('BankDetails', 'БанкРекв', 'Н', 'Банковские реквизиты', -1, -1);
+  RegisterProperty('OKPO', 'ОКПО', [], 'Код в общероссийском классификаторе предприятий и организаций', 1, 10);
+  RegisterProperty('Department', 'СтруктПодр', [], 'Структурное подразделение', 1, 1000);
+  RegisterProperty('OrganizationOrPersonInfo', 'ИнфДляУчаст', [], 'Информация для участника документооборота', 1, 255);
+  RegisterProperty('ShortName', 'КраткНазв', [], 'Краткое название', 1, 255);
+  RegisterProperty('IdentificationInformation', 'ИдСв', [], 'Идентификационные сведения', -1, -1);
+  RegisterProperty('Adress', 'Адрес', [], 'Адрес', -1, -1);
+  RegisterProperty('ContactInfo', 'Контакт', [], 'Контактные данные', -1, -1);
+  RegisterProperty('BankDetails', 'БанкРекв', [], 'Банковские реквизиты', -1, -1);
 end;
 
 procedure TOrganizationInfo.InternalInitChilds;

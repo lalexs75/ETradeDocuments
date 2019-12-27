@@ -337,9 +337,9 @@ end;
 
 procedure TShipmentBaseConfirm.InternalRegisterPropertys;
 begin
-  RegisterProperty('BaseDocumentName', 'НаимДокОтгр', 'О', 'Наименование документа об отгрузке', 1, 255);
-  RegisterProperty('BaseDocumentNumber', 'НомДокОтгр', 'О', 'Номер документа об отгрузке', 1, 255);
-  RegisterProperty('BaseDocumentDate', 'ДатаДокОтгр', 'Н', 'Дата документа об отгрузке', 10, 10);
+  RegisterProperty('BaseDocumentName', 'НаимДокОтгр', [xsaRequared], 'Наименование документа об отгрузке', 1, 255);
+  RegisterProperty('BaseDocumentNumber', 'НомДокОтгр', [xsaRequared], 'Номер документа об отгрузке', 1, 255);
+  RegisterProperty('BaseDocumentDate', 'ДатаДокОтгр', [], 'Дата документа об отгрузке', 10, 10);
 end;
 
 procedure TShipmentBaseConfirm.InternalInitChilds;
@@ -425,13 +425,13 @@ end;
 
 procedure TSellerInformationForState.InternalRegisterPropertys;
 begin
-  RegisterProperty('GovernmentContractDate', 'ДатаГосКонт', 'О', 'Дата государственного контракта', 10, 10);
-  RegisterProperty('GovernmentContractNumber', 'НомерГосКонт', 'О', 'Номер государственного контракта', 1, 100);
-  RegisterProperty('GovernmentContractAccount', 'ЛицСчетПрод', 'Н', 'Номер лицевого счета продавца', 11, 11);
-  RegisterProperty('KBK', 'КодПродБюджКласс', 'НК', 'Код по бюджетной классификации (продавец)', 20, 20);
-  RegisterProperty('DestinationCode', 'КодЦелиПрод', 'Код цели (продавец)', 'НК', 20, 20);
-  RegisterProperty('TreasuryCode', 'КодКазначПрод', 'НК', 'Код территориального органа Федерального казначейства продавца', 1, 4);
-  RegisterProperty('TreasuryName', 'НаимКазначПрод', 'НК', 'Наименование территориального органа Федерального казначейства продавца', 1, 2000);
+  RegisterProperty('GovernmentContractDate', 'ДатаГосКонт', [xsaRequared], 'Дата государственного контракта', 10, 10);
+  RegisterProperty('GovernmentContractNumber', 'НомерГосКонт', [xsaRequared], 'Номер государственного контракта', 1, 100);
+  RegisterProperty('GovernmentContractAccount', 'ЛицСчетПрод', [], 'Номер лицевого счета продавца', 11, 11);
+  RegisterProperty('KBK', 'КодПродБюджКласс', [], 'Код по бюджетной классификации (продавец)', 20, 20);
+  RegisterProperty('DestinationCode', 'КодЦелиПрод', [xsaRequared], 'Код цели (продавец)', 20, 20);
+  RegisterProperty('TreasuryCode', 'КодКазначПрод', [], 'Код территориального органа Федерального казначейства продавца', 1, 4);
+  RegisterProperty('TreasuryName', 'НаимКазначПрод', [], 'Наименование территориального органа Федерального казначейства продавца', 1, 2000);
 end;
 
 procedure TSellerInformationForState.InternalInitChilds;
@@ -477,13 +477,13 @@ end;
 
 procedure TAdditionalInformationOfLife1.InternalRegisterPropertys;
 begin
-  RegisterProperty('GovernmentContractInfo', 'ИдГосКон', 'Н', 'Обязателен при наличии государственного контракта на поставку товаров (выполнение работ, оказание услуг), договора (соглашения) о предоставлении из федерального бюджета юридическому лицу субсидий, бюджетных инвестиций, взносов в уставный капитал', 20, 25);
-  RegisterProperty('CurrencyName', 'НаимОКВ', 'НК', 'Валюта: Наименование', 1, 100);
-  RegisterProperty('CurrencyRate', 'КурсВал', 'Н', 'Курс валюты', 1, 10);
-  RegisterProperty('InvoceConditionsTax', 'ОбстФормСЧФ', 'Н', 'Обстоятельства формирования счета-фактуры, применяемого при расчетах по налогу на добавленную стоимость', 1, 1);
-  RegisterProperty('SellerInformationForState', 'ИнфПродГосЗакКазн', 'Н', 'Информация продавца об обстоятельствах закупок для государственных и муниципальных нужд (для учета Федеральным казначейством денежных обязательств)', -1, -1);
-  RegisterProperty('FactorInfo', 'СвФактор', 'Н', 'Сведения о факторе', -1, -1);
-  RegisterProperty('MonetaryRequestBase', 'ОснУстДенТреб', 'Н', 'Основание уступки денежного требования', -1, -1);
+  RegisterProperty('GovernmentContractInfo', 'ИдГосКон', [], 'Обязателен при наличии государственного контракта на поставку товаров (выполнение работ, оказание услуг), договора (соглашения) о предоставлении из федерального бюджета юридическому лицу субсидий, бюджетных инвестиций, взносов в уставный капитал', 20, 25);
+  RegisterProperty('CurrencyName', 'НаимОКВ', [], 'Валюта: Наименование', 1, 100);
+  RegisterProperty('CurrencyRate', 'КурсВал', [], 'Курс валюты', 1, 10);
+  RegisterProperty('InvoceConditionsTax', 'ОбстФормСЧФ', [], 'Обстоятельства формирования счета-фактуры, применяемого при расчетах по налогу на добавленную стоимость', 1, 1);
+  RegisterProperty('SellerInformationForState', 'ИнфПродГосЗакКазн', [], 'Информация продавца об обстоятельствах закупок для государственных и муниципальных нужд (для учета Федеральным казначейством денежных обязательств)', -1, -1);
+  RegisterProperty('FactorInfo', 'СвФактор', [], 'Сведения о факторе', -1, -1);
+  RegisterProperty('MonetaryRequestBase', 'ОснУстДенТреб', [], 'Основание уступки денежного требования', -1, -1);
 end;
 
 procedure TAdditionalInformationOfLife1.InternalInitChilds;
@@ -527,9 +527,9 @@ end;
 
 procedure TPaymentDocument.InternalRegisterPropertys;
 begin
-  RegisterProperty('DocumentDate', 'НомерПРД', 'О', 'Номер платежно-расчетного документа', 1, 30);
-  RegisterProperty('DocumentNumber', 'ДатаПРД', 'О', 'Дата составления платежно-расчетного документа', 10, 10);
-  RegisterProperty('DocumentSum', 'СуммаПРД', 'Н', 'Сумма', 1, 19);
+  RegisterProperty('DocumentDate', 'НомерПРД', [xsaRequared], 'Номер платежно-расчетного документа', 1, 30);
+  RegisterProperty('DocumentNumber', 'ДатаПРД', [xsaRequared], 'Дата составления платежно-расчетного документа', 10, 10);
+  RegisterProperty('DocumentSum', 'СуммаПРД', [], 'Сумма', 1, 19);
 end;
 
 procedure TPaymentDocument.InternalInitChilds;
@@ -587,8 +587,8 @@ end;
 
 procedure TShipper.InternalRegisterPropertys;
 begin
-  RegisterProperty('Organization', 'ГрузОтпр', 'О', 'Грузоотправитель и его адрес', -1, -1);
-  RegisterProperty('SameAsSeller', 'ОнЖе', 'П', 'Указано "он же"', 5, 5);
+  RegisterProperty('Organization', 'ГрузОтпр', [xsaRequared], 'Грузоотправитель и его адрес', -1, -1);
+  RegisterProperty('SameAsSeller', 'ОнЖе', [xsaSimpleObject], 'Указано "он же"', 5, 5);
 end;
 
 procedure TShipper.InternalInitChilds;
@@ -635,10 +635,10 @@ end;
 
 procedure TInvoiceRevisionInfo.InternalRegisterPropertys;
 begin
-  RegisterProperty('InvoiceRevisionDate', 'НомИспрСчФ', 'Н', 'Исправление: N', 0, 999);
-  RegisterProperty('InvoiceRevisionNumber', 'ДефНомИспрСчФ', 'Н', 'Исправление: N (при составлении документа с Функция=СЧФ или Функция=СЧФДОП до внесения в него исправлений)', 1, 1);
-  RegisterProperty('InvoiceRevisionDateDef', 'ДатаИспрСчФ', 'Н', 'Исправление: Дата', 10, 10);
-  RegisterProperty('InvoiceRevisionNumberDef', 'ДефДатаИспрСчФ', 'Н', 'Исправление: Дата (при составлении документа с Функция=СЧФ или Функция=СЧФДОП до внесения в него исправлений)', 1, 1);
+  RegisterProperty('InvoiceRevisionDate', 'НомИспрСчФ', [], 'Исправление: N', 0, 999);
+  RegisterProperty('InvoiceRevisionNumber', 'ДефНомИспрСчФ', [], 'Исправление: N (при составлении документа с Функция=СЧФ или Функция=СЧФДОП до внесения в него исправлений)', 1, 1);
+  RegisterProperty('InvoiceRevisionDateDef', 'ДатаИспрСчФ', [], 'Исправление: Дата', 10, 10);
+  RegisterProperty('InvoiceRevisionNumberDef', 'ДефДатаИспрСчФ', [], 'Исправление: Дата (при составлении документа с Функция=СЧФ или Функция=СЧФДОП до внесения в него исправлений)', 1, 1);
 end;
 
 procedure TInvoiceRevisionInfo.InternalInitChilds;
@@ -676,18 +676,18 @@ end;
 
 procedure TInvoiceInformation.InternalRegisterPropertys;
 begin
-  RegisterProperty('DocumentNumber', 'НомерСчФ', 'О', 'Порядковый номер счета-фактуры (строка 1 счета-фактуры), документа об отгрузке товаров (выполнении работ), передаче имущественных прав (документа об оказании услуг)', 1, 1000);
-  RegisterProperty('DocumentDate', 'ДатаСчФ', 'О', 'Дата составления (выписки) счета-фактуры (строка 1 счета-фактуры), документа об отгрузке товаров (выполнении работ), передаче имущественных прав (документа об оказании услуг)', 10, 10);
-  RegisterProperty('CurrencyCode', 'КодОКВ', 'О', 'Валюта: Код (строка 7 счета-фактуры)', 3, 3);
-  RegisterProperty('InvoiceRevisionInfo', 'ИспрСчФ', 'Н', 'Исправление (строка 1а счета - фактуры)', -1, -1);
-  RegisterProperty('Seller', 'СвПрод', 'ОМ', 'Сведения о продавце (строки 2, 2а, 2б счета-фактуры)', -1, -1);
-  RegisterProperty('Shippers', 'ГрузОт', 'НМ', 'Сведения о грузоотправителе (строка 3 счета-фактуры)', -1, -1);
-  RegisterProperty('Consignee', 'ГрузПолуч', 'НМ', 'Грузополучатель и его адрес (строка 4 счета-фактуры)', -1, -1);
-  RegisterProperty('PaymentDocuments', 'СвПРД', 'НМ', 'Сведения о платежно-расчетном документе (строка 5 счета-фактуры)', -1, -1);
-  RegisterProperty('Buyer', 'СвПокуп', 'ОМ', 'Сведения о покупателе (строки 6, 6а, 6б счета-фактуры)', -1, -1);
-  RegisterProperty('AdditionalInformationOfLife1', 'ДопСвФХЖ1', 'Н', 'Дополнительные сведения об участниках факта хозяйственной жизни, основаниях и обстоятельствах его проведения', -1, -1);
-  RegisterProperty('ShipmentBaseConfirms', 'ДокПодтвОтгр', 'НМ', 'Реквизиты документа, подтверждающего отгрузку товаров (работ, услуг, имущественных прав)', -1, -1);
-  RegisterProperty('AdditionalInfo', 'ИнфПолФХЖ1', 'Н', 'Информационное поле факта хозяйственной жизни 1', -1, -1);
+  RegisterProperty('DocumentNumber', 'НомерСчФ', [xsaRequared], 'Порядковый номер счета-фактуры (строка 1 счета-фактуры), документа об отгрузке товаров (выполнении работ), передаче имущественных прав (документа об оказании услуг)', 1, 1000);
+  RegisterProperty('DocumentDate', 'ДатаСчФ', [xsaRequared], 'Дата составления (выписки) счета-фактуры (строка 1 счета-фактуры), документа об отгрузке товаров (выполнении работ), передаче имущественных прав (документа об оказании услуг)', 10, 10);
+  RegisterProperty('CurrencyCode', 'КодОКВ', [xsaRequared], 'Валюта: Код (строка 7 счета-фактуры)', 3, 3);
+  RegisterProperty('InvoiceRevisionInfo', 'ИспрСчФ', [], 'Исправление (строка 1а счета - фактуры)', -1, -1);
+  RegisterProperty('Seller', 'СвПрод', [xsaRequared], 'Сведения о продавце (строки 2, 2а, 2б счета-фактуры)', -1, -1);
+  RegisterProperty('Shippers', 'ГрузОт', [], 'Сведения о грузоотправителе (строка 3 счета-фактуры)', -1, -1);
+  RegisterProperty('Consignee', 'ГрузПолуч', [], 'Грузополучатель и его адрес (строка 4 счета-фактуры)', -1, -1);
+  RegisterProperty('PaymentDocuments', 'СвПРД', [], 'Сведения о платежно-расчетном документе (строка 5 счета-фактуры)', -1, -1);
+  RegisterProperty('Buyer', 'СвПокуп', [xsaRequared], 'Сведения о покупателе (строки 6, 6а, 6б счета-фактуры)', -1, -1);
+  RegisterProperty('AdditionalInformationOfLife1', 'ДопСвФХЖ1', [], 'Дополнительные сведения об участниках факта хозяйственной жизни, основаниях и обстоятельствах его проведения', -1, -1);
+  RegisterProperty('ShipmentBaseConfirms', 'ДокПодтвОтгр', [], 'Реквизиты документа, подтверждающего отгрузку товаров (работ, услуг, имущественных прав)', -1, -1);
+  RegisterProperty('AdditionalInfo', 'ИнфПолФХЖ1', [], 'Информационное поле факта хозяйственной жизни 1', -1, -1);
 end;
 
 procedure TInvoiceInformation.InternalInitChilds;
@@ -786,19 +786,19 @@ end;
 
 procedure TInvoceDocument.InternalRegisterPropertys;
 begin
-  RegisterProperty('KND', 'КНД', 'ОК', 'Код документа по КНД', 7, 7);
-  RegisterProperty('DocFunction', 'Функция', 'ОК', 'Функция', 1, 6);
-  RegisterProperty('DocumentNameEL', 'ПоФактХЖ', 'Н', 'Наименование документа по факту хозяйственной жизни', 1, 255);
-  RegisterProperty('DocumentName', 'НаимДокОпр', 'Н', 'Наименование первичного документа, определенное организацией (согласованное сторонами сделки)', 1, 255);
-  RegisterProperty('InvoceDateCreate', 'ДатаИнфПр', 'Н', 'Дата формирования файла обмена счета-фактуры (информации продавца)', 10, 10);
-  RegisterProperty('InvoceTimeCreate', 'ВремИнфПр', 'Н', 'Время формирования файла обмена счета-фактуры (информации продавца)', 8, 8);
-  RegisterProperty('DocumentCreator', 'НаимЭконСубСост', 'О', 'Наименование экономического субъекта - составителя файла обмена счета-фактуры (информации продавца)', 1, 1000);
-  RegisterProperty('DocumentCreatorBase', 'ОснДоверОргСост', 'Н', 'Основание, по которому экономический субъект является составителем файла обмена счета-фактуры (информации продавца)', 1, 120);
-  RegisterProperty('InformationAvailabilityStructureAdditionalInfo', 'СоглСтрДопИнф', 'Н', 'Информация о наличии согласованной структуры дополнительных информационных полей', 14, 14);
-  RegisterProperty('InvoiceInformation', 'СвСчФакт', 'О', 'Сведения о счете-фактуре (содержание факта хозяйственной жизни 1 - сведения об участниках факта хозяйственной жизни, основаниях и обстоятельствах его проведения)', -1, -1);
-  RegisterProperty('InvoiceItems', 'ТаблСчФакт', 'Н', 'Сведения таблицы счета-фактуры (содержание факта хозяйственной жизни 2 - наименование и другая информация об отгруженных товарах (выполненных работах, оказанных услугах), о переданных имущественных правах', -1, -1);
-  RegisterProperty('TransferInfo', 'СвПродПер', 'Н', 'Содержание факта хозяйственной жизни 3 - сведения о факте отгрузки товаров (выполнения работ), передачи имущественных прав (о предъявлении оказанных услуг)', -1, -1);
-  RegisterProperty('Signers', 'Подписант', 'ОМ', 'Сведения о лице, подписывающем файл обмена счета-фактуры (информации продавца) в электронной форме', -1, -1);
+  RegisterProperty('KND', 'КНД', [xsaRequared], 'Код документа по КНД', 7, 7);
+  RegisterProperty('DocFunction', 'Функция', [xsaRequared], 'Функция', 1, 6);
+  RegisterProperty('DocumentNameEL', 'ПоФактХЖ', [], 'Наименование документа по факту хозяйственной жизни', 1, 255);
+  RegisterProperty('DocumentName', 'НаимДокОпр', [], 'Наименование первичного документа, определенное организацией (согласованное сторонами сделки)', 1, 255);
+  RegisterProperty('InvoceDateCreate', 'ДатаИнфПр', [], 'Дата формирования файла обмена счета-фактуры (информации продавца)', 10, 10);
+  RegisterProperty('InvoceTimeCreate', 'ВремИнфПр', [], 'Время формирования файла обмена счета-фактуры (информации продавца)', 8, 8);
+  RegisterProperty('DocumentCreator', 'НаимЭконСубСост', [xsaRequared], 'Наименование экономического субъекта - составителя файла обмена счета-фактуры (информации продавца)', 1, 1000);
+  RegisterProperty('DocumentCreatorBase', 'ОснДоверОргСост', [], 'Основание, по которому экономический субъект является составителем файла обмена счета-фактуры (информации продавца)', 1, 120);
+  RegisterProperty('InformationAvailabilityStructureAdditionalInfo', 'СоглСтрДопИнф', [], 'Информация о наличии согласованной структуры дополнительных информационных полей', 14, 14);
+  RegisterProperty('InvoiceInformation', 'СвСчФакт', [xsaRequared], 'Сведения о счете-фактуре (содержание факта хозяйственной жизни 1 - сведения об участниках факта хозяйственной жизни, основаниях и обстоятельствах его проведения)', -1, -1);
+  RegisterProperty('InvoiceItems', 'ТаблСчФакт', [], 'Сведения таблицы счета-фактуры (содержание факта хозяйственной жизни 2 - наименование и другая информация об отгруженных товарах (выполненных работах, оказанных услугах), о переданных имущественных правах', -1, -1);
+  RegisterProperty('TransferInfo', 'СвПродПер', [], 'Содержание факта хозяйственной жизни 3 - сведения о факте отгрузки товаров (выполнения работ), передачи имущественных прав (о предъявлении оказанных услуг)', -1, -1);
+  RegisterProperty('Signers', 'Подписант', [xsaRequared], 'Сведения о лице, подписывающем файл обмена счета-фактуры (информации продавца) в электронной форме', -1, -1);
 end;
 
 procedure TInvoceDocument.InternalInitChilds;

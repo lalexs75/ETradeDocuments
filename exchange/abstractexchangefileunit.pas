@@ -122,9 +122,9 @@ end;
 
 procedure TAbstractExchangeFile.InternalRegisterPropertys;
 begin
-  RegisterProperty('FileID', 'ИдФайл', 'О', 'Идентификатор файла', 1, 255);
-  RegisterProperty('FormatVersion', 'ВерсФорм', 'О', 'Версия формата', 1, 5);
-  RegisterProperty('ApplicationVersion', 'ВерсПрог', 'О', 'Версия программы, с помощью которой сформирован файл', 1, 40);
+  RegisterProperty('FileID', 'ИдФайл', [xsaRequared], 'Идентификатор файла', 1, 255);
+  RegisterProperty('FormatVersion', 'ВерсФорм', [xsaRequared], 'Версия формата', 1, 5);
+  RegisterProperty('ApplicationVersion', 'ВерсПрог', [xsaRequared], 'Версия программы, с помощью которой сформирован файл', 1, 40);
 end;
 
 procedure TAbstractExchangeFile.InternalInitChilds;

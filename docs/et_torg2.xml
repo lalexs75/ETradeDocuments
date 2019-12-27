@@ -185,6 +185,42 @@
       </element><element name="TAdress.CodeGAR"><short>Уникальный номер адреса объекта адресации в государственном адресном реестре</short><descr>Типовой элемент string-36
 </descr>
       </element>
+    <element name="TAdressInfo.CountryCode"><short>Код страны</short><descr>Типовой элемент &lt;ОКСМТип&gt;.
+</descr>
+      </element><element name="TAdressInfo.Address"><short>Адрес</short>
+      </element><element name="TRussianAdress.ZipCode"><short>Индекс</short>
+      </element><element name="TRussianAdress.Region"><short>Код региона</short><descr>Типовой элемент &lt;ССРФТип&gt;
+</descr>
+      </element><element name="TRussianAdress.Territory"><short>Район</short>
+      </element><element name="TRussianAdress.City"><short>Город</short>
+      </element><element name="TRussianAdress.Locality"><short>Населенный пункт</short>
+      </element><element name="TRussianAdress.Street"><short>Улица</short>
+      </element><element name="TRussianAdress.Building"><short>Дом</short>
+      </element><element name="TRussianAdress.Block"><short>Корпус</short>
+      </element><element name="TRussianAdress.Apartment"><short>Квартира</short>
+      </element>
+    <element name="TContactInformation.PhoneNumber"><short>Номер контактного телефона/факс</short>
+      </element><element name="TContactInformation.EMail"><short>Адрес электронной почты</short>
+      </element><element name="TBankInformation.BankAccount"><short>Номер банковского счета</short>
+      </element><element name="TBankInformation.Bank"><short>Сведения о банке</short><descr>Состав элемента представлен в таблице 5.44
+</descr>
+      </element><element name="TBankInformation"><short>Банковские реквизиты (БанкРекв)</short>
+      </element><element name="TBank"><short>Сведения о банке (СвБанк)</short>
+      </element><element name="TBank.BankName"><short>Наименование банка</short>
+      </element><element name="TBank.BankBIK"><short>Банковский идентификационный код (БИК) в соответствии со "Справочником БИК РФ"</short><descr>Типовой элемент &lt;БИКТип&gt;
+</descr>
+      </element><element name="TBank.CorrAccount"><short>Корреспондентский счет банка</short>
+      </element><element name="TAccompanyingDocument.DocumentName"><short>Наименование сопроводительного документа</short><descr>При отсутствии указывается "БСД" (без сопроводительного документа)
+</descr>
+      </element><element name="TAccompanyingDocument.DocumentNumber"><short>Номер сопроводительного документа</short><descr>При отсутствии указывается "б/Н" (без номера).
+Обязателен, если НаимСопрДок не равно "БСД"
+</descr>
+      </element>
+    <element name="TAccompanyingDocument.DocumentDate"><short>Дата сопроводительного документа</short><descr>Типовой элемент &lt;ДатаТип&gt;.
+Обязателен, если НаимСопрДок не равно "БСД"
+</descr>
+      </element><element name="TAccompanyingDocument.DocumentID"><short>Дополнительный идентификатор сопроводительного документа</short>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>

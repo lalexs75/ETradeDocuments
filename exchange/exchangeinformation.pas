@@ -317,8 +317,8 @@ end;
 
 procedure TExchangeTextInfo.InternalRegisterPropertys;
 begin
-  RegisterProperty('ID', 'Идентиф', 'О', 'Идентификатор', 1, 50);
-  RegisterProperty('Value', 'Значен', 'О', 'Значение', 1, 2000);
+  RegisterProperty('ID', 'Идентиф', [xsaRequared], 'Идентификатор', 1, 50);
+  RegisterProperty('Value', 'Значен', [xsaRequared], 'Значение', 1, 2000);
 end;
 
 procedure TExchangeTextInfo.InternalInitChilds;
@@ -366,8 +366,8 @@ end;
 
 procedure TAdditionalInfoId4.InternalRegisterPropertys;
 begin
-  RegisterProperty('FileID', 'ИдФайлИнфПол', 'Н', 'Идентификатор файла информационного поля', 36, 36);
-  RegisterProperty('TextInfo', 'ТекстИнф', 'НМ', 'Текстовая информация', -1, -1);
+  RegisterProperty('FileID', 'ИдФайлИнфПол', [], 'Идентификатор файла информационного поля', 36, 36);
+  RegisterProperty('TextInfo', 'ТекстИнф', [], 'Текстовая информация', -1, -1);
 end;
 
 procedure TAdditionalInfoId4.InternalInitChilds;
@@ -400,9 +400,9 @@ end;
 
 procedure TIndividualAcceptanceGoods.InternalRegisterPropertys;
 begin
-  RegisterProperty('SignerPowersBase', 'ОснДоверФЛ', 'Н', 'Основание, по которому физическому лицу доверено принятие товаров (груза)', 1, 120);
-  RegisterProperty('OtherInfo', 'ИныеСвед', 'Н', 'Иные сведения, идентифицирующие физическое лицо', 1, 255);
-  RegisterProperty('Person', 'ФИО', 'О', 'Фамилия, имя, отчество', -1, -1);
+  RegisterProperty('SignerPowersBase', 'ОснДоверФЛ', [], 'Основание, по которому физическому лицу доверено принятие товаров (груза)', 1, 120);
+  RegisterProperty('OtherInfo', 'ИныеСвед', [], 'Иные сведения, идентифицирующие физическое лицо', 1, 255);
+  RegisterProperty('Person', 'ФИО', [xsaRequared], 'Фамилия, имя, отчество', -1, -1);
 end;
 
 procedure TIndividualAcceptanceGoods.InternalInitChilds;
@@ -452,12 +452,12 @@ end;
 
 procedure TAacceptanceLegalEntityEmployee.InternalRegisterPropertys;
 begin
-  RegisterProperty('Position', 'Должность', 'О', 'Должность', 1, 128);
-  RegisterProperty('OtherInfo', 'ИныеСвед', 'Н', 'Иные сведения, идентифицирующие физическое лицо', 1, 255);
-  RegisterProperty('Organization', 'НаимОргПрин', 'О', 'Наименование организации', 1, 128);
-  RegisterProperty('OrgSignerPowersBase', 'ОснДоверОргПрин', 'Н', 'Основание, по которому организации доверено принятие товаров (груза)', 1, 120);
-  RegisterProperty('SignerPowersBase', 'ОснПолнПредПрин', 'Н', 'Основание полномочий представителя организации на принятие товаров (груза)', 1, 120);
-  RegisterProperty('Person', 'ФИО', 'О', 'Фамилия, имя, отчество', -1, -1);
+  RegisterProperty('Position', 'Должность', [xsaRequared], 'Должность', 1, 128);
+  RegisterProperty('OtherInfo', 'ИныеСвед', [], 'Иные сведения, идентифицирующие физическое лицо', 1, 255);
+  RegisterProperty('Organization', 'НаимОргПрин', [xsaRequared], 'Наименование организации', 1, 128);
+  RegisterProperty('OrgSignerPowersBase', 'ОснДоверОргПрин', [], 'Основание, по которому организации доверено принятие товаров (груза)', 1, 120);
+  RegisterProperty('SignerPowersBase', 'ОснПолнПредПрин', [], 'Основание полномочий представителя организации на принятие товаров (груза)', 1, 120);
+  RegisterProperty('Person', 'ФИО', [xsaRequared], 'Фамилия, имя, отчество', -1, -1);
 end;
 
 procedure TAacceptanceLegalEntityEmployee.InternalInitChilds;
@@ -476,8 +476,8 @@ end;
 
 procedure TExchangeOtherIssuer.InternalRegisterPropertys;
 begin
-  RegisterProperty('LegalEntityEmployee', 'ПредОргПрин', 'О', 'Представитель организации, которой доверено принятие товаров (груза)', -1, -1);
-  RegisterProperty('IndividualAcceptanceGoods', 'ФЛПрин', 'О', 'Физическое лицо, которому доверено принятие товаров (груза)', -1, -1);
+  RegisterProperty('LegalEntityEmployee', 'ПредОргПрин', [xsaRequared], 'Представитель организации, которой доверено принятие товаров (груза)', -1, -1);
+  RegisterProperty('IndividualAcceptanceGoods', 'ФЛПрин', [xsaRequared], 'Физическое лицо, которому доверено принятие товаров (груза)', -1, -1);
 end;
 
 procedure TExchangeOtherIssuer.InternalInitChilds;
@@ -519,9 +519,9 @@ end;
 
 procedure TExchangePerson.InternalRegisterPropertys;
 begin
-  RegisterProperty('Surname', 'Фамилия', 'О', 'Фамилия', 1, 60);
-  RegisterProperty('FirstName', 'Имя', 'О', 'Имя', 1, 60);
-  RegisterProperty('Patronymic', 'Отчество', 'Н', 'Отчество', 1, 60);
+  RegisterProperty('Surname', 'Фамилия', [xsaRequared], 'Фамилия', 1, 60);
+  RegisterProperty('FirstName', 'Имя', [xsaRequared], 'Имя', 1, 60);
+  RegisterProperty('Patronymic', 'Отчество', [], 'Отчество', 1, 60);
 end;
 
 procedure TExchangePerson.InternalInitChilds;
@@ -559,10 +559,10 @@ end;
 
 procedure TCustomerEmployee.InternalRegisterPropertys;
 begin
-  RegisterProperty('Position', 'Должность', 'О', 'Должность', 1, 128);
-  RegisterProperty('OtherInfo', 'ИныеСвед', 'Н', 'Иные сведения, идентифицирующие физическое лицо', 1, 255);
-  RegisterProperty('SignerPowersBase', 'ОснПолн', 'О', 'Основание полномочий (доверия)', 1, 120);
-  RegisterProperty('Person', 'ФИО', 'О', 'Фамилия, имя, отчество', -1, -1);
+  RegisterProperty('Position', 'Должность', [xsaRequared], 'Должность', 1, 128);
+  RegisterProperty('OtherInfo', 'ИныеСвед', [], 'Иные сведения, идентифицирующие физическое лицо', 1, 255);
+  RegisterProperty('SignerPowersBase', 'ОснПолн', [xsaRequared], 'Основание полномочий (доверия)', 1, 120);
+  RegisterProperty('Person', 'ФИО', [xsaRequared], 'Фамилия, имя, отчество', -1, -1);
 end;
 
 procedure TCustomerEmployee.InternalInitChilds;
@@ -581,8 +581,8 @@ end;
 
 procedure TCargoPerson.InternalRegisterPropertys;
 begin
-  RegisterProperty('CustomerEmployee', 'РабОргПок', 'О', 'Работник организации покупателя', -1, -1);
-  RegisterProperty('OtherIssuer', 'ИнЛицо', 'О', 'Иное лицо', -1, -1);
+  RegisterProperty('CustomerEmployee', 'РабОргПок', [xsaRequared], 'Работник организации покупателя', -1, -1);
+  RegisterProperty('OtherIssuer', 'ИнЛицо', [xsaRequared], 'Иное лицо', -1, -1);
 end;
 
 procedure TCargoPerson.InternalInitChilds;
@@ -645,12 +645,12 @@ end;
 
 procedure TOperationCode.InternalRegisterPropertys;
 begin
-  RegisterProperty('ItogCode', 'КодИтога', 'ОК', 'Код, обозначающий итог приемки товара (работ, услуг, прав)', 1, 1);
-  RegisterProperty('DocumentName', 'НаимДокРасх', 'Н', 'Наименование документа, оформляющего расхождения', 1, 255);
-  RegisterProperty('DocumentCode', 'ВидДокРасх', 'НК', 'Код вида документа о расхождениях', 1, 1);
-  RegisterProperty('DocumentNumber', 'НомДокРасх', 'Н', 'Номер документа покупателя о расхождениях', 1, 255);
-  RegisterProperty('DocumentDate', 'ДатаДокРасх', 'Н', 'Дата документа о расхождениях', 10, 10);
-  RegisterProperty('FileID', 'ИдФайлДокРасх', 'Н', 'Идентификатор файла обмена документа о расхождениях, сформированного покупателем', 1, 255);
+  RegisterProperty('ItogCode', 'КодИтога', [xsaRequared], 'Код, обозначающий итог приемки товара (работ, услуг, прав)', 1, 1);
+  RegisterProperty('DocumentName', 'НаимДокРасх', [], 'Наименование документа, оформляющего расхождения', 1, 255);
+  RegisterProperty('DocumentCode', 'ВидДокРасх', [], 'Код вида документа о расхождениях', 1, 1);
+  RegisterProperty('DocumentNumber', 'НомДокРасх', [], 'Номер документа покупателя о расхождениях', 1, 255);
+  RegisterProperty('DocumentDate', 'ДатаДокРасх', [], 'Дата документа о расхождениях', 10, 10);
+  RegisterProperty('FileID', 'ИдФайлДокРасх', [], 'Идентификатор файла обмена документа о расхождениях, сформированного покупателем', 1, 255);
 end;
 
 procedure TOperationCode.InternalInitChilds;
@@ -681,10 +681,10 @@ end;
 
 procedure TAcceptanceInformation.InternalRegisterPropertys;
 begin
-  RegisterProperty('OperationContent', 'СодОпер', 'Н', 'Содержание операции (текст)', 1, 255);
-  RegisterProperty('AcceptanceDate', 'ДатаПрин', 'Н', 'Дата принятия товаров (результатов выполненных работ), имущественных прав (подтверждения факта оказания услуг)', 10, 10);
-  RegisterProperty('OperationCode', 'КодСодОпер', 'Н', 'Код содержания операции', -1, -1);
-  RegisterProperty('CargoPerson', 'СвЛицПрин', 'Н', 'Сведения о лице, принявшем товары (груз)', -1, -1);
+  RegisterProperty('OperationContent', 'СодОпер', [], 'Содержание операции (текст)', 1, 255);
+  RegisterProperty('AcceptanceDate', 'ДатаПрин', [], 'Дата принятия товаров (результатов выполненных работ), имущественных прав (подтверждения факта оказания услуг)', 10, 10);
+  RegisterProperty('OperationCode', 'КодСодОпер', [], 'Код содержания операции', -1, -1);
+  RegisterProperty('CargoPerson', 'СвЛицПрин', [], 'Сведения о лице, принявшем товары (груз)', -1, -1);
 end;
 
 procedure TAcceptanceInformation.InternalInitChilds;
@@ -740,13 +740,13 @@ end;
 
 procedure TExchangeInformation.InternalRegisterPropertys;
 begin
-  RegisterProperty('DocumentName', 'НаимДокОпрПр', 'О', 'Наименование первичного документа, согласованное сторонами сделки', 1, 255);
-  RegisterProperty('DocumentFunction', 'Функция', 'О', 'Функция', 1, 6);
-  RegisterProperty('DocumentNumber', 'НомСчФИнфПр', 'Н', 'Номер счета-фактуры (информации продавца)', 1, 1000);
-  RegisterProperty('DocumentDate', 'ДатаСчФИнфПр', 'О', 'Дата составления (выписки) счета-фактуры (информации продавца)', 1, 10);
-  RegisterProperty('OperationCode', 'ВидОперации', 'Н', 'Вид операции', 1, 255);
-  RegisterProperty('AcceptanceInformation', 'СвПрин', 'О', 'Сведения о принятии товаров (результатов выполненных работ), имущественных прав (о подтверждении факта оказания услуг)', -1, -1);
-  RegisterProperty('AdditionalInfoId', 'ИнфПолФХЖ4', 'Н', 'Информационное поле факта хозяйственной жизни 4', -1, -1);
+  RegisterProperty('DocumentName', 'НаимДокОпрПр', [xsaRequared], 'Наименование первичного документа, согласованное сторонами сделки', 1, 255);
+  RegisterProperty('DocumentFunction', 'Функция', [xsaRequared], 'Функция', 1, 6);
+  RegisterProperty('DocumentNumber', 'НомСчФИнфПр', [], 'Номер счета-фактуры (информации продавца)', 1, 1000);
+  RegisterProperty('DocumentDate', 'ДатаСчФИнфПр', [xsaRequared], 'Дата составления (выписки) счета-фактуры (информации продавца)', 1, 10);
+  RegisterProperty('OperationCode', 'ВидОперации', [], 'Вид операции', 1, 255);
+  RegisterProperty('AcceptanceInformation', 'СвПрин', [xsaRequared], 'Сведения о принятии товаров (результатов выполненных работ), имущественных прав (о подтверждении факта оказания услуг)', -1, -1);
+  RegisterProperty('AdditionalInfoId', 'ИнфПолФХЖ4', [], 'Информационное поле факта хозяйственной жизни 4', -1, -1);
 end;
 
 procedure TExchangeInformation.InternalInitChilds;

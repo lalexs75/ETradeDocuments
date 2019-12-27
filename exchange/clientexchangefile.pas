@@ -135,18 +135,18 @@ end;
 
 procedure TSenderExchangeInformationEx.InternalRegisterPropertys;
 begin
-  RegisterProperty('FullName', 'НаимОрг', 'О', 'Наименование', 1, 1000);
-  RegisterProperty('Inn', 'ИННЮЛ', 'О', 'ИНН', 10, 10);
-  RegisterProperty('IdentifierSenderOperator', 'ИдЭДО', 'О', 'Идентификатор оператора электронного документооборота отправителя файла обмена информации покупателя', 3, 3);
+  RegisterProperty('FullName', 'НаимОрг', [xsaRequared], 'Наименование', 1, 1000);
+  RegisterProperty('Inn', 'ИННЮЛ', [xsaRequared], 'ИНН', 10, 10);
+  RegisterProperty('IdentifierSenderOperator', 'ИдЭДО', [xsaRequared], 'Идентификатор оператора электронного документооборота отправителя файла обмена информации покупателя', 3, 3);
 end;
 
 { TParticipantsInformationEx }
 
 procedure TParticipantsInformationEx.InternalRegisterPropertys;
 begin
-  RegisterProperty('SenderInfo', 'ИдОтпр', 'О', 'Идентификатор участника документооборота - отправителя файла обмена информации покупателя', 4, 46);
-  RegisterProperty('RecipientInfo', 'ИдПол', 'О', 'Идентификатор участника документооборота - получателя файла обмена информации покупателя', 4, 46);
-  RegisterProperty('SenderExchangeInformationEx', 'СвОЭДОтпр', 'Н', 'Сведения об операторе электронного документооборота отправителя файла обмена информации покупателя', -1, -1);
+  RegisterProperty('SenderInfo', 'ИдОтпр', [xsaRequared], 'Идентификатор участника документооборота - отправителя файла обмена информации покупателя', 4, 46);
+  RegisterProperty('RecipientInfo', 'ИдПол', [xsaRequared], 'Идентификатор участника документооборота - получателя файла обмена информации покупателя', 4, 46);
+  RegisterProperty('SenderExchangeInformationEx', 'СвОЭДОтпр', [], 'Сведения об операторе электронного документооборота отправителя файла обмена информации покупателя', -1, -1);
 end;
 
 procedure TParticipantsInformationEx.InternalInitChilds;
@@ -199,11 +199,11 @@ end;
 procedure TClientExchangeFile.InternalRegisterPropertys;
 begin
   inherited InternalRegisterPropertys;
-  RegisterProperty('FileID', 'ИдФайл', 'О', 'Идентификатор файла', 1, 255);
-  RegisterProperty('FormatVersion', 'ВерсФорм', 'О', 'Версия формата', 1, 5);
-  RegisterProperty('AppVersion', 'ВерсПрог', 'Н', 'Версия программы, с помощью которой сформирован файл', 1, 40);
-  RegisterProperty('ParticipantsInformationEx', 'СвУчДокОбор', 'О', 'Сведения об участниках электронного документооборота', -1, -1);
-  RegisterProperty('Document', 'ИнфПок', 'О', 'Документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг), включающий в себя счет-фактуру (информация покупателя), или документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг) (информация покупателя)', -1, -1);
+  RegisterProperty('FileID', 'ИдФайл', [xsaRequared], 'Идентификатор файла', 1, 255);
+  RegisterProperty('FormatVersion', 'ВерсФорм', [xsaRequared], 'Версия формата', 1, 5);
+  RegisterProperty('AppVersion', 'ВерсПрог', [], 'Версия программы, с помощью которой сформирован файл', 1, 40);
+  RegisterProperty('ParticipantsInformationEx', 'СвУчДокОбор', [xsaRequared], 'Сведения об участниках электронного документооборота', -1, -1);
+  RegisterProperty('Document', 'ИнфПок', [], 'Документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг), включающий в себя счет-фактуру (информация покупателя), или документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг) (информация покупателя)', -1, -1);
 end;
 
 procedure TClientExchangeFile.InternalInitChilds;

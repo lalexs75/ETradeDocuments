@@ -119,8 +119,8 @@ end;
 
 procedure TAdditionalInfo3.InternalRegisterPropertys;
 begin
-  RegisterProperty('InfoFileID', 'ИдФайлИнфПол', 'Н', 'Идентификатор файла информационного поля', 36, 36);
-  RegisterProperty('TextInfo', 'ТекстИнф', 'НМ', 'Текстовая информация', -1, -1);
+  RegisterProperty('InfoFileID', 'ИдФайлИнфПол', [], 'Идентификатор файла информационного поля', 36, 36);
+  RegisterProperty('TextInfo', 'ТекстИнф', [], 'Текстовая информация', -1, -1);
 end;
 
 procedure TAdditionalInfo3.InternalInitChilds;
@@ -170,8 +170,8 @@ end;
 
 procedure TTextInfo.InternalRegisterPropertys;
 begin
-  RegisterProperty('ID', 'Идентиф', 'О', 'Идентификатор', 1, 50);
-  RegisterProperty('Value', 'Значен', 'О', 'ИЗначение', 1, 2000);
+  RegisterProperty('ID', 'Идентиф', [xsaRequared], 'Идентификатор', 1, 50);
+  RegisterProperty('Value', 'Значен', [xsaRequared], 'ИЗначение', 1, 2000);
 end;
 
 procedure TTextInfo.InternalInitChilds;
@@ -195,8 +195,8 @@ end;
 
 procedure TAdditionalInfo1.InternalRegisterPropertys;
 begin
-  RegisterProperty('InfoFileID', 'ИдФайлИнфПол', 'Н', 'Идентификатор файла информационного поля', 36, 36);
-  RegisterProperty('TextInfo', 'ТекстИнф', 'НМ', 'Текстовая информация', -1, -1);
+  RegisterProperty('InfoFileID', 'ИдФайлИнфПол', [], 'Идентификатор файла информационного поля', 36, 36);
+  RegisterProperty('TextInfo', 'ТекстИнф', [], 'Текстовая информация', -1, -1);
 end;
 
 procedure TAdditionalInfo1.InternalInitChilds;

@@ -323,8 +323,8 @@ end;
 
 procedure TCreatedThing.InternalRegisterPropertys;
 begin
-  RegisterProperty('CreatedThingTransferDate', 'ДатаПерВещ', 'Н', 'Дата передачи вещи, изготовленной по договору подряда', 10, 10);
-  RegisterProperty('CreatedThingInfo', 'СвПерВещ', 'Н', 'Сведения о передаче', 1, 1000);
+  RegisterProperty('CreatedThingTransferDate', 'ДатаПерВещ', [], 'Дата передачи вещи, изготовленной по договору подряда', 10, 10);
+  RegisterProperty('CreatedThingInfo', 'СвПерВещ', [], 'Сведения о передаче', 1, 1000);
 end;
 
 procedure TCreatedThing.InternalInitChilds;
@@ -355,8 +355,8 @@ end;
 
 procedure TWaybill.InternalRegisterPropertys;
 begin
-  RegisterProperty('TransferDocumentNumber', 'НомТранНакл', 'О', 'Номер транспортной накладной', 1, 255);
-  RegisterProperty('TransferDocumentDate', 'ДатаТранНакл', 'О', 'Дата транспортной накладной', 10, 10);
+  RegisterProperty('TransferDocumentNumber', 'НомТранНакл', [xsaRequared], 'Номер транспортной накладной', 1, 255);
+  RegisterProperty('TransferDocumentDate', 'ДатаТранНакл', [xsaRequared], 'Дата транспортной накладной', 10, 10);
 end;
 
 procedure TWaybill.InternalInitChilds;
@@ -397,9 +397,9 @@ end;
 
 procedure TTransportationCargo.InternalRegisterPropertys;
 begin
-  RegisterProperty('TransferTextInfo', 'СвТранГруз', 'Н', 'Сведения о транспортировке и грузе', 1, 1000);
-  RegisterProperty('Waybills', 'ТранНакл', 'НМ', 'Транспортная накладная', -1, -1);
-  RegisterProperty('Carrier', 'Перевозчик', 'Н', 'Перевозчик', -1, -1);
+  RegisterProperty('TransferTextInfo', 'СвТранГруз', [], 'Сведения о транспортировке и грузе', 1, 1000);
+  RegisterProperty('Waybills', 'ТранНакл', [], 'Транспортная накладная', -1, -1);
+  RegisterProperty('Carrier', 'Перевозчик', [], 'Перевозчик', -1, -1);
 end;
 
 procedure TTransportationCargo.InternalInitChilds;
@@ -434,9 +434,9 @@ end;
 
 procedure TPhysicalPersonTransfer.InternalRegisterPropertys;
 begin
-  RegisterProperty('OtherInfo', 'ИныеСвед', 'Н', 'Иные сведения, идентифицирующие физическое лицо', 1, 255);
-  RegisterProperty('TransferBase', 'ОснДоверФЛ', 'Н', 'Основание, по которому физическому лицу доверена отгрузка товаров (передача результатов работ), передача имущественных прав (предъявление оказанных услуг)', 1, 120);
-  RegisterProperty('Person', 'ФИО', 'Фамилия, имя, отчество', 'О', -1, -1);
+  RegisterProperty('OtherInfo', 'ИныеСвед', [], 'Иные сведения, идентифицирующие физическое лицо', 1, 255);
+  RegisterProperty('TransferBase', 'ОснДоверФЛ', [], 'Основание, по которому физическому лицу доверена отгрузка товаров (передача результатов работ), передача имущественных прав (предъявление оказанных услуг)', 1, 120);
+  RegisterProperty('Person', 'ФИО', [xsaRequared], 'Фамилия, имя, отчество', -1, -1);
 end;
 
 procedure TPhysicalPersonTransfer.InternalInitChilds;
@@ -490,12 +490,12 @@ end;
 
 procedure TOtherIssuerEmployee.InternalRegisterPropertys;
 begin
-  RegisterProperty('Position', 'Должность', 'О', 'Должность', 1, 128);
-  RegisterProperty('OtherInfo', 'ИныеСвед', 'Н', 'ИныеСвед', 1, 255);
-  RegisterProperty('OrganizationName', 'НаимОргПер', 'О', 'Наименование организации', 1, 128);
-  RegisterProperty('TransferBase', 'ОснДоверОргПер', 'Н', 'Основание, по которому организации доверена отгрузка товаров (передача результатов работ), передача имущественных прав (предъявление оказанных услуг)', 1, 120);
-  RegisterProperty('PositionBase', 'ОснПолнПредПер', 'Н', 'Основание полномочий представителя организации на отгрузку товаров (передачу результатов работ), передачу имущественных прав (предъявление оказанных услуг)', 1, 120);
-  RegisterProperty('Person', 'ФИО', 'О', 'Фамилия, имя, отчество', -1, -1);
+  RegisterProperty('Position', 'Должность', [xsaRequared], 'Должность', 1, 128);
+  RegisterProperty('OtherInfo', 'ИныеСвед', [], 'ИныеСвед', 1, 255);
+  RegisterProperty('OrganizationName', 'НаимОргПер', [xsaRequared], 'Наименование организации', 1, 128);
+  RegisterProperty('TransferBase', 'ОснДоверОргПер', [], 'Основание, по которому организации доверена отгрузка товаров (передача результатов работ), передача имущественных прав (предъявление оказанных услуг)', 1, 120);
+  RegisterProperty('PositionBase', 'ОснПолнПредПер', [], 'Основание полномочий представителя организации на отгрузку товаров (передачу результатов работ), передачу имущественных прав (предъявление оказанных услуг)', 1, 120);
+  RegisterProperty('Person', 'ФИО', [xsaRequared], 'Фамилия, имя, отчество', -1, -1);
 end;
 
 procedure TOtherIssuerEmployee.InternalInitChilds;
@@ -514,8 +514,8 @@ end;
 
 procedure TOtherIssuer.InternalRegisterPropertys;
 begin
-  RegisterProperty('OtherIssuerEmployee', 'ПредОргПер', 'О', 'Представитель организации, которой доверена отгрузка товаров (передача результатов работ), передача имущественных прав (предъявление оказанных услуг)', -1, -1);
-  RegisterProperty('PhysicalPersonTransfer', 'ФЛПер', 'О', 'Физическое лицо, которому доверена отгрузка товаров (передача результатов работ), передача имущественных прав (предъявление оказанных услуг)', -1, -1);
+  RegisterProperty('OtherIssuerEmployee', 'ПредОргПер', [xsaRequared], 'Представитель организации, которой доверена отгрузка товаров (передача результатов работ), передача имущественных прав (предъявление оказанных услуг)', -1, -1);
+  RegisterProperty('PhysicalPersonTransfer', 'ФЛПер', [xsaRequared], 'Физическое лицо, которому доверена отгрузка товаров (передача результатов работ), передача имущественных прав (предъявление оказанных услуг)', -1, -1);
 end;
 
 procedure TOtherIssuer.InternalInitChilds;
@@ -557,10 +557,10 @@ end;
 
 procedure TSellerEmployee.InternalRegisterPropertys;
 begin
-  RegisterProperty('Position', 'Должность', 'О', 'Должность', 1, 128);
-  RegisterProperty('OtherInformation', 'ИныеСвед', 'Н', 'Иные сведения, идентифицирующие физическое лицо', 1, 255);
-  RegisterProperty('PermisionPosition', 'ОснПолн', 'Н', 'Основание полномочий (доверия)', 1, 120);
-  RegisterProperty('Person', 'ФИО', 'О', 'Фамилия, имя, отчество', -1, -1);
+  RegisterProperty('Position', 'Должность', [xsaRequared], 'Должность', 1, 128);
+  RegisterProperty('OtherInformation', 'ИныеСвед', [], 'Иные сведения, идентифицирующие физическое лицо', 1, 255);
+  RegisterProperty('PermisionPosition', 'ОснПолн', [], 'Основание полномочий (доверия)', 1, 120);
+  RegisterProperty('Person', 'ФИО', [xsaRequared], 'Фамилия, имя, отчество', -1, -1);
 end;
 
 procedure TSellerEmployee.InternalInitChilds;
@@ -579,8 +579,8 @@ end;
 
 procedure TTransferEmployee.InternalRegisterPropertys;
 begin
-  RegisterProperty('SellerEmployee', 'РабОргПрод', 'О', 'Работник организации продавца', -1, -1);
-  RegisterProperty('OtherIssuer', 'ИнЛицо', 'О', 'Иное лицо', -1, -1);
+  RegisterProperty('SellerEmployee', 'РабОргПрод', [xsaRequared], 'Работник организации продавца', -1, -1);
+  RegisterProperty('OtherIssuer', 'ИнЛицо', [xsaRequared], 'Иное лицо', -1, -1);
 end;
 
 procedure TTransferEmployee.InternalInitChilds;
@@ -653,11 +653,11 @@ end;
 
 procedure TShipmentBase.InternalRegisterPropertys;
 begin
-  RegisterProperty('BaseDocumentName', 'НаимОсн', 'О', 'Наименование документа - основания', 1, 255);
-  RegisterProperty('BaseDocumentNumber', 'НомОсн', 'Н', 'Номер документа - основания', 1, 255);
-  RegisterProperty('BaseDocumentDate', 'ДатаОсн', 'Н', 'Дата документа - основания', 10, 10);
-  RegisterProperty('BaseDocumentInfo', 'ДопСвОсн', 'Н', 'Дополнительные сведения', 1, 1000);
-  RegisterProperty('BaseDocumentID', 'ИдентОсн', 'Н', 'Идентификатор документа - основания', 1, 255);
+  RegisterProperty('BaseDocumentName', 'НаимОсн', [xsaRequared], 'Наименование документа - основания', 1, 255);
+  RegisterProperty('BaseDocumentNumber', 'НомОсн', [], 'Номер документа - основания', 1, 255);
+  RegisterProperty('BaseDocumentDate', 'ДатаОсн', [], 'Дата документа - основания', 10, 10);
+  RegisterProperty('BaseDocumentInfo', 'ДопСвОсн', [], 'Дополнительные сведения', 1, 1000);
+  RegisterProperty('BaseDocumentID', 'ИдентОсн', [], 'Идентификатор документа - основания', 1, 255);
 end;
 
 procedure TShipmentBase.InternalInitChilds;
@@ -709,15 +709,15 @@ end;
 
 procedure TItemsTransferInfo.InternalRegisterPropertys;
 begin
-  RegisterProperty('OperationInfo', 'СодОпер', 'О', 'Содержание операции', 1, 255);
-  RegisterProperty('OperationType', 'ВидОпер', 'Н', 'Вид операции', 1, 255);
-  RegisterProperty('TransferDate', 'ДатаПер', 'Н', 'Дата отгрузки товаров (передачи результатов работ), передачи имущественных прав (предъявления оказанных услуг)', 10, 10);
-  RegisterProperty('DateBegin', 'ДатаНач', 'Н', 'Дата начала периода оказания услуг (выполнения работ, поставки товаров)', 10, 10);
-  RegisterProperty('DateEnd', 'ДатаОкон', 'Н', 'Дата окончания периода оказания услуг (выполнения работ, поставки товаров)', 10, 10);
-  RegisterProperty('TransferBase', 'ОснПер', 'ОМ', 'Основание отгрузки товаров (передачи результатов работ), передачи имущественных прав (предъявления оказанных услуг)', -1, -1);
-  RegisterProperty('TransferEmployee', 'СвЛицПер', 'Н', 'Сведения о лице, передавшем товар (груз)', -1, -1);
-  RegisterProperty('TransportationCargo', 'ТранГруз', 'Н', 'Транспортировка и груз', -1, -1);
-  RegisterProperty('CreatedThing', 'СвПерВещи', 'Н', 'Сведения о передаче вещи, изготовленной по договору подряда', -1, -1);
+  RegisterProperty('OperationInfo', 'СодОпер', [xsaRequared], 'Содержание операции', 1, 255);
+  RegisterProperty('OperationType', 'ВидОпер', [], 'Вид операции', 1, 255);
+  RegisterProperty('TransferDate', 'ДатаПер', [], 'Дата отгрузки товаров (передачи результатов работ), передачи имущественных прав (предъявления оказанных услуг)', 10, 10);
+  RegisterProperty('DateBegin', 'ДатаНач', [], 'Дата начала периода оказания услуг (выполнения работ, поставки товаров)', 10, 10);
+  RegisterProperty('DateEnd', 'ДатаОкон', [], 'Дата окончания периода оказания услуг (выполнения работ, поставки товаров)', 10, 10);
+  RegisterProperty('TransferBase', 'ОснПер', [xsaRequared], 'Основание отгрузки товаров (передачи результатов работ), передачи имущественных прав (предъявления оказанных услуг)', -1, -1);
+  RegisterProperty('TransferEmployee', 'СвЛицПер', [], 'Сведения о лице, передавшем товар (груз)', -1, -1);
+  RegisterProperty('TransportationCargo', 'ТранГруз', [], 'Транспортировка и груз', -1, -1);
+  RegisterProperty('CreatedThing', 'СвПерВещи', [], 'Сведения о передаче вещи, изготовленной по договору подряда', -1, -1);
 end;
 
 procedure TItemsTransferInfo.InternalInitChilds;
@@ -742,8 +742,8 @@ end;
 
 procedure TTransferInfo.InternalRegisterPropertys;
 begin
-  RegisterProperty('ItemsTransferInfo', 'СвПер', 'О', 'Сведения о передаче (сдаче) товаров (результатов работ), имущественных прав (о предъявлении оказанных услуг)', -1, -1);
-  RegisterProperty('AdditionalInfo3', 'ИнфПолФХЖ3', 'Н', 'Информационное поле факта хозяйственной жизни 3', -1, -1, 'ИнфПолФХЖЗ');
+  RegisterProperty('ItemsTransferInfo', 'СвПер', [xsaRequared], 'Сведения о передаче (сдаче) товаров (результатов работ), имущественных прав (о предъявлении оказанных услуг)', -1, -1);
+  RegisterProperty('AdditionalInfo3', 'ИнфПолФХЖ3', [], 'Информационное поле факта хозяйственной жизни 3', -1, -1, 'ИнфПолФХЖЗ');
 end;
 
 procedure TTransferInfo.InternalInitChilds;

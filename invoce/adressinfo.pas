@@ -139,8 +139,8 @@ end;
 
 procedure TAdressInfo.InternalRegisterPropertys;
 begin
-  RegisterProperty('CountryCode', 'КодСтр', 'ОК', 'Код страны', 3, 3);
-  RegisterProperty('Address', 'АдрТекст', 'О', 'Адрес', 1, 1000);
+  RegisterProperty('CountryCode', 'КодСтр', [xsaRequared], 'Код страны', 3, 3);
+  RegisterProperty('Address', 'АдрТекст', [xsaRequared], 'Адрес', 1, 1000);
 end;
 
 procedure TAdressInfo.InternalInitChilds;
@@ -220,15 +220,15 @@ end;
 
 procedure TRussianAdress.InternalRegisterPropertys;
 begin
-  RegisterProperty('ZipCode', 'Индекс', 'Н', 'Индекс', 6, 6);
-  RegisterProperty('Region', 'КодРегион', 'Н', 'Код региона', 2, 2);
-  RegisterProperty('Territory', 'Район', 'Н', 'Район', 1, 50);
-  RegisterProperty('City', 'Город', 'Н', 'Город', 1, 50);
-  RegisterProperty('Locality', 'НаселПункт', 'Н', 'Населенный пункт', 1, 50);
-  RegisterProperty('Street', 'Улица', 'Н', 'Улица', 1, 50);
-  RegisterProperty('Building', 'Дом', 'Н', 'Дом', 1, 20);
-  RegisterProperty('Block', 'Корпус', 'Н', 'Корпус', 1, 20);
-  RegisterProperty('Apartment', 'Кварт', 'Н', 'Квартира', 1, 20);
+  RegisterProperty('ZipCode', 'Индекс', [], 'Индекс', 6, 6);
+  RegisterProperty('Region', 'КодРегион', [], 'Код региона', 2, 2);
+  RegisterProperty('Territory', 'Район', [], 'Район', 1, 50);
+  RegisterProperty('City', 'Город', [], 'Город', 1, 50);
+  RegisterProperty('Locality', 'НаселПункт', [], 'Населенный пункт', 1, 50);
+  RegisterProperty('Street', 'Улица', [], 'Улица', 1, 50);
+  RegisterProperty('Building', 'Дом', [], 'Дом', 1, 20);
+  RegisterProperty('Block', 'Корпус', [], 'Корпус', 1, 20);
+  RegisterProperty('Apartment', 'Кварт', [], 'Квартира', 1, 20);
 end;
 
 procedure TRussianAdress.InternalInitChilds;
@@ -252,8 +252,8 @@ end;
 
 procedure TAdress.InternalRegisterPropertys;
 begin
-  RegisterProperty('RussianAdress', 'АдрРФ', 'О', 'Адрес, указанный в Едином государственном реестре юридических лиц/почтовый адрес/адрес места жительства индивидуального предпринимателя (реквизиты адреса на территории Российской Федерации)', -1, -1);
-  RegisterProperty('AdressInfo', 'АдрИнф', 'О', 'Адрес, указанный в Едином государственном реестре юридических лиц/почтовый адрес/адрес места жительства индивидуального предпринимателя (информация об адресе, в том числе об адресе за пределами территории Российской Федерации)', -1, -1);
+  RegisterProperty('RussianAdress', 'АдрРФ', [xsaRequared], 'Адрес, указанный в Едином государственном реестре юридических лиц/почтовый адрес/адрес места жительства индивидуального предпринимателя (реквизиты адреса на территории Российской Федерации)', -1, -1);
+  RegisterProperty('AdressInfo', 'АдрИнф', [xsaRequared], 'Адрес, указанный в Едином государственном реестре юридических лиц/почтовый адрес/адрес места жительства индивидуального предпринимателя (информация об адресе, в том числе об адресе за пределами территории Российской Федерации)', -1, -1);
 (*
 Уникальный номер адреса объекта адресации в государственном адресном реестре 	КодГАР 	П 	T(1-36) 	О
 

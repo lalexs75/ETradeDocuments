@@ -72,16 +72,42 @@ type
     property Patronymic:string read FPatronymic write SetPatronymic;
   end;
 
+  { TBank }
 
-  { TBankInformation }
-
-  TBankInformation = class(TXmlSerializationObject) //%Таблица 5.43
+  TBank = class(TXmlSerializationObject) //%Таблица 5.44
+  private
+    FBankBIK: string;
+    FBankName: string;
+    FCorrAccount: string;
+    procedure SetBankBIK(AValue: string);
+    procedure SetBankName(AValue: string);
+    procedure SetCorrAccount(AValue: string);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
     destructor Destroy; override;
   published
+    property BankName:string read FBankName write SetBankName;
+    property BankBIK:string read FBankBIK write SetBankBIK;
+    property CorrAccount:string read FCorrAccount write SetCorrAccount;
+  end;
+
+  { TBankInformation }
+
+  TBankInformation = class(TXmlSerializationObject) //%Таблица 5.43
+  private
+    FBank: TBank;
+    FBankAccount: string;
+    procedure SetBankAccount(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property BankAccount:string read FBankAccount write SetBankAccount;
+    property Bank:TBank read FBank;
   end;
 
   { TForeignEntityInformation }
@@ -197,12 +223,25 @@ type
   { TAccompanyingDocument }
 
   TAccompanyingDocument = class(TXmlSerializationObject) //%Таблица 5.36
+  private
+    FDocumentDate: string;
+    FDocumentID: string;
+    FDocumentName: string;
+    FDocumentNumber: string;
+    procedure SetDocumentDate(AValue: string);
+    procedure SetDocumentID(AValue: string);
+    procedure SetDocumentName(AValue: string);
+    procedure SetDocumentNumber(AValue: string);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
     destructor Destroy; override;
   published
+    property DocumentName:string read FDocumentName write SetDocumentName;
+    property DocumentNumber:string read FDocumentNumber write SetDocumentNumber;
+    property DocumentDate:string read FDocumentDate write SetDocumentDate;
+    property DocumentID:string read FDocumentID write SetDocumentID;
   end;
 
   { TPhysicalPersonEntity }
@@ -264,36 +303,77 @@ type
   { TContactInformation }
 
   TContactInformation = class(TXmlSerializationObject) //%Таблица 5.28
+  private
+    FEMail: string;
+    FPhoneNumber: string;
+    procedure SetEMail(AValue: string);
+    procedure SetPhoneNumber(AValue: string);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
     destructor Destroy; override;
   published
+    property PhoneNumber:string read FPhoneNumber write SetPhoneNumber;
+    property EMail:string read FEMail write SetEMail;
   end;
-
-  { TAdressInfo }
-
-  TAdressInfo = class(TXmlSerializationObject) //%Таблица 5.26
-  protected
-    procedure InternalRegisterPropertys; override;
-    procedure InternalInitChilds; override;
-  public
-    destructor Destroy; override;
-  published
-  end;
-
 
 
   { TRussianAdress }
 
   TRussianAdress = class(TXmlSerializationObject) //%Таблица 5.27
+  private
+    FApartment: string;
+    FBlock: string;
+    FBuilding: string;
+    FCity: string;
+    FLocality: string;
+    FRegion: string;
+    FStreet: string;
+    FTerritory: string;
+    FZipCode: string;
+    procedure SetApartment(AValue: string);
+    procedure SetBlock(AValue: string);
+    procedure SetBuilding(AValue: string);
+    procedure SetCity(AValue: string);
+    procedure SetLocality(AValue: string);
+    procedure SetRegion(AValue: string);
+    procedure SetStreet(AValue: string);
+    procedure SetTerritory(AValue: string);
+    procedure SetZipCode(AValue: string);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
     destructor Destroy; override;
   published
+    property ZipCode:string read FZipCode write SetZipCode;
+    property Region:string read FRegion write SetRegion;
+    property Territory:string read FTerritory write SetTerritory;
+    property City:string read FCity write SetCity;
+    property Locality:string read FLocality write SetLocality;
+    property Street:string read FStreet write SetStreet;
+    property Building:string read FBuilding write SetBuilding;
+    property Block:string read FBlock write SetBlock;
+    property Apartment:string read FApartment write SetApartment;
+  end;
+
+  { TAdressInfo }
+
+  TAdressInfo = class(TXmlSerializationObject) //%Таблица 5.26
+  private
+    FAddress: string;
+    FCountryCode: string;
+    procedure SetAddress(AValue: string);
+    procedure SetCountryCode(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property CountryCode:string read FCountryCode write SetCountryCode;
+    property Address:string read FAddress write SetAddress;
   end;
 
   { TAdress }
@@ -647,11 +727,122 @@ type
 
 implementation
 
+{ TBank }
+
+procedure TBank.SetBankName(AValue: string);
+begin
+  if FBankName=AValue then Exit;
+  FBankName:=AValue;
+  ModifiedProperty('BankName');
+end;
+
+procedure TBank.SetBankBIK(AValue: string);
+begin
+  if FBankBIK=AValue then Exit;
+  FBankBIK:=AValue;
+  ModifiedProperty('BankBIK');
+end;
+
+procedure TBank.SetCorrAccount(AValue: string);
+begin
+  if FCorrAccount=AValue then Exit;
+  FCorrAccount:=AValue;
+  ModifiedProperty('CorrAccount');
+end;
+
+procedure TBank.InternalRegisterPropertys;
+begin
+  RegisterProperty('BankName', 'НаимБанк', 'Н', 'Наименование банка', 1, 1000);
+  RegisterProperty('BankBIK', 'БИК', 'НК', 'Банковский идентификационный код (БИК) в соответствии со "Справочником БИК РФ"', 9, 9);
+  RegisterProperty('CorrAccount', 'КорСчет', 'Н', 'Корреспондентский счет банка', 1, 20);
+end;
+
+procedure TBank.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TBank.Destroy;
+begin
+  inherited Destroy;
+end;
+
 { TRussianAdress }
+
+procedure TRussianAdress.SetApartment(AValue: string);
+begin
+  if FApartment=AValue then Exit;
+  FApartment:=AValue;
+  ModifiedProperty('Apartment');
+end;
+
+procedure TRussianAdress.SetBlock(AValue: string);
+begin
+  if FBlock=AValue then Exit;
+  FBlock:=AValue;
+  ModifiedProperty('Block');
+end;
+
+procedure TRussianAdress.SetBuilding(AValue: string);
+begin
+  if FBuilding=AValue then Exit;
+  FBuilding:=AValue;
+  ModifiedProperty('Building');
+end;
+
+procedure TRussianAdress.SetCity(AValue: string);
+begin
+  if FCity=AValue then Exit;
+  FCity:=AValue;
+  ModifiedProperty('City');
+end;
+
+procedure TRussianAdress.SetLocality(AValue: string);
+begin
+  if FLocality=AValue then Exit;
+  FLocality:=AValue;
+  ModifiedProperty('Locality');
+end;
+
+procedure TRussianAdress.SetRegion(AValue: string);
+begin
+  if FRegion=AValue then Exit;
+  FRegion:=AValue;
+  ModifiedProperty('Region');
+end;
+
+procedure TRussianAdress.SetStreet(AValue: string);
+begin
+  if FStreet=AValue then Exit;
+  FStreet:=AValue;
+  ModifiedProperty('Street');
+end;
+
+procedure TRussianAdress.SetTerritory(AValue: string);
+begin
+  if FTerritory=AValue then Exit;
+  FTerritory:=AValue;
+  ModifiedProperty('Territory');
+end;
+
+procedure TRussianAdress.SetZipCode(AValue: string);
+begin
+  if FZipCode=AValue then Exit;
+  FZipCode:=AValue;
+  ModifiedProperty('ZipCode');
+end;
 
 procedure TRussianAdress.InternalRegisterPropertys;
 begin
-
+  RegisterProperty('ZipCode', 'Индекс', 'Н', 'Индекс', 6, 6);
+  RegisterProperty('Region', 'КодРегион', 'ОК', 'Код региона', 2, 2);
+  RegisterProperty('Territory', 'Район', 'Н', 'Район', 1, 50);
+  RegisterProperty('City', 'Город', 'Н', 'Город', 1, 50);
+  RegisterProperty('Locality', 'НаселПункт', 'Н', 'Населенный пункт', 1, 50);
+  RegisterProperty('Street', 'Улица', 'Н', 'Улица', 1, 50);
+  RegisterProperty('Building', 'Дом', 'Н', 'Дом', 1, 20);
+  RegisterProperty('Block', 'Корпус', 'Н', 'Корпус', 1, 20);
+  RegisterProperty('Apartment', 'Кварт', 'Н', 'Квартира', 1, 20);
 end;
 
 procedure TRussianAdress.InternalInitChilds;
@@ -666,9 +857,24 @@ end;
 
 { TAdressInfo }
 
+procedure TAdressInfo.SetAddress(AValue: string);
+begin
+  if FAddress=AValue then Exit;
+  FAddress:=AValue;
+  ModifiedProperty('Address');
+end;
+
+procedure TAdressInfo.SetCountryCode(AValue: string);
+begin
+  if FCountryCode=AValue then Exit;
+  FCountryCode:=AValue;
+  ModifiedProperty('CountryCode');
+end;
+
 procedure TAdressInfo.InternalRegisterPropertys;
 begin
-
+  RegisterProperty('CountryCode', 'КодСтр', 'ОК', 'Код страны', 3, 3);
+  RegisterProperty('Address', 'АдрТекст', 'О', 'Адрес', 1, 255);
 end;
 
 procedure TAdressInfo.InternalInitChilds;
@@ -904,9 +1110,40 @@ end;
 
 { TAccompanyingDocument }
 
+procedure TAccompanyingDocument.SetDocumentDate(AValue: string);
+begin
+  if FDocumentDate=AValue then Exit;
+  FDocumentDate:=AValue;
+  ModifiedProperty('DocumentDate');
+end;
+
+procedure TAccompanyingDocument.SetDocumentID(AValue: string);
+begin
+  if FDocumentID=AValue then Exit;
+  FDocumentID:=AValue;
+  ModifiedProperty('DocumentID');
+end;
+
+procedure TAccompanyingDocument.SetDocumentName(AValue: string);
+begin
+  if FDocumentName=AValue then Exit;
+  FDocumentName:=AValue;
+  ModifiedProperty('DocumentName');
+end;
+
+procedure TAccompanyingDocument.SetDocumentNumber(AValue: string);
+begin
+  if FDocumentNumber=AValue then Exit;
+  FDocumentNumber:=AValue;
+  ModifiedProperty('DocumentNumber');
+end;
+
 procedure TAccompanyingDocument.InternalRegisterPropertys;
 begin
-
+  RegisterProperty('DocumentName', 'НаимСопрДок', 'О', 'Наименование сопроводительного документа', 1, 200);
+  RegisterProperty('DocumentNumber', 'НомСопрДок', 'Н', 'Номер сопроводительного документа', 1, 100);
+  RegisterProperty('DocumentDate', 'ДатаСопрДок', 'Н', 'Дата сопроводительного документа', 10, 10);
+  RegisterProperty('DocumentID', 'ДопИдСопрДок', 'Н', 'Дополнительный идентификатор сопроводительного документа', 1, 255);
 end;
 
 procedure TAccompanyingDocument.InternalInitChilds;
@@ -946,26 +1183,50 @@ end;
 
 { TBankInformation }
 
+procedure TBankInformation.SetBankAccount(AValue: string);
+begin
+  if FBankAccount=AValue then Exit;
+  FBankAccount:=AValue;
+end;
+
 procedure TBankInformation.InternalRegisterPropertys;
 begin
-
+  RegisterProperty('BankAccount', 'НомерСчета', 'Н', 'Номер банковского счета', 1, 20);
+  RegisterProperty('Bank', 'СвБанк', 'Н', 'Сведения о банке', -1, -1);
 end;
 
 procedure TBankInformation.InternalInitChilds;
 begin
   inherited InternalInitChilds;
+  FBank:=TBank.Create;
 end;
 
 destructor TBankInformation.Destroy;
 begin
+  FreeAndNil(FBank);
   inherited Destroy;
 end;
 
 { TContactInformation }
 
+procedure TContactInformation.SetEMail(AValue: string);
+begin
+  if FEMail=AValue then Exit;
+  FEMail:=AValue;
+  ModifiedProperty('EMail');
+end;
+
+procedure TContactInformation.SetPhoneNumber(AValue: string);
+begin
+  if FPhoneNumber=AValue then Exit;
+  FPhoneNumber:=AValue;
+  ModifiedProperty('PhoneNumber');
+end;
+
 procedure TContactInformation.InternalRegisterPropertys;
 begin
-
+  RegisterProperty('PhoneNumber', 'Тлф', 'Н', 'Номер контактного телефона/факс', 1, 255);
+  RegisterProperty('EMail', 'ЭлПочта', 'Н', 'Адрес электронной почты', 1, 255);
 end;
 
 procedure TContactInformation.InternalInitChilds;

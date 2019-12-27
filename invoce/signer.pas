@@ -118,13 +118,13 @@ end;
 
 procedure TSigner.InternalRegisterPropertys;
 begin
-  RegisterProperty('SignerPowers', 'ОблПолн', 'ОК', 'Область полномочий', 1, 2);
-  RegisterProperty('SignerStatus', 'Статус', 'ОК', 'Статус', 1, 2);
-  RegisterProperty('SignerPowersBase', 'ОснПолн', 'О', 'Основание полномочий (доверия)', 1, 255);
-  RegisterProperty('SignerOrgPowersBase', 'ОснПолнОрг', 'Н', 'Основание полномочий (доверия) организации', 1, 255);
-  RegisterProperty('PhysicalPersonEntity', 'ФЛ', 'О', 'Физическое лицо', -1, -1);
-  RegisterProperty('IndividualEntrepreneurInformation', 'ИП', 'О', 'Индивидуальный предприниматель', -1, -1);
-  RegisterProperty('LegalEntityEmployee', 'ЮЛ', 'О', 'Представитель юридического лица', -1, -1);
+  RegisterProperty('SignerPowers', 'ОблПолн', [xsaRequared], 'Область полномочий', 1, 2);
+  RegisterProperty('SignerStatus', 'Статус', [xsaRequared], 'Статус', 1, 2);
+  RegisterProperty('SignerPowersBase', 'ОснПолн', [xsaRequared], 'Основание полномочий (доверия)', 1, 255);
+  RegisterProperty('SignerOrgPowersBase', 'ОснПолнОрг', [], 'Основание полномочий (доверия) организации', 1, 255);
+  RegisterProperty('PhysicalPersonEntity', 'ФЛ', [xsaRequared], 'Физическое лицо', -1, -1);
+  RegisterProperty('IndividualEntrepreneurInformation', 'ИП', [xsaRequared], 'Индивидуальный предприниматель', -1, -1);
+  RegisterProperty('LegalEntityEmployee', 'ЮЛ', [xsaRequared], 'Представитель юридического лица', -1, -1);
 end;
 
 procedure TSigner.InternalInitChilds;

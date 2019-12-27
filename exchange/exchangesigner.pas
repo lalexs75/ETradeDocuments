@@ -183,10 +183,10 @@ end;
 
 procedure TExchangeIndividualEntrepreneurInformation.InternalRegisterPropertys;
 begin
-  RegisterProperty('Inn', 'ИННФЛ', 'О', 'ИНН', 12, 12);
-  RegisterProperty('IndividualEntityRegistrationCertificate', 'СвГосРегИП', 'Н', 'Реквизиты свидетельства о государственной регистрации индивидуального предпринимателя', 1, 100);
-  RegisterProperty('OtherInfo', 'ИныеСвед', 'Н', 'Иные сведения, идентифицирующие физическое лицо', 1, 255);
-  RegisterProperty('Person', 'ФИО', 'О', 'Фамилия, имя, отчество', -1, -1);
+  RegisterProperty('Inn', 'ИННФЛ', [xsaRequared], 'ИНН', 12, 12);
+  RegisterProperty('IndividualEntityRegistrationCertificate', 'СвГосРегИП', [], 'Реквизиты свидетельства о государственной регистрации индивидуального предпринимателя', 1, 100);
+  RegisterProperty('OtherInfo', 'ИныеСвед', [], 'Иные сведения, идентифицирующие физическое лицо', 1, 255);
+  RegisterProperty('Person', 'ФИО', [xsaRequared], 'Фамилия, имя, отчество', -1, -1);
 end;
 
 procedure TExchangeIndividualEntrepreneurInformation.InternalInitChilds;
@@ -219,9 +219,9 @@ end;
 
 procedure TExchangePhysicalPersonEntity.InternalRegisterPropertys;
 begin
-  RegisterProperty('Inn', 'ИННФЛ', 'Н', 'ИНН', 12, 12);
-  RegisterProperty('OtherInfo', 'ИныеСвед', 'Н', 'Иные сведения, идентифицирующие физическое лицо', 1, 255);
-  RegisterProperty('Person', 'ФИО', 'О', 'Фамилия, имя, отчество', -1, -1);
+  RegisterProperty('Inn', 'ИННФЛ', [], 'ИНН', 12, 12);
+  RegisterProperty('OtherInfo', 'ИныеСвед', [], 'Иные сведения, идентифицирующие физическое лицо', 1, 255);
+  RegisterProperty('Person', 'ФИО', [xsaRequared], 'Фамилия, имя, отчество', -1, -1);
 end;
 
 procedure TExchangePhysicalPersonEntity.InternalInitChilds;
@@ -268,11 +268,11 @@ end;
 
 procedure TExchangeLegalEntityInformation.InternalRegisterPropertys;
 begin
-  RegisterProperty('Inn', 'ИННЮЛ', 'О', 'ИНН организации', 10, 10);
-  RegisterProperty('Name', 'НаимОрг', 'Н', 'Наименование', 1, 1000);
-  RegisterProperty('Position', 'Должн', 'О', 'Должность', 1, 128);
-  RegisterProperty('OtherInfo', 'ИныеСвед', 'Н', 'Иные сведения, идентифицирующие физическое лицо', 1, 255);
-  RegisterProperty('Person', 'ФИО', 'О', 'Фамилия, имя, отчество', -1, -1);
+  RegisterProperty('Inn', 'ИННЮЛ', [xsaRequared], 'ИНН организации', 10, 10);
+  RegisterProperty('Name', 'НаимОрг', [], 'Наименование', 1, 1000);
+  RegisterProperty('Position', 'Должн', [xsaRequared], 'Должность', 1, 128);
+  RegisterProperty('OtherInfo', 'ИныеСвед', [], 'Иные сведения, идентифицирующие физическое лицо', 1, 255);
+  RegisterProperty('Person', 'ФИО', [xsaRequared], 'Фамилия, имя, отчество', -1, -1);
 end;
 
 procedure TExchangeLegalEntityInformation.InternalInitChilds;
@@ -319,13 +319,13 @@ end;
 
 procedure TExchangeSigner.InternalRegisterPropertys;
 begin
-  RegisterProperty('SignerPowers', 'ОблПолн', 'ОК', 'Область полномочий', 1, 1);
-  RegisterProperty('Status', 'Статус', 'ОК', 'Статус', 1, 1);
-  RegisterProperty('SignerPowersBase', 'ОснПолн', 'О', 'Основание полномочий (доверия)', 1, 255);
-  RegisterProperty('SignerOrgPowersBase', 'ОснПолнОрг', 'Н', 'Основание полномочий (доверия) организации', 1, 255);
-  RegisterProperty('PhysicalPersonEntity', 'ФЛ', 'О', 'Физическое лицо', -1, -1);
-  RegisterProperty('IndividualEntrepreneurInformation', 'ИП', 'О', 'Индивидуальный предприниматель', -1, -1);
-  RegisterProperty('LegalEntityInformation', 'ЮЛ', 'О', 'Представитель юридического лица', -1, -1);
+  RegisterProperty('SignerPowers', 'ОблПолн', [xsaRequared], 'Область полномочий', 1, 1);
+  RegisterProperty('Status', 'Статус', [xsaRequared], 'Статус', 1, 1);
+  RegisterProperty('SignerPowersBase', 'ОснПолн', [xsaRequared], 'Основание полномочий (доверия)', 1, 255);
+  RegisterProperty('SignerOrgPowersBase', 'ОснПолнОрг', [], 'Основание полномочий (доверия) организации', 1, 255);
+  RegisterProperty('PhysicalPersonEntity', 'ФЛ', [xsaRequared], 'Физическое лицо', -1, -1);
+  RegisterProperty('IndividualEntrepreneurInformation', 'ИП', [xsaRequared], 'Индивидуальный предприниматель', -1, -1);
+  RegisterProperty('LegalEntityInformation', 'ЮЛ', [xsaRequared], 'Представитель юридического лица', -1, -1);
 end;
 
 procedure TExchangeSigner.InternalInitChilds;
