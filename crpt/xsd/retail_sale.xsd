@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="LP_base_types.xsd"/>
+	<xs:complexType name="retail_sale">
+		<xs:annotation>
+			<xs:documentation>Вывод из оборота товара при розничной продаже</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="TRADE_PARTICIPANT_INN" type="TRADE_PARTICIPANT_INN_type">
+				<xs:annotation>
+					<xs:documentation>ИНН участника, осуществляющего вывод из оборота</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="action" type="action_type">
+				<xs:annotation>
+					<xs:documentation>
+					Вид вывода из оборота:
+						1 - Розничная продажа
+						2 - Экспорт в страны ЕАЭС
+						3 - Экспорт за пределы стран ЕАЭС
+						4 - Кредитный договор
+						5 - Порча или утеря товара
+						6 - Безвозмездная передача
+						7 - Возврат физическому лицу (при невозможности реализовать товар по договору комиссии товар возвращается физическому лицу обратно)
+						8 - Банкротство или ликвидация ЮЛ/ИП
+						9 - Реализации конфискованных товаров
+						10 - Использование на предприятии
+						11 - Реализация по договору рассрочки
+						12 - В процессе реализации по договору рассрочки
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="action_date" type="date_type">
+				<xs:annotation>
+					<xs:documentation>Дата вывода товара из оборота</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="doc_type" type="doc_type_enum">
+				<xs:annotation>
+					<xs:documentation>
+					Вид документа
+						1 - Фискальный документ
+						2 - Бланк строгой отчетности (БСО)
+						3 - Договор
+						4 - Акт уничтожения
+						5 - Товарная накладная
+						6 - Счет-фактура
+						7 - Прочее
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="doc_name" type="string200_type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Наименование документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="doc_number" type="string200_type">
+				<xs:annotation>
+					<xs:documentation>Номер документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="doc_date" type="date_type">
+				<xs:annotation>
+					<xs:documentation>Дата документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="conclusion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="detail" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Детализация вывода из оборота по каждой единице продукции</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="sign_num" type="gs1_uit_type">
+										<xs:annotation>
+											<xs:documentation>Номер КиЗ/УИТ</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="cost" type="price_type" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Стоимость (в руб. с учетом НДС)</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="vat_value" type="price_type" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Сумма НДС (если сделка облагается НДС)</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="action_id" type="xs:int" use="required" fixed="15"/>
+	</xs:complexType>
+</xs:schema>

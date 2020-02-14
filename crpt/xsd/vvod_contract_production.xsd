@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="../../LP_base_types.xsd"/>
+	<xs:element name="vvod_contract_production" type="vvod_contract_production"/>
+	<xs:complexType name="vvod_contract_production">
+		<xs:annotation>
+			<xs:documentation>Ввод товаров в оборот, произведенного сторонней организацией</xs:documentation>
+		</xs:annotation>
+			<xs:sequence>
+				<xs:element name="DocType">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+								<xs:enumeration value="vvod_contract_production"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+				</xs:element>
+				<xs:element name="producer_inn" type="TRADE_PARTICIPANT_INN_type">
+					<xs:annotation>
+						<xs:documentation>ИНН производителя или импортера товара</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="owner_inn" type="TRADE_PARTICIPANT_INN_type">
+					<xs:annotation>
+						<xs:documentation>ИНН собственника товара</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="production_date" type="date_type">
+					<xs:annotation>
+						<xs:documentation>Дата производства</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="production_order">
+					<xs:annotation>
+						<xs:documentation>Тип производственного заказа
+							Собственное производство - OWN_PRODUCTION
+							Производство товара по договору - CONTRACT_PRODUCTION
+						</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="OWN_PRODUCTION"/>
+							<xs:enumeration value="CONTRACT_PRODUCTION"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="products_list">
+                    <xs:complexType>
+						<xs:sequence>
+							<xs:element name="product" maxOccurs="unbounded">
+								<xs:complexType>
+								<xs:sequence>
+									<xs:element name="uit" type="gs1_uit_type" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>УИТ</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="uitu" type="gs1_uitu_type" minOccurs="0">
+                                        <xs:annotation>
+											<xs:documentation>УИТУ</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="tnved_code" type="tnved_code_type">
+										<xs:annotation>
+											<xs:documentation>Код ТН ВЭД ЕАС</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="production_date" type="date_type">
+										<xs:annotation>
+											<xs:documentation>Дата производства</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="certificate_doc_number">
+										<xs:annotation>
+											<xs:documentation>Номер документа обязательной сертификации</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="1"/>
+												<xs:maxLength value="255"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="certificate_doc_date" type="date_type">
+										<xs:annotation>
+											<xs:documentation>Дата документа обязательной сертификации</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		<xs:attribute name="action_id" type="xs:string" use="required" fixed="5.2"/>
+		<xs:attribute name="version" type="xs:int" use="required" fixed="2"/>
+	</xs:complexType>
+</xs:schema>

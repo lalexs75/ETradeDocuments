@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:simpleType name="IPv4Address_type">
+		<xs:annotation>
+			<xs:documentation>IPv4. Запись в виде четырёх десятичных чисел (от 0 до 255), разделённых точками. </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((1?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\.){3}(1?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IPv6Address_type">
+		<xs:annotation>
+			<xs:documentation>IPv6. Запись в виде восьми четырёхзначных шестнадцатеричных чисел (групп по четыре символа), разделённых двоеточием. </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([A-Fa-f0-9]{1,4}:){7}[A-Fa-f0-9]{1,4}" />
+		</xs:restriction>
+    </xs:simpleType>
+	<xs:simpleType name="string200_type">
+		<xs:annotation>
+			<xs:documentation>Текстовое значение не более 200 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="200"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string255_type">
+		<xs:annotation>
+			<xs:documentation>Текстовое значение не более 255 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string1000_type">
+		<xs:annotation>
+			<xs:documentation>Произвольная строка длинной до 1000 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="1000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TRADE_PARTICIPANT_INN_type">
+		<xs:annotation>
+			<xs:documentation>ИНН Участника оборота</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="10"/>
+			<xs:maxLength value="12"/>
+			<xs:pattern value="(([0-9]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[0-9]{8})|(([0-9]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[0-9]{10})"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LABELLING_CENTER_INN_type">
+		<xs:annotation>
+			<xs:documentation>ИНН ЦЭМ</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="10"/>
+			<xs:pattern value="([0-9]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[0-9]{8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="date_type">
+		<xs:annotation>
+			<xs:documentation>Дата в формате ДД.ММ.ГГГГ</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="10"/>
+			<xs:pattern value="(0[1-9]{1}|[1-2]{1}[0-9]{1}|3[0-1]{1})\.(0[1-9]{1}|1[0-2]{1})\.(1[0-9]{3}|20[0-9]{2})"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="fias_address_type">
+		<xs:annotation>
+			<xs:documentation>Адрес в формате ФИАС</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="aoguid">
+				<xs:annotation>
+					<xs:documentation>Глобальный уникальный идентификатор адресного объекта </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="36"/>
+						<xs:pattern value="([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12})"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="houseguid" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Глобальный уникальный идентификатор дома</xs:documentation>
+					<xs:documentation>Обязателен при наличии</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="36"/>
+						<xs:pattern value="([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12})"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="flat" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Квартира</xs:documentation>
+					<xs:documentation>Обязателен при наличии</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="datetimeoffset">
+		<xs:restriction base="xs:dateTime">
+			<xs:minInclusive value="0001-01-01T00:00:00Z"/>
+			<xs:pattern value="((000[1-9])|(00[1-9][0-9])|(0[1-9][0-9]{2})|([1-9][0-9]{3}))-((0[1-9])|(1[012]))-((0[1-9])|([12][0-9])|(3[01]))T(([01][0-9])|(2[0-3]))(:[0-5][0-9]){2}(\.[0-9]+)?(([+-]((((0[0-9])|(1[0-3]))(:[0-5][0-9]))|14:00))|Z)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="document_number_200_type">
+		<xs:annotation>
+			<xs:documentation>Номер документа, но не более 200 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="200"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="turnover_type_enum">
+		<xs:annotation>
+			<xs:documentation>Справочник видов оборота товара
+				1 - Продажа-покупка
+				2 - Комиссия
+				3 - Агент
+				4 - Подряд
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="gs1_uit_type">
+		<xs:annotation>
+			<xs:documentation>Уникальный идентификатор товара. Количество символов: 31 либо 37 (с разделителями), 38 либо 44 (без разделителей). </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="31"/>
+			<xs:maxLength value="44"/>
+			<xs:pattern value="[A-Za-z0-9]{31}|[A-Za-z0-9]{37}|[A-Za-z0-9]{38}|[A-Za-z0-9]{44}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="gs1_uitu_type">
+		<xs:annotation>
+			<xs:documentation>Уникальный идентификатор транспортной упаковки</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="18"/>
+			<xs:pattern value="[A-Za-z0-9]{18}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="price_type">
+		<xs:annotation>
+			<xs:documentation>Стоимость/Налог</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="19"/>
+			<xs:fractionDigits value="2"/>
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="guid_type">
+		<xs:annotation>
+			<xs:documentation>
+                GUID
+            </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="36"/>
+			<xs:pattern value="([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12})"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="token_type">
+		<xs:annotation>
+			<xs:documentation>
+                Регистрационный токен СУЗ
+            </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="15"/>
+			<xs:pattern value="([A-Za-z0-9]{15})"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tnved_group_type">
+		<xs:annotation>
+			<xs:documentation>Товарная группа ТН ВЭД ЕАС</xs:documentation>
+		</xs:annotation>
+			<xs:restriction base="xs:integer">
+				<xs:minInclusive value="6401"/>
+				<xs:maxInclusive value="6405"/>
+			</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tnved_code_type">
+		<xs:annotation>
+			<xs:documentation>Код ТН ВЭД ЕАС</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="6401000000"/>
+			<xs:maxInclusive value="6405999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="action_type">
+				<xs:annotation>
+					<xs:documentation>Справочник видов вывода из оборота
+						1 - Розничная продажа
+						2 -	Экспорт в страны ЕАЭС
+						3 - Экспорт за пределы стран ЕАЭС
+						4 -	Кредитный договор
+						5 -	Порча или утеря товара
+						6 -	Безвозмездная передача
+						7 -	Возврат физическому лицу (при невозможности реализовать товар по договору комиссии товар возвращается физическому лицу 	 обратно)
+						8 -	Банкротство или ликвидация ЮЛ/ИП
+						9 -	Реализации конфискованных товаров
+						10 - Использование на предприятии
+						11 - Договор рассрочки
+						12 - Розничная продажа ККТ
+					</xs:documentation>
+				</xs:annotation>
+				<xs:restriction base="xs:int">
+					<xs:enumeration value="1"/>
+					<xs:enumeration value="2"/>
+					<xs:enumeration value="3"/>
+					<xs:enumeration value="4"/>
+					<xs:enumeration value="5"/>
+					<xs:enumeration value="6"/>
+					<xs:enumeration value="7"/>
+					<xs:enumeration value="8"/>
+					<xs:enumeration value="9"/>
+					<xs:enumeration value="10"/>
+					<xs:enumeration value="11"/>
+					<xs:enumeration value="12"/>
+				</xs:restriction>
+			</xs:simpleType>
+	<xs:simpleType name="doc_type_enum">
+				<xs:annotation>
+					<xs:documentation>Справочник видов документа
+						1 - Фискальный документ
+						2 -	Бланк строгой отчетности (БСО)
+						3 - Договор
+						4 -	Акт уничтожения
+						5 -	Товарная накладная
+						6 -	Счет-фактура
+						7 -	Прочее
+				</xs:documentation>
+				</xs:annotation>
+				<xs:restriction base="xs:int">
+					<xs:enumeration value="1"/>
+					<xs:enumeration value="2"/>
+					<xs:enumeration value="3"/>
+					<xs:enumeration value="4"/>
+					<xs:enumeration value="5"/>
+					<xs:enumeration value="6"/>
+					<xs:enumeration value="7"/>
+				</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="gs1_uit_uitu_type">
+		<xs:annotation>
+			<xs:documentation>Уникальный идентификатор транспортной упаковки или товара</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Za-z0-9]{18}|[A-Za-z0-9]{31}|[A-Za-z0-9]{37}|[A-Za-z0-9]{38}|[A-Za-z0-9]{44}"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

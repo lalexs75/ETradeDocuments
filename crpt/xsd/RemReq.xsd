@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="LP_base_types.xsd"/>
+	<xs:element name="RemReq" type="RemReq"/>
+	<xs:complexType name="RemReq">
+		<xs:annotation>
+			<xs:documentation>Заявка на повторную маркировку</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PARTICIPANT_INN">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="10"/>
+						<xs:maxLength value="12"/>
+					<xs:pattern value="(([0-9]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[0-9]{8})|(([0-9]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[0-9]{10})"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="REMARKING_DATE" type="date_type">
+				<xs:annotation>
+					<xs:documentation>Дата повторной маркировки</xs:documentation>
+				</xs:annotation>
+			</xs:element>	
+			<xs:element name="REMARKING_CAUSE">
+				<xs:annotation>
+					<xs:documentation>Причина повторной маркировки
+					1 - Испорчено либо утеряно СИ с КМ
+					2 - Выявлены ошибки описания товара</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="PRODUCT_DETAILS">
+				<xs:annotation>
+					<xs:documentation>Параметры товаров</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>	
+						<xs:element name="PRODUCT" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="REMARKING_DATE" minOccurs="0" type="date_type">
+											<xs:annotation>
+												<xs:documentation>Дата повторной маркировки</xs:documentation>
+											</xs:annotation>
+										</xs:element>	
+										<xs:element name="REMARKING_CAUSE" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Причина повторной маркировки
+												1 - Испорчено либо утеряно СИ с КМ
+												2 - Выявлены ошибки описания товара</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:int">
+													<xs:enumeration value="1"/>
+													<xs:enumeration value="2"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="LAST_UIT" type="gs1_uit_type">
+											<xs:annotation>
+												<xs:documentation>Предыдущий УИТ</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="NEW_UIT" type="gs1_uit_type">
+											<xs:annotation>
+												<xs:documentation>Новый УИТ</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="PROD_CERT_DOC_TYPE" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Вид документа обязательной сертификации
+													1 - Сертификат соответствия
+													2 - Декларация соответствия</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:int">
+													<xs:enumeration value="1"/>
+													<xs:enumeration value="2"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="PROD_CERT_DOC_NUM" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Номер документа обязательной сертификации</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="1000"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="PROD_CERT_DOC_DATE" type="date_type" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Дата документа обязательной сертификации</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>	
+		</xs:sequence>
+		<xs:attribute name="action_id" type="xs:int" use="required" fixed="10"/>
+	</xs:complexType>
+</xs:schema>

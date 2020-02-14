@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="Vvod" type="Vvod"/>
+	<xs:complexType name="Vvod">
+		<xs:annotation>
+			<xs:documentation>Заявка на ввод товаров в оборот (собственное производство)</xs:documentation>
+		</xs:annotation>
+			<xs:sequence>
+				<xs:element name="DocType">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+								<xs:enumeration value="Promotion_Inform_Selfmade"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+				</xs:element>
+				<xs:element name="Participant_INN">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:minLength value="10"/>
+                                <xs:maxLength value="12"/>
+                                <xs:pattern value="(([0-9]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[0-9]{8})|(([0-9]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[0-9]{10})"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+				</xs:element>
+				<xs:element name="Product_Date" minOccurs="0">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:date"/>
+                    </xs:simpleType>
+				</xs:element>
+				<xs:element name="Producer_INN">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="12"/>
+                            <xs:minLength value="10"/>
+                            <xs:pattern value="(([0-9]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[0-9]{8})|(([0-9]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[0-9]{10})"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+				</xs:element>
+				<xs:element name="INNOwner">
+                    <xs:simpleType>
+                       <xs:restriction base="xs:string">
+							<xs:minLength value="10"/>
+							<xs:maxLength value="12"/>
+							<xs:pattern value="(([0-9]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[0-9]{8})|(([0-9]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[0-9]{10})"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+				</xs:element>
+				<xs:element name="Production_Order">
+					<xs:annotation>
+						<xs:documentation>Production_Order
+						1 - Собственное производство
+						2 - Производство товара по договору</xs:documentation>
+					</xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:enumeration value="1"/>
+                            <xs:enumeration value="2"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+				</xs:element>
+				<xs:element name="MarkingType">
+					<xs:annotation>
+						<xs:documentation>Вид маркировки
+						1 - На потребительскую упаковку
+						2 - На товар
+						3 - На товарный ярлык</xs:documentation>
+					</xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:enumeration value="1"/>
+                            <xs:enumeration value="2"/>
+                            <xs:enumeration value="3"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+				</xs:element>
+				<xs:element name="Products_List">
+                    <xs:complexType>
+						<xs:sequence>
+							<xs:element name="PRODUCT" maxOccurs="unbounded">
+								<xs:complexType>
+								<xs:sequence>
+									<xs:element name="Product_Date">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:date">
+                                            </xs:restriction>
+                                        </xs:simpleType>
+									</xs:element>
+									<xs:element name="UIT" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="31"/>
+												<xs:maxLength value="38"/>
+												<xs:pattern value="[A-Za-z0-9]{31}|[A-Za-z0-9]{38}"/>
+											</xs:restriction>
+                                        </xs:simpleType>
+									</xs:element>
+									<xs:element name="UITU" minOccurs="0">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:length value="18"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+									</xs:element>
+									<xs:element name="CodeTNVED">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+												<xs:length value="10"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+									</xs:element>
+									<xs:element name="MarkingType">
+										<xs:annotation>
+											<xs:documentation>Вид маркировки
+											1 - На потребительскую упаковку
+											2 - На товар
+											3 - На товарный ярлык</xs:documentation>
+										</xs:annotation>
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:int">
+                                                <xs:enumeration value="1"/>
+                                                <xs:enumeration value="2"/>
+                                                <xs:enumeration value="3"/>
+											</xs:restriction>
+                                        </xs:simpleType>
+									</xs:element>
+									<xs:element name="CertificateDoc">
+										<xs:annotation>
+											<xs:documentation>Документ Обязательной Сертификации
+											1 - Сертификат соответствия
+											2 - Декларация соответствия
+											3 - Отказное письмо</xs:documentation>
+										</xs:annotation>
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:int">
+                                                <xs:enumeration value="1"/>
+                                                <xs:enumeration value="2"/>
+                                                <xs:enumeration value="3"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+									</xs:element>
+									<xs:element name="CertificateNumber">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string"/>
+                                        </xs:simpleType>
+									</xs:element>
+									<xs:element name="CertificateDate">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:date"/>
+                                        </xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		<xs:attribute name="action_id" type="xs:int" use="required" fixed="05"/>
+	</xs:complexType>
+</xs:schema>

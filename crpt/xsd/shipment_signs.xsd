@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 (http://www.altova.com) by Admin (EMBRACE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="shipment_signs" type="shipment_signs"/>
+	<xs:include schemaLocation="LP_base_types.xsd"/>
+	<xs:complexType name="shipment_signs">
+		<xs:annotation>
+			<xs:documentation>Отгрузка товара</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="subject_inn" type="TRADE_PARTICIPANT_INN_type">
+				<xs:annotation>
+					<xs:documentation>ИНН отправителя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="recipient_inn" type="TRADE_PARTICIPANT_INN_type">
+				<xs:annotation>
+					<xs:documentation>ИНН получателя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="owner_inn" type="TRADE_PARTICIPANT_INN_type">
+				<xs:annotation>
+					<xs:documentation>ИНН собственника товара</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="transfer_date" type="date_type">
+				<xs:annotation>
+					<xs:documentation>Дата передачи товара</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="move_doc_num" type="document_number_200_type">
+				<xs:annotation>
+					<xs:documentation>Реквизиты первичных документов: номер документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="move_doc_date" type="date_type">
+				<xs:annotation>
+					<xs:documentation>Реквизиты первичных документов: дата документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="turnover_type" type="turnover_type_enum">
+				<xs:annotation>
+					<xs:documentation>Вид оборота товара</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="order_details">
+				<xs:annotation>
+					<xs:documentation>Список отгружаемой продукции</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="signs">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:choice>
+										<xs:element name="sign_uit" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="uit" type="gs1_uit_type">
+														<xs:annotation>
+															<xs:documentation>Уникальный идентификатор товара</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="cost" type="price_type" use="optional">
+													<xs:annotation>
+														<xs:documentation>Стоимость продукции</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="vat_value" type="price_type" use="optional">
+													<xs:annotation>
+														<xs:documentation>НДС продукции (если сделка облагается НДС)</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="sign_uitu" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="uitu" type="gs1_uitu_type">
+														<xs:annotation>
+															<xs:documentation>Уникальный идентификатор товара</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="cost" type="price_type" use="optional">
+													<xs:annotation>
+														<xs:documentation>Сумма стоимоси всей продукции в транспортной упаковке</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="vat_value" type="price_type" use="optional">
+													<xs:annotation>
+														<xs:documentation>Сумма налога (НДС)</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+									</xs:choice>
+								</xs:sequence>
+							</xs:complexType>
+							<xs:unique name="sign_uit_unique">
+								<xs:selector xpath="sign"/>
+								<xs:field xpath="sign_uit"/>
+							</xs:unique>
+							<xs:unique name="sign_uitu_unique">
+								<xs:selector xpath="sign"/>
+								<xs:field xpath="sign_uit"/>
+							</xs:unique>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:unique name="sign_uit_unique_in_details">
+					<xs:selector xpath="signs/sign"/>
+					<xs:field xpath="sign_uitu"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="action_id" type="xs:int" use="required" fixed="10"/>
+		<xs:attribute name="version" type="xs:decimal" use="required" fixed="1.02"/>
+	</xs:complexType>
+</xs:schema>

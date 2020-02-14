@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="LP_base_types.xsd"/>
+    <xs:element name="MKIO_Order" type="MKIO_Order"/>
+    <xs:complexType name="MKIO_Order">
+        <xs:annotation>
+            <xs:documentation>Заказ КМ СИ</xs:documentation>
+        </xs:annotation>
+        <xs:all>
+            <xs:element name="TRADE_PARTICIPANT_INN" type="TRADE_PARTICIPANT_INN_type">
+                <xs:annotation>
+                    <xs:documentation>ИНН Участника оборота</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="OPERATOR_CONTRACT_NUM" type="string255_type">
+                <xs:annotation>
+                    <xs:documentation>Номер договора с Оператором ИС МП</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="OPERATOR_CONTRACT_DATE" type="date_type">
+                <xs:annotation>
+                    <xs:documentation>Дата договора с Оператором ИС МП</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PREP_METHOD">
+                <xs:annotation>
+                    <xs:documentation>Способ изготовления
+                        1 - Самостоятельно
+                        2 - ЦЭМ
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="2"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="RECEPTION_METHOD">
+                <xs:annotation>
+                    <xs:documentation>Способ получения
+                        1 - На физическом носителе
+                        2 - В электронном виде
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="2"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="LABEL_TEMPLATE_ID" type="guid_type">
+                <xs:annotation>
+                    <xs:documentation>ID шаблона этикеток</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="LABELLING_CENTER_NAME"  type="string255_type" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Наименование ЦЭМ</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="LABELLING_CENTER_INN" type="LABELLING_CENTER_INN_type" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>ИНН ЦЭМ</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="LABELLING_CENTER_CONTRACT_NUM"  type="string255_type" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Номер договора с ЦЭМ</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="LABELLING_CENTER_CONTRACT_DATE" type="date_type" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата договора с ЦЭМ</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CONTACT"  type="string255_type" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Контактное лицо</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DELIVERY_ADDRESS"  type="string255_type" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Адрес доставки</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PRODUCT_DETAILS">
+                <xs:annotation>
+                    <xs:documentation>Параметры товаров</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="PRODUCT" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:all>
+                                    <xs:element name="GTIN">
+                                        <xs:annotation>
+                                            <xs:documentation>GTIN</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:length value="14"/>
+                                                <xs:pattern value="[0-9]{14}"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="TNVED_CODE">
+                                        <xs:annotation>
+                                            <xs:documentation>Код ТН ВЭД ЕАС</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:integer">
+                                                <xs:minInclusive value="6401"/>
+                                                <xs:maxInclusive value="6405"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="RELEASE_METHOD">
+                                        <xs:annotation>
+                                            <xs:documentation>Способ выпуска товаров в оборот
+                                                1 - Производство в РФ
+                                                2 - Импорт
+                                            </xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:int">
+                                                <xs:enumeration value="1"/>
+                                                <xs:enumeration value="2"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="MKIO_QUANTITY" type="xs:long" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Количество КМ СИ. В случае указания в поле "Способ
+                                                формирования индивидуального серийного номера s" значения 1 - поле НЕ
+                                                обязательное для заполнения.
+                                            </xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="IO_TYPE">
+                                        <xs:annotation>
+                                            <xs:documentation>Вид СИ
+                                                1 - Печатаемый
+                                                2 - Клеевой
+                                                3 - Навесной
+                                            </xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:int">
+                                                <xs:enumeration value="1"/>
+                                                <xs:enumeration value="2"/>
+                                                <xs:enumeration value="3"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="S_ORG_METHOD">
+                                        <xs:annotation>
+                                            <xs:documentation>Способ формирования индивидуального серийного номера s
+                                                1 - Самостоятельно
+                                                2 - Оператором ИС МП
+                                            </xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:int">
+                                                <xs:enumeration value="1"/>
+                                                <xs:enumeration value="2"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="MARKING_TYPE">
+                                        <xs:annotation>
+                                            <xs:documentation>Вид маркировки
+                                                1 - На потребительскую упаковку
+                                                2 - На товар
+                                                3 - На товарный ярлык
+                                            </xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:int">
+                                                <xs:enumeration value="1"/>
+                                                <xs:enumeration value="2"/>
+                                                <xs:enumeration value="3"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="S_NUMS" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Индивидуальные серийные номера. В случае указания в поле
+                                                "Способ формирования индивидуального серийного номера s" значения 1 -
+                                                поле обязательное для заполнения.
+                                            </xs:documentation>
+                                        </xs:annotation>
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element name="SERIAL_NUMBER" maxOccurs="unbounded">
+                                                    <xs:annotation>
+                                                        <xs:documentation>Серийный номер</xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:length value="13"/>
+                                                            <xs:pattern value="[a-zA-Z0-9]{13}"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:element>
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
+                                </xs:all>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+                <xs:unique name="PRODUCT_DETAILS_unique">
+                    <xs:selector xpath="PRODUCT_DETAILS"/>
+                    <xs:field xpath="GTIN"/>
+                    <xs:field xpath="TNVED_CODE"/>
+                    <xs:field xpath="SERIAL_NUMBER"/>
+                </xs:unique>
+            </xs:element>
+        </xs:all>
+        <xs:attribute name="action_id" type="xs:int" use="required" fixed="01"/>
+    </xs:complexType>
+</xs:schema>

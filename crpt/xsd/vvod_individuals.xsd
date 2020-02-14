@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="../../LP_base_types.xsd"/>
+	<xs:element name="vvod_individuals" type="vvod_individuals"/>
+	<xs:complexType name="vvod_individuals">
+		<xs:annotation>
+			<xs:documentation>Ввод товаров в оборот, полученных от физических лиц</xs:documentation>
+		</xs:annotation>
+			<xs:sequence>
+				<xs:element name="doc_type">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+								<xs:enumeration value="vvod_individuals"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+				</xs:element>
+				<xs:element name="participant_inn" type="TRADE_PARTICIPANT_INN_type">
+					<xs:annotation>
+						<xs:documentation>ИНН участника оборота</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="product_receiving_date" type="date_type" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Дата получения товара</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="products_list">
+                    <xs:complexType>
+						<xs:sequence>
+							<xs:element name="product" maxOccurs="unbounded">
+								<xs:complexType>
+								<xs:sequence>
+									<xs:element name="uit" type="gs1_uit_type" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>УИТ</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="uitu" type="gs1_uitu_type" minOccurs="0">
+                                        <xs:annotation>
+											<xs:documentation>УИТУ</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="product_receiving_date" type="date_type" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Дата получения товара</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		<xs:attribute name="action_id" type="xs:string" use="required" fixed="5.3"/>
+		<xs:attribute name="version" type="xs:int" use="required" fixed="2"/>
+	</xs:complexType>
+</xs:schema>

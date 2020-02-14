@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Package Version="5">
+    <Name Value="crpt"/>
+    <Type Value="RunAndDesignTime"/>
+    <Author Value="Lagunov Aleksey"/>
+    <CompilerOptions>
+      <Version Value="11"/>
+      <SearchPaths>
+        <OtherUnitFiles Value="crpt"/>
+        <UnitOutputDirectory Value="lib/crpt/$(TargetCPU)-$(TargetOS)"/>
+      </SearchPaths>
+    </CompilerOptions>
+    <License Value="LGPL"/>
+    <Version Release="1"/>
+    <Files>
+      <Item>
+        <Filename Value="crpt/crpt_cmp.pas"/>
+        <HasRegisterProc Value="True"/>
+        <UnitName Value="crpt_cmp"/>
+      </Item>
+      <Item>
+        <Filename Value="crpt/km_cancellation.pas"/>
+        <UnitName Value="km_cancellation"/>
+      </Item>
+      <Item>
+        <Filename Value="crpt/LP_base_types.pas"/>
+        <UnitName Value="LP_base_types"/>
+      </Item>
+      <Item>
+        <Filename Value="crpt/MKIO_Order.pas"/>
+        <UnitName Value="MKIO_Order"/>
+      </Item>
+      <Item>
+        <Filename Value="crpt/reception_signs.pas"/>
+        <UnitName Value="reception_signs"/>
+      </Item>
+      <Item>
+        <Filename Value="crpt/RemReq.pas"/>
+        <UnitName Value="RemReq"/>
+      </Item>
+      <Item>
+        <Filename Value="crpt/retail_sale.pas"/>
+        <UnitName Value="retail_sale"/>
+      </Item>
+      <Item>
+        <Filename Value="crpt/shipment_signs.pas"/>
+        <UnitName Value="shipment_signs"/>
+      </Item>
+      <Item>
+        <Filename Value="crpt/Vvod.pas"/>
+        <UnitName Value="Vvod"/>
+      </Item>
+      <Item>
+        <Filename Value="crpt/vvod_contract_production.pas"/>
+        <UnitName Value="vvod_contract_production"/>
+      </Item>
+      <Item>
+        <Filename Value="crpt/Vvod_Imp.pas"/>
+        <UnitName Value="Vvod_Imp"/>
+      </Item>
+      <Item>
+        <Filename Value="crpt/vvod_individuals.pas"/>
+        <UnitName Value="vvod_individuals"/>
+      </Item>
+      <Item>
+        <Filename Value="crpt/vvod_ostatky.pas"/>
+        <UnitName Value="vvod_ostatky"/>
+      </Item>
+      <Item>
+        <Filename Value="crpt/LP_base_types_v3.pas"/>
+        <UnitName Value="LP_base_types_v3"/>
+      </Item>
+    </Files>
+    <RequiredPkgs>
+      <Item>
+        <PackageName Value="xmlobjects"/>
+      </Item>
+      <Item>
+        <PackageName Value="FCL"/>
+      </Item>
+    </RequiredPkgs>
+    <UsageOptions>
+      <UnitPath Value="$(PkgOutDir)"/>
+    </UsageOptions>
+    <PublishOptions>
+      <Version Value="2"/>
+      <UseFileFilters Value="True"/>
+    </PublishOptions>
+  </Package>
+</CONFIG>

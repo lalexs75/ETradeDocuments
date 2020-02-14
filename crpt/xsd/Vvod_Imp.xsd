@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="/LP_base_types.xsd"/>
+	<xs:element name="Vvod_Imp" type="Vvod_Imp"/>
+	<xs:complexType name="Vvod_Imp">
+		<xs:annotation>
+			<xs:documentation>Ввод товаров в оборот (импорт)</xs:documentation>
+		</xs:annotation>
+			<xs:sequence>
+				<xs:element name="DocType">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+								<xs:enumeration value="GOODSIMPORT"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+				</xs:element>
+				<xs:element name="TRADE_PARTICIPANT_INN" type="TRADE_PARTICIPANT_INN_type">
+					<xs:annotation>
+						<xs:documentation>ИНН участника оборота</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Declaration_Date" type="date_type">
+					<xs:annotation>
+						<xs:documentation>Дата декларации на товары</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Declaration_Number">
+				    <xs:annotation>
+						<xs:documentation>Регистрационный номер ДТ</xs:documentation>
+					</xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1"/>
+							<xs:maxLength value="255"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+				</xs:element>
+				<xs:element name="Customs_Code">
+				    <xs:annotation>
+						<xs:documentation>Код таможенного органа</xs:documentation>
+					</xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1"/>
+							<xs:maxLength value="255"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+				</xs:element>
+				<xs:element name="Decision_Code">
+					<xs:annotation>
+						<xs:documentation>Код принятого решения
+						10 - Выпуск товаров разрешен
+						11 - Выпуск товаров при условии обеспечения исполнения обязанности по уплате таможенных пошлин, налогов, специальных, антидемпинговых, компенсационных пошлин, за исключением выпуска товаров, поименованного в позициях с кодами 12 и 13
+						12 - Выпуск товаров с особенностями, предусмотренными статьей 121 Таможенного кодекса Евразийского экономического союза
+						13 - Выпуск товаров с особенностями, предусмотренными статьей 122 Таможенного кодекса Евразийского экономического союза
+						14 - Выпуск товаров с особенностями, предусмотренными статьей 123 Таможенного кодекса Евразийского экономического союза
+						20 - Условный выпуск товаров</xs:documentation>
+					</xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:enumeration value="10"/>
+                            <xs:enumeration value="11"/>
+							<xs:enumeration value="12"/>
+							<xs:enumeration value="13"/>
+							<xs:enumeration value="14"/>
+							<xs:enumeration value="20"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+				</xs:element>
+				<xs:element name="Products_List">
+                    <xs:complexType>
+						<xs:sequence>
+							<xs:element name="PRODUCT" maxOccurs="unbounded">
+								<xs:complexType>
+								<xs:sequence>
+									<xs:element name="UIT" type="gs1_uit_type" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>УИТ</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="UITU" type="gs1_uitu_type" minOccurs="0">
+                                        <xs:annotation>
+											<xs:documentation>УИТУ</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="Certificate_Doc">
+										<xs:annotation>
+											<xs:documentation>Вид документа Обязательной Сертификации
+											1 - Сертификат соответствия
+											2 - Декларация соответствия</xs:documentation>
+										</xs:annotation>
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:int">
+                                                <xs:enumeration value="1"/>
+                                                <xs:enumeration value="2"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+									</xs:element>
+									<xs:element name="Certificate_Doc_Number">
+										<xs:annotation>
+											<xs:documentation>Номер документа обязательной сертификации</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="1"/>
+												<xs:maxLength value="255"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="Certificate_Doc_Date" type="date_type">
+										<xs:annotation>
+											<xs:documentation>Дата документа обязательной сертификации</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="TNVED_Code">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+												<xs:length value="10"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		<xs:attribute name="action_id" type="xs:string" use="required" fixed="5.1"/>
+		<xs:attribute name="version" type="xs:int" use="required" fixed="2"/>
+	</xs:complexType>
+</xs:schema>
