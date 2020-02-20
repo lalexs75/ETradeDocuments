@@ -39,21 +39,32 @@ uses Math;
 
 {$R *.lfm}
 
-function MakeCRPTCode(APrefix:Word; AGTIN:string; ASerial:string):string;
+type
+  TCrpCodeBuffer = array [1..32] of byte;
+
+function MakeCRPTCode(APrefix:Word; AGTIN:string; ASerial:string):TCrpCodeBuffer;
 var
-  A, B:array [1..32] of Byte;
+  B:TCrpCodeBuffer;
   W2: QWord;
   i: Integer;
 begin
-  Result:='';
-  FillChar(A, SizeOf(A), 0);
+  FillChar(Result, SizeOf(Result), 0);
   W2:=StrToQWord(AGTIN);
   Move(APrefix, B, 2);
-  for i:=1 to 2 do A[i]:=B[3-i];
+  for i:=1 to 2 do Result[i]:=B[3-i];
   Move(W2, B, 6);
-  for i:=1 to 6 do A[2+i]:=B[7-i];
-  for i:=1 to Min(Length(ASerial), 24) do A[8 + i]:=Ord(ASerial[i]);
+  for i:=1 to 6 do Result[2+i]:=B[7-i];
+  for i:=1 to Min(Length(ASerial), 24) do Result[8 + i]:=Ord(ASerial[i]);
 
+end;
+
+function MakeCRPTCodeStr(APrefix:Word; AGTIN:string; ASerial:string):string;
+var
+  A: TCrpCodeBuffer;
+  i: Integer;
+begin
+  Result:='';
+  A:=MakeCRPTCode(APrefix, AGTIN, ASerial);
   for i:=1 to Length(ASerial) + 8  do
   begin
     if Result<>'' then Result:=Result + ' ';
@@ -65,7 +76,7 @@ end;
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
-  Edit5.Text:=MakeCRPTCode(StrToInt('$' + Edit1.Text), Edit2.Text, Edit3.Text);
+  Edit5.Text:=MakeCRPTCodeStr(StrToInt('$' + Edit1.Text), Edit2.Text, Edit3.Text);
 end;
 
 end.
