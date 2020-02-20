@@ -5,7 +5,8 @@ unit Unit1;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, DividerBevel;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ComCtrls,
+  DividerBevel;
 
 type
 
@@ -13,18 +14,27 @@ type
 
   TForm1 = class(TForm)
     Button1: TButton;
+    Button2: TButton;
     DividerBevel1: TDividerBevel;
     Edit1: TEdit;
     Edit2: TEdit;
     Edit3: TEdit;
     Edit4: TEdit;
     Edit5: TEdit;
+    Edit6: TEdit;
+    Edit7: TEdit;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    TabSheet2: TTabSheet;
     procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
   private
 
   public
@@ -77,6 +87,18 @@ end;
 procedure TForm1.Button1Click(Sender: TObject);
 begin
   Edit5.Text:=MakeCRPTCodeStr(StrToInt('$' + Edit1.Text), Edit2.Text, Edit3.Text);
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+var
+  S, S1: TCaption;
+  i: Integer;
+begin
+  S:=Edit6.Text;
+  S1:='';
+  for i:=1 to Length(S) do
+    S1:=S1 += IntToHex(Ord(S[i]), 1) + ' ';
+  Edit7.Text:=Copy(S1, 1, Length(S1)-1);
 end;
 
 end.
