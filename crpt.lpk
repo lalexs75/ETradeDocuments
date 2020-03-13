@@ -71,6 +71,10 @@
         <Filename Value="crpt/LP_base_types_v3.pas"/>
         <UnitName Value="LP_base_types_v3"/>
       </Item>
+      <Item>
+        <Filename Value="crpt/withdrawal.pas"/>
+        <UnitName Value="withdrawal"/>
+      </Item>
     </Files>
     <RequiredPkgs>
       <Item>
