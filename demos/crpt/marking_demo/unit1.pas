@@ -65,7 +65,6 @@ begin
   Move(W2, B, 6);
   for i:=1 to 6 do Result[2+i]:=B[7-i];
   for i:=1 to Min(Length(ASerial), 24) do Result[8 + i]:=Ord(ASerial[i]);
-
 end;
 
 function MakeCRPTCodeStr(APrefix:Word; AGTIN:string; ASerial:string):string;
@@ -97,7 +96,7 @@ begin
   S:=Edit6.Text;
   S1:='';
   for i:=1 to Length(S) do
-    S1:=S1 += IntToHex(Ord(S[i]), 1) + ' ';
+    S1:=S1 + IntToHex(Ord(S[i]), 1) + ' ';
   Edit7.Text:=Copy(S1, 1, Length(S1)-1);
 end;
 

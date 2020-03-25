@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="../LP_base_types_v2.xsd"/>
+	<xs:element name="shipment" type="shipment"/>
+	<xs:complexType name="shipment">
+	    <xs:annotation>
+		<xs:documentation>Отгрузка</xs:documentation>
+	    </xs:annotation>
+	    <xs:sequence>
+		<xs:element name="trade_participant_inn_sender" type="inn_type">
+		    <xs:annotation>
+			<xs:documentation>ИНН отправителя</xs:documentation>
+		    </xs:annotation>
+		</xs:element>
+		<xs:element name="trade_participant_inn_receiver" type="inn_type">
+		    <xs:annotation>
+			    <xs:documentation>ИНН получателя</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="trade_participant_inn_owner" type="inn_type">
+<xs:annotation>
+<xs:documentation>ИНН собственника</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="transfer_date" type="date_type">
+<xs:annotation>
+<xs:documentation>Дата передачи товара</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="move_document_number" type="string255_type">
+<xs:annotation>
+<xs:documentation>Номер первичного документа</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="move_document_date" type="date_type">
+<xs:annotation>
+<xs:documentation>Дата первичного документа</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="turnover_type" type="turnover_enum_type">
+<xs:annotation>
+<xs:documentation>Вид оборота товаров</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="withdrawal_type" minOccurs="0" type="withdrawal_shipment_type">
+<xs:annotation>
+<xs:documentation>Причина вывода из оборота</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="withdrawal_date" minOccurs="0" type="date_type">
+<xs:annotation>
+<xs:documentation>Дата вывода из оборота</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="st_contract_id" minOccurs="0" type="string255_type">
+<xs:annotation>
+<xs:documentation>Идентификатор гос.контракта</xs:documentation>
+</xs:annotation>
+</xs:element><xs:element name="to_not_participant" minOccurs="0" type="xs:boolean">
+<xs:annotation>
+<xs:documentation>Отгрузка не участнику</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="products_list">
+<xs:annotation>
+<xs:documentation>Параметры товаров</xs:documentation>
+</xs:annotation>
+<xs:complexType>
+<xs:sequence>
+<xs:element name="product" maxOccurs="unbounded">
+<xs:annotation>
+<xs:documentation>Параметры товара</xs:documentation>
+</xs:annotation>
+<xs:complexType>
+<xs:sequence>
+<xs:element name="kit" minOccurs="0" type="kit_type">
+<xs:annotation>
+<xs:documentation>КИТ</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="kitu" minOccurs="0" type="kitu_type">
+<xs:annotation>
+<xs:documentation>КИТУ</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="cost" type="price_type">
+<xs:annotation>
+<xs:documentation>Цена за единицу</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="vat_value" type="price_type">
+<xs:annotation>
+<xs:documentation>Сумма НДС</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+<xs:attribute name="action_id" type="xs:int" use="required" fixed="10"/>
+<xs:attribute name="version" type="xs:decimal" use="required" fixed="3"/>
+</xs:complexType>
+</xs:schema>

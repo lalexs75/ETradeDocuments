@@ -75,6 +75,10 @@
         <Filename Value="crpt/withdrawal.pas"/>
         <UnitName Value="withdrawal"/>
       </Item>
+      <Item>
+        <Filename Value="crpt/shipment.pas"/>
+        <UnitName Value="shipment"/>
+      </Item>
     </Files>
     <RequiredPkgs>
       <Item>
