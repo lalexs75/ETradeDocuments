@@ -147,7 +147,7 @@ type
     Fto_not_participant:Boolean;
     Fproducts_list:Tshipment_products_list;
     Faction_id:Longint;
-    Fversion:Double;
+    Fversion:Longint;
     procedure Settrade_participant_inn_sender( AValue:Tinn_type);
     procedure Settrade_participant_inn_receiver( AValue:Tinn_type);
     procedure Settrade_participant_inn_owner( AValue:Tinn_type);
@@ -160,7 +160,7 @@ type
     procedure Setst_contract_id( AValue:Tstring255_type);
     procedure Setto_not_participant( AValue:Boolean);
     procedure Setaction_id( AValue:Longint);
-    procedure Setversion( AValue:Double);
+    procedure Setversion( AValue:Longint);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
@@ -193,7 +193,7 @@ type
     //Параметры товаров
     property products_list:Tshipment_products_list read Fproducts_list;
     property action_id:Longint read Faction_id write Setaction_id;
-    property version:Double read Fversion write Setversion;
+    property version:Longint read Fversion write Setversion;
   end;
 
   {  Tshipment_element  }
@@ -473,7 +473,7 @@ begin
   ModifiedProperty('action_id');
 end;
 
-procedure Tshipment.Setversion(AValue: Double);
+procedure Tshipment.Setversion(AValue: Longint);
 begin
   Fversion:=AValue;
   CheckFixedValue('version', AValue);
