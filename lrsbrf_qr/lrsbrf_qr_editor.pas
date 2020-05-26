@@ -72,6 +72,8 @@ begin
     L.Sum                     := lrSBRF_QR_EditorForm.EditButton6.Text;
     L.PayerINN                := lrSBRF_QR_EditorForm.EditButton7.Text;
     L.Purpose                 := lrSBRF_QR_EditorForm.EditButton8.Text;
+    //frDesigner.Modified:=true;
+    Result:=true;
   end;
   lrSBRF_QR_EditorForm.Free;
 end;
