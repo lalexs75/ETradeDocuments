@@ -1,0 +1,298 @@
+object lrSBRF_QR_EditorForm: TlrSBRF_QR_EditorForm
+  Left = 487
+  Height = 453
+  Top = 186
+  Width = 389
+  Caption = 'Параметры QR кода оплаты'
+  ClientHeight = 453
+  ClientWidth = 389
+  Position = poScreenCenter
+  LCLVersion = '2.1.0.0'
+  object ButtonPanel1: TButtonPanel
+    Left = 6
+    Height = 42
+    Top = 405
+    Width = 377
+    OKButton.Name = 'OKButton'
+    OKButton.DefaultCaption = True
+    HelpButton.Name = 'HelpButton'
+    HelpButton.DefaultCaption = True
+    CloseButton.Name = 'CloseButton'
+    CloseButton.DefaultCaption = True
+    CancelButton.Name = 'CancelButton'
+    CancelButton.DefaultCaption = True
+    TabOrder = 0
+    ShowButtons = [pbOK, pbCancel]
+  end
+  object Label1: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    Left = 6
+    Height = 15
+    Top = 6
+    Width = 169
+    BorderSpacing.Around = 6
+    Caption = 'Наименование получателя'
+    FocusControl = EditButton1
+    ParentColor = False
+  end
+  object Label2: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = EditButton1
+    AnchorSideTop.Side = asrBottom
+    Left = 6
+    Height = 15
+    Top = 57
+    Width = 215
+    BorderSpacing.Around = 6
+    Caption = 'Номер счета получателя платежа'
+    FocusControl = EditButton2
+    ParentColor = False
+  end
+  object Label3: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = EditButton2
+    AnchorSideTop.Side = asrBottom
+    Left = 6
+    Height = 15
+    Top = 108
+    Width = 268
+    BorderSpacing.Around = 6
+    Caption = 'Наименование банка получателя платежа'
+    FocusControl = EditButton3
+    ParentColor = False
+  end
+  object Label4: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = EditButton3
+    AnchorSideTop.Side = asrBottom
+    Left = 6
+    Height = 15
+    Top = 159
+    Width = 26
+    BorderSpacing.Around = 6
+    Caption = 'БИК'
+    FocusControl = EditButton4
+    ParentColor = False
+  end
+  object Label5: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = EditButton4
+    AnchorSideTop.Side = asrBottom
+    Left = 6
+    Height = 15
+    Top = 210
+    Width = 268
+    BorderSpacing.Around = 6
+    Caption = 'Номер кор./сч. банка получателя платежа'
+    FocusControl = EditButton5
+    ParentColor = False
+  end
+  object EditButton1: TEditButton
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Label1
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 6
+    Height = 24
+    Top = 27
+    Width = 377
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Around = 6
+    ButtonWidth = 23
+    MaxLength = 0
+    NumGlyphs = 1
+    OnButtonClick = EditButton1ButtonClick
+    PasswordChar = #0
+    Spacing = 0
+    TabOrder = 1
+    Text = 'EditButton1'
+  end
+  object EditButton2: TEditButton
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Label2
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 6
+    Height = 24
+    Top = 78
+    Width = 377
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Around = 6
+    ButtonWidth = 23
+    MaxLength = 0
+    NumGlyphs = 1
+    OnButtonClick = EditButton1ButtonClick
+    PasswordChar = #0
+    Spacing = 0
+    TabOrder = 2
+    Text = 'EditButton2'
+  end
+  object EditButton3: TEditButton
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Label3
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 6
+    Height = 24
+    Top = 129
+    Width = 377
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Around = 6
+    ButtonWidth = 23
+    MaxLength = 0
+    NumGlyphs = 1
+    OnButtonClick = EditButton1ButtonClick
+    PasswordChar = #0
+    Spacing = 0
+    TabOrder = 3
+    Text = 'EditButton3'
+  end
+  object EditButton4: TEditButton
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Label4
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 6
+    Height = 24
+    Top = 180
+    Width = 377
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Around = 6
+    ButtonWidth = 23
+    MaxLength = 0
+    NumGlyphs = 1
+    OnButtonClick = EditButton1ButtonClick
+    PasswordChar = #0
+    Spacing = 0
+    TabOrder = 4
+    Text = 'EditButton4'
+  end
+  object EditButton5: TEditButton
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Label5
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 6
+    Height = 24
+    Top = 231
+    Width = 377
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Around = 6
+    ButtonWidth = 23
+    MaxLength = 0
+    NumGlyphs = 1
+    OnButtonClick = EditButton1ButtonClick
+    PasswordChar = #0
+    Spacing = 0
+    TabOrder = 5
+    Text = 'EditButton5'
+  end
+  object Label6: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = EditButton5
+    AnchorSideTop.Side = asrBottom
+    Left = 6
+    Height = 15
+    Top = 261
+    Width = 99
+    BorderSpacing.Around = 6
+    Caption = 'Сумма платежа'
+    FocusControl = EditButton6
+    ParentColor = False
+  end
+  object Label7: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = EditButton6
+    AnchorSideTop.Side = asrBottom
+    Left = 6
+    Height = 15
+    Top = 312
+    Width = 104
+    BorderSpacing.Around = 6
+    Caption = 'ИНН получателя'
+    FocusControl = EditButton7
+    ParentColor = False
+  end
+  object Label8: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = EditButton7
+    AnchorSideTop.Side = asrBottom
+    Left = 6
+    Height = 15
+    Top = 363
+    Width = 133
+    BorderSpacing.Around = 6
+    Caption = 'Назначение платежа'
+    FocusControl = EditButton8
+    ParentColor = False
+  end
+  object EditButton6: TEditButton
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Label6
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 6
+    Height = 24
+    Top = 282
+    Width = 377
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Around = 6
+    ButtonWidth = 23
+    MaxLength = 0
+    NumGlyphs = 1
+    OnButtonClick = EditButton1ButtonClick
+    PasswordChar = #0
+    Spacing = 0
+    TabOrder = 6
+    Text = 'EditButton6'
+  end
+  object EditButton7: TEditButton
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Label7
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 6
+    Height = 24
+    Top = 333
+    Width = 377
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Around = 6
+    ButtonWidth = 23
+    MaxLength = 0
+    NumGlyphs = 1
+    OnButtonClick = EditButton1ButtonClick
+    PasswordChar = #0
+    Spacing = 0
+    TabOrder = 7
+    Text = 'EditButton7'
+  end
+  object EditButton8: TEditButton
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Label8
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 6
+    Height = 24
+    Top = 384
+    Width = 377
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Around = 6
+    ButtonWidth = 23
+    MaxLength = 0
+    NumGlyphs = 1
+    OnButtonClick = EditButton1ButtonClick
+    PasswordChar = #0
+    Spacing = 0
+    TabOrder = 8
+    Text = 'EditButton8'
+  end
+end

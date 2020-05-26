@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Package Version="5">
+    <Name Value="sbrf_qr"/>
+    <Type Value="RunAndDesignTime"/>
+    <Author Value="Lagunov Aleksey"/>
+    <CompilerOptions>
+      <Version Value="11"/>
+      <SearchPaths>
+        <OtherUnitFiles Value="lrsbrf_qr"/>
+        <UnitOutputDirectory Value="lib/lrsbrf_qr/$(TargetCPU)-$(TargetOS)"/>
+      </SearchPaths>
+    </CompilerOptions>
+    <Version Minor="1" Release="1" Build="1"/>
+    <Files>
+      <Item>
+        <Filename Value="lrsbrf_qr/lrsbrf_qr.pas"/>
+        <HasRegisterProc Value="True"/>
+        <UnitName Value="lrSBRF_QR"/>
+      </Item>
+      <Item>
+        <Filename Value="lrsbrf_qr/lrsbrf_qr_editor.pas"/>
+        <UnitName Value="lrSBRF_QR_Editor"/>
+      </Item>
+    </Files>
+    <CompatibilityMode Value="False"/>
+    <RequiredPkgs>
+      <Item>
+        <PackageName Value="lr_qrcode"/>
+      </Item>
+      <Item>
+        <PackageName Value="FCL"/>
+      </Item>
+    </RequiredPkgs>
+    <UsageOptions>
+      <UnitPath Value="$(PkgOutDir)"/>
+    </UsageOptions>
+    <PublishOptions>
+      <Version Value="2"/>
+      <UseFileFilters Value="True"/>
+    </PublishOptions>
+  </Package>
+</CONFIG>
