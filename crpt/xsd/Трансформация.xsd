@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:include schemaLocation="../LP_base_types_v2.xsd"/>
+    <xs:element name="reaggregation" type="reaggregation"/>
+    <xs:complexType name="reaggregation">
+        <xs:annotation>
+            <xs:documentation>Трансформация транспортных упаковок</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="trade_participant_inn" type="inn_type">
+                <xs:annotation>
+                    <xs:documentation>ИНН участника оборота</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="reaggregation_type" type="reaggregation_type_type">
+                <xs:annotation>
+                    <xs:documentation>Тип трансформации
+                        Изъятие - REMOVING
+                        Добавление - ADDING</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="reaggregating_kitu" type="kitu_type">
+                <xs:annotation>
+                    <xs:documentation>Код идентификации трансформируемой транспортной упаковки (КИТУ)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="product_list">
+                <xs:annotation>
+                    <xs:documentation>Список транспортных упаковок или товаров</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="packing_product" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Транспортная упаковка или товар</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="kit" type="kit_type" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>КИТ</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="kitu" type="kitu_type" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>КИТУ</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="action_id" type="xs:int" use="required" fixed="32"/>
+        <xs:attribute name="version" type="xs:string" use="required" fixed="2"/>
+    </xs:complexType>
+</xs:schema>
