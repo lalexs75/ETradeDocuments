@@ -197,25 +197,25 @@ implementation
   {  Tfias_address_type  }
 procedure Tfias_address_type.Setaoguid(AValue: Taoguid);
 begin
-  Faoguid:=AValue;
   CheckStrMinSize('aoguid', AValue);
   CheckStrMaxSize('aoguid', AValue);
+  Faoguid:=AValue;
   ModifiedProperty('aoguid');
 end;
 
 procedure Tfias_address_type.Sethouseguid(AValue: Thouseguid);
 begin
-  Fhouseguid:=AValue;
   CheckStrMinSize('houseguid', AValue);
   CheckStrMaxSize('houseguid', AValue);
+  Fhouseguid:=AValue;
   ModifiedProperty('houseguid');
 end;
 
 procedure Tfias_address_type.Setflat(AValue: Tflat);
 begin
-  Fflat:=AValue;
   CheckStrMinSize('flat', AValue);
   CheckStrMaxSize('flat', AValue);
+  Fflat:=AValue;
   ModifiedProperty('flat');
 end;
 
@@ -247,53 +247,53 @@ end;
   {  Tvvod_contract_production  }
 procedure Tvvod_contract_production.SetDocType(AValue: TDocType);
 begin
-  FDocType:=AValue;
   CheckLockupValue('DocType', AValue);
+  FDocType:=AValue;
   ModifiedProperty('DocType');
 end;
 
 procedure Tvvod_contract_production.Setproducer_inn(AValue: TTRADE_PARTICIPANT_INN_type);
 begin
-  Fproducer_inn:=AValue;
   CheckStrMinSize('producer_inn', AValue);
   CheckStrMaxSize('producer_inn', AValue);
+  Fproducer_inn:=AValue;
   ModifiedProperty('producer_inn');
 end;
 
 procedure Tvvod_contract_production.Setowner_inn(AValue: TTRADE_PARTICIPANT_INN_type);
 begin
-  Fowner_inn:=AValue;
   CheckStrMinSize('owner_inn', AValue);
   CheckStrMaxSize('owner_inn', AValue);
+  Fowner_inn:=AValue;
   ModifiedProperty('owner_inn');
 end;
 
 procedure Tvvod_contract_production.Setproduction_date(AValue: Tdate_type);
 begin
-  Fproduction_date:=AValue;
   CheckStrMinSize('production_date', AValue);
   CheckStrMaxSize('production_date', AValue);
+  Fproduction_date:=AValue;
   ModifiedProperty('production_date');
 end;
 
 procedure Tvvod_contract_production.Setproduction_order(AValue: Tproduction_order);
 begin
-  Fproduction_order:=AValue;
   CheckLockupValue('production_order', AValue);
+  Fproduction_order:=AValue;
   ModifiedProperty('production_order');
 end;
 
 procedure Tvvod_contract_production.Setaction_id(AValue: String);
 begin
-  Faction_id:=AValue;
   CheckFixedValue('action_id', AValue);
+  Faction_id:=AValue;
   ModifiedProperty('action_id');
 end;
 
 procedure Tvvod_contract_production.Setversion(AValue: Longint);
 begin
-  Fversion:=AValue;
   CheckFixedValue('version', AValue);
+  Fversion:=AValue;
   ModifiedProperty('version');
 end;
 
@@ -393,49 +393,49 @@ end;
   {  Tvvod_contract_production_products_list_product  }
 procedure Tvvod_contract_production_products_list_product.Setuit(AValue: Tgs1_uit_type);
 begin
-  Fuit:=AValue;
   CheckStrMinSize('uit', AValue);
   CheckStrMaxSize('uit', AValue);
+  Fuit:=AValue;
   ModifiedProperty('uit');
 end;
 
 procedure Tvvod_contract_production_products_list_product.Setuitu(AValue: Tgs1_uitu_type);
 begin
-  Fuitu:=AValue;
   CheckStrMinSize('uitu', AValue);
   CheckStrMaxSize('uitu', AValue);
+  Fuitu:=AValue;
   ModifiedProperty('uitu');
 end;
 
 procedure Tvvod_contract_production_products_list_product.Settnved_code(AValue: Ttnved_code_type);
 begin
-  Ftnved_code:=AValue;
   CheckMinInclusiveValue('tnved_code', AValue);
   CheckMaxInclusiveValue('tnved_code', AValue);
+  Ftnved_code:=AValue;
   ModifiedProperty('tnved_code');
 end;
 
 procedure Tvvod_contract_production_products_list_product.Setproduction_date(AValue: Tdate_type);
 begin
-  Fproduction_date:=AValue;
   CheckStrMinSize('production_date', AValue);
   CheckStrMaxSize('production_date', AValue);
+  Fproduction_date:=AValue;
   ModifiedProperty('production_date');
 end;
 
 procedure Tvvod_contract_production_products_list_product.Setcertificate_doc_number(AValue: Tcertificate_doc_number);
 begin
-  Fcertificate_doc_number:=AValue;
   CheckStrMinSize('certificate_doc_number', AValue);
   CheckStrMaxSize('certificate_doc_number', AValue);
+  Fcertificate_doc_number:=AValue;
   ModifiedProperty('certificate_doc_number');
 end;
 
 procedure Tvvod_contract_production_products_list_product.Setcertificate_doc_date(AValue: Tdate_type);
 begin
-  Fcertificate_doc_date:=AValue;
   CheckStrMinSize('certificate_doc_date', AValue);
   CheckStrMaxSize('certificate_doc_date', AValue);
+  Fcertificate_doc_date:=AValue;
   ModifiedProperty('certificate_doc_date');
 end;
 

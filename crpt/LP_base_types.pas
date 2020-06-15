@@ -145,25 +145,25 @@ implementation
   {  Tfias_address_type  }
 procedure Tfias_address_type.Setaoguid(AValue: Taoguid);
 begin
-  Faoguid:=AValue;
   CheckStrMinSize('aoguid', AValue);
   CheckStrMaxSize('aoguid', AValue);
+  Faoguid:=AValue;
   ModifiedProperty('aoguid');
 end;
 
 procedure Tfias_address_type.Sethouseguid(AValue: Thouseguid);
 begin
-  Fhouseguid:=AValue;
   CheckStrMinSize('houseguid', AValue);
   CheckStrMaxSize('houseguid', AValue);
+  Fhouseguid:=AValue;
   ModifiedProperty('houseguid');
 end;
 
 procedure Tfias_address_type.Setflat(AValue: Tflat);
 begin
-  Fflat:=AValue;
   CheckStrMinSize('flat', AValue);
   CheckStrMaxSize('flat', AValue);
+  Fflat:=AValue;
   ModifiedProperty('flat');
 end;
 

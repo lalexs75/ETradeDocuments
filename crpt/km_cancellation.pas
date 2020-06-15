@@ -186,25 +186,25 @@ implementation
   {  Tfias_address_type  }
 procedure Tfias_address_type.Setaoguid(AValue: Taoguid);
 begin
-  Faoguid:=AValue;
   CheckStrMinSize('aoguid', AValue);
   CheckStrMaxSize('aoguid', AValue);
+  Faoguid:=AValue;
   ModifiedProperty('aoguid');
 end;
 
 procedure Tfias_address_type.Sethouseguid(AValue: Thouseguid);
 begin
-  Fhouseguid:=AValue;
   CheckStrMinSize('houseguid', AValue);
   CheckStrMaxSize('houseguid', AValue);
+  Fhouseguid:=AValue;
   ModifiedProperty('houseguid');
 end;
 
 procedure Tfias_address_type.Setflat(AValue: Tflat);
 begin
-  Fflat:=AValue;
   CheckStrMinSize('flat', AValue);
   CheckStrMaxSize('flat', AValue);
+  Fflat:=AValue;
   ModifiedProperty('flat');
 end;
 
@@ -236,46 +236,46 @@ end;
   {  Tkm_cancellation  }
 procedure Tkm_cancellation.Settrade_participant_inn(AValue: TTRADE_PARTICIPANT_INN_type);
 begin
-  Ftrade_participant_inn:=AValue;
   CheckStrMinSize('trade_participant_inn', AValue);
   CheckStrMaxSize('trade_participant_inn', AValue);
+  Ftrade_participant_inn:=AValue;
   ModifiedProperty('trade_participant_inn');
 end;
 
 procedure Tkm_cancellation.Setcancellation_reason(AValue: Tcancellation_reason);
 begin
-  Fcancellation_reason:=AValue;
   CheckLockupValue('cancellation_reason', AValue);
+  Fcancellation_reason:=AValue;
   ModifiedProperty('cancellation_reason');
 end;
 
 procedure Tkm_cancellation.Setcancellation_doc_date(AValue: Tdate_type);
 begin
-  Fcancellation_doc_date:=AValue;
   CheckStrMinSize('cancellation_doc_date', AValue);
   CheckStrMaxSize('cancellation_doc_date', AValue);
+  Fcancellation_doc_date:=AValue;
   ModifiedProperty('cancellation_doc_date');
 end;
 
 procedure Tkm_cancellation.Setcancellation_doc_number(AValue: Tstring255_type);
 begin
-  Fcancellation_doc_number:=AValue;
   CheckStrMinSize('cancellation_doc_number', AValue);
   CheckStrMaxSize('cancellation_doc_number', AValue);
+  Fcancellation_doc_number:=AValue;
   ModifiedProperty('cancellation_doc_number');
 end;
 
 procedure Tkm_cancellation.Setaction_id(AValue: Longint);
 begin
-  Faction_id:=AValue;
   CheckFixedValue('action_id', AValue);
+  Faction_id:=AValue;
   ModifiedProperty('action_id');
 end;
 
 procedure Tkm_cancellation.Setversion(AValue: Longint);
 begin
-  Fversion:=AValue;
   CheckFixedValue('version', AValue);
+  Fversion:=AValue;
   ModifiedProperty('version');
 end;
 
@@ -374,24 +374,24 @@ end;
   {  Tkm_cancellation_km_list_km  }
 procedure Tkm_cancellation_km_list_km.Setuit(AValue: Tgs1_uit_type);
 begin
-  Fuit:=AValue;
   CheckStrMinSize('uit', AValue);
   CheckStrMaxSize('uit', AValue);
+  Fuit:=AValue;
   ModifiedProperty('uit');
 end;
 
 procedure Tkm_cancellation_km_list_km.Setuitu(AValue: Tgs1_uitu_type);
 begin
-  Fuitu:=AValue;
   CheckStrMinSize('uitu', AValue);
   CheckStrMaxSize('uitu', AValue);
+  Fuitu:=AValue;
   ModifiedProperty('uitu');
 end;
 
 procedure Tkm_cancellation_km_list_km.Setcancellation_reason(AValue: Tcancellation_reason1);
 begin
-  Fcancellation_reason:=AValue;
   CheckLockupValue('cancellation_reason', AValue);
+  Fcancellation_reason:=AValue;
   ModifiedProperty('cancellation_reason');
 end;
 

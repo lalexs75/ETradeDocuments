@@ -233,25 +233,25 @@ implementation
   {  Tfias_address_type  }
 procedure Tfias_address_type.Setaoguid(AValue: Taoguid);
 begin
-  Faoguid:=AValue;
   CheckStrMinSize('aoguid', AValue);
   CheckStrMaxSize('aoguid', AValue);
+  Faoguid:=AValue;
   ModifiedProperty('aoguid');
 end;
 
 procedure Tfias_address_type.Sethouseguid(AValue: Thouseguid);
 begin
-  Fhouseguid:=AValue;
   CheckStrMinSize('houseguid', AValue);
   CheckStrMaxSize('houseguid', AValue);
+  Fhouseguid:=AValue;
   ModifiedProperty('houseguid');
 end;
 
 procedure Tfias_address_type.Setflat(AValue: Tflat);
 begin
-  Fflat:=AValue;
   CheckStrMinSize('flat', AValue);
   CheckStrMaxSize('flat', AValue);
+  Fflat:=AValue;
   ModifiedProperty('flat');
 end;
 
@@ -309,17 +309,17 @@ end;
   {  Tchildren_products_list_type_product  }
 procedure Tchildren_products_list_type_product.Setkit(AValue: Tkit_type);
 begin
-  Fkit:=AValue;
   CheckStrMinSize('kit', AValue);
   CheckStrMaxSize('kit', AValue);
+  Fkit:=AValue;
   ModifiedProperty('kit');
 end;
 
 procedure Tchildren_products_list_type_product.Setkitu(AValue: Tkitu_type);
 begin
-  Fkitu:=AValue;
   CheckStrMinSize('kitu', AValue);
   CheckStrMaxSize('kitu', AValue);
+  Fkitu:=AValue;
   ModifiedProperty('kitu');
 end;
 
@@ -360,61 +360,61 @@ end;
   {  Twithdrawal  }
 procedure Twithdrawal.Settrade_participant_inn(AValue: Tinn_type);
 begin
-  Ftrade_participant_inn:=AValue;
   CheckStrMinSize('trade_participant_inn', AValue);
   CheckStrMaxSize('trade_participant_inn', AValue);
+  Ftrade_participant_inn:=AValue;
   ModifiedProperty('trade_participant_inn');
 end;
 
 procedure Twithdrawal.Setwithdrawal_type(AValue: Twithdrawal_type);
 begin
-  Fwithdrawal_type:=AValue;
   CheckLockupValue('withdrawal_type', AValue);
+  Fwithdrawal_type:=AValue;
   ModifiedProperty('withdrawal_type');
 end;
 
 procedure Twithdrawal.Setwithdrawal_date(AValue: Tdate_type);
 begin
-  Fwithdrawal_date:=AValue;
   CheckStrMinSize('withdrawal_date', AValue);
   CheckStrMaxSize('withdrawal_date', AValue);
+  Fwithdrawal_date:=AValue;
   ModifiedProperty('withdrawal_date');
 end;
 
 procedure Twithdrawal.Setprimary_document_type(AValue: Tprimary_document_name_type);
 begin
-  Fprimary_document_type:=AValue;
   CheckLockupValue('primary_document_type', AValue);
+  Fprimary_document_type:=AValue;
   ModifiedProperty('primary_document_type');
 end;
 
 procedure Twithdrawal.Setprimary_document_number(AValue: Tstring255_type);
 begin
-  Fprimary_document_number:=AValue;
   CheckStrMinSize('primary_document_number', AValue);
   CheckStrMaxSize('primary_document_number', AValue);
+  Fprimary_document_number:=AValue;
   ModifiedProperty('primary_document_number');
 end;
 
 procedure Twithdrawal.Setprimary_document_date(AValue: Tdate_type);
 begin
-  Fprimary_document_date:=AValue;
   CheckStrMinSize('primary_document_date', AValue);
   CheckStrMaxSize('primary_document_date', AValue);
+  Fprimary_document_date:=AValue;
   ModifiedProperty('primary_document_date');
 end;
 
 procedure Twithdrawal.Setaction_id(AValue: Longint);
 begin
-  Faction_id:=AValue;
   CheckFixedValue('action_id', AValue);
+  Faction_id:=AValue;
   ModifiedProperty('action_id');
 end;
 
 procedure Twithdrawal.Setversion(AValue: Double);
 begin
-  Fversion:=AValue;
   CheckFixedValue('version', AValue);
+  Fversion:=AValue;
   ModifiedProperty('version');
 end;
 
@@ -529,23 +529,23 @@ end;
   {  Twithdrawal_products_list_product  }
 procedure Twithdrawal_products_list_product.Setkit(AValue: Tkit_type);
 begin
-  Fkit:=AValue;
   CheckStrMinSize('kit', AValue);
   CheckStrMaxSize('kit', AValue);
+  Fkit:=AValue;
   ModifiedProperty('kit');
 end;
 
 procedure Twithdrawal_products_list_product.Setcost(AValue: Tprice_type);
 begin
-  Fcost:=AValue;
   CheckMinInclusiveValue('cost', AValue);
+  Fcost:=AValue;
   ModifiedProperty('cost');
 end;
 
 procedure Twithdrawal_products_list_product.Setvat_value(AValue: Tprice_type);
 begin
-  Fvat_value:=AValue;
   CheckMinInclusiveValue('vat_value', AValue);
+  Fvat_value:=AValue;
   ModifiedProperty('vat_value');
 end;
 

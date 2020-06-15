@@ -210,25 +210,25 @@ implementation
   {  Tfias_address_type  }
 procedure Tfias_address_type.Setaoguid(AValue: Taoguid);
 begin
-  Faoguid:=AValue;
   CheckStrMinSize('aoguid', AValue);
   CheckStrMaxSize('aoguid', AValue);
+  Faoguid:=AValue;
   ModifiedProperty('aoguid');
 end;
 
 procedure Tfias_address_type.Sethouseguid(AValue: Thouseguid);
 begin
-  Fhouseguid:=AValue;
   CheckStrMinSize('houseguid', AValue);
   CheckStrMaxSize('houseguid', AValue);
+  Fhouseguid:=AValue;
   ModifiedProperty('houseguid');
 end;
 
 procedure Tfias_address_type.Setflat(AValue: Tflat);
 begin
-  Fflat:=AValue;
   CheckStrMinSize('flat', AValue);
   CheckStrMaxSize('flat', AValue);
+  Fflat:=AValue;
   ModifiedProperty('flat');
 end;
 
@@ -260,61 +260,61 @@ end;
   {  TVvod_Imp  }
 procedure TVvod_Imp.SetDocType(AValue: TDocType);
 begin
-  FDocType:=AValue;
   CheckLockupValue('DocType', AValue);
+  FDocType:=AValue;
   ModifiedProperty('DocType');
 end;
 
 procedure TVvod_Imp.SetTRADE_PARTICIPANT_INN(AValue: TTRADE_PARTICIPANT_INN_type);
 begin
-  FTRADE_PARTICIPANT_INN:=AValue;
   CheckStrMinSize('TRADE_PARTICIPANT_INN', AValue);
   CheckStrMaxSize('TRADE_PARTICIPANT_INN', AValue);
+  FTRADE_PARTICIPANT_INN:=AValue;
   ModifiedProperty('TRADE_PARTICIPANT_INN');
 end;
 
 procedure TVvod_Imp.SetDeclaration_Date(AValue: Tdate_type);
 begin
-  FDeclaration_Date:=AValue;
   CheckStrMinSize('Declaration_Date', AValue);
   CheckStrMaxSize('Declaration_Date', AValue);
+  FDeclaration_Date:=AValue;
   ModifiedProperty('Declaration_Date');
 end;
 
 procedure TVvod_Imp.SetDeclaration_Number(AValue: TDeclaration_Number);
 begin
-  FDeclaration_Number:=AValue;
   CheckStrMinSize('Declaration_Number', AValue);
   CheckStrMaxSize('Declaration_Number', AValue);
+  FDeclaration_Number:=AValue;
   ModifiedProperty('Declaration_Number');
 end;
 
 procedure TVvod_Imp.SetCustoms_Code(AValue: TCustoms_Code);
 begin
-  FCustoms_Code:=AValue;
   CheckStrMinSize('Customs_Code', AValue);
   CheckStrMaxSize('Customs_Code', AValue);
+  FCustoms_Code:=AValue;
   ModifiedProperty('Customs_Code');
 end;
 
 procedure TVvod_Imp.SetDecision_Code(AValue: TDecision_Code);
 begin
-  FDecision_Code:=AValue;
   CheckLockupValue('Decision_Code', AValue);
+  FDecision_Code:=AValue;
   ModifiedProperty('Decision_Code');
 end;
 
 procedure TVvod_Imp.Setaction_id(AValue: String);
 begin
-  Faction_id:=AValue;
   CheckFixedValue('action_id', AValue);
+  Faction_id:=AValue;
   ModifiedProperty('action_id');
 end;
 
 procedure TVvod_Imp.Setversion(AValue: Longint);
 begin
-  Fversion:=AValue;
   CheckFixedValue('version', AValue);
+  Fversion:=AValue;
   ModifiedProperty('version');
 end;
 
@@ -419,48 +419,48 @@ end;
   {  TVvod_Imp_Products_List_PRODUCT  }
 procedure TVvod_Imp_Products_List_PRODUCT.SetUIT(AValue: Tgs1_uit_type);
 begin
-  FUIT:=AValue;
   CheckStrMinSize('UIT', AValue);
   CheckStrMaxSize('UIT', AValue);
+  FUIT:=AValue;
   ModifiedProperty('UIT');
 end;
 
 procedure TVvod_Imp_Products_List_PRODUCT.SetUITU(AValue: Tgs1_uitu_type);
 begin
-  FUITU:=AValue;
   CheckStrMinSize('UITU', AValue);
   CheckStrMaxSize('UITU', AValue);
+  FUITU:=AValue;
   ModifiedProperty('UITU');
 end;
 
 procedure TVvod_Imp_Products_List_PRODUCT.SetCertificate_Doc(AValue: TCertificate_Doc);
 begin
-  FCertificate_Doc:=AValue;
   CheckLockupValue('Certificate_Doc', AValue);
+  FCertificate_Doc:=AValue;
   ModifiedProperty('Certificate_Doc');
 end;
 
 procedure TVvod_Imp_Products_List_PRODUCT.SetCertificate_Doc_Number(AValue: TCertificate_Doc_Number);
 begin
-  FCertificate_Doc_Number:=AValue;
   CheckStrMinSize('Certificate_Doc_Number', AValue);
   CheckStrMaxSize('Certificate_Doc_Number', AValue);
+  FCertificate_Doc_Number:=AValue;
   ModifiedProperty('Certificate_Doc_Number');
 end;
 
 procedure TVvod_Imp_Products_List_PRODUCT.SetCertificate_Doc_Date(AValue: Tdate_type);
 begin
-  FCertificate_Doc_Date:=AValue;
   CheckStrMinSize('Certificate_Doc_Date', AValue);
   CheckStrMaxSize('Certificate_Doc_Date', AValue);
+  FCertificate_Doc_Date:=AValue;
   ModifiedProperty('Certificate_Doc_Date');
 end;
 
 procedure TVvod_Imp_Products_List_PRODUCT.SetTNVED_Code(AValue: TTNVED_Code);
 begin
-  FTNVED_Code:=AValue;
   CheckStrMinSize('TNVED_Code', AValue);
   CheckStrMaxSize('TNVED_Code', AValue);
+  FTNVED_Code:=AValue;
   ModifiedProperty('TNVED_Code');
 end;
 

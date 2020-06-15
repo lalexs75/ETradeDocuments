@@ -191,16 +191,16 @@ implementation
   {  TVvod  }
 procedure TVvod.SetDocType(AValue: TDocType);
 begin
-  FDocType:=AValue;
   CheckLockupValue('DocType', AValue);
+  FDocType:=AValue;
   ModifiedProperty('DocType');
 end;
 
 procedure TVvod.SetParticipant_INN(AValue: TParticipant_INN);
 begin
-  FParticipant_INN:=AValue;
   CheckStrMinSize('Participant_INN', AValue);
   CheckStrMaxSize('Participant_INN', AValue);
+  FParticipant_INN:=AValue;
   ModifiedProperty('Participant_INN');
 end;
 
@@ -212,38 +212,38 @@ end;
 
 procedure TVvod.SetProducer_INN(AValue: TProducer_INN);
 begin
-  FProducer_INN:=AValue;
   CheckStrMinSize('Producer_INN', AValue);
   CheckStrMaxSize('Producer_INN', AValue);
+  FProducer_INN:=AValue;
   ModifiedProperty('Producer_INN');
 end;
 
 procedure TVvod.SetINNOwner(AValue: TINNOwner);
 begin
-  FINNOwner:=AValue;
   CheckStrMinSize('INNOwner', AValue);
   CheckStrMaxSize('INNOwner', AValue);
+  FINNOwner:=AValue;
   ModifiedProperty('INNOwner');
 end;
 
 procedure TVvod.SetProduction_Order(AValue: TProduction_Order);
 begin
-  FProduction_Order:=AValue;
   CheckLockupValue('Production_Order', AValue);
+  FProduction_Order:=AValue;
   ModifiedProperty('Production_Order');
 end;
 
 procedure TVvod.SetMarkingType(AValue: TMarkingType);
 begin
-  FMarkingType:=AValue;
   CheckLockupValue('MarkingType', AValue);
+  FMarkingType:=AValue;
   ModifiedProperty('MarkingType');
 end;
 
 procedure TVvod.Setaction_id(AValue: Longint);
 begin
-  Faction_id:=AValue;
   CheckFixedValue('action_id', AValue);
+  Faction_id:=AValue;
   ModifiedProperty('action_id');
 end;
 
@@ -351,39 +351,39 @@ end;
 
 procedure TVvod_Products_List_PRODUCT.SetUIT(AValue: TUIT);
 begin
-  FUIT:=AValue;
   CheckStrMinSize('UIT', AValue);
   CheckStrMaxSize('UIT', AValue);
+  FUIT:=AValue;
   ModifiedProperty('UIT');
 end;
 
 procedure TVvod_Products_List_PRODUCT.SetUITU(AValue: TUITU);
 begin
-  FUITU:=AValue;
   CheckStrMinSize('UITU', AValue);
   CheckStrMaxSize('UITU', AValue);
+  FUITU:=AValue;
   ModifiedProperty('UITU');
 end;
 
 procedure TVvod_Products_List_PRODUCT.SetCodeTNVED(AValue: TCodeTNVED);
 begin
-  FCodeTNVED:=AValue;
   CheckStrMinSize('CodeTNVED', AValue);
   CheckStrMaxSize('CodeTNVED', AValue);
+  FCodeTNVED:=AValue;
   ModifiedProperty('CodeTNVED');
 end;
 
 procedure TVvod_Products_List_PRODUCT.SetMarkingType(AValue: TMarkingType1);
 begin
-  FMarkingType:=AValue;
   CheckLockupValue('MarkingType', AValue);
+  FMarkingType:=AValue;
   ModifiedProperty('MarkingType');
 end;
 
 procedure TVvod_Products_List_PRODUCT.SetCertificateDoc(AValue: TCertificateDoc);
 begin
-  FCertificateDoc:=AValue;
   CheckLockupValue('CertificateDoc', AValue);
+  FCertificateDoc:=AValue;
   ModifiedProperty('CertificateDoc');
 end;
 

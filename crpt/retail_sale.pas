@@ -191,25 +191,25 @@ implementation
   {  Tfias_address_type  }
 procedure Tfias_address_type.Setaoguid(AValue: Taoguid);
 begin
-  Faoguid:=AValue;
   CheckStrMinSize('aoguid', AValue);
   CheckStrMaxSize('aoguid', AValue);
+  Faoguid:=AValue;
   ModifiedProperty('aoguid');
 end;
 
 procedure Tfias_address_type.Sethouseguid(AValue: Thouseguid);
 begin
-  Fhouseguid:=AValue;
   CheckStrMinSize('houseguid', AValue);
   CheckStrMaxSize('houseguid', AValue);
+  Fhouseguid:=AValue;
   ModifiedProperty('houseguid');
 end;
 
 procedure Tfias_address_type.Setflat(AValue: Tflat);
 begin
-  Fflat:=AValue;
   CheckStrMinSize('flat', AValue);
   CheckStrMaxSize('flat', AValue);
+  Fflat:=AValue;
   ModifiedProperty('flat');
 end;
 
@@ -241,62 +241,62 @@ end;
   {  Tretail_sale  }
 procedure Tretail_sale.SetTRADE_PARTICIPANT_INN(AValue: TTRADE_PARTICIPANT_INN_type);
 begin
-  FTRADE_PARTICIPANT_INN:=AValue;
   CheckStrMinSize('TRADE_PARTICIPANT_INN', AValue);
   CheckStrMaxSize('TRADE_PARTICIPANT_INN', AValue);
+  FTRADE_PARTICIPANT_INN:=AValue;
   ModifiedProperty('TRADE_PARTICIPANT_INN');
 end;
 
 procedure Tretail_sale.Setaction(AValue: Taction_type);
 begin
-  Faction:=AValue;
   CheckLockupValue('action', AValue);
+  Faction:=AValue;
   ModifiedProperty('action');
 end;
 
 procedure Tretail_sale.Setaction_date(AValue: Tdate_type);
 begin
-  Faction_date:=AValue;
   CheckStrMinSize('action_date', AValue);
   CheckStrMaxSize('action_date', AValue);
+  Faction_date:=AValue;
   ModifiedProperty('action_date');
 end;
 
 procedure Tretail_sale.Setdoc_type(AValue: Tdoc_type_enum);
 begin
-  Fdoc_type:=AValue;
   CheckLockupValue('doc_type', AValue);
+  Fdoc_type:=AValue;
   ModifiedProperty('doc_type');
 end;
 
 procedure Tretail_sale.Setdoc_name(AValue: Tstring200_type);
 begin
-  Fdoc_name:=AValue;
   CheckStrMinSize('doc_name', AValue);
   CheckStrMaxSize('doc_name', AValue);
+  Fdoc_name:=AValue;
   ModifiedProperty('doc_name');
 end;
 
 procedure Tretail_sale.Setdoc_number(AValue: Tstring200_type);
 begin
-  Fdoc_number:=AValue;
   CheckStrMinSize('doc_number', AValue);
   CheckStrMaxSize('doc_number', AValue);
+  Fdoc_number:=AValue;
   ModifiedProperty('doc_number');
 end;
 
 procedure Tretail_sale.Setdoc_date(AValue: Tdate_type);
 begin
-  Fdoc_date:=AValue;
   CheckStrMinSize('doc_date', AValue);
   CheckStrMaxSize('doc_date', AValue);
+  Fdoc_date:=AValue;
   ModifiedProperty('doc_date');
 end;
 
 procedure Tretail_sale.Setaction_id(AValue: Longint);
 begin
-  Faction_id:=AValue;
   CheckFixedValue('action_id', AValue);
+  Faction_id:=AValue;
   ModifiedProperty('action_id');
 end;
 
@@ -383,23 +383,23 @@ end;
   {  Tretail_sale_conclusion_detail  }
 procedure Tretail_sale_conclusion_detail.Setsign_num(AValue: Tgs1_uit_type);
 begin
-  Fsign_num:=AValue;
   CheckStrMinSize('sign_num', AValue);
   CheckStrMaxSize('sign_num', AValue);
+  Fsign_num:=AValue;
   ModifiedProperty('sign_num');
 end;
 
 procedure Tretail_sale_conclusion_detail.Setcost(AValue: Tprice_type);
 begin
-  Fcost:=AValue;
   CheckMinInclusiveValue('cost', AValue);
+  Fcost:=AValue;
   ModifiedProperty('cost');
 end;
 
 procedure Tretail_sale_conclusion_detail.Setvat_value(AValue: Tprice_type);
 begin
-  Fvat_value:=AValue;
   CheckMinInclusiveValue('vat_value', AValue);
+  Fvat_value:=AValue;
   ModifiedProperty('vat_value');
 end;
 

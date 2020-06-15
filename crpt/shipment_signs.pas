@@ -234,25 +234,25 @@ implementation
   {  Tfias_address_type  }
 procedure Tfias_address_type.Setaoguid(AValue: Taoguid);
 begin
-  Faoguid:=AValue;
   CheckStrMinSize('aoguid', AValue);
   CheckStrMaxSize('aoguid', AValue);
+  Faoguid:=AValue;
   ModifiedProperty('aoguid');
 end;
 
 procedure Tfias_address_type.Sethouseguid(AValue: Thouseguid);
 begin
-  Fhouseguid:=AValue;
   CheckStrMinSize('houseguid', AValue);
   CheckStrMaxSize('houseguid', AValue);
+  Fhouseguid:=AValue;
   ModifiedProperty('houseguid');
 end;
 
 procedure Tfias_address_type.Setflat(AValue: Tflat);
 begin
-  Fflat:=AValue;
   CheckStrMinSize('flat', AValue);
   CheckStrMaxSize('flat', AValue);
+  Fflat:=AValue;
   ModifiedProperty('flat');
 end;
 
@@ -284,70 +284,70 @@ end;
   {  Tshipment_signs  }
 procedure Tshipment_signs.Setsubject_inn(AValue: TTRADE_PARTICIPANT_INN_type);
 begin
-  Fsubject_inn:=AValue;
   CheckStrMinSize('subject_inn', AValue);
   CheckStrMaxSize('subject_inn', AValue);
+  Fsubject_inn:=AValue;
   ModifiedProperty('subject_inn');
 end;
 
 procedure Tshipment_signs.Setrecipient_inn(AValue: TTRADE_PARTICIPANT_INN_type);
 begin
-  Frecipient_inn:=AValue;
   CheckStrMinSize('recipient_inn', AValue);
   CheckStrMaxSize('recipient_inn', AValue);
+  Frecipient_inn:=AValue;
   ModifiedProperty('recipient_inn');
 end;
 
 procedure Tshipment_signs.Setowner_inn(AValue: TTRADE_PARTICIPANT_INN_type);
 begin
-  Fowner_inn:=AValue;
   CheckStrMinSize('owner_inn', AValue);
   CheckStrMaxSize('owner_inn', AValue);
+  Fowner_inn:=AValue;
   ModifiedProperty('owner_inn');
 end;
 
 procedure Tshipment_signs.Settransfer_date(AValue: Tdate_type);
 begin
-  Ftransfer_date:=AValue;
   CheckStrMinSize('transfer_date', AValue);
   CheckStrMaxSize('transfer_date', AValue);
+  Ftransfer_date:=AValue;
   ModifiedProperty('transfer_date');
 end;
 
 procedure Tshipment_signs.Setmove_doc_num(AValue: Tdocument_number_200_type);
 begin
-  Fmove_doc_num:=AValue;
   CheckStrMinSize('move_doc_num', AValue);
   CheckStrMaxSize('move_doc_num', AValue);
+  Fmove_doc_num:=AValue;
   ModifiedProperty('move_doc_num');
 end;
 
 procedure Tshipment_signs.Setmove_doc_date(AValue: Tdate_type);
 begin
-  Fmove_doc_date:=AValue;
   CheckStrMinSize('move_doc_date', AValue);
   CheckStrMaxSize('move_doc_date', AValue);
+  Fmove_doc_date:=AValue;
   ModifiedProperty('move_doc_date');
 end;
 
 procedure Tshipment_signs.Setturnover_type(AValue: Tturnover_type_enum);
 begin
-  Fturnover_type:=AValue;
   CheckLockupValue('turnover_type', AValue);
+  Fturnover_type:=AValue;
   ModifiedProperty('turnover_type');
 end;
 
 procedure Tshipment_signs.Setaction_id(AValue: Longint);
 begin
-  Faction_id:=AValue;
   CheckFixedValue('action_id', AValue);
+  Faction_id:=AValue;
   ModifiedProperty('action_id');
 end;
 
 procedure Tshipment_signs.Setversion(AValue: Double);
 begin
-  Fversion:=AValue;
   CheckFixedValue('version', AValue);
+  Fversion:=AValue;
   ModifiedProperty('version');
 end;
 
@@ -479,23 +479,23 @@ end;
   {  Tshipment_signs_order_details_signs_sign_uit  }
 procedure Tshipment_signs_order_details_signs_sign_uit.Setuit(AValue: Tgs1_uit_type);
 begin
-  Fuit:=AValue;
   CheckStrMinSize('uit', AValue);
   CheckStrMaxSize('uit', AValue);
+  Fuit:=AValue;
   ModifiedProperty('uit');
 end;
 
 procedure Tshipment_signs_order_details_signs_sign_uit.Setcost(AValue: Tprice_type);
 begin
-  Fcost:=AValue;
   CheckMinInclusiveValue('cost', AValue);
+  Fcost:=AValue;
   ModifiedProperty('cost');
 end;
 
 procedure Tshipment_signs_order_details_signs_sign_uit.Setvat_value(AValue: Tprice_type);
 begin
-  Fvat_value:=AValue;
   CheckMinInclusiveValue('vat_value', AValue);
+  Fvat_value:=AValue;
   ModifiedProperty('vat_value');
 end;
 
@@ -533,23 +533,23 @@ end;
   {  Tshipment_signs_order_details_signs_sign_uitu  }
 procedure Tshipment_signs_order_details_signs_sign_uitu.Setuitu(AValue: Tgs1_uitu_type);
 begin
-  Fuitu:=AValue;
   CheckStrMinSize('uitu', AValue);
   CheckStrMaxSize('uitu', AValue);
+  Fuitu:=AValue;
   ModifiedProperty('uitu');
 end;
 
 procedure Tshipment_signs_order_details_signs_sign_uitu.Setcost(AValue: Tprice_type);
 begin
-  Fcost:=AValue;
   CheckMinInclusiveValue('cost', AValue);
+  Fcost:=AValue;
   ModifiedProperty('cost');
 end;
 
 procedure Tshipment_signs_order_details_signs_sign_uitu.Setvat_value(AValue: Tprice_type);
 begin
-  Fvat_value:=AValue;
   CheckMinInclusiveValue('vat_value', AValue);
+  Fvat_value:=AValue;
   ModifiedProperty('vat_value');
 end;
 

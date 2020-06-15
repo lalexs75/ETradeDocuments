@@ -253,8 +253,8 @@ type
   {  TMKIO_Order_PRODUCT_DETAILS_PRODUCT_S_NUMS  }
   TMKIO_Order_PRODUCT_DETAILS_PRODUCT_S_NUMS = class(TXmlSerializationObject)
   private
-    FSERIAL_NUMBER:TSERIAL_NUMBER;
-    procedure SetSERIAL_NUMBER( AValue:TSERIAL_NUMBER);
+    FSERIAL_NUMBER:TXSDStringArray;
+    procedure SetSERIAL_NUMBER( AValue:TXSDStringArray);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
@@ -263,7 +263,7 @@ type
     destructor Destroy; override;
   published
     //Серийный номер
-    property SERIAL_NUMBER:TSERIAL_NUMBER read FSERIAL_NUMBER write SetSERIAL_NUMBER;
+    property SERIAL_NUMBER:TXSDStringArray read FSERIAL_NUMBER write SetSERIAL_NUMBER;
   end;
 
 implementation
@@ -271,25 +271,25 @@ implementation
   {  Tfias_address_type  }
 procedure Tfias_address_type.Setaoguid(AValue: Taoguid);
 begin
-  Faoguid:=AValue;
   CheckStrMinSize('aoguid', AValue);
   CheckStrMaxSize('aoguid', AValue);
+  Faoguid:=AValue;
   ModifiedProperty('aoguid');
 end;
 
 procedure Tfias_address_type.Sethouseguid(AValue: Thouseguid);
 begin
-  Fhouseguid:=AValue;
   CheckStrMinSize('houseguid', AValue);
   CheckStrMaxSize('houseguid', AValue);
+  Fhouseguid:=AValue;
   ModifiedProperty('houseguid');
 end;
 
 procedure Tfias_address_type.Setflat(AValue: Tflat);
 begin
-  Fflat:=AValue;
   CheckStrMinSize('flat', AValue);
   CheckStrMaxSize('flat', AValue);
+  Fflat:=AValue;
   ModifiedProperty('flat');
 end;
 
@@ -321,102 +321,102 @@ end;
   {  TMKIO_Order  }
 procedure TMKIO_Order.SetTRADE_PARTICIPANT_INN(AValue: TTRADE_PARTICIPANT_INN_type);
 begin
-  FTRADE_PARTICIPANT_INN:=AValue;
   CheckStrMinSize('TRADE_PARTICIPANT_INN', AValue);
   CheckStrMaxSize('TRADE_PARTICIPANT_INN', AValue);
+  FTRADE_PARTICIPANT_INN:=AValue;
   ModifiedProperty('TRADE_PARTICIPANT_INN');
 end;
 
 procedure TMKIO_Order.SetOPERATOR_CONTRACT_NUM(AValue: Tstring255_type);
 begin
-  FOPERATOR_CONTRACT_NUM:=AValue;
   CheckStrMinSize('OPERATOR_CONTRACT_NUM', AValue);
   CheckStrMaxSize('OPERATOR_CONTRACT_NUM', AValue);
+  FOPERATOR_CONTRACT_NUM:=AValue;
   ModifiedProperty('OPERATOR_CONTRACT_NUM');
 end;
 
 procedure TMKIO_Order.SetOPERATOR_CONTRACT_DATE(AValue: Tdate_type);
 begin
-  FOPERATOR_CONTRACT_DATE:=AValue;
   CheckStrMinSize('OPERATOR_CONTRACT_DATE', AValue);
   CheckStrMaxSize('OPERATOR_CONTRACT_DATE', AValue);
+  FOPERATOR_CONTRACT_DATE:=AValue;
   ModifiedProperty('OPERATOR_CONTRACT_DATE');
 end;
 
 procedure TMKIO_Order.SetPREP_METHOD(AValue: TPREP_METHOD);
 begin
-  FPREP_METHOD:=AValue;
   CheckLockupValue('PREP_METHOD', AValue);
+  FPREP_METHOD:=AValue;
   ModifiedProperty('PREP_METHOD');
 end;
 
 procedure TMKIO_Order.SetRECEPTION_METHOD(AValue: TRECEPTION_METHOD);
 begin
-  FRECEPTION_METHOD:=AValue;
   CheckLockupValue('RECEPTION_METHOD', AValue);
+  FRECEPTION_METHOD:=AValue;
   ModifiedProperty('RECEPTION_METHOD');
 end;
 
 procedure TMKIO_Order.SetLABEL_TEMPLATE_ID(AValue: Tguid_type);
 begin
-  FLABEL_TEMPLATE_ID:=AValue;
   CheckStrMinSize('LABEL_TEMPLATE_ID', AValue);
   CheckStrMaxSize('LABEL_TEMPLATE_ID', AValue);
+  FLABEL_TEMPLATE_ID:=AValue;
   ModifiedProperty('LABEL_TEMPLATE_ID');
 end;
 
 procedure TMKIO_Order.SetLABELLING_CENTER_NAME(AValue: Tstring255_type);
 begin
-  FLABELLING_CENTER_NAME:=AValue;
   CheckStrMinSize('LABELLING_CENTER_NAME', AValue);
   CheckStrMaxSize('LABELLING_CENTER_NAME', AValue);
+  FLABELLING_CENTER_NAME:=AValue;
   ModifiedProperty('LABELLING_CENTER_NAME');
 end;
 
 procedure TMKIO_Order.SetLABELLING_CENTER_INN(AValue: TLABELLING_CENTER_INN_type);
 begin
-  FLABELLING_CENTER_INN:=AValue;
   CheckStrMinSize('LABELLING_CENTER_INN', AValue);
   CheckStrMaxSize('LABELLING_CENTER_INN', AValue);
+  FLABELLING_CENTER_INN:=AValue;
   ModifiedProperty('LABELLING_CENTER_INN');
 end;
 
 procedure TMKIO_Order.SetLABELLING_CENTER_CONTRACT_NUM(AValue: Tstring255_type);
 begin
-  FLABELLING_CENTER_CONTRACT_NUM:=AValue;
   CheckStrMinSize('LABELLING_CENTER_CONTRACT_NUM', AValue);
   CheckStrMaxSize('LABELLING_CENTER_CONTRACT_NUM', AValue);
+  FLABELLING_CENTER_CONTRACT_NUM:=AValue;
   ModifiedProperty('LABELLING_CENTER_CONTRACT_NUM');
 end;
 
 procedure TMKIO_Order.SetLABELLING_CENTER_CONTRACT_DATE(AValue: Tdate_type);
 begin
-  FLABELLING_CENTER_CONTRACT_DATE:=AValue;
   CheckStrMinSize('LABELLING_CENTER_CONTRACT_DATE', AValue);
   CheckStrMaxSize('LABELLING_CENTER_CONTRACT_DATE', AValue);
+  FLABELLING_CENTER_CONTRACT_DATE:=AValue;
   ModifiedProperty('LABELLING_CENTER_CONTRACT_DATE');
 end;
 
 procedure TMKIO_Order.SetCONTACT(AValue: Tstring255_type);
 begin
-  FCONTACT:=AValue;
   CheckStrMinSize('CONTACT', AValue);
   CheckStrMaxSize('CONTACT', AValue);
+  FCONTACT:=AValue;
   ModifiedProperty('CONTACT');
 end;
 
 procedure TMKIO_Order.SetDELIVERY_ADDRESS(AValue: Tstring255_type);
 begin
-  FDELIVERY_ADDRESS:=AValue;
   CheckStrMinSize('DELIVERY_ADDRESS', AValue);
   CheckStrMaxSize('DELIVERY_ADDRESS', AValue);
+  FDELIVERY_ADDRESS:=AValue;
   ModifiedProperty('DELIVERY_ADDRESS');
 end;
 
 procedure TMKIO_Order.Setaction_id(AValue: Longint);
 begin
-  Faction_id:=AValue;
   CheckFixedValue('action_id', AValue);
+  Faction_id:=AValue;
   ModifiedProperty('action_id');
 end;
 
@@ -521,24 +521,24 @@ end;
   {  TMKIO_Order_PRODUCT_DETAILS_PRODUCT  }
 procedure TMKIO_Order_PRODUCT_DETAILS_PRODUCT.SetGTIN(AValue: TGTIN);
 begin
-  FGTIN:=AValue;
   CheckStrMinSize('GTIN', AValue);
   CheckStrMaxSize('GTIN', AValue);
+  FGTIN:=AValue;
   ModifiedProperty('GTIN');
 end;
 
 procedure TMKIO_Order_PRODUCT_DETAILS_PRODUCT.SetTNVED_CODE(AValue: TTNVED_CODE);
 begin
-  FTNVED_CODE:=AValue;
   CheckMinInclusiveValue('TNVED_CODE', AValue);
   CheckMaxInclusiveValue('TNVED_CODE', AValue);
+  FTNVED_CODE:=AValue;
   ModifiedProperty('TNVED_CODE');
 end;
 
 procedure TMKIO_Order_PRODUCT_DETAILS_PRODUCT.SetRELEASE_METHOD(AValue: TRELEASE_METHOD);
 begin
-  FRELEASE_METHOD:=AValue;
   CheckLockupValue('RELEASE_METHOD', AValue);
+  FRELEASE_METHOD:=AValue;
   ModifiedProperty('RELEASE_METHOD');
 end;
 
@@ -550,22 +550,22 @@ end;
 
 procedure TMKIO_Order_PRODUCT_DETAILS_PRODUCT.SetIO_TYPE(AValue: TIO_TYPE);
 begin
-  FIO_TYPE:=AValue;
   CheckLockupValue('IO_TYPE', AValue);
+  FIO_TYPE:=AValue;
   ModifiedProperty('IO_TYPE');
 end;
 
 procedure TMKIO_Order_PRODUCT_DETAILS_PRODUCT.SetS_ORG_METHOD(AValue: TS_ORG_METHOD);
 begin
-  FS_ORG_METHOD:=AValue;
   CheckLockupValue('S_ORG_METHOD', AValue);
+  FS_ORG_METHOD:=AValue;
   ModifiedProperty('S_ORG_METHOD');
 end;
 
 procedure TMKIO_Order_PRODUCT_DETAILS_PRODUCT.SetMARKING_TYPE(AValue: TMARKING_TYPE);
 begin
-  FMARKING_TYPE:=AValue;
   CheckLockupValue('MARKING_TYPE', AValue);
+  FMARKING_TYPE:=AValue;
   ModifiedProperty('MARKING_TYPE');
 end;
 
@@ -614,11 +614,16 @@ begin
 end;
 
   {  TMKIO_Order_PRODUCT_DETAILS_PRODUCT_S_NUMS  }
-procedure TMKIO_Order_PRODUCT_DETAILS_PRODUCT_S_NUMS.SetSERIAL_NUMBER(AValue: TSERIAL_NUMBER);
+procedure TMKIO_Order_PRODUCT_DETAILS_PRODUCT_S_NUMS.SetSERIAL_NUMBER(AValue: TXSDStringArray);
+var
+  V:TSERIAL_NUMBER;
 begin
+  for V in AValue do
+  begin
+    CheckStrMinSize('SERIAL_NUMBER', V);
+    CheckStrMaxSize('SERIAL_NUMBER', V);
+  end;
   FSERIAL_NUMBER:=AValue;
-  CheckStrMinSize('SERIAL_NUMBER', AValue);
-  CheckStrMaxSize('SERIAL_NUMBER', AValue);
   ModifiedProperty('SERIAL_NUMBER');
 end;
 

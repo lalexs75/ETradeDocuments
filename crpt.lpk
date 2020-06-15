@@ -13,80 +13,92 @@
     </CompilerOptions>
     <License Value="LGPL"/>
     <Version Release="1"/>
-    <Files>
-      <Item>
+    <Files Count="19">
+      <Item1>
         <Filename Value="crpt/crpt_cmp.pas"/>
         <HasRegisterProc Value="True"/>
         <UnitName Value="crpt_cmp"/>
-      </Item>
-      <Item>
+      </Item1>
+      <Item2>
         <Filename Value="crpt/km_cancellation.pas"/>
         <UnitName Value="km_cancellation"/>
-      </Item>
-      <Item>
+      </Item2>
+      <Item3>
         <Filename Value="crpt/LP_base_types.pas"/>
         <UnitName Value="LP_base_types"/>
-      </Item>
-      <Item>
+      </Item3>
+      <Item4>
         <Filename Value="crpt/MKIO_Order.pas"/>
         <UnitName Value="MKIO_Order"/>
-      </Item>
-      <Item>
+      </Item4>
+      <Item5>
         <Filename Value="crpt/reception_signs.pas"/>
         <UnitName Value="reception_signs"/>
-      </Item>
-      <Item>
+      </Item5>
+      <Item6>
         <Filename Value="crpt/RemReq.pas"/>
         <UnitName Value="RemReq"/>
-      </Item>
-      <Item>
+      </Item6>
+      <Item7>
         <Filename Value="crpt/retail_sale.pas"/>
         <UnitName Value="retail_sale"/>
-      </Item>
-      <Item>
+      </Item7>
+      <Item8>
         <Filename Value="crpt/shipment_signs.pas"/>
         <UnitName Value="shipment_signs"/>
-      </Item>
-      <Item>
+      </Item8>
+      <Item9>
         <Filename Value="crpt/Vvod.pas"/>
         <UnitName Value="Vvod"/>
-      </Item>
-      <Item>
+      </Item9>
+      <Item10>
         <Filename Value="crpt/vvod_contract_production.pas"/>
         <UnitName Value="vvod_contract_production"/>
-      </Item>
-      <Item>
+      </Item10>
+      <Item11>
         <Filename Value="crpt/Vvod_Imp.pas"/>
         <UnitName Value="Vvod_Imp"/>
-      </Item>
-      <Item>
+      </Item11>
+      <Item12>
         <Filename Value="crpt/vvod_individuals.pas"/>
         <UnitName Value="vvod_individuals"/>
-      </Item>
-      <Item>
+      </Item12>
+      <Item13>
         <Filename Value="crpt/vvod_ostatky.pas"/>
         <UnitName Value="vvod_ostatky"/>
-      </Item>
-      <Item>
+      </Item13>
+      <Item14>
         <Filename Value="crpt/LP_base_types_v3.pas"/>
         <UnitName Value="LP_base_types_v3"/>
-      </Item>
-      <Item>
+      </Item14>
+      <Item15>
         <Filename Value="crpt/withdrawal.pas"/>
         <UnitName Value="withdrawal"/>
-      </Item>
-      <Item>
+      </Item15>
+      <Item16>
         <Filename Value="crpt/shipment.pas"/>
         <UnitName Value="shipment"/>
-      </Item>
+      </Item16>
+      <Item17>
+        <Filename Value="crpt/packcode_agregirovanie.pas"/>
+        <UnitName Value="packcode_agregirovanie"/>
+      </Item17>
+      <Item18>
+        <Filename Value="crpt/packcode_transform.pas"/>
+        <UnitName Value="packcode_transform"/>
+      </Item18>
+      <Item19>
+        <Filename Value="crpt/packcode_unagregirovan.pas"/>
+        <UnitName Value="packcode_unagregirovan"/>
+      </Item19>
     </Files>
-    <RequiredPkgs>
-      <Item>
+    <RequiredPkgs Count="2">
+      <Item1>
         <PackageName Value="xmlobjects"/>
-      </Item>
-      <Item>
+      </Item1>
+      <Item2>
         <PackageName Value="FCL"/>
-      </Item>
+      </Item2>
     </RequiredPkgs>
     <UsageOptions>
       <UnitPath Value="$(PkgOutDir)"/>

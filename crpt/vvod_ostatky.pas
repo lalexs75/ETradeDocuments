@@ -475,25 +475,25 @@ implementation
   {  Tfias_address_type  }
 procedure Tfias_address_type.Setaoguid(AValue: Taoguid);
 begin
-  Faoguid:=AValue;
   CheckStrMinSize('aoguid', AValue);
   CheckStrMaxSize('aoguid', AValue);
+  Faoguid:=AValue;
   ModifiedProperty('aoguid');
 end;
 
 procedure Tfias_address_type.Sethouseguid(AValue: Thouseguid);
 begin
-  Fhouseguid:=AValue;
   CheckStrMinSize('houseguid', AValue);
   CheckStrMaxSize('houseguid', AValue);
+  Fhouseguid:=AValue;
   ModifiedProperty('houseguid');
 end;
 
 procedure Tfias_address_type.Setflat(AValue: Tflat);
 begin
-  Fflat:=AValue;
   CheckStrMinSize('flat', AValue);
   CheckStrMaxSize('flat', AValue);
+  Fflat:=AValue;
   ModifiedProperty('flat');
 end;
 
@@ -551,31 +551,31 @@ end;
   {  Tshipment_children_products_list_type_product  }
 procedure Tshipment_children_products_list_type_product.Setki(AValue: Tki_type);
 begin
-  Fki:=AValue;
   CheckStrMinSize('ki', AValue);
   CheckStrMaxSize('ki', AValue);
+  Fki:=AValue;
   ModifiedProperty('ki');
 end;
 
 procedure Tshipment_children_products_list_type_product.Setkitu(AValue: Tkitu_type);
 begin
-  Fkitu:=AValue;
   CheckStrMinSize('kitu', AValue);
   CheckStrMaxSize('kitu', AValue);
+  Fkitu:=AValue;
   ModifiedProperty('kitu');
 end;
 
 procedure Tshipment_children_products_list_type_product.Setcost(AValue: Tprice_type);
 begin
-  Fcost:=AValue;
   CheckMinInclusiveValue('cost', AValue);
+  Fcost:=AValue;
   ModifiedProperty('cost');
 end;
 
 procedure Tshipment_children_products_list_type_product.Setvat_value(AValue: Tprice_type);
 begin
-  Fvat_value:=AValue;
   CheckMinInclusiveValue('vat_value', AValue);
+  Fvat_value:=AValue;
   ModifiedProperty('vat_value');
 end;
 
@@ -643,17 +643,17 @@ end;
   {  Tacceptance_children_products_list_type_product  }
 procedure Tacceptance_children_products_list_type_product.Setki(AValue: Tki_type);
 begin
-  Fki:=AValue;
   CheckStrMinSize('ki', AValue);
   CheckStrMaxSize('ki', AValue);
+  Fki:=AValue;
   ModifiedProperty('ki');
 end;
 
 procedure Tacceptance_children_products_list_type_product.Setkitu(AValue: Tkitu_type);
 begin
-  Fkitu:=AValue;
   CheckStrMinSize('kitu', AValue);
   CheckStrMaxSize('kitu', AValue);
+  Fkitu:=AValue;
   ModifiedProperty('kitu');
 end;
 
@@ -720,56 +720,56 @@ end;
   {  Tvvod_children_products_list_type_product  }
 procedure Tvvod_children_products_list_type_product.Setki(AValue: Tkit_type);
 begin
-  Fki:=AValue;
   CheckStrMinSize('ki', AValue);
   CheckStrMaxSize('ki', AValue);
+  Fki:=AValue;
   ModifiedProperty('ki');
 end;
 
 procedure Tvvod_children_products_list_type_product.Setkitu(AValue: Tkitu_type);
 begin
-  Fkitu:=AValue;
   CheckStrMinSize('kitu', AValue);
   CheckStrMaxSize('kitu', AValue);
+  Fkitu:=AValue;
   ModifiedProperty('kitu');
 end;
 
 procedure Tvvod_children_products_list_type_product.Setproduct_date(AValue: Tdate_type);
 begin
-  Fproduct_date:=AValue;
   CheckStrMinSize('product_date', AValue);
   CheckStrMaxSize('product_date', AValue);
+  Fproduct_date:=AValue;
   ModifiedProperty('product_date');
 end;
 
 procedure Tvvod_children_products_list_type_product.Settnved_code(AValue: Ttnved_code_type);
 begin
-  Ftnved_code:=AValue;
   CheckMinInclusiveValue('tnved_code', AValue);
   CheckMaxInclusiveValue('tnved_code', AValue);
+  Ftnved_code:=AValue;
   ModifiedProperty('tnved_code');
 end;
 
 procedure Tvvod_children_products_list_type_product.Setcertificate_type(AValue: Tcertificate_type_type);
 begin
-  Fcertificate_type:=AValue;
   CheckLockupValue('certificate_type', AValue);
+  Fcertificate_type:=AValue;
   ModifiedProperty('certificate_type');
 end;
 
 procedure Tvvod_children_products_list_type_product.Setcertificate_number(AValue: Tstring255_type);
 begin
-  Fcertificate_number:=AValue;
   CheckStrMinSize('certificate_number', AValue);
   CheckStrMaxSize('certificate_number', AValue);
+  Fcertificate_number:=AValue;
   ModifiedProperty('certificate_number');
 end;
 
 procedure Tvvod_children_products_list_type_product.Setcertificate_date(AValue: Tdate_type);
 begin
-  Fcertificate_date:=AValue;
   CheckStrMinSize('certificate_date', AValue);
   CheckStrMaxSize('certificate_date', AValue);
+  Fcertificate_date:=AValue;
   ModifiedProperty('certificate_date');
 end;
 
@@ -838,25 +838,25 @@ end;
   {  Tvvod_ind_children_products_list_type_product  }
 procedure Tvvod_ind_children_products_list_type_product.Setki(AValue: Tkit_type);
 begin
-  Fki:=AValue;
   CheckStrMinSize('ki', AValue);
   CheckStrMaxSize('ki', AValue);
+  Fki:=AValue;
   ModifiedProperty('ki');
 end;
 
 procedure Tvvod_ind_children_products_list_type_product.Setkitu(AValue: Tkitu_type);
 begin
-  Fkitu:=AValue;
   CheckStrMinSize('kitu', AValue);
   CheckStrMaxSize('kitu', AValue);
+  Fkitu:=AValue;
   ModifiedProperty('kitu');
 end;
 
 procedure Tvvod_ind_children_products_list_type_product.Setproduct_receiving_date(AValue: Tdate_type);
 begin
-  Fproduct_receiving_date:=AValue;
   CheckStrMinSize('product_receiving_date', AValue);
   CheckStrMaxSize('product_receiving_date', AValue);
+  Fproduct_receiving_date:=AValue;
   ModifiedProperty('product_receiving_date');
 end;
 
@@ -917,17 +917,17 @@ end;
   {  Tvvod_ost_children_products_list_type_product  }
 procedure Tvvod_ost_children_products_list_type_product.Setki(AValue: Tkit_type);
 begin
-  Fki:=AValue;
   CheckStrMinSize('ki', AValue);
   CheckStrMaxSize('ki', AValue);
+  Fki:=AValue;
   ModifiedProperty('ki');
 end;
 
 procedure Tvvod_ost_children_products_list_type_product.Setkitu(AValue: Tkitu_type);
 begin
-  Fkitu:=AValue;
   CheckStrMinSize('kitu', AValue);
   CheckStrMaxSize('kitu', AValue);
+  Fkitu:=AValue;
   ModifiedProperty('kitu');
 end;
 
@@ -987,62 +987,62 @@ end;
   {  Tvvod_crossborder_products_list_type_product  }
 procedure Tvvod_crossborder_products_list_type_product.Setki(AValue: Tkit_type);
 begin
-  Fki:=AValue;
   CheckStrMinSize('ki', AValue);
   CheckStrMaxSize('ki', AValue);
+  Fki:=AValue;
   ModifiedProperty('ki');
 end;
 
 procedure Tvvod_crossborder_products_list_type_product.Setkitu(AValue: Tkitu_type);
 begin
-  Fkitu:=AValue;
   CheckStrMinSize('kitu', AValue);
   CheckStrMaxSize('kitu', AValue);
+  Fkitu:=AValue;
   ModifiedProperty('kitu');
 end;
 
 procedure Tvvod_crossborder_products_list_type_product.Settnved_code(AValue: Ttnved_code_type);
 begin
-  Ftnved_code:=AValue;
   CheckMinInclusiveValue('tnved_code', AValue);
   CheckMaxInclusiveValue('tnved_code', AValue);
+  Ftnved_code:=AValue;
   ModifiedProperty('tnved_code');
 end;
 
 procedure Tvvod_crossborder_products_list_type_product.Setcost(AValue: Tprice_type);
 begin
-  Fcost:=AValue;
   CheckMinInclusiveValue('cost', AValue);
+  Fcost:=AValue;
   ModifiedProperty('cost');
 end;
 
 procedure Tvvod_crossborder_products_list_type_product.Setvat_value(AValue: Tprice_type);
 begin
-  Fvat_value:=AValue;
   CheckMinInclusiveValue('vat_value', AValue);
+  Fvat_value:=AValue;
   ModifiedProperty('vat_value');
 end;
 
 procedure Tvvod_crossborder_products_list_type_product.Setcertificate_type(AValue: Tcertificate_type_type);
 begin
-  Fcertificate_type:=AValue;
   CheckLockupValue('certificate_type', AValue);
+  Fcertificate_type:=AValue;
   ModifiedProperty('certificate_type');
 end;
 
 procedure Tvvod_crossborder_products_list_type_product.Setcertificate_number(AValue: Tstring255_type);
 begin
-  Fcertificate_number:=AValue;
   CheckStrMinSize('certificate_number', AValue);
   CheckStrMaxSize('certificate_number', AValue);
+  Fcertificate_number:=AValue;
   ModifiedProperty('certificate_number');
 end;
 
 procedure Tvvod_crossborder_products_list_type_product.Setcertificate_date(AValue: Tdate_type);
 begin
-  Fcertificate_date:=AValue;
   CheckStrMinSize('certificate_date', AValue);
   CheckStrMaxSize('certificate_date', AValue);
+  Fcertificate_date:=AValue;
   ModifiedProperty('certificate_date');
 end;
 
@@ -1092,23 +1092,23 @@ end;
   {  Tvvod_ostatky  }
 procedure Tvvod_ostatky.Settrade_participant_inn(AValue: Tinn_type);
 begin
-  Ftrade_participant_inn:=AValue;
   CheckStrMinSize('trade_participant_inn', AValue);
   CheckStrMaxSize('trade_participant_inn', AValue);
+  Ftrade_participant_inn:=AValue;
   ModifiedProperty('trade_participant_inn');
 end;
 
 procedure Tvvod_ostatky.Setaction_id(AValue: Longint);
 begin
-  Faction_id:=AValue;
   CheckFixedValue('action_id', AValue);
+  Faction_id:=AValue;
   ModifiedProperty('action_id');
 end;
 
 procedure Tvvod_ostatky.Setversion(AValue: Longint);
 begin
-  Fversion:=AValue;
   CheckFixedValue('version', AValue);
+  Fversion:=AValue;
   ModifiedProperty('version');
 end;
 
@@ -1201,17 +1201,17 @@ end;
   {  Tvvod_ostatky_products_list_product  }
 procedure Tvvod_ostatky_products_list_product.Setki(AValue: Tkit_type);
 begin
-  Fki:=AValue;
   CheckStrMinSize('ki', AValue);
   CheckStrMaxSize('ki', AValue);
+  Fki:=AValue;
   ModifiedProperty('ki');
 end;
 
 procedure Tvvod_ostatky_products_list_product.Setkitu(AValue: Tkitu_type);
 begin
-  Fkitu:=AValue;
   CheckStrMinSize('kitu', AValue);
   CheckStrMaxSize('kitu', AValue);
+  Fkitu:=AValue;
   ModifiedProperty('kitu');
 end;
 

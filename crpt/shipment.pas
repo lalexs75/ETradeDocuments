@@ -147,7 +147,7 @@ type
     Fto_not_participant:Boolean;
     Fproducts_list:Tshipment_products_list;
     Faction_id:Longint;
-    Fversion:Longint;
+    Fversion:Double;
     procedure Settrade_participant_inn_sender( AValue:Tinn_type);
     procedure Settrade_participant_inn_receiver( AValue:Tinn_type);
     procedure Settrade_participant_inn_owner( AValue:Tinn_type);
@@ -160,7 +160,7 @@ type
     procedure Setst_contract_id( AValue:Tstring255_type);
     procedure Setto_not_participant( AValue:Boolean);
     procedure Setaction_id( AValue:Longint);
-    procedure Setversion( AValue:Longint);
+    procedure Setversion( AValue:Double);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
@@ -193,7 +193,7 @@ type
     //Параметры товаров
     property products_list:Tshipment_products_list read Fproducts_list;
     property action_id:Longint read Faction_id write Setaction_id;
-    property version:Longint read Fversion write Setversion;
+    property version:Double read Fversion write Setversion;
   end;
 
   {  Tshipment_element  }
@@ -257,25 +257,25 @@ implementation
   {  Tfias_address_type  }
 procedure Tfias_address_type.Setaoguid(AValue: Taoguid);
 begin
-  Faoguid:=AValue;
   CheckStrMinSize('aoguid', AValue);
   CheckStrMaxSize('aoguid', AValue);
+  Faoguid:=AValue;
   ModifiedProperty('aoguid');
 end;
 
 procedure Tfias_address_type.Sethouseguid(AValue: Thouseguid);
 begin
-  Fhouseguid:=AValue;
   CheckStrMinSize('houseguid', AValue);
   CheckStrMaxSize('houseguid', AValue);
+  Fhouseguid:=AValue;
   ModifiedProperty('houseguid');
 end;
 
 procedure Tfias_address_type.Setflat(AValue: Tflat);
 begin
-  Fflat:=AValue;
   CheckStrMinSize('flat', AValue);
   CheckStrMaxSize('flat', AValue);
+  Fflat:=AValue;
   ModifiedProperty('flat');
 end;
 
@@ -333,17 +333,17 @@ end;
   {  Tchildren_products_list_type_product  }
 procedure Tchildren_products_list_type_product.Setkit(AValue: Tkit_type);
 begin
-  Fkit:=AValue;
   CheckStrMinSize('kit', AValue);
   CheckStrMaxSize('kit', AValue);
+  Fkit:=AValue;
   ModifiedProperty('kit');
 end;
 
 procedure Tchildren_products_list_type_product.Setkitu(AValue: Tkitu_type);
 begin
-  Fkitu:=AValue;
   CheckStrMinSize('kitu', AValue);
   CheckStrMaxSize('kitu', AValue);
+  Fkitu:=AValue;
   ModifiedProperty('kitu');
 end;
 
@@ -384,79 +384,79 @@ end;
   {  Tshipment  }
 procedure Tshipment.Settrade_participant_inn_sender(AValue: Tinn_type);
 begin
-  Ftrade_participant_inn_sender:=AValue;
   CheckStrMinSize('trade_participant_inn_sender', AValue);
   CheckStrMaxSize('trade_participant_inn_sender', AValue);
+  Ftrade_participant_inn_sender:=AValue;
   ModifiedProperty('trade_participant_inn_sender');
 end;
 
 procedure Tshipment.Settrade_participant_inn_receiver(AValue: Tinn_type);
 begin
-  Ftrade_participant_inn_receiver:=AValue;
   CheckStrMinSize('trade_participant_inn_receiver', AValue);
   CheckStrMaxSize('trade_participant_inn_receiver', AValue);
+  Ftrade_participant_inn_receiver:=AValue;
   ModifiedProperty('trade_participant_inn_receiver');
 end;
 
 procedure Tshipment.Settrade_participant_inn_owner(AValue: Tinn_type);
 begin
-  Ftrade_participant_inn_owner:=AValue;
   CheckStrMinSize('trade_participant_inn_owner', AValue);
   CheckStrMaxSize('trade_participant_inn_owner', AValue);
+  Ftrade_participant_inn_owner:=AValue;
   ModifiedProperty('trade_participant_inn_owner');
 end;
 
 procedure Tshipment.Settransfer_date(AValue: Tdate_type);
 begin
-  Ftransfer_date:=AValue;
   CheckStrMinSize('transfer_date', AValue);
   CheckStrMaxSize('transfer_date', AValue);
+  Ftransfer_date:=AValue;
   ModifiedProperty('transfer_date');
 end;
 
 procedure Tshipment.Setmove_document_number(AValue: Tstring255_type);
 begin
-  Fmove_document_number:=AValue;
   CheckStrMinSize('move_document_number', AValue);
   CheckStrMaxSize('move_document_number', AValue);
+  Fmove_document_number:=AValue;
   ModifiedProperty('move_document_number');
 end;
 
 procedure Tshipment.Setmove_document_date(AValue: Tdate_type);
 begin
-  Fmove_document_date:=AValue;
   CheckStrMinSize('move_document_date', AValue);
   CheckStrMaxSize('move_document_date', AValue);
+  Fmove_document_date:=AValue;
   ModifiedProperty('move_document_date');
 end;
 
 procedure Tshipment.Setturnover_type(AValue: Tturnover_enum_type);
 begin
-  Fturnover_type:=AValue;
   CheckLockupValue('turnover_type', AValue);
+  Fturnover_type:=AValue;
   ModifiedProperty('turnover_type');
 end;
 
 procedure Tshipment.Setwithdrawal_type(AValue: Twithdrawal_shipment_type);
 begin
-  Fwithdrawal_type:=AValue;
   CheckLockupValue('withdrawal_type', AValue);
+  Fwithdrawal_type:=AValue;
   ModifiedProperty('withdrawal_type');
 end;
 
 procedure Tshipment.Setwithdrawal_date(AValue: Tdate_type);
 begin
-  Fwithdrawal_date:=AValue;
   CheckStrMinSize('withdrawal_date', AValue);
   CheckStrMaxSize('withdrawal_date', AValue);
+  Fwithdrawal_date:=AValue;
   ModifiedProperty('withdrawal_date');
 end;
 
 procedure Tshipment.Setst_contract_id(AValue: Tstring255_type);
 begin
-  Fst_contract_id:=AValue;
   CheckStrMinSize('st_contract_id', AValue);
   CheckStrMaxSize('st_contract_id', AValue);
+  Fst_contract_id:=AValue;
   ModifiedProperty('st_contract_id');
 end;
 
@@ -468,15 +468,15 @@ end;
 
 procedure Tshipment.Setaction_id(AValue: Longint);
 begin
-  Faction_id:=AValue;
   CheckFixedValue('action_id', AValue);
+  Faction_id:=AValue;
   ModifiedProperty('action_id');
 end;
 
-procedure Tshipment.Setversion(AValue: Longint);
+procedure Tshipment.Setversion(AValue: Double);
 begin
-  Fversion:=AValue;
   CheckFixedValue('version', AValue);
+  Fversion:=AValue;
   ModifiedProperty('version');
 end;
 
@@ -492,7 +492,6 @@ begin
   P:=RegisterProperty('move_document_number', 'move_document_number', [xsaSimpleObject], '', 1, 255);
   P:=RegisterProperty('move_document_date', 'move_document_date', [xsaSimpleObject], '', 10, 10);
   P:=RegisterProperty('turnover_type', 'turnover_type', [xsaSimpleObject], '', -1, -1);
-    P.ValidList.Add('SELLING');
     P.ValidList.Add('BUYING_AND_SELLING');
     P.ValidList.Add('COMMISSION');
     P.ValidList.Add('AGENT');
@@ -588,31 +587,31 @@ end;
   {  Tshipment_products_list_product  }
 procedure Tshipment_products_list_product.Setkit(AValue: Tkit_type);
 begin
-  Fkit:=AValue;
   CheckStrMinSize('kit', AValue);
   CheckStrMaxSize('kit', AValue);
+  Fkit:=AValue;
   ModifiedProperty('kit');
 end;
 
 procedure Tshipment_products_list_product.Setkitu(AValue: Tkitu_type);
 begin
-  Fkitu:=AValue;
   CheckStrMinSize('kitu', AValue);
   CheckStrMaxSize('kitu', AValue);
+  Fkitu:=AValue;
   ModifiedProperty('kitu');
 end;
 
 procedure Tshipment_products_list_product.Setcost(AValue: Tprice_type);
 begin
-  Fcost:=AValue;
   CheckMinInclusiveValue('cost', AValue);
+  Fcost:=AValue;
   ModifiedProperty('cost');
 end;
 
 procedure Tshipment_products_list_product.Setvat_value(AValue: Tprice_type);
 begin
-  Fvat_value:=AValue;
   CheckMinInclusiveValue('vat_value', AValue);
+  Fvat_value:=AValue;
   ModifiedProperty('vat_value');
 end;
 

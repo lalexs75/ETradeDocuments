@@ -265,25 +265,25 @@ implementation
   {  Tfias_address_type  }
 procedure Tfias_address_type.Setaoguid(AValue: Taoguid);
 begin
-  Faoguid:=AValue;
   CheckStrMinSize('aoguid', AValue);
   CheckStrMaxSize('aoguid', AValue);
+  Faoguid:=AValue;
   ModifiedProperty('aoguid');
 end;
 
 procedure Tfias_address_type.Sethouseguid(AValue: Thouseguid);
 begin
-  Fhouseguid:=AValue;
   CheckStrMinSize('houseguid', AValue);
   CheckStrMaxSize('houseguid', AValue);
+  Fhouseguid:=AValue;
   ModifiedProperty('houseguid');
 end;
 
 procedure Tfias_address_type.Setflat(AValue: Tflat);
 begin
-  Fflat:=AValue;
   CheckStrMinSize('flat', AValue);
   CheckStrMaxSize('flat', AValue);
+  Fflat:=AValue;
   ModifiedProperty('flat');
 end;
 
@@ -341,17 +341,17 @@ end;
   {  Tchildren_products_list_type_product  }
 procedure Tchildren_products_list_type_product.Setkit(AValue: Tkit_type);
 begin
-  Fkit:=AValue;
   CheckStrMinSize('kit', AValue);
   CheckStrMaxSize('kit', AValue);
+  Fkit:=AValue;
   ModifiedProperty('kit');
 end;
 
 procedure Tchildren_products_list_type_product.Setkitu(AValue: Tkitu_type);
 begin
-  Fkitu:=AValue;
   CheckStrMinSize('kitu', AValue);
   CheckStrMaxSize('kitu', AValue);
+  Fkitu:=AValue;
   ModifiedProperty('kitu');
 end;
 

@@ -173,25 +173,25 @@ implementation
   {  Tfias_address_type  }
 procedure Tfias_address_type.Setaoguid(AValue: Taoguid);
 begin
-  Faoguid:=AValue;
   CheckStrMinSize('aoguid', AValue);
   CheckStrMaxSize('aoguid', AValue);
+  Faoguid:=AValue;
   ModifiedProperty('aoguid');
 end;
 
 procedure Tfias_address_type.Sethouseguid(AValue: Thouseguid);
 begin
-  Fhouseguid:=AValue;
   CheckStrMinSize('houseguid', AValue);
   CheckStrMaxSize('houseguid', AValue);
+  Fhouseguid:=AValue;
   ModifiedProperty('houseguid');
 end;
 
 procedure Tfias_address_type.Setflat(AValue: Tflat);
 begin
-  Fflat:=AValue;
   CheckStrMinSize('flat', AValue);
   CheckStrMaxSize('flat', AValue);
+  Fflat:=AValue;
   ModifiedProperty('flat');
 end;
 
@@ -223,38 +223,38 @@ end;
   {  Tvvod_individuals  }
 procedure Tvvod_individuals.Setdoc_type(AValue: Tdoc_type);
 begin
-  Fdoc_type:=AValue;
   CheckLockupValue('doc_type', AValue);
+  Fdoc_type:=AValue;
   ModifiedProperty('doc_type');
 end;
 
 procedure Tvvod_individuals.Setparticipant_inn(AValue: TTRADE_PARTICIPANT_INN_type);
 begin
-  Fparticipant_inn:=AValue;
   CheckStrMinSize('participant_inn', AValue);
   CheckStrMaxSize('participant_inn', AValue);
+  Fparticipant_inn:=AValue;
   ModifiedProperty('participant_inn');
 end;
 
 procedure Tvvod_individuals.Setproduct_receiving_date(AValue: Tdate_type);
 begin
-  Fproduct_receiving_date:=AValue;
   CheckStrMinSize('product_receiving_date', AValue);
   CheckStrMaxSize('product_receiving_date', AValue);
+  Fproduct_receiving_date:=AValue;
   ModifiedProperty('product_receiving_date');
 end;
 
 procedure Tvvod_individuals.Setaction_id(AValue: String);
 begin
-  Faction_id:=AValue;
   CheckFixedValue('action_id', AValue);
+  Faction_id:=AValue;
   ModifiedProperty('action_id');
 end;
 
 procedure Tvvod_individuals.Setversion(AValue: Longint);
 begin
-  Fversion:=AValue;
   CheckFixedValue('version', AValue);
+  Fversion:=AValue;
   ModifiedProperty('version');
 end;
 
@@ -350,25 +350,25 @@ end;
   {  Tvvod_individuals_products_list_product  }
 procedure Tvvod_individuals_products_list_product.Setuit(AValue: Tgs1_uit_type);
 begin
-  Fuit:=AValue;
   CheckStrMinSize('uit', AValue);
   CheckStrMaxSize('uit', AValue);
+  Fuit:=AValue;
   ModifiedProperty('uit');
 end;
 
 procedure Tvvod_individuals_products_list_product.Setuitu(AValue: Tgs1_uitu_type);
 begin
-  Fuitu:=AValue;
   CheckStrMinSize('uitu', AValue);
   CheckStrMaxSize('uitu', AValue);
+  Fuitu:=AValue;
   ModifiedProperty('uitu');
 end;
 
 procedure Tvvod_individuals_products_list_product.Setproduct_receiving_date(AValue: Tdate_type);
 begin
-  Fproduct_receiving_date:=AValue;
   CheckStrMinSize('product_receiving_date', AValue);
   CheckStrMaxSize('product_receiving_date', AValue);
+  Fproduct_receiving_date:=AValue;
   ModifiedProperty('product_receiving_date');
 end;
 

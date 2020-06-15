@@ -11,7 +11,8 @@ uses
   crpt_cmp, km_cancellation, LP_base_types, MKIO_Order, reception_signs, 
   RemReq, retail_sale, shipment_signs, Vvod, vvod_contract_production, 
   Vvod_Imp, vvod_individuals, vvod_ostatky, LP_base_types_v3, withdrawal, 
-  shipment, LazarusPackageIntf;
+  shipment, packcode_agregirovanie, packcode_transform, 
+  packcode_unagregirovan, LazarusPackageIntf;
 
 implementation
 

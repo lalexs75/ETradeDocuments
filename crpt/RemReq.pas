@@ -198,25 +198,25 @@ implementation
   {  Tfias_address_type  }
 procedure Tfias_address_type.Setaoguid(AValue: Taoguid);
 begin
-  Faoguid:=AValue;
   CheckStrMinSize('aoguid', AValue);
   CheckStrMaxSize('aoguid', AValue);
+  Faoguid:=AValue;
   ModifiedProperty('aoguid');
 end;
 
 procedure Tfias_address_type.Sethouseguid(AValue: Thouseguid);
 begin
-  Fhouseguid:=AValue;
   CheckStrMinSize('houseguid', AValue);
   CheckStrMaxSize('houseguid', AValue);
+  Fhouseguid:=AValue;
   ModifiedProperty('houseguid');
 end;
 
 procedure Tfias_address_type.Setflat(AValue: Tflat);
 begin
-  Fflat:=AValue;
   CheckStrMinSize('flat', AValue);
   CheckStrMaxSize('flat', AValue);
+  Fflat:=AValue;
   ModifiedProperty('flat');
 end;
 
@@ -248,31 +248,31 @@ end;
   {  TRemReq  }
 procedure TRemReq.SetPARTICIPANT_INN(AValue: TPARTICIPANT_INN);
 begin
-  FPARTICIPANT_INN:=AValue;
   CheckStrMinSize('PARTICIPANT_INN', AValue);
   CheckStrMaxSize('PARTICIPANT_INN', AValue);
+  FPARTICIPANT_INN:=AValue;
   ModifiedProperty('PARTICIPANT_INN');
 end;
 
 procedure TRemReq.SetREMARKING_DATE(AValue: Tdate_type);
 begin
-  FREMARKING_DATE:=AValue;
   CheckStrMinSize('REMARKING_DATE', AValue);
   CheckStrMaxSize('REMARKING_DATE', AValue);
+  FREMARKING_DATE:=AValue;
   ModifiedProperty('REMARKING_DATE');
 end;
 
 procedure TRemReq.SetREMARKING_CAUSE(AValue: TREMARKING_CAUSE);
 begin
-  FREMARKING_CAUSE:=AValue;
   CheckLockupValue('REMARKING_CAUSE', AValue);
+  FREMARKING_CAUSE:=AValue;
   ModifiedProperty('REMARKING_CAUSE');
 end;
 
 procedure TRemReq.Setaction_id(AValue: Longint);
 begin
-  Faction_id:=AValue;
   CheckFixedValue('action_id', AValue);
+  Faction_id:=AValue;
   ModifiedProperty('action_id');
 end;
 
@@ -366,54 +366,54 @@ end;
   {  TRemReq_PRODUCT_DETAILS_PRODUCT  }
 procedure TRemReq_PRODUCT_DETAILS_PRODUCT.SetREMARKING_DATE(AValue: Tdate_type);
 begin
-  FREMARKING_DATE:=AValue;
   CheckStrMinSize('REMARKING_DATE', AValue);
   CheckStrMaxSize('REMARKING_DATE', AValue);
+  FREMARKING_DATE:=AValue;
   ModifiedProperty('REMARKING_DATE');
 end;
 
 procedure TRemReq_PRODUCT_DETAILS_PRODUCT.SetREMARKING_CAUSE(AValue: TREMARKING_CAUSE1);
 begin
-  FREMARKING_CAUSE:=AValue;
   CheckLockupValue('REMARKING_CAUSE', AValue);
+  FREMARKING_CAUSE:=AValue;
   ModifiedProperty('REMARKING_CAUSE');
 end;
 
 procedure TRemReq_PRODUCT_DETAILS_PRODUCT.SetLAST_UIT(AValue: Tgs1_uit_type);
 begin
-  FLAST_UIT:=AValue;
   CheckStrMinSize('LAST_UIT', AValue);
   CheckStrMaxSize('LAST_UIT', AValue);
+  FLAST_UIT:=AValue;
   ModifiedProperty('LAST_UIT');
 end;
 
 procedure TRemReq_PRODUCT_DETAILS_PRODUCT.SetNEW_UIT(AValue: Tgs1_uit_type);
 begin
-  FNEW_UIT:=AValue;
   CheckStrMinSize('NEW_UIT', AValue);
   CheckStrMaxSize('NEW_UIT', AValue);
+  FNEW_UIT:=AValue;
   ModifiedProperty('NEW_UIT');
 end;
 
 procedure TRemReq_PRODUCT_DETAILS_PRODUCT.SetPROD_CERT_DOC_TYPE(AValue: TPROD_CERT_DOC_TYPE);
 begin
-  FPROD_CERT_DOC_TYPE:=AValue;
   CheckLockupValue('PROD_CERT_DOC_TYPE', AValue);
+  FPROD_CERT_DOC_TYPE:=AValue;
   ModifiedProperty('PROD_CERT_DOC_TYPE');
 end;
 
 procedure TRemReq_PRODUCT_DETAILS_PRODUCT.SetPROD_CERT_DOC_NUM(AValue: TPROD_CERT_DOC_NUM);
 begin
-  FPROD_CERT_DOC_NUM:=AValue;
   CheckStrMaxSize('PROD_CERT_DOC_NUM', AValue);
+  FPROD_CERT_DOC_NUM:=AValue;
   ModifiedProperty('PROD_CERT_DOC_NUM');
 end;
 
 procedure TRemReq_PRODUCT_DETAILS_PRODUCT.SetPROD_CERT_DOC_DATE(AValue: Tdate_type);
 begin
-  FPROD_CERT_DOC_DATE:=AValue;
   CheckStrMinSize('PROD_CERT_DOC_DATE', AValue);
   CheckStrMaxSize('PROD_CERT_DOC_DATE', AValue);
+  FPROD_CERT_DOC_DATE:=AValue;
   ModifiedProperty('PROD_CERT_DOC_DATE');
 end;
 
