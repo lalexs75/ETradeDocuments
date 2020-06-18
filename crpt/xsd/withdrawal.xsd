@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:include schemaLocation="../LP_base_types_v2.xsd"/>
+    <xs:element name="withdrawal" type="withdrawal"/>
+    <xs:complexType name="withdrawal">
+	<xs:annotation>
+	    <xs:documentation>Вывод из оборота</xs:documentation>
+	</xs:annotation>
+	<xs:sequence>
+	    <xs:element name="trade_participant_inn" type="inn_type">
+		<xs:annotation>
+		    <xs:documentation>ИНН участника оборота</xs:documentation>
+		</xs:annotation>
+	    </xs:element>
+	    <xs:element name="withdrawal_type" type="withdrawal_type">
+		<xs:annotation>
+		    <xs:documentation>Причина вывода из оборота (розничная продажа - RETAIL) </xs:documentation>
+		</xs:annotation>
+	    </xs:element>
+	    <xs:element name="withdrawal_date" type="date_type">
+		<xs:annotation>
+		    <xs:documentation>Дата вывода из оборота</xs:documentation>
+		</xs:annotation>
+	    </xs:element>
+	    <xs:element name="primary_document_type" type="primary_document_name_type">
+		<xs:annotation>
+		    <xs:documentation>Наименование первичного документа</xs:documentation>
+		</xs:annotation>
+	    </xs:element>
+	    <xs:element name="primary_document_number" type="string255_type" minOccurs="0">
+		<xs:annotation>
+		    <xs:documentation>Номер первичного документа</xs:documentation>
+		</xs:annotation>
+	    </xs:element>
+	    <xs:element name="primary_document_date" type="date_type">
+		<xs:annotation>
+		    <xs:documentation>Дата первичного документа</xs:documentation>
+		</xs:annotation>
+	    </xs:element>
+	    <xs:element name="products_list">
+		<xs:annotation>
+		    <xs:documentation>Параметры товаров</xs:documentation>
+		</xs:annotation>
+	    <xs:complexType>
+	    <xs:sequence>
+		<xs:element name="product" maxOccurs="unbounded">
+		    <xs:annotation>
+			<xs:documentation>Параметры товара</xs:documentation>
+		    </xs:annotation>
+<xs:complexType>
+<xs:sequence>
+<xs:element name="kit" type="kit_type">
+<xs:annotation>
+<xs:documentation>КИТ</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="cost" type="price_type">
+<xs:annotation>
+<xs:documentation>Цена за единицу</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="vat_value" type="price_type">
+<xs:annotation><xs:documentation>Сумма НДС</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+<xs:attribute name="action_id" type="xs:int" use="required" fixed="15"/>
+<xs:attribute name="version" type="xs:decimal" use="required" fixed="2"/>
+</xs:complexType>
+</xs:schema>

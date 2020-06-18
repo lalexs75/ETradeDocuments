@@ -12,7 +12,7 @@
       </SearchPaths>
     </CompilerOptions>
     <License Value="LGPL"/>
-    <Version Release="1"/>
+    <Version Release="2" Build="4"/>
     <Files Count="19">
       <Item1>
         <Filename Value="crpt/crpt_cmp.pas"/>
@@ -72,24 +72,24 @@
         <UnitName Value="LP_base_types_v3"/>
       </Item14>
       <Item15>
-        <Filename Value="crpt/withdrawal.pas"/>
-        <UnitName Value="withdrawal"/>
-      </Item15>
-      <Item16>
         <Filename Value="crpt/shipment.pas"/>
         <UnitName Value="shipment"/>
-      </Item16>
-      <Item17>
+      </Item15>
+      <Item16>
         <Filename Value="crpt/packcode_agregirovanie.pas"/>
         <UnitName Value="packcode_agregirovanie"/>
-      </Item17>
-      <Item18>
+      </Item16>
+      <Item17>
         <Filename Value="crpt/packcode_transform.pas"/>
         <UnitName Value="packcode_transform"/>
-      </Item18>
-      <Item19>
+      </Item17>
+      <Item18>
         <Filename Value="crpt/packcode_unagregirovan.pas"/>
         <UnitName Value="packcode_unagregirovan"/>
+      </Item18>
+      <Item19>
+        <Filename Value="crpt/acceptance.pas"/>
+        <UnitName Value="acceptance"/>
       </Item19>
     </Files>
     <RequiredPkgs Count="2">

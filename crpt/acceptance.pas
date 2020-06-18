@@ -30,217 +30,16 @@
   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 }
 
-unit LP_base_types_v2;
+unit acceptance;
 
 {$mode objfpc}{$H+}
 
 interface
 
 uses
-  Classes, SysUtils, xmlobject;
+  Classes, SysUtils, xmlobject, LP_base_types_v2;
 
 type
-  //IPv4. Запись в виде четырёх десятичных чисел (от 0 до 255), разделённых точками.
-  TIPv4Address_type = String;
-  //IPv6. Запись в виде восьми четырёхзначных шестнадцатеричных чисел (групп по четыре символа), разделённых двоеточием.
-  TIPv6Address_type = String;
-  //Текстовое значение не более 255 символов
-  Tstring255_type = String;
-  //Текстовое значение не более 200 символов
-  Tstring200_type = String;
-  //Текстовое значение не более 1000 символов
-  Tstring1000_type = String;
-  //Текстовое значение не более 50 символов
-  Tstring50_type = String;
-  //Текстовое значение не более 1024 символов
-  Tstring1024_type = String;
-  //Текстовое значение не более 128 символов
-  Tstring128_type = String;
-  //Текстовое значение не более 70 символов
-  Tstring70_type = String;
-  //Справочник типов участников
-  //Участник оборота товаров - TRADE_PARTICIPANT
-  //Оператор ИС МП - OPERATOR
-  //ЦЭМ - LABELLING_CENTER
-  //ОГВ - OGV
-  //Эмитент - EMITENT
-  Tparticipant_type = String;
-  //ИНН участника оборота
-  Tinn_type = String;
-  //КПП участника оборота
-  Tkpp_type = String;
-  //Значение даты в формате ДД.ММ.ГГГГ.
-  Tdate_type = String;
-  //Значение даты и времени, а так же смещение, относительно времени в формате UTC
-  Tdatetimeoffset_type = TDateTime;
-  //Справочник видов оборота товаров
-  //Продажа - SELLING
-  //Комиссия - COMMISSION
-  //Агент - AGENT
-  //Продажа комиссионером - COMMISSIONAIRE_SALE
-  //Подряд - CONTRACT
-  Tturnover_enum_type = String;
-  //Пол обуви
-  //Мужской - MALE
-  //Женский - FEMALE
-  //Детская - BABY
-  //Унисекс - UNISEX
-  Tproduct_gender_type = String;
-  //Стоимость/Налог
-  Tprice_type = Double;
-  //GUID (Globally Unique Identifier)
-  Tguid_type = String;
-  //Регистрационный токен СУЗ
-  Ttoken_type = String;
-  //Порт TCP/IP
-  Ttcpip_port_type = Int64;
-  //Размер в штихмассовой системе
-  Tshoe_size = Double;
-  //Код товарной номенклатуры (4 знака)
-  Ttnved_code_4_type = String;
-  //Код товарной номенклатуры (2 знака)
-  Ttnved_code_2_type = String;
-  //Код ТН ВЭД ЕАС товара
-  Ttnved_code_type = String;
-  //Справочник причин вывода из оборота
-  //Розничная продажа - RETAIL
-  //Экспорт в страны ЕАЭС - EEC_EXPORT
-  //Экспорт за пределы стран ЕАЭС - BEYOND_EEC_EXPORT
-  //Возврат физическому лицу - RETURN
-  //Продажа по образцам, дистанционный способ продажи - REMOTE_SALE
-  //Утрата или повреждение - DAMAGE_LOSS
-  //Уничтожение - DESTRUCTION
-  //Конфискация - CONFISCATION
-  //Использование для собственных нужд предприятия - ENTERPRISE_USE
-  //Ликвидация предприятия - LIQUIDATION
-  Twithdrawal_type = String;
-  //Справочник причин вывода из оборота при отгрузке
-  //Безвозмездная передача - DONATION
-  //Приобретение гос.предприятием - STATE_ENTERPRISE
-  //Использование для собственных нужд покупателем - NO_RETAIL_USE
-  Twithdrawal_shipment_type = String;
-  //Справочник типов первичных документов для вывода из оборота
-  //Кассовый чек - RECEIPT
-  //Бланк строгой отчетности - STRICT_REPORTING_FORM
-  //Договор - CONTRACT
-  //Акт уничтожения (утраты/утилизации) - DESTRUCTION_ACT
-  //Товарная накладная - CONSIGNMENT_NOTE
-  //Универсальный передаточный документ - UTD
-  //Прочее - OTHER
-  Twithdraw_primary_document_type_type = String;
-  //Справочник типов первичных документов для вывода из оборота
-  //Кассовый чек - RECEIPT
-  //Товарный чек - SALES_RECEIPT
-  //Прочее - OTHER
-  Treturn_primary_document_type_type = String;
-  //Справочник типов первичных документов для отгрузки
-  //Товарная накладная - CONSIGNMENT_NOTE
-  //Универсальный передаточный документ - UTD
-  //Прочее - OTHER
-  Tshipment_primary_document_type_type = String;
-  //Уникальный идентификатор транспортной упаковки или товара
-  Tgs1_uit_uitu_type = String;
-  //GTIN
-  Tgtin_type = String;
-  //Справочник типов производственного заказа
-  //Собственное производство - OWN_PRODUCTION
-  //Контрактное производство - CONTRACT_PRODUCTION
-  Tproduction_order_type = String;
-  //Справочник видов документов, подтверждающих соответствие
-  //Сертификат соответствия - CONFORMITY_CERTIFICATE
-  //Декларация о соответствии - CONFORMITY_DECLARATION
-  Tcertificate_type_type = String;
-  //Серийный номер
-  Tsn_type = String;
-  //Справочник способов ввода товаров в оборот
-  //Произведен в РФ - PRODUCED_IN_RF
-  //Ввезен в РФ - IMPORTED_INTO_RF
-  //Остатки - OSTATKI
-  //ТрансГран - CROSSBORDER
-  Trelease_method_type = String;
-  //Справочник кодов принятого решения
-  //10 - Выпуск товаров разрешен
-  //11 - Выпуск товаров при условии обеспечения исполнения обязанности по уплате таможенных пошлин, налогов, специальных, антидемпинговых, компенсационных пошлин, за исключением выпуска товаров, поименованного в позициях с кодами 12 и 13
-  //12 - Выпуск товаров с особенностями, предусмотренными статьей 121 Таможенного кодекса Евразийского экономического союза
-  //13 - Выпуск товаров с особенностями, предусмотренными статьей 122 Таможенного кодекса Евразийского экономического союза
-  //14 - Выпуск товаров с особенностями, предусмотренными статьей 123 Таможенного кодекса Евразийского экономического союза
-  //20 - Условный выпуск товаров
-  Tdecision_code_type = Longint;
-  //Испорчено либо утеряно СИ с КМ - KM_SPOILED_OR_LOST
-  //Выявлены ошибки описания товара - DESCRIPTION_ERRORS
-  //Возврат товаров с поврежденным СИ/без СИ при розничной реализации - RETAIL_RETURN
-  //Возврат товаров с поврежденным СИ/без СИ при дистанционном способе продажи - REMOTE_SALE_RETURN
-  Tremark_cause_type = String;
-  //Спроавочник причин списания кодов маркировки
-  //Испорчен - KM_SPOILED
-  //Утерян - KM_LOST
-  //Уничтожен - KM_DESTROYED
-  Tkm_cancellation_reason_type = String;
-  //Спроавочник типов трансформации транспортной упаковки
-  //Изъятие - REMOVING
-  //Добавление - ADDING
-  Treaggregation_type_type = String;
-  //Спроавочник типов трансформации упаковки
-  //Изъятие - REMOVING
-  //Добавление - ADDING
-  Ttransformation_type_type = String;
-  //КИТУ (код идентификации транспортной упаковки)
-  Tkitu_type = String;
-  //КИ (код идентификации)
-  Tkit_type = String;
-  //КИ (код идентификации)
-  Tki_type = String;
-  //Способ изготовления
-  //Самостоятельно - OWN
-  //ЦЭМ - LC
-  Tproduction_method_type = String;
-  //Способ получения кодов маркировки
-  //На физическом носителе - PHYSICAL_MEDIA
-  //В электронном виде - ELECTRONIC
-  Treception_method_type = String;
-  //Способ формирования серийного номера
-  //Самостоятельно - OWN
-  //Оператором - OPERATOR
-  Tsn_method_type = String;
-  //Серийный номер сертификата УКЭП
-  Tcertificate_sn_type = String;
-  //Справочник типов движения товара
-  //Приход-расход - INCOME_OUTCOME
-  //Возврат - RETURN
-  Tdistribution_type_type = String;
-  //Справочник видов ввода товарв в оборот
-  //Собственное производство РФ - OWN_PRODUCTION
-  //Контрактное производство РФ - CONTRACT_PRODUCTION
-  //Производство вне ЕАЭС - BEYOND_EEC_PRODUCTION
-  //Производство в ЕАЭС - EEC_PRODUCTION
-  //Ввод полученных от физ.лиц товаров - INDIVIDUALS
-  //Ввод остатков товара - OSTATKI
-  Tvvod_type_type = String;
-  //Код страны ОКСМ
-  Toksm_type = String;
-  //Код страны ОКСМ для ввода в оборот при трансграничной торговле
-  //Армения - 051
-  //Беларусь - 112
-  //Казахстан - 398
-  //Киргизия - 417
-  Toksm_cb_type = String;
-  //Буквенный код идентификации страны в соответствии с ОКСМ (альфа-2)
-  Toksm_alpha2_type = String;
-  //Справочник видов возврата
-  //Возврат при розничной реализации - RETAIL_RETURN
-  //Возврат при дистанционном способе реализации - REMOTE_SALE_RETURN
-  Treturn_type_type = String;
-  //Код товарной номенклатуры (2 знака) для остатков
-  Ttnved_code_2_ost_type = Int64;
-  //Возрастная категория товара
-  //Детское - BABY
-  //Взрослое - ADULT
-  //Без возраста - NO_AGE
-  Tage_category_type = String;
-  //Регистрационный номер ДТ
-  Tdeclaration_number_type = String;
-  //Агрегированный таможенный код
-  Tatk_type = String;
   Taoguid = String;
   Thouseguid = String;
   Tflat = String;
@@ -262,6 +61,10 @@ type
   Tvvod_crossborder_products_list_type_product = class;
   Tvvod_fts_children_list_type = class;
   Tvvod_fts_children_list_type_product = class;
+  Tacceptance = class;
+  Tacceptance_element = class;
+  Tacceptance_products_list = class;
+  Tacceptance_products_list_product = class;
 
   {  Generic classes for collections  }
   Tfias_address_typeList = specialize GXMLSerializationObjectList<Tfias_address_type>;
@@ -279,6 +82,10 @@ type
   Tvvod_crossborder_products_list_type_productList = specialize GXMLSerializationObjectList<Tvvod_crossborder_products_list_type_product>;
   Tvvod_fts_children_list_typeList = specialize GXMLSerializationObjectList<Tvvod_fts_children_list_type>;
   Tvvod_fts_children_list_type_productList = specialize GXMLSerializationObjectList<Tvvod_fts_children_list_type_product>;
+  TacceptanceList = specialize GXMLSerializationObjectList<Tacceptance>;
+  Tacceptance_elementList = specialize GXMLSerializationObjectList<Tacceptance_element>;
+  Tacceptance_products_listList = specialize GXMLSerializationObjectList<Tacceptance_products_list>;
+  Tacceptance_products_list_productList = specialize GXMLSerializationObjectList<Tacceptance_products_list_product>;
 
   {  Tfias_address_type  }
   //Адрес в формате ФИАС
@@ -637,6 +444,128 @@ type
     property product_size:Tshoe_size read Fproduct_size write Setproduct_size;
     //Список КИ/КИТУ в составе КИТУ/АТК для ввода в оборот импортных товаров с ФТС
     property vvod_fts_children_list_type:Tvvod_fts_children_list_type read Fvvod_fts_children_list_type;
+  end;
+
+  {  Tacceptance  }
+  //Приемка
+  Tacceptance = class(TXmlSerializationObject)
+  private
+    Fshipment_id:Tguid_type;
+    Ftrade_participant_inn_sender:Tinn_type;
+    Ftrade_participant_inn_receiver:Tinn_type;
+    Fshipment_date:Tdatetimeoffset_type;
+    Freception_date:Tdatetimeoffset_type;
+    Ftransfer_date:Tdate_type;
+    Fmove_document_number:Tstring255_type;
+    Fmove_document_date:Tdate_type;
+    Fturnover_type:Tturnover_enum_type;
+    Frelease_method:Trelease_method_type;
+    Fproducts_list:Tacceptance_products_list;
+    Faction_id:Longint;
+    Fversion:Double;
+    procedure Setshipment_id( AValue:Tguid_type);
+    procedure Settrade_participant_inn_sender( AValue:Tinn_type);
+    procedure Settrade_participant_inn_receiver( AValue:Tinn_type);
+    procedure Setshipment_date( AValue:Tdatetimeoffset_type);
+    procedure Setreception_date( AValue:Tdatetimeoffset_type);
+    procedure Settransfer_date( AValue:Tdate_type);
+    procedure Setmove_document_number( AValue:Tstring255_type);
+    procedure Setmove_document_date( AValue:Tdate_type);
+    procedure Setturnover_type( AValue:Tturnover_enum_type);
+    procedure Setrelease_method( AValue:Trelease_method_type);
+    procedure Setaction_id( AValue:Longint);
+    procedure Setversion( AValue:Double);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    constructor Create;
+    destructor Destroy; override;
+  published
+    //Номер документа отгрузки
+    property shipment_id:Tguid_type read Fshipment_id write Setshipment_id;
+    //ИНН отправителя
+    property trade_participant_inn_sender:Tinn_type read Ftrade_participant_inn_sender write Settrade_participant_inn_sender;
+    //ИНН получателя
+    property trade_participant_inn_receiver:Tinn_type read Ftrade_participant_inn_receiver write Settrade_participant_inn_receiver;
+    //Дата и время отгрузки
+    property shipment_date:Tdatetimeoffset_type read Fshipment_date write Setshipment_date;
+    //Дата и время приемки
+    property reception_date:Tdatetimeoffset_type read Freception_date write Setreception_date;
+    //Дата отгрузки
+    property transfer_date:Tdate_type read Ftransfer_date write Settransfer_date;
+    //Номер первичного документа
+    property move_document_number:Tstring255_type read Fmove_document_number write Setmove_document_number;
+    //Дата первичного документа
+    property move_document_date:Tdate_type read Fmove_document_date write Setmove_document_date;
+    //Вид оборота товара
+    property turnover_type:Tturnover_enum_type read Fturnover_type write Setturnover_type;
+    //Способ ввода товаров в оборот
+    property release_method:Trelease_method_type read Frelease_method write Setrelease_method;
+    //Параметры товаров
+    property products_list:Tacceptance_products_list read Fproducts_list;
+    property action_id:Longint read Faction_id write Setaction_id;
+    property version:Double read Fversion write Setversion;
+  end;
+
+  {  Tacceptance_element  }
+  Tacceptance_element = class(Tacceptance)
+  private
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+    function RootNodeName:string; override;
+  public
+    constructor Create;
+    destructor Destroy; override;
+  published
+  end;
+
+  {  Tacceptance_products_list  }
+  Tacceptance_products_list = class(TXmlSerializationObject)
+  private
+    Fproduct:Tacceptance_products_list_productList;
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    constructor Create;
+    destructor Destroy; override;
+  published
+    //Параметры товара
+    property product:Tacceptance_products_list_productList read Fproduct;
+  end;
+
+  {  Tacceptance_products_list_product  }
+  Tacceptance_products_list_product = class(TXmlSerializationObject)
+  private
+    Fki:Tkit_type;
+    Fkitu:Tkitu_type;
+    Faccept_type:Boolean;
+    Fcost:Tprice_type;
+    Fvat_value:Tprice_type;
+    procedure Setki( AValue:Tkit_type);
+    procedure Setkitu( AValue:Tkitu_type);
+    procedure Setaccept_type( AValue:Boolean);
+    procedure Setcost( AValue:Tprice_type);
+    procedure Setvat_value( AValue:Tprice_type);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    constructor Create;
+    destructor Destroy; override;
+  published
+    //КИ
+    property ki:Tkit_type read Fki write Setki;
+    //КИТУ
+    property kitu:Tkitu_type read Fkitu write Setkitu;
+    //Товар принят
+    property accept_type:Boolean read Faccept_type write Setaccept_type;
+    //Цена за единицу
+    property cost:Tprice_type read Fcost write Setcost;
+    //Сумма НДС
+    property vat_value:Tprice_type read Fvat_value write Setvat_value;
   end;
 
 implementation
@@ -1336,6 +1265,268 @@ begin
 end;
 
 constructor Tvvod_fts_children_list_type_product.Create;
+begin
+  inherited Create;
+end;
+
+  {  Tacceptance  }
+procedure Tacceptance.Setshipment_id(AValue: Tguid_type);
+begin
+  CheckStrMinSize('shipment_id', AValue);
+  CheckStrMaxSize('shipment_id', AValue);
+  Fshipment_id:=AValue;
+  ModifiedProperty('shipment_id');
+end;
+
+procedure Tacceptance.Settrade_participant_inn_sender(AValue: Tinn_type);
+begin
+  CheckStrMinSize('trade_participant_inn_sender', AValue);
+  CheckStrMaxSize('trade_participant_inn_sender', AValue);
+  Ftrade_participant_inn_sender:=AValue;
+  ModifiedProperty('trade_participant_inn_sender');
+end;
+
+procedure Tacceptance.Settrade_participant_inn_receiver(AValue: Tinn_type);
+begin
+  CheckStrMinSize('trade_participant_inn_receiver', AValue);
+  CheckStrMaxSize('trade_participant_inn_receiver', AValue);
+  Ftrade_participant_inn_receiver:=AValue;
+  ModifiedProperty('trade_participant_inn_receiver');
+end;
+
+procedure Tacceptance.Setshipment_date(AValue: Tdatetimeoffset_type);
+begin
+  Fshipment_date:=AValue;
+  ModifiedProperty('shipment_date');
+end;
+
+procedure Tacceptance.Setreception_date(AValue: Tdatetimeoffset_type);
+begin
+  Freception_date:=AValue;
+  ModifiedProperty('reception_date');
+end;
+
+procedure Tacceptance.Settransfer_date(AValue: Tdate_type);
+begin
+  CheckStrMinSize('transfer_date', AValue);
+  CheckStrMaxSize('transfer_date', AValue);
+  Ftransfer_date:=AValue;
+  ModifiedProperty('transfer_date');
+end;
+
+procedure Tacceptance.Setmove_document_number(AValue: Tstring255_type);
+begin
+  CheckStrMinSize('move_document_number', AValue);
+  CheckStrMaxSize('move_document_number', AValue);
+  Fmove_document_number:=AValue;
+  ModifiedProperty('move_document_number');
+end;
+
+procedure Tacceptance.Setmove_document_date(AValue: Tdate_type);
+begin
+  CheckStrMinSize('move_document_date', AValue);
+  CheckStrMaxSize('move_document_date', AValue);
+  Fmove_document_date:=AValue;
+  ModifiedProperty('move_document_date');
+end;
+
+procedure Tacceptance.Setturnover_type(AValue: Tturnover_enum_type);
+begin
+  CheckLockupValue('turnover_type', AValue);
+  Fturnover_type:=AValue;
+  ModifiedProperty('turnover_type');
+end;
+
+procedure Tacceptance.Setrelease_method(AValue: Trelease_method_type);
+begin
+  CheckLockupValue('release_method', AValue);
+  Frelease_method:=AValue;
+  ModifiedProperty('release_method');
+end;
+
+procedure Tacceptance.Setaction_id(AValue: Longint);
+begin
+  CheckFixedValue('action_id', AValue);
+  Faction_id:=AValue;
+  ModifiedProperty('action_id');
+end;
+
+procedure Tacceptance.Setversion(AValue: Double);
+begin
+  CheckFixedValue('version', AValue);
+  Fversion:=AValue;
+  ModifiedProperty('version');
+end;
+
+procedure Tacceptance.InternalRegisterPropertys;
+var
+  P: TPropertyDef;
+begin
+  inherited InternalRegisterPropertys;
+  P:=RegisterProperty('shipment_id', 'shipment_id', [xsaSimpleObject], '', 36, 36);
+  P:=RegisterProperty('trade_participant_inn_sender', 'trade_participant_inn_sender', [xsaSimpleObject], '', 9, 12);
+  P:=RegisterProperty('trade_participant_inn_receiver', 'trade_participant_inn_receiver', [xsaSimpleObject], '', 9, 12);
+  P:=RegisterProperty('shipment_date', 'shipment_date', [xsaSimpleObject], '', -1, -1);
+  P:=RegisterProperty('reception_date', 'reception_date', [xsaSimpleObject], '', -1, -1);
+  P:=RegisterProperty('transfer_date', 'transfer_date', [xsaSimpleObject], '', 10, 10);
+  P:=RegisterProperty('move_document_number', 'move_document_number', [xsaSimpleObject], '', 1, 255);
+  P:=RegisterProperty('move_document_date', 'move_document_date', [xsaSimpleObject], '', 10, 10);
+  P:=RegisterProperty('turnover_type', 'turnover_type', [xsaSimpleObject], '', -1, -1);
+    P.ValidList.Add('SELLING');
+    P.ValidList.Add('COMMISSION');
+    P.ValidList.Add('AGENT');
+    P.ValidList.Add('COMMISSIONAIRE_SALE');
+    P.ValidList.Add('CONTRACT');
+  P:=RegisterProperty('release_method', 'release_method', [xsaSimpleObject], '', -1, -1);
+    P.ValidList.Add('PRODUCED_IN_RF');
+    P.ValidList.Add('IMPORTED_INTO_RF');
+    P.ValidList.Add('CROSSBORDER');
+  P:=RegisterProperty('products_list', 'products_list', [], '', -1, -1);
+  P:=RegisterProperty('action_id', 'action_id', [xsaRequared], '', -1, -1);
+    P.DefaultValue:='11';
+  P:=RegisterProperty('version', 'version', [xsaRequared], '', -1, -1);
+    P.DefaultValue:='6';
+end;
+
+procedure Tacceptance.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+  Fproducts_list:=Tacceptance_products_list.Create;
+end;
+
+destructor Tacceptance.Destroy;
+begin
+  Fproducts_list.Free;
+  inherited Destroy;
+end;
+
+constructor Tacceptance.Create;
+begin
+  inherited Create;
+  action_id:=11;
+  version:=6;
+end;
+
+  {  Tacceptance_element  }
+procedure Tacceptance_element.InternalRegisterPropertys;
+var
+  P: TPropertyDef;
+begin
+  inherited InternalRegisterPropertys;
+end;
+
+procedure Tacceptance_element.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor Tacceptance_element.Destroy;
+begin
+  inherited Destroy;
+end;
+
+function Tacceptance_element.RootNodeName:string;
+begin
+  Result:='acceptance';
+end;
+
+constructor Tacceptance_element.Create;
+begin
+  inherited Create;
+end;
+
+  {  Tacceptance_products_list  }
+procedure Tacceptance_products_list.InternalRegisterPropertys;
+var
+  P: TPropertyDef;
+begin
+  inherited InternalRegisterPropertys;
+  P:=RegisterProperty('product', 'product', [], '', -1, -1);
+end;
+
+procedure Tacceptance_products_list.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+  Fproduct:=Tacceptance_products_list_productList.Create;
+end;
+
+destructor Tacceptance_products_list.Destroy;
+begin
+  Fproduct.Free;
+  inherited Destroy;
+end;
+
+constructor Tacceptance_products_list.Create;
+begin
+  inherited Create;
+end;
+
+  {  Tacceptance_products_list_product  }
+procedure Tacceptance_products_list_product.Setki(AValue: Tkit_type);
+begin
+  CheckStrMinSize('ki', AValue);
+  CheckStrMaxSize('ki', AValue);
+  Fki:=AValue;
+  ModifiedProperty('ki');
+end;
+
+procedure Tacceptance_products_list_product.Setkitu(AValue: Tkitu_type);
+begin
+  CheckStrMinSize('kitu', AValue);
+  CheckStrMaxSize('kitu', AValue);
+  Fkitu:=AValue;
+  ModifiedProperty('kitu');
+end;
+
+procedure Tacceptance_products_list_product.Setaccept_type(AValue: Boolean);
+begin
+  Faccept_type:=AValue;
+  ModifiedProperty('accept_type');
+end;
+
+procedure Tacceptance_products_list_product.Setcost(AValue: Tprice_type);
+begin
+  CheckMinInclusiveValue('cost', AValue);
+  Fcost:=AValue;
+  ModifiedProperty('cost');
+end;
+
+procedure Tacceptance_products_list_product.Setvat_value(AValue: Tprice_type);
+begin
+  CheckMinInclusiveValue('vat_value', AValue);
+  Fvat_value:=AValue;
+  ModifiedProperty('vat_value');
+end;
+
+procedure Tacceptance_products_list_product.InternalRegisterPropertys;
+var
+  P: TPropertyDef;
+begin
+  inherited InternalRegisterPropertys;
+  P:=RegisterProperty('ki', 'ki', [xsaSimpleObject], '', 25, 45);
+  P:=RegisterProperty('kitu', 'kitu', [xsaSimpleObject], '', 18, 18);
+  P:=RegisterProperty('accept_type', 'accept_type', [xsaSimpleObject], '', -1, -1);
+  P:=RegisterProperty('cost', 'cost', [xsaSimpleObject], '', -1, -1);
+    P.TotalDigits := 19;
+    P.FractionDigits := 2;
+    P.minInclusiveFloat:=0;
+  P:=RegisterProperty('vat_value', 'vat_value', [xsaSimpleObject], '', -1, -1);
+    P.TotalDigits := 19;
+    P.FractionDigits := 2;
+    P.minInclusiveFloat:=0;
+end;
+
+procedure Tacceptance_products_list_product.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor Tacceptance_products_list_product.Destroy;
+begin
+  inherited Destroy;
+end;
+
+constructor Tacceptance_products_list_product.Create;
 begin
   inherited Create;
 end;

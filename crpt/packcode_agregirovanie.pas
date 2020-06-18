@@ -55,11 +55,11 @@ type
   //Тип "Дата со временем" (с временной зоной)
   Tdatetimeoffset = TDateTime;
   //Строка произвольной длины, но не более 200 символов
-  Tstring200_type = String;
+  Tstring200_type = string;
   //Строка произвольной длины, но не более 500 символов
-  Tstring500_type = String;
+  Tstring500_type = string;
   //Строка произвольной длины, но не более 1000 символов
-  Tstring1000_type = String;
+  Tstring1000_type = string;
   //Должность  физического лица
   Tperson_position = String;
   //Тип "Код ТН ВЭД ЕАЭС"
@@ -73,7 +73,7 @@ type
   //Тип "Строка" (не пустая в начале)
   Tstring_clear_at_begin_type = String;
   //Тип "Строка" (без спецсимволов с обеих сторон)
-  Tstring_clear_type = String;
+  Tstring_clear_type = string;
   //Порядковый номер документа
   Tdocument_number = String;
   //Дата в формате ГГГГ-ММ-ДД (2019-04-12 - 2019-04-12)
