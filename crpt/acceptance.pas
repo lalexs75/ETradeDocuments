@@ -462,7 +462,7 @@ type
     Frelease_method:Trelease_method_type;
     Fproducts_list:Tacceptance_products_list;
     Faction_id:Longint;
-    Fversion:Double;
+    Fversion:string;
     procedure Setshipment_id( AValue:Tguid_type);
     procedure Settrade_participant_inn_sender( AValue:Tinn_type);
     procedure Settrade_participant_inn_receiver( AValue:Tinn_type);
@@ -474,7 +474,7 @@ type
     procedure Setturnover_type( AValue:Tturnover_enum_type);
     procedure Setrelease_method( AValue:Trelease_method_type);
     procedure Setaction_id( AValue:Longint);
-    procedure Setversion( AValue:Double);
+    procedure Setversion( AValue:string);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
@@ -505,7 +505,7 @@ type
     //Параметры товаров
     property products_list:Tacceptance_products_list read Fproducts_list;
     property action_id:Longint read Faction_id write Setaction_id;
-    property version:Double read Fversion write Setversion;
+    property version:string read Fversion write Setversion;
   end;
 
   {  Tacceptance_element  }
@@ -1351,7 +1351,7 @@ begin
   ModifiedProperty('action_id');
 end;
 
-procedure Tacceptance.Setversion(AValue: Double);
+procedure Tacceptance.Setversion(AValue: string);
 begin
   CheckFixedValue('version', AValue);
   Fversion:=AValue;
@@ -1404,7 +1404,7 @@ constructor Tacceptance.Create;
 begin
   inherited Create;
   action_id:=11;
-  version:=6;
+  version:='6';
 end;
 
   {  Tacceptance_element  }
