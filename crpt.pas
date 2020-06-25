@@ -12,7 +12,7 @@ uses
   RemReq, retail_sale, shipment_signs, Vvod, vvod_contract_production, 
   Vvod_Imp, vvod_individuals, vvod_ostatky, LP_base_types_v3, shipment, 
   packcode_agregirovanie, packcode_transform, packcode_unagregirovan, 
-  acceptance, LazarusPackageIntf;
+  acceptance, withdrawal, LazarusPackageIntf;
 
 implementation
 
