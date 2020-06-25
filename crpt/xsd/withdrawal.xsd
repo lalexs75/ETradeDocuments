@@ -59,7 +59,7 @@
                             </xs:annotation>
                             <xs:complexType>
                                 <xs:sequence>
-                                    <xs:element name="ki" type="ki_type">
+                                    <xs:element name="kit" type="ki_type">
                                         <xs:annotation>
                                             <xs:documentation>КИ</xs:documentation>
                                         </xs:annotation>

@@ -138,13 +138,13 @@ type
   {  Twithdrawal_products_list_product  }
   Twithdrawal_products_list_product = class(TXmlSerializationObject)
   private
-    Fki:Tki_type;
+    Fkit:Tki_type;
     Fcost:Tprice_type;
     Fprimary_document_type:Twithdraw_primary_document_type_type;
     Fprimary_document_number:Tstring255_type;
     Fprimary_document_date:Tdate_type;
     Fprimary_document_custom_name:Tstring255_type;
-    procedure Setki( AValue:Tki_type);
+    procedure Setkit( AValue:Tki_type);
     procedure Setcost( AValue:Tprice_type);
     procedure Setprimary_document_type( AValue:Twithdraw_primary_document_type_type);
     procedure Setprimary_document_number( AValue:Tstring255_type);
@@ -158,7 +158,7 @@ type
     destructor Destroy; override;
   published
     //КИ
-    property ki:Tki_type read Fki write Setki;
+    property kit:Tki_type read Fkit write Setkit;
     //Цена за единицу
     property cost:Tprice_type read Fcost write Setcost;
     //Тип первичного документа
@@ -361,12 +361,12 @@ begin
 end;
 
   {  Twithdrawal_products_list_product  }
-procedure Twithdrawal_products_list_product.Setki(AValue: Tki_type);
+procedure Twithdrawal_products_list_product.Setkit(AValue: Tki_type);
 begin
-  CheckStrMinSize('ki', AValue);
-  CheckStrMaxSize('ki', AValue);
-  Fki:=AValue;
-  ModifiedProperty('ki');
+  CheckStrMinSize('kit', AValue);
+  CheckStrMaxSize('kit', AValue);
+  Fkit:=AValue;
+  ModifiedProperty('kit');
 end;
 
 procedure Twithdrawal_products_list_product.Setcost(AValue: Tprice_type);
@@ -412,7 +412,7 @@ var
   P: TPropertyDef;
 begin
   inherited InternalRegisterPropertys;
-  P:=RegisterProperty('ki', 'ki', [xsaSimpleObject], '', 25, 45);
+  P:=RegisterProperty('kit', 'kit', [xsaSimpleObject], '', 25, 45);
   P:=RegisterProperty('cost', 'cost', [xsaSimpleObject], '', -1, -1);
     P.TotalDigits := 19;
     P.FractionDigits := 2;
