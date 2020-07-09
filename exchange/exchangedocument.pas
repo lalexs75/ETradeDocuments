@@ -39,7 +39,8 @@ unit ExchangeDocument;
 interface
 
 uses
-  Classes, SysUtils, xmlobject, ExchangeInformation, TreasuryInformation, ExchangeSigner;
+  Classes, SysUtils, xmlobject, ExchangeInformation, TreasuryInformation, ExchangeSigner,
+  AbstractSerializationObjects;
 
 type
 

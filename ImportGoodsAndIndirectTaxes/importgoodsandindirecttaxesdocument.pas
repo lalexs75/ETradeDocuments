@@ -40,7 +40,7 @@ unit ImportGoodsAndIndirectTaxesDocument;
 interface
 
 uses
-  Classes, SysUtils, xmlobject;
+  Classes, SysUtils, xmlobject, AbstractSerializationObjects;
 
 type
   TProductDetailsEnumerator = class;

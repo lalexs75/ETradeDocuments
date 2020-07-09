@@ -37,7 +37,7 @@ unit Vvod;
 interface
 
 uses
-  Classes, SysUtils, xmlobject;
+  Classes, SysUtils, xmlobject, AbstractSerializationObjects;
 
 type
   TDocType = String;

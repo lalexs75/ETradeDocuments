@@ -37,7 +37,7 @@ unit packcode_agregirovanie;
 interface
 
 uses
-  Classes, SysUtils, xmlobject;
+  Classes, SysUtils, xmlobject, AbstractSerializationObjects;
 
 type
   //Идентификационный номер налогоплательщика - физического лица

@@ -37,7 +37,7 @@ unit shipment;
 interface
 
 uses
-  Classes, SysUtils, xmlobject, LP_base_types_v2;
+  Classes, SysUtils, xmlobject, LP_base_types_v2, AbstractSerializationObjects;
 
 type
 

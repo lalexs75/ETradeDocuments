@@ -39,7 +39,7 @@ unit InvoiceItem;
 interface
 
 uses
-  Classes, SysUtils, xmlobject, AdditionalInfo;
+  Classes, SysUtils, xmlobject, AdditionalInfo, AbstractSerializationObjects;
 
 type
 

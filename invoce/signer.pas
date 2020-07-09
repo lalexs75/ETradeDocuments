@@ -39,7 +39,7 @@ unit Signer;
 interface
 
 uses
-  Classes, SysUtils, xmlobject, OrganizationInfo;
+  Classes, SysUtils, xmlobject, OrganizationInfo, AbstractSerializationObjects;
 
 type
 

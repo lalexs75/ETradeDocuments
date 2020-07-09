@@ -37,7 +37,7 @@ unit retail_sale;
 interface
 
 uses
-  Classes, SysUtils, xmlobject, LP_base_types;
+  Classes, SysUtils, xmlobject, LP_base_types, AbstractSerializationObjects;
 
 type
   Taoguid = String;

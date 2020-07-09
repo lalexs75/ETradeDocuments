@@ -38,7 +38,7 @@ unit TransferInfo;
 interface
 
 uses
-  Classes, SysUtils, xmlobject, OrganizationInfo, AdditionalInfo;
+  Classes, SysUtils, xmlobject, OrganizationInfo, AdditionalInfo, AbstractSerializationObjects;
 
 type
 

@@ -37,7 +37,7 @@ unit vvod_ostatky;
 interface
 
 uses
-  Classes, SysUtils, xmlobject, LP_base_types_v3;
+  Classes, SysUtils, xmlobject, LP_base_types_v3, AbstractSerializationObjects;
 
 type
 

@@ -37,7 +37,7 @@ unit LP_base_types_v3;
 interface
 
 uses
-  Classes, SysUtils, xmlobject;
+  Classes, SysUtils, xmlobject, AbstractSerializationObjects;
 
 type
   //IPv4. Запись в виде четырёх десятичных чисел (от 0 до 255), разделённых точками.

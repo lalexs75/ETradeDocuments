@@ -40,7 +40,7 @@ interface
 
 uses
   Classes, SysUtils, xmlobject, OrganizationInfo, AdditionalInfo, InvoiceItem,
-  TransferInfo, Signer;
+  TransferInfo, Signer, AbstractSerializationObjects;
 
 type
 

@@ -43,7 +43,7 @@ unit et_torg2;
 interface
 
 uses
-  Classes, SysUtils, AbstractExchangeFileUnit, xmlobject;
+  Classes, SysUtils, AbstractExchangeFileUnit, xmlobject, AbstractSerializationObjects;
 
 type
   TPhysicalPersonEntity = class;

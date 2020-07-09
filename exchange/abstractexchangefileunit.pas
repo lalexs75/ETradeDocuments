@@ -39,7 +39,7 @@ unit AbstractExchangeFileUnit;
 interface
 
 uses
-  Classes, SysUtils, DOM, xmlobject;
+  Classes, SysUtils, DOM, xmlobject, AbstractSerializationObjects;
 
 type
   { TAbstractExchangeFile }
