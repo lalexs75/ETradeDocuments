@@ -7,12 +7,13 @@
     <CompilerOptions>
       <Version Value="11"/>
       <SearchPaths>
-        <OtherUnitFiles Value="crpt"/>
+        <OtherUnitFiles Value="crpt;crpt/status"/>
         <UnitOutputDirectory Value="lib/crpt/$(TargetCPU)-$(TargetOS)"/>
       </SearchPaths>
     </CompilerOptions>
+    <Description Value="Набор объектов и структур для взаимодействия с ЦРПТ по маркировке товаров"/>
     <License Value="LGPL"/>
-    <Version Release="2" Build="4"/>
+    <Version Major="1" Release="1" Build="5"/>
     <Files>
       <Item>
         <Filename Value="crpt/crpt_cmp.pas"/>
@@ -95,8 +96,15 @@
         <Filename Value="crpt/withdrawal.pas"/>
         <UnitName Value="withdrawal"/>
       </Item>
+      <Item>
+        <Filename Value="crpt/status/cis_list.pas"/>
+        <UnitName Value="cis_list"/>
+      </Item>
     </Files>
     <RequiredPkgs>
+      <Item>
+        <PackageName Value="laz_synapse"/>
+      </Item>
       <Item>
         <PackageName Value="xmlobjects"/>
       </Item>
