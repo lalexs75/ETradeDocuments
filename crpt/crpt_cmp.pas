@@ -1,3 +1,33 @@
+{ GS1 interface library for FPC and Lazarus
+
+  Copyright (C) 2020 Lagunov Aleksey alexs75@yandex.ru
+
+  This library is free software; you can redistribute it and/or modify it
+  under the terms of the GNU Library General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or (at your
+  option) any later version with the following modification:
+
+  As a special exception, the copyright holders of this library give you
+  permission to link this library with independent modules to produce an
+  executable, regardless of the license terms of these independent modules,and
+  to copy and distribute the resulting executable under terms of your choice,
+  provided that you also meet, for each linked independent module, the terms
+  and conditions of the license of that module. An independent module is a
+  module which is not derived from or based on this library. If you modify
+  this library, you may extend this exception to your version of the library,
+  but you are not obligated to do so. If you do not wish to do so, delete this
+  exception statement from your version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT
+  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  FITNESS FOR A PARTICULAR PURPOSE. See the GNU Library General Public License
+  for more details.
+
+  You should have received a copy of the GNU Library General Public License
+  along with this library; if not, write to the Free Software Foundation,
+  Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+}
+
 unit crpt_cmp;
 
 {$mode objfpc}{$H+}
@@ -38,6 +68,8 @@ type
 
   TCRPTComponent = class(TComponent)
   private
+    FAuthorizationToken:string;
+    FAuthorizationTokenTimeStamp:TDateTime;
     FHTTP:THTTPSend;
     FOnHttpStatus: TOnHttpStatusEnevent;
     FOnSignData: TOnSignDataEvent;
@@ -45,7 +77,6 @@ type
     FResultCode: integer;
     FResultString: string;
     FResultText: TStrings;
-    FAuthorizationToken:string;
     procedure SetProxyData(AValue: TProxyData);
     function DoAnsverLogin(FUID, FDATA:string):Boolean;
     procedure SaveHttpData(ACmdName: string);
@@ -92,7 +123,7 @@ type
     //Метод получения списка КМ по заданному фильтру с подробной информацией о КМ
     function GetKMList: TJSONObject;
     //Метод получения подробной информации о конкретном КМ
-    function GetKMInfo(KM:string): TJSONObject;
+    function GetCISInfo(CIS:string): TJSONObject;
     //3.3 Метод получения списка товаров по заданному фильтру
     function GetGoodsList(CIS: string): TJSONObject;
     //3.4 Получение информации о конкретном маркированном товаре
@@ -102,7 +133,7 @@ type
     //Документы
 
     //Метод получения списка документов, ранее загруженных в ИС МП
-    function DocList(ADateFrom, ADateTo:TDateTime):TJSONObject;
+    function DocList(ADateFrom, ADateTo: TDateTime; ALimit: Integer=0): TJSONObject;
     //Метод получения содержимого документа, ранее загруженного в ИС МП
     function DocContent(ADocID:string):TJSONObject;
     //4.3 Единый метод создания документов
@@ -137,7 +168,7 @@ procedure AddURLParam(var S:string; AParam:string); overload;
 procedure Register;
 
 implementation
-uses jsonparser;
+uses jsonparser, sdo_date_utils;
 
 procedure Register;
 begin
@@ -253,7 +284,10 @@ begin
       P:=TJSONParser.Create(FHTTP.Document);
       R:=P.Parse as TJSONObject;
       if FResultCode = 200 then
+      begin
         FAuthorizationToken:=JSONStringToString( R.GetPath('token').AsString );
+        FAuthorizationTokenTimeStamp:=Now;
+      end;
     finally
       P.Free;
       R.Free;
@@ -363,7 +397,8 @@ end;
 
 procedure TCRPTComponent.Clear;
 begin
-  //FAuthToken:='';
+  FAuthorizationToken:='';
+  FAuthorizationTokenTimeStamp:=0;
 end;
 
 function TCRPTComponent.DoLogin: Boolean;
@@ -373,7 +408,7 @@ var
   FDATA, FUID: TJSONStringType;
   R: Int64;
 begin
-  if FAuthorizationToken <> '' then Exit;
+  if (FAuthorizationToken <> '') and (FAuthorizationTokenTimeStamp > (Now - (1 / 20) * 10)) then Exit;
   FAuthorizationToken:='';
   Result:=false;
   if SendCommand(hmGET, '/api/v3/auth/cert/key', '', nil) then
@@ -399,7 +434,7 @@ end;
 
 function TCRPTComponent.Login: Boolean;
 begin
-  FAuthorizationToken:='';
+  Clear;
   Result:=DoLogin;
 end;
 
@@ -496,14 +531,19 @@ begin
   AbstractError;
 end;
 
-function TCRPTComponent.GetKMInfo(KM: string): TJSONObject;
+function TCRPTComponent.GetCISInfo(CIS: string): TJSONObject;
 var
   P: TJSONParser;
+  S: String;
 begin
   //GET /api/v3/facade/identifytools/{cis}
   Result:=nil;
-  if SendCommand(hmGET, '/api/v3/facade/identifytools/' + KM, '', nil) then
+  DoLogin;
+  S:=HTTPEncode(StringReplace(CIS, '%', '%25', [rfReplaceAll]));
+
+  if SendCommand(hmGET, '/api/v3/facade/identifytools/' + S, '', nil) then
   begin
+    SaveHttpData('cis_info');
     FHTTP.Document.Position:=0;
     P:=TJSONParser.Create(FHTTP.Document);
     Result:=P.Parse as TJSONObject;
@@ -606,18 +646,65 @@ begin
   end;
 end;
 
-function TCRPTComponent.DocList(ADateFrom, ADateTo: TDateTime): TJSONObject;
+function TCRPTComponent.DocList(ADateFrom, ADateTo: TDateTime; ALimit:Integer = 0): TJSONObject;
+var
+  S: String;
+  P: TJSONParser;
 begin
   //URL: /api/v3/facade/doc/listV2
   //Метод: GET
-  AbstractError;
+  //limit=10&order=DESC&\orderColumn=docDate&did=623136d3-7a9b-40c9-8ce3-8091e41f83aa&\
+  //orderedColumnValue=2019-01-28T09:30:40.136Z&pageDir=NEXT'
+  DoLogin;
+  Result:=nil;
+  //URL: ?cis={КМ}
+  //Метод: GET
+  S:='';
+
+  AddURLParam(S, 'dateFrom', xsd_DateTimeToStr(ADateFrom, xdkDateTime));
+  AddURLParam(S, 'dateTo', xsd_DateTimeToStr(ADateTo, xdkDateTime));
+  if ALimit > 0 then
+    AddURLParam(S, 'limit', ALimit);
+
+  //Товарная группа
+  //  1  - clothes     – Предметы  одежды,  белье постельное, столовое, туалетное и кухонное;
+  //  2  - shoes       – Обувные товары;
+  //  3  - tobacco     – Табачная продукция;
+  //  4  - perfumery   – Духи и туалетная вода;
+  //  5  - tires       – Шины и покрышки пневматические резиновые новые;
+  //  6  - electronics – Фотокамеры    (кроме кинокамер), фотовспышки и лампы-вспышки;
+  //  7  - pharma      – Лекарственные  препараты  для медицинского применения;
+  //  8  - milk        – Молочная продукция;
+  //  9  - bicycle     – Велосипеды  и  велосипедные рамы;
+  //  10 - wheelchairs – Кресла-коляски
+  if SendCommand(hmGET, '/api/v3/facade/doc/listV2', S, nil) then
+  begin
+    SaveHttpData('doc_list');
+    FHTTP.Document.Position:=0;
+    P:=TJSONParser.Create(FHTTP.Document);
+    Result:=P.Parse as TJSONObject;
+    P.Free;
+  end;
 end;
 
 function TCRPTComponent.DocContent(ADocID: string): TJSONObject;
+var
+  S: String;
+  P: TJSONParser;
 begin
-  //URL: /api/v3/facade/doc/{docId}/body
+  //URL:
   //Метод: GET
-  AbstractError;
+  DoLogin;
+  Result:=nil;
+  S:=HTTPEncode(StringReplace(ADocID, '%', '%25', [rfReplaceAll]));
+  if SendCommand(hmGET, '/api/v3/facade/doc/'+S+'/body', '', nil) then
+  begin
+    SaveHttpData('doc_content');
+    FHTTP.Document.Position:=0;
+    P:=TJSONParser.Create(FHTTP.Document);
+    Result:=P.Parse as TJSONObject;
+    P.Free;
+  end;
 end;
 
 function TCRPTComponent.DocCreate(ADocID: string): TJSONObject;

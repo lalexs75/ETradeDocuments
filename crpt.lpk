@@ -13,7 +13,7 @@
     </CompilerOptions>
     <Description Value="Набор объектов и структур для взаимодействия с ЦРПТ по маркировке товаров"/>
     <License Value="LGPL"/>
-    <Version Major="1" Release="1" Build="5"/>
+    <Version Major="1" Release="1" Build="6"/>
     <Files>
       <Item>
         <Filename Value="crpt/crpt_cmp.pas"/>
@@ -99,6 +99,10 @@
       <Item>
         <Filename Value="crpt/status/cis_list.pas"/>
         <UnitName Value="cis_list"/>
+      </Item>
+      <Item>
+        <Filename Value="crpt/status/doc_list.pas"/>
+        <UnitName Value="doc_list"/>
       </Item>
     </Files>
     <RequiredPkgs>
