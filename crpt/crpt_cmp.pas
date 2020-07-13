@@ -170,6 +170,8 @@ procedure Register;
 implementation
 uses jsonparser, sdo_date_utils;
 
+{$R crpt.res}
+
 procedure Register;
 begin
   RegisterComponents('TradeEquipment',[TCRPTComponent]);
