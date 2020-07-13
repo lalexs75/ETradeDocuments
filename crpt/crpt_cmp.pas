@@ -35,7 +35,7 @@ unit crpt_cmp;
 interface
 
 uses
-  Classes, SysUtils, httpsend, fpJSON;
+  Classes, SysUtils, httpsend, fpJSON, cis_list;
 
 const
   sAPIURL = 'https://ismp.crpt.ru'; //WORK API
@@ -129,7 +129,7 @@ type
     //3.4 Получение информации о конкретном маркированном товаре
     function GetGoodInfo: TJSONObject;
     //3.5 Метод получения краткой информации о КМ\списке КМ (общедоступный)
-    function GetSimpleGoodsList(KMList:TStringArray): TJSONObject;
+    function GetSimpleGoodsList(KMList:TStringArray): TCISItems;
     //Документы
 
     //Метод получения списка документов, ранее загруженных в ИС МП
@@ -626,7 +626,7 @@ begin
   AbstractError;
 end;
 
-function TCRPTComponent.GetSimpleGoodsList(KMList: TStringArray): TJSONObject;
+function TCRPTComponent.GetSimpleGoodsList(KMList: TStringArray): TCISItems;
 var
   S, CIS: String;
   P: TJSONParser;
@@ -642,9 +642,11 @@ begin
   begin
     SaveHttpData('cis_list');
     FHTTP.Document.Position:=0;
-    P:=TJSONParser.Create(FHTTP.Document);
-    Result:=P.Parse as TJSONObject;
-    P.Free;
+    Result:=TCISItems.Create;
+    Result.LoadFromStream(FHTTP.Document);
+    //P:=TJSONParser.Create(FHTTP.Document);
+    //Result:=P.Parse as TJSONObject;
+    //P.Free;
   end;
 end;
 

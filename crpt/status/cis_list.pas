@@ -48,9 +48,9 @@ type
     FChildren: TXSDStringArray;
     FCIS: string;
     FCountChildren: Integer;
-    FEmissionDate: Cardinal;
+    FEmissionDate: Int64;
     FGTIN: string;
-    FIntroducedDate: Cardinal;
+    FIntroducedDate: Int64;
     FLastDocId: string;
     FLastStatusChangeDate: string;
     FNextCises: string;
@@ -58,7 +58,7 @@ type
     FOwnerName: string;
     FPackageType: string;
     FPrevCises: string;
-    FProducedDate: Cardinal;
+    FProducedDate: Int64;
     FProducerName: string;
     FProductGroup: string;
     FProductName: string;
@@ -69,9 +69,9 @@ type
     procedure SetChildren(AValue: TXSDStringArray);
     procedure SetCIS(AValue: string);
     procedure SetCountChildren(AValue: Integer);
-    procedure SetEmissionDate(AValue: Cardinal);
+    procedure SetEmissionDate(AValue: Int64);
     procedure SetGTIN(AValue: string);
-    procedure SetIntroducedDate(AValue: Cardinal);
+    procedure SetIntroducedDate(AValue: Int64);
     procedure SetLastDocId(AValue: string);
     procedure SetLastStatusChangeDate(AValue: string);
     procedure SetNextCises(AValue: string);
@@ -79,7 +79,7 @@ type
     procedure SetOwnerName(AValue: string);
     procedure SetPackageType(AValue: string);
     procedure SetPrevCises(AValue: string);
-    procedure SetProducedDate(AValue: Cardinal);
+    procedure SetProducedDate(AValue: Int64);
     procedure SetProducerName(AValue: string);
     procedure SetProductGroup(AValue: string);
     procedure SetProductName(AValue: string);
@@ -96,7 +96,7 @@ type
     property ProducerName:string read FProducerName write SetProducerName;
     property Status:string read FStatus write SetStatus;
     property StatusEx:string read FStatusEx write SetStatusEx;
-    property EmissionDate:Cardinal read FEmissionDate write SetEmissionDate;
+    property EmissionDate:Int64 read FEmissionDate write SetEmissionDate;
     property PackageType:string read FPackageType write SetPackageType;
     property OwnerName:string read FOwnerName write SetOwnerName;
     property OwnerInn:string read FOwnerInn write SetOwnerInn;
@@ -106,11 +106,11 @@ type
     property NextCises:string read FNextCises write SetNextCises;
     property CountChildren:Integer read FCountChildren write SetCountChildren;
     property LastDocId:string read FLastDocId write SetLastDocId;
-    property IntroducedDate:Cardinal read FIntroducedDate write SetIntroducedDate;
+    property IntroducedDate:Int64 read FIntroducedDate write SetIntroducedDate;
     property AgentName:string read FAgentName write SetAgentName;
     property LastStatusChangeDate:string read FLastStatusChangeDate write SetLastStatusChangeDate;
     property ProductGroup:string read FProductGroup write SetProductGroup;
-    property ProducedDate:Cardinal read FProducedDate write SetProducedDate;
+    property ProducedDate:Int64 read FProducedDate write SetProducedDate;
     property Children:TXSDStringArray read FChildren write SetChildren;
   end;
   TCISItemList = specialize GXMLSerializationObjectList<TCISItem>;
@@ -188,7 +188,7 @@ begin
   ModifiedProperty('CountChildren');
 end;
 
-procedure TCISItem.SetEmissionDate(AValue: Cardinal);
+procedure TCISItem.SetEmissionDate(AValue: Int64);
 begin
   if FEmissionDate=AValue then Exit;
   FEmissionDate:=AValue;
@@ -202,7 +202,7 @@ begin
   ModifiedProperty('GTIN');
 end;
 
-procedure TCISItem.SetIntroducedDate(AValue: Cardinal);
+procedure TCISItem.SetIntroducedDate(AValue: Int64);
 begin
   if FIntroducedDate=AValue then Exit;
   FIntroducedDate:=AValue;
@@ -258,7 +258,7 @@ begin
   ModifiedProperty('PrevCises');
 end;
 
-procedure TCISItem.SetProducedDate(AValue: Cardinal);
+procedure TCISItem.SetProducedDate(AValue: Int64);
 begin
   if FProducedDate=AValue then Exit;
   FProducedDate:=AValue;
@@ -313,7 +313,7 @@ begin
   RegisterProperty('OwnerName', 'ownerName', [], '', -1, -1);
   RegisterProperty('OwnerInn', 'ownerInn', [], '', -1, -1);
   RegisterProperty('ProductName', 'productName', [], '', -1, -1);
-  RegisterProperty('Brand', '', [], 'brand', -1, -1);
+  RegisterProperty('Brand', 'brand', [], '', -1, -1);
   RegisterProperty('PrevCises', 'prevCises', [], '', -1, -1);
   RegisterProperty('NextCises', 'nextCises', [], '', -1, -1);
   RegisterProperty('CountChildren', 'countChildren', [], '', -1, -1);
