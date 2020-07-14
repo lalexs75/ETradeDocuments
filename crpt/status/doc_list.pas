@@ -96,7 +96,7 @@ type
     FDownloadStatus: string;
     FErrors: TXSDStringArray;
     FInput: Boolean;
-    FInvoiceDate: Cardinal;
+    FInvoiceDate: Int64;
     FInvoiceNumber: string;
     FNumber: string;
     FPdfFile: string;
@@ -112,7 +112,7 @@ type
     procedure SetDownloadStatus(AValue: string);
     procedure SetErrors(AValue: TXSDStringArray);
     procedure SetInput(AValue: Boolean);
-    procedure SetInvoiceDate(AValue: Cardinal);
+    procedure SetInvoiceDate(AValue: Int64);
     procedure SetInvoiceNumber(AValue: string);
     procedure SetNumber(AValue: string);
     procedure SetPdfFile(AValue: string);
@@ -136,7 +136,7 @@ type
     property SenderName:string read FSenderName write SetSenderName;
     property ReceiverName:string read FReceiverName write SetReceiverName;
     property InvoiceNumber:string read FInvoiceNumber write SetInvoiceNumber;
-    property InvoiceDate:Cardinal read FInvoiceDate write SetInvoiceDate;
+    property InvoiceDate:Int64 read FInvoiceDate write SetInvoiceDate;
     property Total:Cardinal read FTotal write SetTotal;
     //vat
     property DownloadStatus:string read FDownloadStatus write SetDownloadStatus;
@@ -251,7 +251,7 @@ begin
   ModifiedProperty('Input');
 end;
 
-procedure TDocItem.SetInvoiceDate(AValue: Cardinal);
+procedure TDocItem.SetInvoiceDate(AValue: Int64);
 begin
   if FInvoiceDate=AValue then Exit;
   FInvoiceDate:=AValue;

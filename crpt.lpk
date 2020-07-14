@@ -108,6 +108,10 @@
         <Filename Value="crpt/crptglobaltypes.pas"/>
         <UnitName Value="CrptGlobalTypes"/>
       </Item>
+      <Item>
+        <Filename Value="crpt/crptglobalutils.pas"/>
+        <UnitName Value="crptglobalutils"/>
+      </Item>
     </Files>
     <LazDoc Paths="docs"/>
     <RequiredPkgs>
