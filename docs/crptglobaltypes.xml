@@ -104,6 +104,10 @@
 </descr>
       </element><element name="TDocStatus.WAIT_PARTICIPANT_REGISTRATION"><short>Ожидает регистрации участника в ГИС МТ</short><descr>Только для документа 'Отгрузка'. Устанавливается при успешной обработке документа 'Отгрузка товара' в сторону незарегистрированного участника
 </descr>
+      </element><element name="TCrptReceiptListLister"><short>Фильтр на запрос чеков</short>
+      </element><element name="TCrptReceiptListLister.DateFrom"><short>С даты</short>
+      </element><element name="TCrptReceiptListLister.DateTo"><short>По дату</short>
+      </element><element name="TCrptReceiptListLister.Limit"><short>Лимит отбора</short>
       </element>
     </module>
   </package>
