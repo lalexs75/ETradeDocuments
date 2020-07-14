@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fpdoc-descriptions><package name="crpt"><module name="doc_list"><element name="TDocItems"><short>Список документов,  ранее загруженных в ГИС МТ</short>
+      </element><element name="TDocItems.Results"><short>Список документов</short>
+      </element><element name="TDocItems.Total"><short>кол-во документов</short>
+      </element><element name="TDocItem"><short>Данные на документ</short>
+      </element><element name="TDocItem.Number"><short>Номер документа</short>
+      </element><element name="TDocItem.DocDate"><short>Дата документа</short><descr>Возвращается в формате yyyy-MM-ddTHH:mm:ss.SSS’ZTHH:mm:ss.SSS’Z
+</descr>
+      </element><element name="TDocItem.ReceivedAt"><short>Дата и время получения документа</short><descr>Возвращается в формате yyyy-MM-ddTHH:mm:ss.SSS’ZTHH:mm:ss.SSS’Z. Пример 2019-01-01T03:00:00.000Z
+</descr>
+      </element><element name="TDocItem.AType"><short>Тип документа</short>
+      </element><element name="TDocItem.Status"><short>Статус обработки документа</short>
+      </element><element name="TDocItem.SenderName"><short>Наименование отправителя документа</short>
+      </element><element name="TDocItem.ReceiverName"><short>Наименование получателя документа</short>
+      </element><element name="TDocItem.InvoiceNumber"><short>Номер счёта-фактуры, УКД</short>
+      </element><element name="TDocItem.InvoiceDate"><short>Дата счёта-фактуры, УКД</short>
+      </element><element name="TDocItem.Total"><short>Общая сумма документа</short>
+      </element><element name="TDocItem.DownloadStatus"><short>Статус загрузки документа</short>
+      </element><element name="TDocItem.DownloadDesc"><short>Описание загрузки документ</short>
+      </element><element name="TDocItem.Input"><short>Признак того, что документ является входящим/исходящим</short>
+      </element><element name="TDocItem.DocErrors"><short>Список ошибок обработки документа.</short><descr>Возвращается в случае ошибки
+</descr>
+      </element><element name="TDocItem.PdfFile"><short>Ссылка на PDF-файл</short>
+      </element><element name="TDocItem.Errors"><short>Ошибки</short><descr>Параметр возвращается при наличии ошибки.
+</descr>
+      </element>
+    </module>
+  </package>
+</fpdoc-descriptions>
