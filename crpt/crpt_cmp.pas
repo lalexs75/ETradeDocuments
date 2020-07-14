@@ -35,7 +35,7 @@ unit crpt_cmp;
 interface
 
 uses
-  Classes, SysUtils, httpsend, fpJSON, cis_list;
+  Classes, SysUtils, httpsend, fpJSON, cis_list, CrptGlobalTypes;
 
 const
   sAPIURL = 'https://ismp.crpt.ru'; //WORK API
@@ -119,6 +119,11 @@ type
     //Метод получения списка шаблонов этикеток участника
     function GetLabelTemplatesList: TJSONObject;
 
+    //2.1.23. Метод получения списка полученных КМ с возможностью фильтрации
+    function CISGetReceivedList(ACis:string): TJSONObject;
+    //2.1.27. Запрос информации об участнике оборота товаров по ИНН
+    function ClientInfo(AInn: string; AGroup: string = ''): TJSONObject;
+
     //Коды маркировки и товары
     //Метод получения списка КМ по заданному фильтру с подробной информацией о КМ
     function GetKMList: TJSONObject;
@@ -133,7 +138,7 @@ type
     //Документы
 
     //Метод получения списка документов, ранее загруженных в ИС МП
-    function DocList(ADateFrom, ADateTo: TDateTime; ALimit: Integer=0): TJSONObject;
+    function DocList(AFilter:TCrptDocListFilter): TJSONObject;
     //Метод получения содержимого документа, ранее загруженного в ИС МП
     function DocContent(ADocID:string):TJSONObject;
     //4.3 Единый метод создания документов
@@ -527,6 +532,49 @@ begin
   AbstractError;
 end;
 
+function TCRPTComponent.CISGetReceivedList(ACis: string): TJSONObject;
+var
+  S: String;
+  P: TJSONParser;
+begin
+  //GET /api/v3/facade/agent/received/list
+  Result:=nil;
+  DoLogin;
+  S:='';
+  if ACis <> '' then
+    AddURLParam(S, 'cis', ACis);
+  AddURLParam(S, 'cisMatchMode', 'LIKE');
+  if SendCommand(hmGET, '/api/v3/facade/agent/received/list', S, nil) then
+  begin
+    SaveHttpData('received_list');
+    FHTTP.Document.Position:=0;
+    P:=TJSONParser.Create(FHTTP.Document);
+    Result:=P.Parse as TJSONObject;
+    P.Free;
+  end;
+
+end;
+
+function TCRPTComponent.ClientInfo(AInn: string; AGroup: string): TJSONObject;
+var
+  S: String;
+  P: TJSONParser;
+begin
+  //GET /participants/{inn}
+  Result:=nil;
+  DoLogin;
+  S:=HTTPEncode(StringReplace(AInn, '%', '%25', [rfReplaceAll]));
+
+  if SendCommand(hmGET, '/participants/' + S, '', nil) then
+  begin
+    SaveHttpData('participants_info');
+    FHTTP.Document.Position:=0;
+    P:=TJSONParser.Create(FHTTP.Document);
+    Result:=P.Parse as TJSONObject;
+    P.Free;
+  end;
+end;
+
 function TCRPTComponent.GetKMList: TJSONObject;
 begin
   //GET /api/v3/facade/identifytools/listV2
@@ -650,7 +698,8 @@ begin
   end;
 end;
 
-function TCRPTComponent.DocList(ADateFrom, ADateTo: TDateTime; ALimit:Integer = 0): TJSONObject;
+
+function TCRPTComponent.DocList(AFilter: TCrptDocListFilter): TJSONObject;
 var
   S: String;
   P: TJSONParser;
@@ -665,10 +714,10 @@ begin
   //Метод: GET
   S:='';
 
-  AddURLParam(S, 'dateFrom', xsd_DateTimeToStr(ADateFrom, xdkDateTime));
-  AddURLParam(S, 'dateTo', xsd_DateTimeToStr(ADateTo, xdkDateTime));
-  if ALimit > 0 then
-    AddURLParam(S, 'limit', ALimit);
+  AddURLParam(S, 'dateFrom', xsd_DateTimeToStr(AFilter.DateFrom, xdkDateTime));
+  AddURLParam(S, 'dateTo', xsd_DateTimeToStr(AFilter.DateTo, xdkDateTime));
+  if AFilter.Limit > 0 then
+    AddURLParam(S, 'limit', AFilter.Limit);
 
   //Товарная группа
   //  1  - clothes     – Предметы  одежды,  белье постельное, столовое, туалетное и кухонное;

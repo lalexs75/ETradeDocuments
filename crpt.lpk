@@ -13,7 +13,7 @@
     </CompilerOptions>
     <Description Value="Набор объектов и структур для взаимодействия с ЦРПТ по маркировке товаров"/>
     <License Value="LGPL"/>
-    <Version Major="1" Release="2" Build="8"/>
+    <Version Major="1" Release="3" Build="10"/>
     <Files>
       <Item>
         <Filename Value="crpt/crpt_cmp.pas"/>
@@ -104,7 +104,12 @@
         <Filename Value="crpt/status/doc_list.pas"/>
         <UnitName Value="doc_list"/>
       </Item>
+      <Item>
+        <Filename Value="crpt/crptglobaltypes.pas"/>
+        <UnitName Value="CrptGlobalTypes"/>
+      </Item>
     </Files>
+    <LazDoc Paths="docs"/>
     <RequiredPkgs>
       <Item>
         <PackageName Value="laz_synapse"/>

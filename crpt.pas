@@ -12,7 +12,8 @@ uses
   RemReq, retail_sale, shipment_signs, Vvod, vvod_contract_production, 
   Vvod_Imp, vvod_individuals, vvod_ostatky, LP_base_types_v3, shipment, 
   packcode_agregirovanie, packcode_transform, packcode_unagregirovan, 
-  acceptance, withdrawal, cis_list, doc_list, LazarusPackageIntf;
+  acceptance, withdrawal, cis_list, doc_list, CrptGlobalTypes, 
+  LazarusPackageIntf;
 
 implementation
 
