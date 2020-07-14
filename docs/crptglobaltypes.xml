@@ -92,6 +92,18 @@
       </element><element name="TCISStatus.FTS_RESPOND_NOT_OK"><short>Отрицательное решение ФТС</short>
       </element><element name="TCISStatus.FTS_RESPOND_WAITING"><short>Ожидает подтверждение ФТС</short>
       </element><element name="TCISStatus.FTS_CONTROL"><short>На контроле ФТС</short>
+      </element><element name="TCISStatus.CISStatusError"><short>Ошибочный статус КИЗ</short>
+      </element><element name="TDocStatus"><short>Статусы документов</short>
+      </element><element name="TDocStatus.IN_PROGRESS"><short>Проверяется</short>
+      </element><element name="TDocStatus.CHECKED_OK"><short>Оформлен</short>
+      </element><element name="TDocStatus.CHECKED_NOT_OK"><short>Ошибка при проверке</short>
+      </element><element name="TDocStatus.PROCESSING_ERROR"><short>Ошибка при обработке</short>
+      </element><element name="TDocStatus.UNDEFINED"><short>Не определён</short>
+      </element><element name="TDocStatus.CANCELLED"><short>Документ отменён</short>
+      </element><element name="TDocStatus.WAIT_ACCEPTANCE"><short>Ожидание приемку</short><descr>Только для документа 'Отгрузка'. Устанавливается при успешной обработке документа 'Отгрузка товара';
+</descr>
+      </element><element name="TDocStatus.WAIT_PARTICIPANT_REGISTRATION"><short>Ожидает регистрации участника в ГИС МТ</short><descr>Только для документа 'Отгрузка'. Устанавливается при успешной обработке документа 'Отгрузка товара' в сторону незарегистрированного участника
+</descr>
       </element>
     </module>
   </package>
