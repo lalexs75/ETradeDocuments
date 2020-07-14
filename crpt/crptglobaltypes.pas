@@ -88,6 +88,24 @@ type
     DocumentTypes:TDocumentTypes;
   end;
 
+  TCrptReceiptListLister = record
+    //number
+    DateFrom:TDateTime;
+    DateTo:TDateTime;
+    //participantInn
+    //documentType
+    //documentStatus
+    //documentFormat
+    //inputFormat
+    //did
+    Limit:Integer;
+    //pageDir
+    //order
+    //orderColumn
+    //orderedColumnValue
+    //pg
+  end;
+
 implementation
 
 end.

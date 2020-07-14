@@ -110,7 +110,11 @@
       </Item>
       <Item>
         <Filename Value="crpt/crptglobalutils.pas"/>
-        <UnitName Value="crptglobalutils"/>
+        <UnitName Value="CrptGlobalUtils"/>
+      </Item>
+      <Item>
+        <Filename Value="crpt/status/receipt_list.pas"/>
+        <UnitName Value="receipt_list"/>
       </Item>
     </Files>
     <LazDoc Paths="docs"/>

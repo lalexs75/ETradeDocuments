@@ -35,7 +35,7 @@ unit crpt_cmp;
 interface
 
 uses
-  Classes, SysUtils, httpsend, fpJSON, cis_list, CrptGlobalTypes, doc_list;
+  Classes, SysUtils, httpsend, fpJSON, cis_list, CrptGlobalTypes, doc_list, receipt_list;
 
 const
   sAPIURL = 'https://ismp.crpt.ru'; //WORK API
@@ -118,6 +118,7 @@ type
     function GetOrdersList(ALimit: integer=0; AOffset: integer=0): TJSONObject;
     //Метод получения списка шаблонов этикеток участника
     function GetLabelTemplatesList: TJSONObject;
+    function GetReceiptList(AFilter: TCrptReceiptListLister): TReceiptItems;
 
     //2.1.23. Метод получения списка полученных КМ с возможностью фильтрации
     function CISGetReceivedList(ACis:string): TJSONObject;
@@ -530,6 +531,36 @@ function TCRPTComponent.GetLabelTemplatesList: TJSONObject;
 begin
   //GET /api/v3/facade/identifytools/listV2
   AbstractError;
+end;
+
+function TCRPTComponent.GetReceiptList(AFilter: TCrptReceiptListLister
+  ): TReceiptItems;
+var
+  S: String;
+//  P: TJSONParser;
+begin
+  //GET /api/v3/facade/receipt/listV2
+  Result:=nil;
+  DoLogin;
+  S:='';
+//  if ACis <> '' then
+//    AddURLParam(S, 'cis', ACis);
+//  AddURLParam(S, 'cisMatchMode', 'LIKE');
+
+  AddURLParam(S, 'dateFrom', xsd_DateTimeToStr(AFilter.DateFrom, xdkDateTime));
+  AddURLParam(S, 'dateTo', xsd_DateTimeToStr(AFilter.DateTo, xdkDateTime));
+  if AFilter.Limit > 0 then
+    AddURLParam(S, 'limit', AFilter.Limit);
+  if SendCommand(hmGET, '/api/v3/facade/receipt/listV2', S, nil) then
+  begin
+    SaveHttpData('receipt_list');
+    FHTTP.Document.Position:=0;
+    Result:=TReceiptItems.Create;
+    Result.LoadFromStream(FHTTP.Document);
+    //P:=TJSONParser.Create(FHTTP.Document);
+    //Result:=P.Parse as TJSONObject;
+    //P.Free;
+  end;
 end;
 
 function TCRPTComponent.CISGetReceivedList(ACis: string): TJSONObject;
