@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fpdoc-descriptions><package name="crpt"><module name="CrptGlobalTypes"><element name="TDocumentType"><short>Справочник "Типы документов"</short>
+      </element><element name="TDocumentTypes"><short>Справочник "Типы документов"</short>
+      </element><element name="TDocumentType.AGGREGATION_DOCUMENT"><short>Агрегация. JSON</short>
+      </element><element name="TDocumentType.AGGREGATION_DOCUMENT_CSV"><short>Агрегация. CSV</short>
+      </element><element name="TDocumentType.AGGREGATION_DOCUMENT_XML"><short>Агрегация. XML</short>
+      </element>
+    </module>
+  </package>
+</fpdoc-descriptions>
