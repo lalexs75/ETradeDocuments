@@ -132,17 +132,23 @@ type
     property ReceivedAt:string read FReceivedAt write SetReceivedAt;
     property AType:string read FAType write SetAType;
     property Status:string read FStatus write SetStatus;
+    //externalId
     property SenderName:string read FSenderName write SetSenderName;
     property ReceiverName:string read FReceiverName write SetReceiverName;
     property InvoiceNumber:string read FInvoiceNumber write SetInvoiceNumber;
     property InvoiceDate:Cardinal read FInvoiceDate write SetInvoiceDate;
     property Total:Cardinal read FTotal write SetTotal;
+    //vat
     property DownloadStatus:string read FDownloadStatus write SetDownloadStatus;
     property DownloadDesc:string read FDownloadDesc write SetDownloadDesc;
+    //body
+    //content
     property Input:Boolean read FInput write SetInput;
+    property DocErrors:TXSDStringArray read FDocErrors write SetDocErrors;
     property PdfFile:string read FPdfFile write SetPdfFile;
     property Errors:TXSDStringArray read FErrors write SetErrors;
-    property DocErrors:TXSDStringArray read FDocErrors write SetDocErrors;
+    //atk
+    //sender
     property DocumentDataDto:TDocumentDataDto read FDocumentDataDto;
   end;
   TDocItemList = specialize GXMLSerializationObjectList<TDocItem>;

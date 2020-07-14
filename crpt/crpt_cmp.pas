@@ -35,7 +35,7 @@ unit crpt_cmp;
 interface
 
 uses
-  Classes, SysUtils, httpsend, fpJSON, cis_list, CrptGlobalTypes;
+  Classes, SysUtils, httpsend, fpJSON, cis_list, CrptGlobalTypes, doc_list;
 
 const
   sAPIURL = 'https://ismp.crpt.ru'; //WORK API
@@ -138,7 +138,7 @@ type
     //Документы
 
     //Метод получения списка документов, ранее загруженных в ИС МП
-    function DocList(AFilter:TCrptDocListFilter): TJSONObject;
+    function DocList(AFilter:TCrptDocListFilter): TDocItems;
     //Метод получения содержимого документа, ранее загруженного в ИС МП
     function DocContent(ADocID:string):TJSONObject;
     //4.3 Единый метод создания документов
@@ -699,7 +699,7 @@ begin
 end;
 
 
-function TCRPTComponent.DocList(AFilter: TCrptDocListFilter): TJSONObject;
+function TCRPTComponent.DocList(AFilter: TCrptDocListFilter): TDocItems;
 var
   S: String;
   P: TJSONParser;
@@ -734,9 +734,13 @@ begin
   begin
     SaveHttpData('doc_list');
     FHTTP.Document.Position:=0;
-    P:=TJSONParser.Create(FHTTP.Document);
+    Result:=TDocItems.Create;
+    Result.LoadFromStream(FHTTP.Document);
+
+
+{    P:=TJSONParser.Create(FHTTP.Document);
     Result:=P.Parse as TJSONObject;
-    P.Free;
+    P.Free;}
   end;
 end;
 
