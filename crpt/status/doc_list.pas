@@ -50,7 +50,7 @@ type
     Fk_offset: Integer;
     Fk_partition: Integer;
     FOst: string;
-    FSigningDate: Cardinal;
+    FSigningDate: Int64;
     FSignRecipientFio: string;
     FT: Integer;
     FTrn: Integer;
@@ -61,7 +61,7 @@ type
     procedure Setk_offset(AValue: Integer);
     procedure Setk_partition(AValue: Integer);
     procedure SetOst(AValue: string);
-    procedure SetSigningDate(AValue: Cardinal);
+    procedure SetSigningDate(AValue: Int64);
     procedure SetSignRecipientFio(AValue: string);
     procedure SetT(AValue: Integer);
     procedure SetTrn(AValue: Integer);
@@ -74,7 +74,7 @@ type
     property Ost:string read FOst write SetOst;
     property Trn:Integer read FTrn write SetTrn;
     property Errors:string read FErrors write SetErrors;
-    property SigningDate : Cardinal read FSigningDate write SetSigningDate;
+    property SigningDate : Int64 read FSigningDate write SetSigningDate;
     property SignRecipientFio:string read FSignRecipientFio write SetSignRecipientFio;
     property EdoRecipient:string read FEdoRecipient write SetEdoRecipient;
     property Did:string read FDid write SetDid;
@@ -399,7 +399,7 @@ begin
   ModifiedProperty('Ost');
 end;
 
-procedure TDocumentDataDto.SetSigningDate(AValue: Cardinal);
+procedure TDocumentDataDto.SetSigningDate(AValue: Int64);
 begin
   if FSigningDate=AValue then Exit;
   FSigningDate:=AValue;
