@@ -89,6 +89,8 @@ type
   TDocItem = class(TJSONSerializationObject)
   private
     FAType: string;
+    FBody: string;
+    FContent: string;
     FDocDate: string;
     FDocErrors: TXSDStringArray;
     FDocumentDataDto: TDocumentDataDto;
@@ -104,10 +106,19 @@ type
     FReceiverName: string;
     FSenderName: string;
     FStatus: string;
-    FTotal: Cardinal;
+    FTotal: Integer;
+    FVat: Integer;
+    function GetDocumentDate: TDateTime;
+    function GetDocumentInvoiceDate: TDateTime;
+    function GetDocumentReceivedAt: TDateTime;
     procedure SetAType(AValue: string);
+    procedure SetBody(AValue: string);
+    procedure SetContent(AValue: string);
     procedure SetDocDate(AValue: string);
     procedure SetDocErrors(AValue: TXSDStringArray);
+    procedure SetDocumentDate(AValue: TDateTime);
+    procedure SetDocumentInvoiceDate(AValue: TDateTime);
+    procedure SetDocumentReceivedAt(AValue: TDateTime);
     procedure SetDownloadDesc(AValue: string);
     procedure SetDownloadStatus(AValue: string);
     procedure SetErrors(AValue: TXSDStringArray);
@@ -120,12 +131,16 @@ type
     procedure SetReceiverName(AValue: string);
     procedure SetSenderName(AValue: string);
     procedure SetStatus(AValue: string);
-    procedure SetTotal(AValue: Cardinal);
+    procedure SetTotal(AValue: Integer);
+    procedure SetVat(AValue: Integer);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
     destructor Destroy; override;
+    property DocumentDate:TDateTime read GetDocumentDate write SetDocumentDate;
+    property DocumentReceivedAt:TDateTime read GetDocumentReceivedAt write SetDocumentReceivedAt;
+    property DocumentInvoiceDate:TDateTime read GetDocumentInvoiceDate write SetDocumentInvoiceDate;
   published
     property Number:string read FNumber write SetNumber;
     property DocDate:string read FDocDate write SetDocDate;
@@ -137,12 +152,12 @@ type
     property ReceiverName:string read FReceiverName write SetReceiverName;
     property InvoiceNumber:string read FInvoiceNumber write SetInvoiceNumber;
     property InvoiceDate:Int64 read FInvoiceDate write SetInvoiceDate;
-    property Total:Cardinal read FTotal write SetTotal;
-    //vat
+    property Total:Integer read FTotal write SetTotal;
+    property Vat:Integer read FVat write SetVat;
     property DownloadStatus:string read FDownloadStatus write SetDownloadStatus;
     property DownloadDesc:string read FDownloadDesc write SetDownloadDesc;
-    //body
-    //content
+    property Body:string read FBody write SetBody;
+    property Content:string read FContent write SetContent;
     property Input:Boolean read FInput write SetInput;
     property DocErrors:TXSDStringArray read FDocErrors write SetDocErrors;
     property PdfFile:string read FPdfFile write SetPdfFile;
@@ -171,6 +186,7 @@ type
   end;
 
 implementation
+uses sdo_date_utils, DateUtils;
 
 { TDocItems }
 
@@ -209,6 +225,41 @@ begin
   ModifiedProperty('AType');
 end;
 
+function TDocItem.GetDocumentDate: TDateTime;
+var
+  R: TDateTimeRec;
+begin
+  if xsd_TryStrToDate(FDocDate, R, xdkDateTime) then
+    Result:=NormalizeToUTC(R);
+end;
+
+function TDocItem.GetDocumentInvoiceDate: TDateTime;
+begin
+  Result:=UnixToDateTime(FInvoiceDate div 1000);
+end;
+
+function TDocItem.GetDocumentReceivedAt: TDateTime;
+var
+  R: TDateTimeRec;
+begin
+  if xsd_TryStrToDate(FReceivedAt, R, xdkDateTime) then
+    Result:=NormalizeToUTC(R);
+end;
+
+procedure TDocItem.SetBody(AValue: string);
+begin
+  if FBody=AValue then Exit;
+  FBody:=AValue;
+  ModifiedProperty('Body');
+end;
+
+procedure TDocItem.SetContent(AValue: string);
+begin
+  if FContent=AValue then Exit;
+  FContent:=AValue;
+  ModifiedProperty('Content');
+end;
+
 procedure TDocItem.SetDocDate(AValue: string);
 begin
   if FDocDate=AValue then Exit;
@@ -221,6 +272,21 @@ begin
   if FDocErrors=AValue then Exit;
   FDocErrors:=AValue;
   ModifiedProperty('DocErrors');
+end;
+
+procedure TDocItem.SetDocumentDate(AValue: TDateTime);
+begin
+  //
+end;
+
+procedure TDocItem.SetDocumentInvoiceDate(AValue: TDateTime);
+begin
+
+end;
+
+procedure TDocItem.SetDocumentReceivedAt(AValue: TDateTime);
+begin
+
 end;
 
 procedure TDocItem.SetDownloadDesc(AValue: string);
@@ -307,11 +373,18 @@ begin
   ModifiedProperty('Status');
 end;
 
-procedure TDocItem.SetTotal(AValue: Cardinal);
+procedure TDocItem.SetTotal(AValue: Integer);
 begin
   if FTotal=AValue then Exit;
   FTotal:=AValue;
   ModifiedProperty('Total');
+end;
+
+procedure TDocItem.SetVat(AValue: Integer);
+begin
+  if FVat=AValue then Exit;
+  FVat:=AValue;
+  ModifiedProperty('Vat');
 end;
 
 procedure TDocItem.InternalRegisterPropertys;
@@ -327,8 +400,11 @@ begin
   RegisterProperty('InvoiceNumber', 'invoiceNumber', [], '', -1, -1);
   RegisterProperty('InvoiceDate', 'invoiceDate', [], '', -1, -1);
   RegisterProperty('Total', 'total', [], '', -1, -1);
+  RegisterProperty('Vat', 'vat', [], '', -1, -1);
+  RegisterProperty('Body', 'body', [], '', -1, -1);
   RegisterProperty('DownloadStatus', 'downloadStatus', [], '', -1, -1);
   RegisterProperty('DownloadDesc', 'downloadDesc', [], '', -1, -1);
+  RegisterProperty('Content', 'content', [], '', -1, -1);
   RegisterProperty('Input', 'input', [], '', -1, -1);
   RegisterProperty('PdfFile', 'pdfFile', [], '', -1, -1);
   RegisterProperty('Errors', 'errors', [], '', -1, -1);

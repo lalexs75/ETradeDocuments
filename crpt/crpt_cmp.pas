@@ -141,7 +141,7 @@ type
     //Метод получения списка документов, ранее загруженных в ИС МП
     function DocList(AFilter:TCrptDocListFilter): TDocItems;
     //Метод получения содержимого документа, ранее загруженного в ИС МП
-    function DocContent(ADocID:string):TJSONObject;
+    function DocContent(ADocID:string):TDocItem;
     //4.3 Единый метод создания документов
     function DocCreate(ADocID:string):TJSONObject;
     //4.4 Методы создания документов
@@ -775,7 +775,7 @@ begin
   end;
 end;
 
-function TCRPTComponent.DocContent(ADocID: string): TJSONObject;
+function TCRPTComponent.DocContent(ADocID: string): TDocItem;
 var
   S: String;
   P: TJSONParser;
@@ -789,9 +789,11 @@ begin
   begin
     SaveHttpData('doc_content');
     FHTTP.Document.Position:=0;
-    P:=TJSONParser.Create(FHTTP.Document);
-    Result:=P.Parse as TJSONObject;
-    P.Free;
+    Result:=TDocItem.Create;
+    Result.LoadFromStream(FHTTP.Document);
+    //P:=TJSONParser.Create(FHTTP.Document);
+    //Result:=P.Parse as TJSONObject;
+    //P.Free;
   end;
 end;
 
