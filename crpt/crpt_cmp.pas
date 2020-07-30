@@ -765,6 +765,7 @@ function TCRPTComponent.DocList(AFilter: TCrptDocListFilter): TDocItems;
 var
   S: String;
   P: TJSONParser;
+  DT: TDocumentType;
 begin
   //URL: /api/v3/facade/doc/listV2
   //Метод: GET
@@ -780,6 +781,18 @@ begin
   AddURLParam(S, 'dateTo', xsd_DateTimeToStr(AFilter.DateTo, xdkDateTime));
   if AFilter.Limit > 0 then
     AddURLParam(S, 'limit', AFilter.Limit);
+  if AFilter.ParticipantInn <> '' then
+    AddURLParam(S, 'participantInn', AFilter.ParticipantInn);
+
+  if AFilter.DocumentDirection <> ddAll then
+    AddURLParam(S, 'inputFormat', BoolToStr(AFilter.DocumentDirection = ddInput, 'true', 'false'));
+
+  for DT in AFilter.DocumentTypes do
+    AddURLParam(S, 'documentType', DocumentTypeStr[DT]);
+
+
+  if AFilter.DocumentStatus <> UNDEFINED then
+    AddURLParam(S, 'documentStatus', DocStatusStr[AFilter.DocumentStatus]);
 
   //Товарная группа
   //  1  - clothes     – Предметы  одежды,  белье постельное, столовое, туалетное и кухонное;

@@ -107,39 +107,14 @@ begin
 end;
 
 function DocStatusDecode(AStatus: string): TDocStatus;
+var
+  I: TDocStatus;
 begin
+  Result:=UNDEFINED;
   AStatus:=UpperCase(AStatus);
-  if AStatus = 'UNDEFINED' then
-    Result:=UNDEFINED
-  else
-  if AStatus = 'IN_PROGRESS' then
-    Result:=IN_PROGRESS
-  else
-  if AStatus = 'CHECKED_OK' then
-    Result:=CHECKED_OK
-  else
-  if AStatus = 'CHECKED_NOT_OK' then
-    Result:=CHECKED_NOT_OK
-  else
-  if AStatus = 'PROCESSING_ERROR' then
-    Result:=PROCESSING_ERROR
-  else
-  if AStatus = 'CANCELLED' then
-    Result:=CANCELLED
-  else
-  if AStatus = 'WAIT_ACCEPTANCE' then
-    Result:=WAIT_ACCEPTANCE
-  else
-  if AStatus = 'WAIT_PARTICIPANT_REGISTRATION' then
-    Result:=WAIT_PARTICIPANT_REGISTRATION
-  else
-  if AStatus = 'WAIT_FOR_CONTINUATION' then
-    Result:=WAIT_FOR_CONTINUATION
-  else
-  if AStatus = 'ACCEPTED' then
-    Result:=ACCEPTED
-  else
-    Result:=UNDEFINED;
+
+  for I in TDocStatus do
+    if DocStatusStr[I] = AStatus then Exit(I);
 end;
 
 function DocStatusEncode(AStatus: TDocStatus): string;
