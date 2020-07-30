@@ -57,6 +57,7 @@ type
     FOwnerInn: string;
     FOwnerName: string;
     FPackageType: string;
+    FParent: string;
     FPrevCises: string;
     FProducedDate: Int64;
     FProducerName: string;
@@ -64,6 +65,7 @@ type
     FProductName: string;
     FStatus: string;
     FStatusEx: string;
+    FTNVED10: string;
     procedure SetAgentName(AValue: string);
     procedure SetBrand(AValue: string);
     procedure SetChildren(AValue: TXSDStringArray);
@@ -78,6 +80,7 @@ type
     procedure SetOwnerInn(AValue: string);
     procedure SetOwnerName(AValue: string);
     procedure SetPackageType(AValue: string);
+    procedure SetParent(AValue: string);
     procedure SetPrevCises(AValue: string);
     procedure SetProducedDate(AValue: Int64);
     procedure SetProducerName(AValue: string);
@@ -85,6 +88,7 @@ type
     procedure SetProductName(AValue: string);
     procedure SetStatus(AValue: string);
     procedure SetStatusEx(AValue: string);
+    procedure SetTNVED10(AValue: string);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
@@ -112,6 +116,8 @@ type
     property ProductGroup:string read FProductGroup write SetProductGroup;
     property ProducedDate:Int64 read FProducedDate write SetProducedDate;
     property Children:TXSDStringArray read FChildren write SetChildren;
+    property TNVED10:string read FTNVED10 write SetTNVED10;
+    property Parent:string read FParent write SetParent;
   end;
   TCISItemList = specialize GXMLSerializationObjectList<TCISItem>;
 
@@ -251,6 +257,13 @@ begin
   ModifiedProperty('PackageType');
 end;
 
+procedure TCISItem.SetParent(AValue: string);
+begin
+  if FParent=AValue then Exit;
+  FParent:=AValue;
+  ModifiedProperty('Parent');
+end;
+
 procedure TCISItem.SetPrevCises(AValue: string);
 begin
   if FPrevCises=AValue then Exit;
@@ -300,6 +313,13 @@ begin
   ModifiedProperty('StatusEx');
 end;
 
+procedure TCISItem.SetTNVED10(AValue: string);
+begin
+  if FTNVED10=AValue then Exit;
+  FTNVED10:=AValue;
+  ModifiedProperty('TNVED10');
+end;
+
 procedure TCISItem.InternalRegisterPropertys;
 begin
   inherited InternalRegisterPropertys;
@@ -324,6 +344,8 @@ begin
   RegisterProperty('ProductGroup', 'productGroup', [], '', -1, -1);
   RegisterProperty('ProducedDate', 'producedDate', [], '', -1, -1);
   RegisterProperty('Children', 'children', [], '', -1, -1);
+  RegisterProperty('TNVED10', 'tnVed10', [], '', -1, -1);
+  RegisterProperty('Parent', 'parent', [], '', -1, -1);
 end;
 
 procedure TCISItem.InternalInitChilds;

@@ -92,7 +92,7 @@ type
     FBody: string;
     FContent: string;
     FDocDate: string;
-    FDocErrors: TXSDStringArray;
+    FDocErrors: string;
     FDocumentDataDto: TDocumentDataDto;
     FDownloadDesc: string;
     FDownloadStatus: string;
@@ -115,7 +115,7 @@ type
     procedure SetBody(AValue: string);
     procedure SetContent(AValue: string);
     procedure SetDocDate(AValue: string);
-    procedure SetDocErrors(AValue: TXSDStringArray);
+    procedure SetDocErrors(AValue: string);
     procedure SetDocumentDate(AValue: TDateTime);
     procedure SetDocumentInvoiceDate(AValue: TDateTime);
     procedure SetDocumentReceivedAt(AValue: TDateTime);
@@ -159,7 +159,7 @@ type
     property Body:string read FBody write SetBody;
     property Content:string read FContent write SetContent;
     property Input:Boolean read FInput write SetInput;
-    property DocErrors:TXSDStringArray read FDocErrors write SetDocErrors;
+    property DocErrors:string read FDocErrors write SetDocErrors;
     property PdfFile:string read FPdfFile write SetPdfFile;
     property Errors:TXSDStringArray read FErrors write SetErrors;
     //atk
@@ -267,7 +267,7 @@ begin
   ModifiedProperty('DocDate');
 end;
 
-procedure TDocItem.SetDocErrors(AValue: TXSDStringArray);
+procedure TDocItem.SetDocErrors(AValue: string);
 begin
   if FDocErrors=AValue then Exit;
   FDocErrors:=AValue;

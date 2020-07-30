@@ -120,6 +120,9 @@ type
     function GetLabelTemplatesList: TJSONObject;
     function GetReceiptList(AFilter: TCrptReceiptListLister): TReceiptItems;
 
+    //2.1.6. Метод получения информации о товаре по Коду товара
+    function GetProductInfo(KMList:TStringArray): TJSONObject;
+
     //2.1.23. Метод получения списка полученных КМ с возможностью фильтрации
     function CISGetReceivedList(ACis:string): TJSONObject;
     //2.1.27. Запрос информации об участнике оборота товаров по ИНН
@@ -560,6 +563,34 @@ begin
     //P:=TJSONParser.Create(FHTTP.Document);
     //Result:=P.Parse as TJSONObject;
     //P.Free;
+  end;
+end;
+
+function TCRPTComponent.GetProductInfo(KMList: TStringArray): TJSONObject;
+var
+  S2, S, S1: String;
+  P: TJSONParser;
+begin
+  //  /product/info
+  Result:=nil;
+  DoLogin;
+  S2:='';
+  S:='';
+  for S1 in KMList do
+  begin
+    if S2<>'' then S2:=S2 + ',';
+    S2:=S2 + S1;
+  end;
+
+  AddURLParam(S, 'gtins', S2);
+
+  if SendCommand(hmGET, '/api/v3/product/info', S, nil) then
+  begin
+    SaveHttpData('product_info');
+    FHTTP.Document.Position:=0;
+    P:=TJSONParser.Create(FHTTP.Document);
+    Result:=P.Parse as TJSONObject;
+    P.Free;
   end;
 end;
 
