@@ -133,6 +133,12 @@ begin
   if AStatus = 'WAIT_PARTICIPANT_REGISTRATION' then
     Result:=WAIT_PARTICIPANT_REGISTRATION
   else
+  if AStatus = 'WAIT_FOR_CONTINUATION' then
+    Result:=WAIT_FOR_CONTINUATION
+  else
+  if AStatus = 'ACCEPTED' then
+    Result:=ACCEPTED
+  else
     Result:=UNDEFINED;
 end;
 
@@ -147,6 +153,8 @@ begin
     CANCELLED: Result:='Документ отменён';
     WAIT_ACCEPTANCE: Result:='Ожидание приемку';
     WAIT_PARTICIPANT_REGISTRATION: Result:='Ожидает регистрации участника в ГИС МТ';
+    WAIT_FOR_CONTINUATION: Result:='Ожидает продолжения процессинга документа';
+    ACCEPTED: Result:='Принят';
   end;
 end;
 
