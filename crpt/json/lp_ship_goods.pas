@@ -69,11 +69,13 @@ type
     FProductDescription: string;
     FProductTax: Integer;
     FUITCode: string;
+    FUITUCode: string;
     procedure SetCountChildren(AValue: Integer);
     procedure SetProductCost(AValue: Integer);
     procedure SetProductDescription(AValue: string);
     procedure SetProductTax(AValue: Integer);
     procedure SetUITCode(AValue: string);
+    procedure SetUITUCode(AValue: string);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
@@ -82,6 +84,7 @@ type
   public
   published
     property UITCode:string read FUITCode write SetUITCode;
+    property UITUCode:string read FUITUCode write SetUITUCode;
     property ProductDescription:string read FProductDescription write SetProductDescription;
     property ProductCost:Integer read FProductCost write SetProductCost;
     property ProductTax:Integer read FProductTax write SetProductTax;
@@ -102,6 +105,7 @@ type
     FSale: Boolean;
     FSender: string;
     FSenderInn: string;
+    FStContractId: string;
     FToNotParticipant: Boolean;
     FTransferDate: string;
     FTurnoverType: string;
@@ -114,6 +118,7 @@ type
     procedure SetSale(AValue: Boolean);
     procedure SetSender(AValue: string);
     procedure SetSenderInn(AValue: string);
+    procedure SetStContractId(AValue: string);
     procedure SetToNotParticipant(AValue: Boolean);
     procedure SetTransferDate(AValue: string);
     procedure SetTurnoverType(AValue: string);
@@ -137,6 +142,7 @@ type
     property ToNotParticipant:Boolean read FToNotParticipant write SetToNotParticipant;
     property Sender:string read FSender write SetSender;
     property Receiver:string read FReceiver write SetReceiver;
+    property StContractId:string read FStContractId write SetStContractId;
     property Products:TProducts read FProducts;
   end;
 
@@ -212,10 +218,18 @@ begin
   ModifiedProperty('UITCode');
 end;
 
+procedure TProduct.SetUITUCode(AValue: string);
+begin
+  if FUITUCode=AValue then Exit;
+  FUITUCode:=AValue;
+  ModifiedProperty('UITUCode');
+end;
+
 procedure TProduct.InternalRegisterPropertys;
 begin
   inherited InternalRegisterPropertys;
   RegisterProperty('UITCode', 'uit_code', [], '', -1, -1);
+  RegisterProperty('UITUCode', 'uitu_code', [], '', -1, -1);
   RegisterProperty('ProductDescription', 'product_description', [], '', -1, -1);
   RegisterProperty('ProductCost', 'product_cost', [], '', -1, -1);
   RegisterProperty('ProductTax', 'product_tax', [], '', -1, -1);
@@ -293,6 +307,13 @@ begin
   ModifiedProperty('SenderInn');
 end;
 
+procedure TShipGoods.SetStContractId(AValue: string);
+begin
+  if FStContractId=AValue then Exit;
+  FStContractId:=AValue;
+  ModifiedProperty('StContractId');
+end;
+
 procedure TShipGoods.SetToNotParticipant(AValue: Boolean);
 begin
   if FToNotParticipant=AValue then Exit;
@@ -336,6 +357,8 @@ begin
   RegisterProperty('ToNotParticipant', 'to_not_participant', [], '', -1, -1);
   RegisterProperty('Sender', 'sender', [], '', -1, -1);
   RegisterProperty('Receiver', 'receiver', [], '', -1, -1);
+  RegisterProperty('StContractId', 'st_contract_id', [], '', -1, -1);
+
   RegisterProperty('Products', 'products', [], '', -1, -1);
 end;
 
