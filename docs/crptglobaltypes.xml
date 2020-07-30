@@ -109,6 +109,10 @@
       </element><element name="TCrptReceiptListLister.DateTo"><short>По дату</short>
       </element><element name="TCrptReceiptListLister.Limit"><short>Лимит отбора</short>
       </element>
+    <element name="TDocStatus.ACCEPTED"><short>Принят.</short><descr>Только для документа 'Отгрузка'
+</descr>
+      </element><element name="TDocStatus.WAIT_FOR_CONTINUATION"><short>Ожидает продолжения процессинга документа</short>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>
