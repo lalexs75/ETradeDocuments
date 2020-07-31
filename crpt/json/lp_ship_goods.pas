@@ -65,15 +65,15 @@ type
   private
     FChildren: TChildrens;
     FCountChildren: Integer;
-    FProductCost: Integer;
+    FProductCost: Double;
     FProductDescription: string;
-    FProductTax: Integer;
+    FProductTax: Double;
     FUITCode: string;
     FUITUCode: string;
     procedure SetCountChildren(AValue: Integer);
-    procedure SetProductCost(AValue: Integer);
+    procedure SetProductCost(AValue: Double);
     procedure SetProductDescription(AValue: string);
-    procedure SetProductTax(AValue: Integer);
+    procedure SetProductTax(AValue: Double);
     procedure SetUITCode(AValue: string);
     procedure SetUITUCode(AValue: string);
   protected
@@ -86,8 +86,8 @@ type
     property UITCode:string read FUITCode write SetUITCode;
     property UITUCode:string read FUITUCode write SetUITUCode;
     property ProductDescription:string read FProductDescription write SetProductDescription;
-    property ProductCost:Integer read FProductCost write SetProductCost;
-    property ProductTax:Integer read FProductTax write SetProductTax;
+    property ProductCost:Double read FProductCost write SetProductCost;
+    property ProductTax:Double read FProductTax write SetProductTax;
     property CountChildren:Integer read FCountChildren write SetCountChildren;
     property Children:TChildrens read FChildren;
   end;
@@ -190,7 +190,7 @@ begin
   ModifiedProperty('CountChildren');
 end;
 
-procedure TProduct.SetProductCost(AValue: Integer);
+procedure TProduct.SetProductCost(AValue: Double);
 begin
   if FProductCost=AValue then Exit;
   FProductCost:=AValue;
@@ -204,7 +204,7 @@ begin
   ModifiedProperty('ProductDescription');
 end;
 
-procedure TProduct.SetProductTax(AValue: Integer);
+procedure TProduct.SetProductTax(AValue: Double);
 begin
   if FProductTax=AValue then Exit;
   FProductTax:=AValue;
