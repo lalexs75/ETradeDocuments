@@ -243,7 +243,7 @@ end;
 
 procedure Twithdrawal.Setversion(AValue: Double);
 begin
-  CheckFixedValue('version', AValue);
+//  CheckFixedValue('version', AValue);
   Fversion:=AValue;
   ModifiedProperty('version');
 end;
