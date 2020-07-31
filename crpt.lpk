@@ -7,7 +7,7 @@
     <CompilerOptions>
       <Version Value="11"/>
       <SearchPaths>
-        <OtherUnitFiles Value="crpt;crpt/status;crpt/json"/>
+        <OtherUnitFiles Value="crpt;crpt/status;crpt/json;crpt/csv"/>
         <UnitOutputDirectory Value="lib/crpt/$(TargetCPU)-$(TargetOS)"/>
       </SearchPaths>
     </CompilerOptions>
@@ -119,6 +119,10 @@
       <Item>
         <Filename Value="crpt/json/lp_ship_goods.pas"/>
         <UnitName Value="lp_ship_goods"/>
+      </Item>
+      <Item>
+        <Filename Value="crpt/csv/lp_ship_goods_csv.pas"/>
+        <UnitName Value="lp_ship_goods_csv"/>
       </Item>
     </Files>
     <LazDoc Paths="docs"/>

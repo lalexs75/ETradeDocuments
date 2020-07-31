@@ -13,7 +13,8 @@ uses
   Vvod_Imp, vvod_individuals, vvod_ostatky, LP_base_types_v3, shipment, 
   packcode_agregirovanie, packcode_transform, packcode_unagregirovan, 
   acceptance, withdrawal, cis_list, doc_list, CrptGlobalTypes, 
-  CrptGlobalUtils, receipt_list, lp_ship_goods, LazarusPackageIntf;
+  CrptGlobalUtils, receipt_list, lp_ship_goods, lp_ship_goods_csv, 
+  LazarusPackageIntf;
 
 implementation
 
