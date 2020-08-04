@@ -119,6 +119,8 @@ type
     //Метод получения списка шаблонов этикеток участника
     function GetLabelTemplatesList: TJSONObject;
     function GetReceiptList(AFilter: TCrptReceiptListLister): TReceiptItems;
+    function GetReceipt(ReceiptId:string): TJSONObject;
+    function GetReceiptBody(ReceiptId:string): TReceiptItem;
 
     //2.1.6. Метод получения информации о товаре по Коду товара
     function GetProductInfo(KMList:TStringArray): TJSONObject;
@@ -559,6 +561,50 @@ begin
     SaveHttpData('receipt_list');
     FHTTP.Document.Position:=0;
     Result:=TReceiptItems.Create;
+    Result.LoadFromStream(FHTTP.Document);
+    //P:=TJSONParser.Create(FHTTP.Document);
+    //Result:=P.Parse as TJSONObject;
+    //P.Free;
+  end;
+end;
+
+function TCRPTComponent.GetReceipt(ReceiptId: string): TJSONObject;
+var
+  S: String;
+  P: TJSONParser;
+begin
+  //GET /facade/receipt/{receiptId}
+  Result:=nil;
+  DoLogin;
+  S:='';
+//  AddURLParam(S, 'receiptId', ReceiptId);
+  if SendCommand(hmGET, '/api/v3/facade/receipt/'+ReceiptId, S, nil) then
+  begin
+    SaveHttpData('receipt_content');
+    //FHTTP.Document.Position:=0;
+    //Result:=TReceiptItems.Create;
+    //Result.LoadFromStream(FHTTP.Document);
+    P:=TJSONParser.Create(FHTTP.Document);
+    Result:=P.Parse as TJSONObject;
+    P.Free;
+  end;
+end;
+
+function TCRPTComponent.GetReceiptBody(ReceiptId: string): TReceiptItem;
+var
+  S: String;
+//  P: TJSONParser;
+begin
+  //GET /facade/receipt/{receiptId}/body
+  Result:=nil;
+  DoLogin;
+  S:='';
+//  AddURLParam(S, 'receiptId', ReceiptId);
+  if SendCommand(hmGET, '/api/v3/facade/receipt/'+ReceiptId+'/body', S, nil) then
+  begin
+    SaveHttpData('receipt_body');
+    FHTTP.Document.Position:=0;
+    Result:=TReceiptItem.Create;
     Result.LoadFromStream(FHTTP.Document);
     //P:=TJSONParser.Create(FHTTP.Document);
     //Result:=P.Parse as TJSONObject;
