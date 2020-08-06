@@ -50,6 +50,7 @@ type
     Fk_offset: Integer;
     Fk_partition: Integer;
     FOst: string;
+    FReceiptId: TXSDStringArray;
     FSigningDate: Int64;
     FSignRecipientFio: string;
     FT: Integer;
@@ -61,6 +62,7 @@ type
     procedure Setk_offset(AValue: Integer);
     procedure Setk_partition(AValue: Integer);
     procedure SetOst(AValue: string);
+    procedure SetReceiptId(AValue: TXSDStringArray);
     procedure SetSigningDate(AValue: Int64);
     procedure SetSignRecipientFio(AValue: string);
     procedure SetT(AValue: Integer);
@@ -82,6 +84,7 @@ type
     property k_offset:Integer read Fk_offset write Setk_offset;
     property k_partition:Integer read Fk_partition write Setk_partition;
     property Elr:Integer read FElr write SetElr;
+    property ReceiptId:TXSDStringArray read FReceiptId write SetReceiptId;
   end;
 
   { TDocItem }
@@ -475,6 +478,13 @@ begin
   ModifiedProperty('Ost');
 end;
 
+procedure TDocumentDataDto.SetReceiptId(AValue: TXSDStringArray);
+begin
+  if FReceiptId=AValue then Exit;
+  FReceiptId:=AValue;
+  ModifiedProperty('ReceiptId');
+end;
+
 procedure TDocumentDataDto.SetSigningDate(AValue: Int64);
 begin
   if FSigningDate=AValue then Exit;
@@ -517,6 +527,7 @@ begin
   RegisterProperty('k_offset', 'k_offset', [], '', -1, -1);
   RegisterProperty('k_partition', 'k_partition', [], '', -1, -1);
   RegisterProperty('Elr', 'elr', [], '', -1, -1);
+  RegisterProperty('ReceiptId', 'receiptId', [], '', -1, -1);
 end;
 
 procedure TDocumentDataDto.InternalInitChilds;

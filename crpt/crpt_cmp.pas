@@ -38,8 +38,8 @@ uses
   Classes, SysUtils, httpsend, fpJSON, cis_list, CrptGlobalTypes, doc_list, receipt_list;
 
 const
-  sAPIURL = 'https://ismp.crpt.ru'; //WORK API
-
+//  sAPIURL = 'https://ismp.crpt.ru'; //WORK API
+  sAPIURL = 'https://ismp.crpt.ru/api/v3';
 type
   THttpMethod = (hmGET, hmPOST);
 
@@ -127,8 +127,8 @@ type
 
     //2.1.23. Метод получения списка полученных КМ с возможностью фильтрации
     function CISGetReceivedList(ACis:string): TJSONObject;
-    //2.1.27. Запрос информации об участнике оборота товаров по ИНН
-    function ClientInfo(AInn: string; AGroup: string = ''): TJSONObject;
+    //Запрос информации об участнике оборота товаров по ИНН
+    function ClientInfo(AInn: String; AGroup: string = ''): TJSONObject;
 
     //Коды маркировки и товары
     //Метод получения списка КМ по заданному фильтру с подробной информацией о КМ
@@ -289,7 +289,7 @@ begin
   J.Free;
 
 
-  if SendCommand(hmPOST, '/api/v3/auth/cert/', '', M) then
+  if SendCommand(hmPOST, '/auth/cert/', '', M) then
   begin
     SaveHttpData('dologin_cert');
     FHTTP.Document.Position:=0;
@@ -424,7 +424,7 @@ begin
   if (FAuthorizationToken <> '') and (FAuthorizationTokenTimeStamp > (Now - (1 / 20) * 10)) then Exit;
   FAuthorizationToken:='';
   Result:=false;
-  if SendCommand(hmGET, '/api/v3/auth/cert/key', '', nil) then
+  if SendCommand(hmGET, '/auth/cert/key', '', nil) then
   begin
     if FResultCode = 200 then
     begin
@@ -523,7 +523,7 @@ begin
     AddURLParam(S, 'limit', ALimit);
   if AOffset > 0 then
     AddURLParam(S, 'offset', ALimit);
-  if SendCommand(hmGET, '/api/v3/facade/order/all', S, nil) then
+  if SendCommand(hmGET, '/facade/order/all', S, nil) then
   begin
     FHTTP.Document.Position:=0;
     P:=TJSONParser.Create(FHTTP.Document);
@@ -556,7 +556,7 @@ begin
   AddURLParam(S, 'dateTo', xsd_DateTimeToStr(AFilter.DateTo, xdkDateTime));
   if AFilter.Limit > 0 then
     AddURLParam(S, 'limit', AFilter.Limit);
-  if SendCommand(hmGET, '/api/v3/facade/receipt/listV2', S, nil) then
+  if SendCommand(hmGET, '/facade/receipt/listV2', S, nil) then
   begin
     SaveHttpData('receipt_list');
     FHTTP.Document.Position:=0;
@@ -578,7 +578,7 @@ begin
   DoLogin;
   S:='';
 //  AddURLParam(S, 'receiptId', ReceiptId);
-  if SendCommand(hmGET, '/api/v3/facade/receipt/'+ReceiptId, S, nil) then
+  if SendCommand(hmGET, '/facade/receipt/'+ReceiptId, S, nil) then
   begin
     SaveHttpData('receipt_content');
     //FHTTP.Document.Position:=0;
@@ -600,7 +600,7 @@ begin
   DoLogin;
   S:='';
 //  AddURLParam(S, 'receiptId', ReceiptId);
-  if SendCommand(hmGET, '/api/v3/facade/receipt/'+ReceiptId+'/body', S, nil) then
+  if SendCommand(hmGET, '/facade/receipt/'+ReceiptId+'/body', S, nil) then
   begin
     SaveHttpData('receipt_body');
     FHTTP.Document.Position:=0;
@@ -630,7 +630,7 @@ begin
 
   AddURLParam(S, 'gtins', S2);
 
-  if SendCommand(hmGET, '/api/v3/product/info', S, nil) then
+  if SendCommand(hmGET, '/product/info', S, nil) then
   begin
     SaveHttpData('product_info');
     FHTTP.Document.Position:=0;
@@ -652,7 +652,7 @@ begin
   if ACis <> '' then
     AddURLParam(S, 'cis', ACis);
   AddURLParam(S, 'cisMatchMode', 'LIKE');
-  if SendCommand(hmGET, '/api/v3/facade/agent/received/list', S, nil) then
+  if SendCommand(hmGET, '/facade/agent/received/list', S, nil) then
   begin
     SaveHttpData('received_list');
     FHTTP.Document.Position:=0;
@@ -663,17 +663,17 @@ begin
 
 end;
 
-function TCRPTComponent.ClientInfo(AInn: string; AGroup: string): TJSONObject;
+function TCRPTComponent.ClientInfo(AInn: String; AGroup: string): TJSONObject;
 var
   S: String;
   P: TJSONParser;
 begin
-  //GET /participants/{inn}
+  //GET /facade/participants/{inn}
   Result:=nil;
   DoLogin;
   S:=HTTPEncode(StringReplace(AInn, '%', '%25', [rfReplaceAll]));
 
-  if SendCommand(hmGET, '/participants/' + S, '', nil) then
+  if SendCommand(hmGET, '/facade/participants/' + S, '', nil) then
   begin
     SaveHttpData('participants_info');
     FHTTP.Document.Position:=0;
@@ -699,7 +699,7 @@ begin
   DoLogin;
   S:=HTTPEncode(StringReplace(CIS, '%', '%25', [rfReplaceAll]));
 
-  if SendCommand(hmGET, '/api/v3/facade/identifytools/' + S, '', nil) then
+  if SendCommand(hmGET, '/facade/identifytools/' + S, '', nil) then
   begin
     SaveHttpData('cis_info');
     FHTTP.Document.Position:=0;
@@ -766,7 +766,7 @@ begin
   Целое число
   Максимальное количество записей, которое вернется в качестве ответа.
 *)
-  if SendCommand(hmGET, '/api/v3/facade/marked_products/listV2', S, nil) then
+  if SendCommand(hmGET, '/facade/marked_products/listV2', S, nil) then
   begin
     FHTTP.Document.Position:=0;
     P:=TJSONParser.Create(FHTTP.Document);
@@ -794,7 +794,7 @@ begin
   S:='';
   for CIS in KMList do
     AddURLParam(S, 'cis', CIS);
-  if SendCommand(hmGET, '/api/v3/facade/cis/cis_list', S, nil) then
+  if SendCommand(hmGET, '/facade/cis/cis_list', S, nil) then
   begin
     SaveHttpData('cis_list');
     FHTTP.Document.Position:=0;
@@ -851,7 +851,7 @@ begin
   //  8  - milk        – Молочная продукция;
   //  9  - bicycle     – Велосипеды  и  велосипедные рамы;
   //  10 - wheelchairs – Кресла-коляски
-  if SendCommand(hmGET, '/api/v3/facade/doc/listV2', S, nil) then
+  if SendCommand(hmGET, '/facade/doc/listV2', S, nil) then
   begin
     SaveHttpData('doc_list');
     FHTTP.Document.Position:=0;
@@ -875,7 +875,7 @@ begin
   DoLogin;
   Result:=nil;
   S:=HTTPEncode(StringReplace(ADocID, '%', '%25', [rfReplaceAll]));
-  if SendCommand(hmGET, '/api/v3/facade/doc/'+S+'/body', '', nil) then
+  if SendCommand(hmGET, '/facade/doc/'+S+'/body', '', nil) then
   begin
     SaveHttpData('doc_content');
     FHTTP.Document.Position:=0;
