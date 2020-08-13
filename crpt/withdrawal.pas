@@ -142,12 +142,14 @@ type
     Fprimary_document_number:Tstring255_type;
     Fprimary_document_date:Tdate_type;
     Fprimary_document_custom_name:Tstring255_type;
+    Fvat_value: Tprice_type;
     procedure Setkit( AValue:Tki_type);
     procedure Setcost( AValue:Tprice_type);
     procedure Setprimary_document_type( AValue:Twithdraw_primary_document_type_type);
     procedure Setprimary_document_number( AValue:Tstring255_type);
     procedure Setprimary_document_date( AValue:Tdate_type);
     procedure Setprimary_document_custom_name( AValue:Tstring255_type);
+    procedure Setvat_value(AValue: Tprice_type);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
@@ -159,6 +161,7 @@ type
     property kit:Tki_type read Fkit write Setkit;
     //Цена за единицу
     property cost:Tprice_type read Fcost write Setcost;
+    property vat_value:Tprice_type read Fvat_value write Setvat_value;
     //Тип первичного документа
     property primary_document_type:Twithdraw_primary_document_type_type read Fprimary_document_type write Setprimary_document_type;
     //Номер первичного документа
@@ -282,7 +285,7 @@ begin
   P:=RegisterProperty('action_id', 'action_id', [xsaRequared], '', -1, -1);
     P.DefaultValue:='15';
   P:=RegisterProperty('version', 'version', [xsaRequared], '', -1, -1);
-    P.DefaultValue:='4';
+    P.DefaultValue:='3';
 end;
 
 procedure Twithdrawal.InternalInitChilds;
@@ -301,7 +304,7 @@ constructor Twithdrawal.Create;
 begin
   inherited Create;
   action_id:=15;
-  version:=4;
+  version:=3;
 end;
 
   {  Twithdrawal_element  }
@@ -405,6 +408,12 @@ begin
   ModifiedProperty('primary_document_custom_name');
 end;
 
+procedure Twithdrawal_products_list_product.Setvat_value(AValue: Tprice_type);
+begin
+  Fvat_value:=AValue;
+  ModifiedProperty('vat_value');
+end;
+
 procedure Twithdrawal_products_list_product.InternalRegisterPropertys;
 var
   P: TPropertyDef;
@@ -412,6 +421,10 @@ begin
   inherited InternalRegisterPropertys;
   P:=RegisterProperty('kit', 'kit', [xsaSimpleObject], '', 25, 45);
   P:=RegisterProperty('cost', 'cost', [xsaSimpleObject], '', -1, -1);
+    P.TotalDigits := 19;
+    P.FractionDigits := 2;
+    P.minInclusiveFloat:=0;
+  P:=RegisterProperty('vat_value', 'vat_value', [xsaSimpleObject], '', -1, -1);
     P.TotalDigits := 19;
     P.FractionDigits := 2;
     P.minInclusiveFloat:=0;
