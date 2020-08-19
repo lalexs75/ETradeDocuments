@@ -230,8 +230,9 @@ begin
   if S<>'' then S:=S + '&';
   if AValue <>'' then
   begin
-    AValue:=StringReplace(AValue, '%', '%25', [rfReplaceAll]);
+    //AValue:=StringReplace(AValue, '%', '%25', [rfReplaceAll]);
     S:=S + AParam + '=' + HTTPEncode(AValue)
+    //S:=S + AParam + '=' + AValue
   end
   else
     S:=S + AParam
@@ -793,7 +794,11 @@ begin
   //Метод: GET
   S:='';
   for CIS in KMList do
+  begin
     AddURLParam(S, 'cis', CIS);
+//    if S<>'' then S:=S + '&';
+//    S:=S + 'cis' + '=' + CIS;
+  end;
   if SendCommand(hmGET, '/facade/cis/cis_list', S, nil) then
   begin
     SaveHttpData('cis_list');
