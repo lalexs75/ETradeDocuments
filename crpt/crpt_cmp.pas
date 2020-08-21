@@ -141,6 +141,7 @@ type
     function GetGoodInfo: TJSONObject;
     //3.5 Метод получения краткой информации о КМ\списке КМ (общедоступный)
     function GetSimpleGoodsList(KMList:TStringArray): TCISItems;
+    function GetSimpleGoodsList(KM:string): TCISItems;
     //Документы
 
     //Метод получения списка документов, ранее загруженных в ИС МП
@@ -794,21 +795,19 @@ begin
   //Метод: GET
   S:='';
   for CIS in KMList do
-  begin
     AddURLParam(S, 'cis', CIS);
-//    if S<>'' then S:=S + '&';
-//    S:=S + 'cis' + '=' + CIS;
-  end;
   if SendCommand(hmGET, '/facade/cis/cis_list', S, nil) then
   begin
     SaveHttpData('cis_list');
     FHTTP.Document.Position:=0;
     Result:=TCISItems.Create;
     Result.LoadFromStream(FHTTP.Document);
-    //P:=TJSONParser.Create(FHTTP.Document);
-    //Result:=P.Parse as TJSONObject;
-    //P.Free;
   end;
+end;
+
+function TCRPTComponent.GetSimpleGoodsList(KM: string): TCISItems;
+begin
+  Result:=GetSimpleGoodsList(TStringArray.Create(KM));
 end;
 
 
