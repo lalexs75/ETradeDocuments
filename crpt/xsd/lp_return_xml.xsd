@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:include schemaLocation="../LP_base_types_v2.xsd"/>
+    <xs:element name="return" type="return"/>
+    <xs:complexType name="return">
+        <xs:annotation>
+            <xs:documentation>Возврат в оборот</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="trade_participant_inn" type="inn_type">
+                <xs:annotation>
+                    <xs:documentation>ИНН участника оборота</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="return_type" type="return_type_type">
+                <xs:annotation>
+                    <xs:documentation>Вид возврата</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="paid" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Товар оплачен</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="primary_document_type" type="withdraw_primary_document_type_type" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Тип первичного документа</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="primary_document_custom_name" type="string255_type" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Наименование первичного документа</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="primary_document_number" type="string255_type" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Номер первичного документа</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="primary_document_date" type="date_type" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата первичного документа</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="certificate_type" type="certificate_type_type" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Вид документа, подтверждающего соответствие</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="certificate_number" type="string255_type" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Номер документа, подтверждающего соответствие</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="certificate_date" type="date_type" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Дата документа, подтверждающего соответствие</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="products_list">
+                <xs:annotation>
+                    <xs:documentation>Параметры товаров</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="product" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Параметры товара</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="ki" type="ki_type">
+                                        <xs:annotation>
+                                            <xs:documentation>Код идентификации</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="paid" type="xs:boolean" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Товар оплачен</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="primary_document_type" type="withdraw_primary_document_type_type" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Тип первичного документа</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="primary_document_custom_name" type="string255_type" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Наименование первичного документа</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="primary_document_number" type="string255_type" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Номер первичного документа</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="primary_document_date" type="date_type" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Дата первичного документа</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="certificate_type" type="certificate_type_type" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Вид документа, подтверждающего соответствие</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="certificate_number" type="string255_type" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Номер документа, подтверждающего соответствие</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="certificate_date" type="date_type" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Дата документа, подтверждающего соответствие</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="action_id" type="xs:int" use="required" fixed="34"/>
+        <xs:attribute name="version" type="xs:decimal" use="required" fixed="1"/>
+    </xs:complexType>
+</xs:schema>

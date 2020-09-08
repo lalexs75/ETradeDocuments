@@ -101,7 +101,7 @@ type
     FDownloadStatus: string;
     FErrors: TXSDStringArray;
     FInput: Boolean;
-    FInvoiceDate: Int64;
+    FInvoiceDate: string;
     FInvoiceNumber: string;
     FNumber: string;
     FPdfFile: string;
@@ -126,7 +126,7 @@ type
     procedure SetDownloadStatus(AValue: string);
     procedure SetErrors(AValue: TXSDStringArray);
     procedure SetInput(AValue: Boolean);
-    procedure SetInvoiceDate(AValue: Int64);
+    procedure SetInvoiceDate(AValue: string);
     procedure SetInvoiceNumber(AValue: string);
     procedure SetNumber(AValue: string);
     procedure SetPdfFile(AValue: string);
@@ -154,7 +154,7 @@ type
     property SenderName:string read FSenderName write SetSenderName;
     property ReceiverName:string read FReceiverName write SetReceiverName;
     property InvoiceNumber:string read FInvoiceNumber write SetInvoiceNumber;
-    property InvoiceDate:Int64 read FInvoiceDate write SetInvoiceDate;
+    property InvoiceDate:string read FInvoiceDate write SetInvoiceDate;
     property Total:Integer read FTotal write SetTotal;
     property Vat:Integer read FVat write SetVat;
     property DownloadStatus:string read FDownloadStatus write SetDownloadStatus;
@@ -237,8 +237,12 @@ begin
 end;
 
 function TDocItem.GetDocumentInvoiceDate: TDateTime;
+var
+  R: TDateTimeRec;
 begin
-  Result:=UnixToDateTime(FInvoiceDate div 1000);
+//  Result:=UnixToDateTime(FInvoiceDate div 1000);
+  if xsd_TryStrToDate(FDocDate, R, xdkDateTime) then
+    Result:=NormalizeToUTC(R);
 end;
 
 function TDocItem.GetDocumentReceivedAt: TDateTime;
@@ -320,7 +324,7 @@ begin
   ModifiedProperty('Input');
 end;
 
-procedure TDocItem.SetInvoiceDate(AValue: Int64);
+procedure TDocItem.SetInvoiceDate(AValue: string);
 begin
   if FInvoiceDate=AValue then Exit;
   FInvoiceDate:=AValue;
