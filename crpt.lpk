@@ -13,7 +13,7 @@
     </CompilerOptions>
     <Description Value="Набор объектов и структур для взаимодействия с ЦРПТ по маркировке товаров"/>
     <License Value="LGPL"/>
-    <Version Major="1" Minor="1" Release="1" Build="15"/>
+    <Version Major="1" Minor="1" Release="2" Build="17"/>
     <Files>
       <Item>
         <Filename Value="crpt/crpt_cmp.pas"/>
@@ -123,6 +123,10 @@
       <Item>
         <Filename Value="crpt/csv/lp_ship_goods_csv.pas"/>
         <UnitName Value="lp_ship_goods_csv"/>
+      </Item>
+      <Item>
+        <Filename Value="crpt/lp_return_xml.pas"/>
+        <UnitName Value="lp_return_xml"/>
       </Item>
     </Files>
     <LazDoc Paths="docs"/>

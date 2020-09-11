@@ -71,6 +71,7 @@ type
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
+    constructor Create; override;
     destructor Destroy; override;
   published
     property Ost:string read FOst write SetOst;
@@ -537,6 +538,12 @@ end;
 procedure TDocumentDataDto.InternalInitChilds;
 begin
   inherited InternalInitChilds;
+end;
+
+constructor TDocumentDataDto.Create;
+begin
+  inherited Create;
+  FIgnoreReadUndefProps:=true;
 end;
 
 destructor TDocumentDataDto.Destroy;
