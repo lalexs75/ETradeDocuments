@@ -103,6 +103,7 @@ type
 
   TReceiptContent = class(TJSONSerializationObject)
   private
+    FBuyerInn: string;
     FCashTotalSum: Integer;
     FCode: Integer;
     FCreditSum: Integer;
@@ -128,6 +129,7 @@ type
     FTaxationType: Integer;
     FTotalSum: Integer;
     FUserInn: string;
+    procedure SetBuyerInn(AValue: string);
     procedure SetCashTotalSum(AValue: Integer);
     procedure SetCode(AValue: Integer);
     procedure SetCreditSum(AValue: Integer);
@@ -164,6 +166,7 @@ type
     property FiscalDocumentNumber:Integer read FFiscalDocumentNumber write SetFiscalDocumentNumber;
     property FiscalDriveNumber:string read FFiscalDriveNumber write SetFiscalDriveNumber;
     property UserInn:string read FUserInn write SetUserInn;
+    property BuyerInn:string read FBuyerInn write SetBuyerInn;
     property RequestNumber:Integer read FRequestNumber write SetRequestNumber;
     property DateTime:Integer read FDateTime write SetDateTime;
     property ShiftNumber:Integer read FShiftNumber write SetShiftNumber;
@@ -393,6 +396,13 @@ begin
   ModifiedProperty('CashTotalSum');
 end;
 
+procedure TReceiptContent.SetBuyerInn(AValue: string);
+begin
+  if FBuyerInn=AValue then Exit;
+  FBuyerInn:=AValue;
+  ModifiedProperty('BuyerInn');
+end;
+
 procedure TReceiptContent.SetCreditSum(AValue: Integer);
 begin
   if FCreditSum=AValue then Exit;
@@ -563,6 +573,7 @@ begin
   RegisterProperty('TaxationType', 'taxationType', [], '', -1, -1);
   RegisterProperty('OperatorFIO', 'operator', [], '', -1, -1);
   RegisterProperty('OperatorInn', 'operatorInn', [], '', -1, -1);
+  RegisterProperty('BuyerInn', 'buyerInn',  [], '', -1, -1);
   RegisterProperty('kktRegId', 'kktRegId', [], '', -1, -1);
   RegisterProperty('RetailAddress', 'retailAddress', [], '', -1, -1);
   RegisterProperty('RetailPlace', 'retailPlace', [], '', -1, -1);
