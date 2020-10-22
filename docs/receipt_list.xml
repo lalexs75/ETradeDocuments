@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fpdoc-descriptions><package name="crpt"><module name="receipt_list"><element name="TDocumentDataDto.ReceiptId"><short>Идентификатор чека</short>
+      </element>
+    </module>
+  </package>
+</fpdoc-descriptions>
