@@ -43,7 +43,9 @@ type
   TDocumentDataDto = class(TJSONSerializationObject)
   private
     FErrors: TXSDStringArray;
+    FReceiptId: TXSDStringArray;
     procedure SetErrors(AValue: TXSDStringArray);
+    procedure SetReceiptId(AValue: TXSDStringArray);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
@@ -51,6 +53,7 @@ type
     destructor Destroy; override;
   published
     property Errors:TXSDStringArray read FErrors write SetErrors;
+    property ReceiptId:TXSDStringArray read FReceiptId write SetReceiptId;
   end;
 
   { TReceiptContentItem }
@@ -615,10 +618,18 @@ begin
   ModifiedProperty('Errors');
 end;
 
+procedure TDocumentDataDto.SetReceiptId(AValue: TXSDStringArray);
+begin
+  if FreceiptId=AValue then Exit;
+  FreceiptId:=AValue;
+  ModifiedProperty('ReceiptId');
+end;
+
 procedure TDocumentDataDto.InternalRegisterPropertys;
 begin
   inherited InternalRegisterPropertys;
   RegisterProperty('Errors', 'errors', [], '', -1, -1);
+  RegisterProperty('ReceiptId', 'receiptId', [], '', -1, -1);
 end;
 
 procedure TDocumentDataDto.InternalInitChilds;
