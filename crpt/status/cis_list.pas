@@ -93,6 +93,7 @@ type
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
+    constructor Create; override;
     destructor Destroy; override;
   published
     property CIS:string read FCIS write SetCIS;
@@ -131,6 +132,7 @@ type
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
+    constructor Create; override;
     destructor Destroy; override;
   published
     property Items:TCISItemList read FItems;
@@ -149,6 +151,12 @@ procedure TCISItems.InternalInitChilds;
 begin
   inherited InternalInitChilds;
   FItems:=TCISItemList.Create;
+end;
+
+constructor TCISItems.Create;
+begin
+  inherited Create;
+  FIgnoreReadUndefProps:=true;
 end;
 
 destructor TCISItems.Destroy;
@@ -351,6 +359,12 @@ end;
 procedure TCISItem.InternalInitChilds;
 begin
   inherited InternalInitChilds;
+end;
+
+constructor TCISItem.Create;
+begin
+  inherited Create;
+  FIgnoreReadUndefProps:=true;
 end;
 
 destructor TCISItem.Destroy;

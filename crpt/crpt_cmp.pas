@@ -328,6 +328,21 @@ begin
   FHTTP.Document.Position:=P;
 end;
 
+procedure SaveStrData(ACmdName, AData: string);
+var
+  S: String;
+  F: TFileStream;
+  P: Int64;
+begin
+  if ExtractFileExt(ACmdName) = '' then
+    ACmdName := ACmdName + '.bin';
+  S:=GetTempDir(false) + PathDelim + ACmdName;
+  F:=TFileStream.Create(S, fmCreate);
+  if AData<>'' then
+    F.Write(AData[1], Length(AData));
+  F.Free;
+end;
+
 function TCRPTComponent.SendCommand(AMethod: THttpMethod; ACommand: string;
   AParams: string; AData: TStream): Boolean;
 var
@@ -796,6 +811,9 @@ begin
   S:='';
   for CIS in KMList do
     AddURLParam(S, 'cis', CIS);
+
+  SaveStrData('cis_list_p', S);
+
   if SendCommand(hmGET, '/facade/cis/cis_list', S, nil) then
   begin
     SaveHttpData('cis_list');
