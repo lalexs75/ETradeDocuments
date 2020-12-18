@@ -94,6 +94,7 @@ type
   private
     FAType: string;
     FBody: string;
+    FcisTotal: Integer;
     FContent: string;
     FDocDate: string;
     FDocErrors: string;
@@ -117,6 +118,7 @@ type
     function GetDocumentReceivedAt: TDateTime;
     procedure SetAType(AValue: string);
     procedure SetBody(AValue: string);
+    procedure SetcisTotal(AValue: Integer);
     procedure SetContent(AValue: string);
     procedure SetDocDate(AValue: string);
     procedure SetDocErrors(AValue: string);
@@ -160,6 +162,7 @@ type
     property Vat:Integer read FVat write SetVat;
     property DownloadStatus:string read FDownloadStatus write SetDownloadStatus;
     property DownloadDesc:string read FDownloadDesc write SetDownloadDesc;
+    property cisTotal:Integer read FcisTotal write SetcisTotal;
     property Body:string read FBody write SetBody;
     property Content:string read FContent write SetContent;
     property Input:Boolean read FInput write SetInput;
@@ -259,6 +262,13 @@ begin
   if FBody=AValue then Exit;
   FBody:=AValue;
   ModifiedProperty('Body');
+end;
+
+procedure TDocItem.SetcisTotal(AValue: Integer);
+begin
+  if FcisTotal=AValue then Exit;
+  FcisTotal:=AValue;
+  ModifiedProperty('cisTotal');
 end;
 
 procedure TDocItem.SetContent(AValue: string);
@@ -412,6 +422,7 @@ begin
   RegisterProperty('Body', 'body', [], '', -1, -1);
   RegisterProperty('DownloadStatus', 'downloadStatus', [], '', -1, -1);
   RegisterProperty('DownloadDesc', 'downloadDesc', [], '', -1, -1);
+  RegisterProperty('cisTotal', 'cisTotal', [], '', -1, -1);
   RegisterProperty('Content', 'content', [], '', -1, -1);
   RegisterProperty('Input', 'input', [], '', -1, -1);
   RegisterProperty('PdfFile', 'pdfFile', [], '', -1, -1);
