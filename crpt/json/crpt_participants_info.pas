@@ -57,7 +57,7 @@ type
     Fogrn: string;
     ForganizationForm: string;
     Fphone: string;
-    FregistrationDate: integer;
+    FregistrationDate: Int64;
     Froles: TXSDStringArray;
     FshortName: string;
     Fstatus: string;
@@ -76,7 +76,7 @@ type
     procedure Setogrn(AValue: string);
     procedure SetorganizationForm(AValue: string);
     procedure Setphone(AValue: string);
-    procedure SetregistrationDate(AValue: integer);
+    procedure SetregistrationDate(AValue: Int64);
     procedure Setroles(AValue: TXSDStringArray);
     procedure SetshortName(AValue: string);
     procedure Setstatus(AValue: string);
@@ -101,7 +101,7 @@ type
     property legalAddress:string read FlegalAddress write SetlegalAddress; //Юридический адрес
     property actualAddress:string read FactualAddress write SetactualAddress; //Фактический адрес
     property email:string read Femail write Setemail; //Email
-    property registrationDate:integer read FregistrationDate write SetregistrationDate; //Регистрация
+    property registrationDate:Int64 read FregistrationDate write SetregistrationDate; //Регистрация
     property organizationForm:string read ForganizationForm write SetorganizationForm; //Форма организации: ЮЛ, ФЛ, ИП
     property emissionRegistrars:string read FemissionRegistrars write SetemissionRegistrars; //Регистратор эмиссии
     property dissolved:boolean read Fdissolved write Setdissolved; //Признак существования организации
@@ -212,7 +212,7 @@ begin
   ModifiedProperty('phone');
 end;
 
-procedure TParticipantsInfo.SetregistrationDate(AValue: integer);
+procedure TParticipantsInfo.SetregistrationDate(AValue: Int64);
 begin
   if FregistrationDate=AValue then Exit;
   FregistrationDate:=AValue;
