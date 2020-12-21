@@ -14,7 +14,7 @@ uses
   packcode_agregirovanie, packcode_transform, packcode_unagregirovan, 
   acceptance, withdrawal, cis_list, doc_list, CrptGlobalTypes, 
   CrptGlobalUtils, receipt_list, lp_ship_goods, lp_ship_goods_csv, 
-  lp_return_xml, LazarusPackageIntf;
+  lp_return_xml, crpt_participants_info, LazarusPackageIntf;
 
 implementation
 

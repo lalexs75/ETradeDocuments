@@ -128,6 +128,10 @@
         <Filename Value="crpt/lp_return_xml.pas"/>
         <UnitName Value="lp_return_xml"/>
       </Item>
+      <Item>
+        <Filename Value="crpt/json/crpt_participants_info.pas"/>
+        <UnitName Value="crpt_participants_info"/>
+      </Item>
     </Files>
     <LazDoc Paths="docs"/>
     <RequiredPkgs>

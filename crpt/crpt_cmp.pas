@@ -35,7 +35,8 @@ unit crpt_cmp;
 interface
 
 uses
-  Classes, SysUtils, httpsend, fpJSON, cis_list, CrptGlobalTypes, doc_list, receipt_list;
+  Classes, SysUtils, httpsend, fpJSON, cis_list, CrptGlobalTypes, doc_list,
+  receipt_list, crpt_participants_info;
 
 const
 //  sAPIURL = 'https://ismp.crpt.ru'; //WORK API
@@ -128,7 +129,7 @@ type
     //2.1.23. Метод получения списка полученных КМ с возможностью фильтрации
     function CISGetReceivedList(ACis:string): TJSONObject;
     //Запрос информации об участнике оборота товаров по ИНН
-    function ClientInfo(AInn: String; AGroup: string = ''): TJSONObject;
+    function ClientInfo(AInn: String; AGroup: string = ''): TParticipantsInfo;
 
     //Коды маркировки и товары
     //Метод получения списка КМ по заданному фильтру с подробной информацией о КМ
@@ -680,10 +681,29 @@ begin
 
 end;
 
-function TCRPTComponent.ClientInfo(AInn: String; AGroup: string): TJSONObject;
+function TCRPTComponent.ClientInfo(AInn: String; AGroup: string): TParticipantsInfo;
 var
   S: String;
   P: TJSONParser;
+  B: Boolean;
+
+function DoCheckError:Boolean;
+var
+  R: TJSONObject;
+  N: TJSONData;
+begin
+  Result:=false;
+  P:=TJSONParser.Create(FHTTP.Document);
+  R:=P.Parse as TJSONObject;
+  if Assigned(R) then
+  begin
+    N:=R.Find('code');
+    if Assigned(N) then
+      Result:=true;
+  end;
+  P.Free;
+end;
+
 begin
   //GET /facade/participants/{inn}
   Result:=nil;
@@ -694,9 +714,17 @@ begin
   begin
     SaveHttpData('participants_info');
     FHTTP.Document.Position:=0;
-    P:=TJSONParser.Create(FHTTP.Document);
-    Result:=P.Parse as TJSONObject;
-    P.Free;
+
+    if (ResultCode = 200)  then;
+    begin
+      B:=not DoCheckError;
+      if B then
+      begin
+        FHTTP.Document.Position:=0;
+        Result:=TParticipantsInfo.Create;
+        Result.LoadFromStream(FHTTP.Document);
+      end;
+    end;
   end;
 end;
 
