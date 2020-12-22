@@ -87,6 +87,7 @@ type
   public
     destructor Destroy; override;
   public
+    constructor Create; override;
   published
     property id:Int64 read Fid write Setid; //Идентификатор
     property inn:string read Finn write Setinn; //ИНН
@@ -280,6 +281,12 @@ end;
 destructor TParticipantsInfo.Destroy;
 begin
   inherited Destroy;
+end;
+
+constructor TParticipantsInfo.Create;
+begin
+  inherited Create;
+  FIgnoreReadUndefProps:=true;
 end;
 
 end.
