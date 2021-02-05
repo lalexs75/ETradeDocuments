@@ -186,6 +186,7 @@ type
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
+    constructor Create; override;
     destructor Destroy; override;
   published
     property Results:TDocItemList read FResults;
@@ -215,6 +216,12 @@ procedure TDocItems.InternalInitChilds;
 begin
   inherited InternalInitChilds;
   FResults:=TDocItemList.Create;
+end;
+
+constructor TDocItems.Create;
+begin
+  inherited Create;
+  FIgnoreReadUndefProps:=true;
 end;
 
 destructor TDocItems.Destroy;
