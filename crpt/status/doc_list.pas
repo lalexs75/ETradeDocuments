@@ -144,6 +144,7 @@ type
     procedure InternalInitChilds; override;
   public
     destructor Destroy; override;
+    constructor Create; override;
     property DocumentDate:TDateTime read GetDocumentDate write SetDocumentDate;
     property DocumentReceivedAt:TDateTime read GetDocumentReceivedAt write SetDocumentReceivedAt;
     property DocumentInvoiceDate:TDateTime read GetDocumentInvoiceDate write SetDocumentInvoiceDate;
@@ -448,6 +449,12 @@ destructor TDocItem.Destroy;
 begin
   FreeAndNil(FDocumentDataDto);
   inherited Destroy;
+end;
+
+constructor TDocItem.Create;
+begin
+  inherited Create;
+  FIgnoreReadUndefProps:=true;
 end;
 
 { TDocumentDataDto }

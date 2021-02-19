@@ -57,6 +57,8 @@ type
   public
     constructor Create; override;
     destructor Destroy; override;
+    procedure LoadProductDocument(AStream:TStream);
+    procedure LoadSignature(AStream:TStream);
   published
     property DocumentFormat:string read FDocumentFormat write SetDocumentFormat;
     property ProductDocument:string read FProductDocument write SetProductDocument;
@@ -71,6 +73,7 @@ implementation
 procedure TCRPTCreateDocumentData.SetDocumentFormat(AValue: string);
 begin
   if FDocumentFormat=AValue then Exit;
+  CheckLockupValue('DocumentFormat', AValue);
   FDocumentFormat:=AValue;
   ModifiedProperty('DocumentFormat');
 end;
@@ -97,9 +100,14 @@ begin
 end;
 
 procedure TCRPTCreateDocumentData.InternalRegisterPropertys;
+var
+  P: TPropertyDef;
 begin
   inherited InternalRegisterPropertys;
-  RegisterProperty('DocumentFormat', 'document_format', [], '', -1, -1);
+  P:=RegisterProperty('DocumentFormat', 'document_format', [], '', -1, -1);
+    P.ValidList.Add('MANUAL');
+    P.ValidList.Add('XML');
+    P.ValidList.Add('CSV');
   RegisterProperty('ProductDocument', 'product_document', [], '', -1, -1);
   RegisterProperty('DocumentType', 'type', [], '', -1, -1);
   RegisterProperty('Signature', 'signature', [], '', -1, -1);
@@ -118,6 +126,16 @@ end;
 destructor TCRPTCreateDocumentData.Destroy;
 begin
   inherited Destroy;
+end;
+
+procedure TCRPTCreateDocumentData.LoadProductDocument(AStream: TStream);
+begin
+
+end;
+
+procedure TCRPTCreateDocumentData.LoadSignature(AStream: TStream);
+begin
+
 end;
 
 end.

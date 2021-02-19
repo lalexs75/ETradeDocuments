@@ -241,6 +241,7 @@ type
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
+    constructor Create; override;
     destructor Destroy; override;
   published
     property Number:string read FNumber write SetNumber;
@@ -275,6 +276,7 @@ type
     procedure InternalInitChilds; override;
   public
     destructor Destroy; override;
+    constructor Create; override;
   published
     property Results:TReceiptItemList read FResults;
     property Total:Integer read FTotal write SetTotal;
@@ -662,7 +664,7 @@ begin
   ModifiedProperty('AType');
 end;
 
-procedure TReceiptItem.Setcontent(AValue: string);
+procedure TReceiptItem.SetContent(AValue: string);
 begin
   if FContent=AValue then Exit;
   FContent:=AValue;
@@ -790,6 +792,12 @@ begin
   FBody:=TReceiptBody.Create;
 end;
 
+constructor TReceiptItem.Create;
+begin
+  inherited Create;
+  FIgnoreReadUndefProps:=true;
+end;
+
 destructor TReceiptItem.Destroy;
 begin
   FreeAndNil(FDocumentDataDto);
@@ -823,6 +831,12 @@ destructor TReceiptItems.Destroy;
 begin
   FreeAndNil(FResults);
   inherited Destroy;
+end;
+
+constructor TReceiptItems.Create;
+begin
+  inherited Create;
+  FIgnoreReadUndefProps:=true;
 end;
 
 end.
