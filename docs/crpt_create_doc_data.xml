@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fpdoc-descriptions><package name="crpt"><module name="crpt_create_doc_data"><element name="TCRPTCreateDocumentData"><short>Универсальный объект для отправки подписанных документов в ЦРПТ</short>
+      </element><element name="TCRPTCreateDocumentData.DocumentFormat"><short>Тип документа</short><descr><p>Значения:</p><ul><li><b>MANUAL</b> – формат JSON;</li><li><b>XML</b> – формат XML;</li><li><b>CSV</b> – формат CSV</li>
+          </ul>
+        </descr>
+      </element><element name="TCRPTCreateDocumentData.ProductDocument"><short>Тело формируемого документа, переведённое в base64</short>
+      </element><element name="TCRPTCreateDocumentData.Signature"><short>Откреплённая подпись (УКЭП) в формате base64</short>
+      </element><element name="TCRPTCreateDocumentData.DocumentType" link="https://честныйзнак.рф/upload/%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5+API+%D0%93%D0%98%D0%A1%D0%9C%D0%A2.pdf"><short>Код типа документа</short><descr>см. раздел Справочник "Типы документов" из документа Описание API ГИС МТ<br/>
+(https://честныйзнак.рф/upload/Описание+API+ГИС+МТ.pdf)
+</descr>
+      </element>
+    </module>
+  </package>
+</fpdoc-descriptions>
