@@ -942,6 +942,9 @@ begin
   //URL: /api/v3/lk/documents/create
   //Метод: POST
   AbstractError;
+
+  ///lk/documents/create?pg=lpAuthorization:
+  //Bearer <ТОКЕН>Content-Type: application/json {     "document_format": "string", "product_document": "<Документ в формате base64>",    "type": "string", "signature": "<Открепленная УКЭП формата Base64>"}
 end;
 (*
 function TCRPTComponent.DocCreateGoodsDescritionFirst(AGroupName: string;
