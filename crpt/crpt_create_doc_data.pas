@@ -35,9 +35,90 @@ unit crpt_create_doc_data;
 interface
 
 uses
-  Classes, SysUtils;
+  Classes, SysUtils, JSONObjects, AbstractSerializationObjects;
+
+type
+
+  { TCRPTCreateDocumentData }
+
+  TCRPTCreateDocumentData =  class(TJSONSerializationObject)
+  private
+    FDocumentFormat: string;
+    FDocumentType: string;
+    FProductDocument: string;
+    FSignature: string;
+    procedure SetDocumentFormat(AValue: string);
+    procedure SetDocumentType(AValue: string);
+    procedure SetProductDocument(AValue: string);
+    procedure SetSignature(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    constructor Create; override;
+    destructor Destroy; override;
+  published
+    property DocumentFormat:string read FDocumentFormat write SetDocumentFormat;
+    property ProductDocument:string read FProductDocument write SetProductDocument;
+    property DocumentType:string read FDocumentType write SetDocumentType;
+    property Signature:string read FSignature write SetSignature;
+  end;
 
 implementation
+
+{ TCRPTCreateDocumentData }
+
+procedure TCRPTCreateDocumentData.SetDocumentFormat(AValue: string);
+begin
+  if FDocumentFormat=AValue then Exit;
+  FDocumentFormat:=AValue;
+  ModifiedProperty('DocumentFormat');
+end;
+
+procedure TCRPTCreateDocumentData.SetDocumentType(AValue: string);
+begin
+  if FDocumentType=AValue then Exit;
+  FDocumentType:=AValue;
+  ModifiedProperty('DocumentType');
+end;
+
+procedure TCRPTCreateDocumentData.SetProductDocument(AValue: string);
+begin
+  if FProductDocument=AValue then Exit;
+  FProductDocument:=AValue;
+  ModifiedProperty('ProductDocument');
+end;
+
+procedure TCRPTCreateDocumentData.SetSignature(AValue: string);
+begin
+  if FSignature=AValue then Exit;
+  FSignature:=AValue;
+  ModifiedProperty('Signature');
+end;
+
+procedure TCRPTCreateDocumentData.InternalRegisterPropertys;
+begin
+  inherited InternalRegisterPropertys;
+  RegisterProperty('DocumentFormat', 'document_format', [], '', -1, -1);
+  RegisterProperty('ProductDocument', 'product_document', [], '', -1, -1);
+  RegisterProperty('DocumentType', 'type', [], '', -1, -1);
+  RegisterProperty('Signature', 'signature', [], '', -1, -1);
+end;
+
+procedure TCRPTCreateDocumentData.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+constructor TCRPTCreateDocumentData.Create;
+begin
+  inherited Create;
+end;
+
+destructor TCRPTCreateDocumentData.Destroy;
+begin
+  inherited Destroy;
+end;
 
 end.
 
