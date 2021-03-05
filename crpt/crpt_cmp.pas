@@ -150,7 +150,7 @@ type
     //Метод получения содержимого документа, ранее загруженного в ИС МП
     function DocContent(ADocID:string):TDocItem;
     //4.3 Единый метод создания документов
-    function DocCreate(ADocID:string):TJSONObject;
+    function DocCreate(const PG, ADocumentFormat, ADocumentType:string;const AProductDocument, ASignature:TStream):string;
     //4.4 Методы создания документов
 
     //function DocCreateGoodsDescritionFirst(AGroupName:string; AOstDescriptionElement:Tost_description_element):TJSONObject;
@@ -181,7 +181,7 @@ procedure AddURLParam(var S:string; AParam:string); overload;
 procedure Register;
 
 implementation
-uses jsonparser, sdo_date_utils;
+uses jsonparser, sdo_date_utils, crpt_create_doc_data;
 
 {$R crpt.res}
 
@@ -310,6 +310,7 @@ begin
     end;
     FHTTP.Document.Position:=0;
   end;
+  M.Free;
 end;
 
 procedure TCRPTComponent.SaveHttpData(ACmdName: string);
@@ -683,7 +684,7 @@ end;
 
 function TCRPTComponent.ClientInfo(AInn: String; AGroup: string): TParticipantsInfo;
 var
-  S: String;
+  S, S1: String;
   P: TJSONParser;
   B: Boolean;
 
@@ -708,9 +709,15 @@ begin
   //GET /facade/participants/{inn}
   Result:=nil;
   DoLogin;
-  S:=HTTPEncode(StringReplace(AInn, '%', '%25', [rfReplaceAll]));
+  //S:='';
+  //AddURLParam(S, 'cis', ACis);
 
-  if SendCommand(hmGET, '/facade/participants/' + S, '', nil) then
+  S:=HTTPEncode(StringReplace(AInn, '%', '%25', [rfReplaceAll]));
+  S1:='';
+  if AGroup<>'' then
+    AddURLParam(S1, 'pg', AGroup);
+
+  if SendCommand(hmGET, '/facade/participants/' + S, S1, nil) then
   begin
     SaveHttpData('participants_info');
     FHTTP.Document.Position:=0;
@@ -937,12 +944,50 @@ begin
   end;
 end;
 
-function TCRPTComponent.DocCreate(ADocID: string): TJSONObject;
+function TCRPTComponent.DocCreate(const PG, ADocumentFormat,
+  ADocumentType: string; const AProductDocument, ASignature: TStream): string;
+var
+  V: TCRPTCreateDocumentData;
+  S: String;
+  M: TMemoryStream;
 begin
   //URL: /api/v3/lk/documents/create
   //Метод: POST
   AbstractError;
+  Result:='';
 
+  S:='';
+  M:=TMemoryStream.Create;
+  AddURLParam(S, 'pg', PG);
+  V:=TCRPTCreateDocumentData.Create;
+  V.DocumentType:=ADocumentType;
+  V.DocumentFormat:=ADocumentFormat;
+  V.LoadProductDocument(AProductDocument);
+  V.LoadSignature(ASignature);
+  V.SaveToStream(M);
+  V.Free;
+  M.Position:=0;
+
+  if SendCommand(hmGET, '/lk/documents/create', S, M) then
+  begin
+    SaveHttpData('documents_create');
+    FHTTP.Document.Position:=0;
+    if FHTTP.ResultCode = 200 then
+    begin
+      if FHTTP.Document.Size > 0 then
+      begin
+        SetLength(Result, FHTTP.Document.Size);
+        FHTTP.Document.Position:=0;
+        FHTTP.Document.Read(Result[1], FHTTP.Document.Size);
+      end;
+    end;
+
+{    P:=TJSONParser.Create(FHTTP.Document);
+    Result:=P.Parse as TJSONObject;
+    P.Free;}
+  end;
+
+  M.Free;
   ///lk/documents/create?pg=lpAuthorization:
   //Bearer <ТОКЕН>Content-Type: application/json {     "document_format": "string", "product_document": "<Документ в формате base64>",    "type": "string", "signature": "<Открепленная УКЭП формата Base64>"}
 end;

@@ -67,6 +67,30 @@ type
   end;
 
 implementation
+uses base64;
+
+function EncodeStringBase64W(const S:TStream):String;
+var
+  OutStream : TStringStream;
+  Encoder   : TBase64EncodingStream;
+begin
+  if not Assigned(S) then
+    Exit('');
+
+  OutStream:=TStringStream.Create('');
+  try
+    Encoder:=TBase64EncodingStream.create(OutStream);
+    try
+      Encoder.CopyFrom(S, S.Size);
+    finally
+      Encoder.Free;
+    end;
+    Result:=OutStream.DataString;
+  finally
+    OutStream.free;
+  end;
+end;
+
 
 { TCRPTCreateDocumentData }
 
@@ -130,12 +154,12 @@ end;
 
 procedure TCRPTCreateDocumentData.LoadProductDocument(AStream: TStream);
 begin
-
+  ProductDocument:=EncodeStringBase64W(AStream)
 end;
 
 procedure TCRPTCreateDocumentData.LoadSignature(AStream: TStream);
 begin
-
+  Signature:=EncodeStringBase64W(AStream)
 end;
 
 end.

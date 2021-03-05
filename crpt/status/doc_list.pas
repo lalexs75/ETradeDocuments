@@ -108,7 +108,9 @@ type
     FNumber: string;
     FPdfFile: string;
     FReceivedAt: string;
+    FreceiverInn: string;
     FReceiverName: string;
+    FsenderInn: string;
     FSenderName: string;
     FStatus: string;
     FTotal: Integer;
@@ -134,7 +136,9 @@ type
     procedure SetNumber(AValue: string);
     procedure SetPdfFile(AValue: string);
     procedure SetReceivedAt(AValue: string);
+    procedure SetReceiverInn(AValue: string);
     procedure SetReceiverName(AValue: string);
+    procedure SetSenderInn(AValue: string);
     procedure SetSenderName(AValue: string);
     procedure SetStatus(AValue: string);
     procedure SetTotal(AValue: Integer);
@@ -156,7 +160,9 @@ type
     property Status:string read FStatus write SetStatus;
     //externalId
     property SenderName:string read FSenderName write SetSenderName;
+    property SenderInn:string read FsenderInn write SetsenderInn;
     property ReceiverName:string read FReceiverName write SetReceiverName;
+    property ReceiverInn:string read FreceiverInn write SetreceiverInn;
     property InvoiceNumber:string read FInvoiceNumber write SetInvoiceNumber;
     property InvoiceDate:string read FInvoiceDate write SetInvoiceDate;
     property Total:Integer read FTotal write SetTotal;
@@ -378,11 +384,25 @@ begin
   ModifiedProperty('ReceivedAt');
 end;
 
+procedure TDocItem.SetreceiverInn(AValue: string);
+begin
+  if FreceiverInn=AValue then Exit;
+  FreceiverInn:=AValue;
+  ModifiedProperty('receiverInn');
+end;
+
 procedure TDocItem.SetReceiverName(AValue: string);
 begin
   if FreceiverName=AValue then Exit;
   FReceiverName:=AValue;
   ModifiedProperty('ReceiverName');
+end;
+
+procedure TDocItem.SetSenderInn(AValue: string);
+begin
+  if FsenderInn=AValue then Exit;
+  FsenderInn:=AValue;
+  ModifiedProperty('SenderInn');
 end;
 
 procedure TDocItem.SetSenderName(AValue: string);
@@ -422,6 +442,9 @@ begin
   RegisterProperty('AType', 'type', [], '', -1, -1);
   RegisterProperty('Status', 'status', [], '', -1, -1);
   RegisterProperty('SenderName', 'senderName', [], '', -1, -1);
+  RegisterProperty('SenderInn', 'senderInn', [], '', -1, -1);
+  RegisterProperty('ReceiverInn', 'receiverInn', [], '', -1, -1);
+
   RegisterProperty('ReceiverName', 'receiverName', [], '', -1, -1);
   RegisterProperty('InvoiceNumber', 'invoiceNumber', [], '', -1, -1);
   RegisterProperty('InvoiceDate', 'invoiceDate', [], '', -1, -1);
