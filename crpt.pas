@@ -15,7 +15,7 @@ uses
   acceptance, withdrawal, cis_list, doc_list, CrptGlobalTypes, 
   CrptGlobalUtils, receipt_list, lp_ship_goods, lp_ship_goods_csv, 
   lp_return_xml, crpt_participants_info, crpt_vvod_import_fts, 
-  crpt_create_doc_data, LazarusPackageIntf;
+  crpt_create_doc_data, remark, LazarusPackageIntf;
 
 implementation
 

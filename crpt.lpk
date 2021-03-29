@@ -140,6 +140,9 @@
         <Filename Value="crpt/crpt_create_doc_data.pas"/>
         <UnitName Value="crpt_create_doc_data"/>
       </Item>
+      <Item>
+        <Filename Value="crpt/remark.pas"/>
+      </Item>
     </Files>
     <LazDoc Paths="docs"/>
     <RequiredPkgs>
