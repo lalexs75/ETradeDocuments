@@ -168,6 +168,7 @@ type
 
     //
     property AuthorizationToken:string read FAuthorizationToken write FAuthorizationToken;
+    property AuthorizationTokenTimeStamp:TDateTime read FAuthorizationTokenTimeStamp write FAuthorizationTokenTimeStamp;
   published
     property ProxyData:TProxyData read FProxyData write SetProxyData;
     property OnHttpStatus:TOnHttpStatusEnevent read FOnHttpStatus write FOnHttpStatus;
