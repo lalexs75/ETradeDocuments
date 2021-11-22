@@ -41,8 +41,10 @@ uses
 const
 //  sAPIURL = 'https://ismp.crpt.ru'; //WORK API
   sAPIURL = 'https://ismp.crpt.ru/api/v3';
+  sAPIURL4 = 'https://ismp.crpt.ru/api/v3';
 type
   THttpMethod = (hmGET, hmPOST);
+  TCRPTProtocolVersion = (crtpVersion3, crtpVersion4);
 
   { TProxyData }
 
@@ -82,7 +84,7 @@ type
     function DoAnsverLogin(FUID, FDATA:string):Boolean;
     procedure SaveHttpData(ACmdName: string);
   protected
-    function SendCommand(AMethod:THttpMethod; ACommand:string; AParams:string; AData:TStream):Boolean;
+    function SendCommand(AMethod:THttpMethod; ACommand:string; AParams:string; AData:TStream; AProtocolVersion:TCRPTProtocolVersion):Boolean;
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -293,7 +295,7 @@ begin
   J.Free;
 
 
-  if SendCommand(hmPOST, '/auth/cert/', '', M) then
+  if SendCommand(hmPOST, '/auth/cert/', '', M, crtpVersion3) then
   begin
     SaveHttpData('dologin_cert');
     FHTTP.Document.Position:=0;
@@ -347,9 +349,10 @@ begin
 end;
 
 function TCRPTComponent.SendCommand(AMethod: THttpMethod; ACommand: string;
-  AParams: string; AData: TStream): Boolean;
+  AParams: string; AData: TStream; AProtocolVersion: TCRPTProtocolVersion
+  ): Boolean;
 var
-  S, SMethod: String;
+  S, SMethod, FAPIURL: String;
 begin
   //if FApiClientId = '' then
   //  raise EDiadocException.Create(sNotDefindAPIKey);
@@ -399,7 +402,12 @@ begin
 
   FHTTP.MimeType:='application/json';
 
-  Result := FHTTP.HTTPMethod(SMethod, sAPIURL + ACommand + AParams);
+  if AProtocolVersion = crtpVersion4 then
+    FAPIURL:=sAPIURL4
+  else
+    FAPIURL:=sAPIURL;//crtpVersion3 then
+
+  Result := FHTTP.HTTPMethod(SMethod, FAPIURL + ACommand + AParams);
   FHTTP.Document.Position:=0;
   FResultCode := FHTTP.ResultCode;
   FResultString := FHTTP.ResultString;
@@ -444,7 +452,7 @@ begin
   if (FAuthorizationToken <> '') and (FAuthorizationTokenTimeStamp > (Now - (1 / 20) * 10)) then Exit;
   FAuthorizationToken:='';
   Result:=false;
-  if SendCommand(hmGET, '/auth/cert/key', '', nil) then
+  if SendCommand(hmGET, '/auth/cert/key', '', nil, crtpVersion3) then
   begin
     if FResultCode = 200 then
     begin
@@ -543,7 +551,7 @@ begin
     AddURLParam(S, 'limit', ALimit);
   if AOffset > 0 then
     AddURLParam(S, 'offset', ALimit);
-  if SendCommand(hmGET, '/facade/order/all', S, nil) then
+  if SendCommand(hmGET, '/facade/order/all', S, nil, crtpVersion3) then
   begin
     FHTTP.Document.Position:=0;
     P:=TJSONParser.Create(FHTTP.Document);
@@ -576,7 +584,7 @@ begin
   AddURLParam(S, 'dateTo', xsd_DateTimeToStr(AFilter.DateTo, xdkDateTime));
   if AFilter.Limit > 0 then
     AddURLParam(S, 'limit', AFilter.Limit);
-  if SendCommand(hmGET, '/facade/receipt/listV2', S, nil) then
+  if SendCommand(hmGET, '/facade/receipt/listV2', S, nil, crtpVersion3) then
   begin
     SaveHttpData('receipt_list');
     FHTTP.Document.Position:=0;
@@ -598,7 +606,7 @@ begin
   DoLogin;
   S:='';
 //  AddURLParam(S, 'receiptId', ReceiptId);
-  if SendCommand(hmGET, '/facade/receipt/'+ReceiptId, S, nil) then
+  if SendCommand(hmGET, '/facade/receipt/'+ReceiptId, S, nil, crtpVersion3) then
   begin
     SaveHttpData('receipt_content');
     //FHTTP.Document.Position:=0;
@@ -620,7 +628,7 @@ begin
   DoLogin;
   S:='';
 //  AddURLParam(S, 'receiptId', ReceiptId);
-  if SendCommand(hmGET, '/facade/receipt/'+ReceiptId+'/body', S, nil) then
+  if SendCommand(hmGET, '/facade/receipt/'+ReceiptId+'/body', S, nil, crtpVersion3) then
   begin
     SaveHttpData('receipt_body');
     FHTTP.Document.Position:=0;
@@ -650,7 +658,7 @@ begin
 
   AddURLParam(S, 'gtins', S2);
 
-  if SendCommand(hmGET, '/product/info', S, nil) then
+  if SendCommand(hmGET, '/product/info', S, nil, crtpVersion3) then
   begin
     SaveHttpData('product_info');
     FHTTP.Document.Position:=0;
@@ -672,7 +680,7 @@ begin
   if ACis <> '' then
     AddURLParam(S, 'cis', ACis);
   AddURLParam(S, 'cisMatchMode', 'LIKE');
-  if SendCommand(hmGET, '/facade/agent/received/list', S, nil) then
+  if SendCommand(hmGET, '/facade/agent/received/list', S, nil, crtpVersion3) then
   begin
     SaveHttpData('received_list');
     FHTTP.Document.Position:=0;
@@ -718,7 +726,7 @@ begin
   if AGroup<>'' then
     AddURLParam(S1, 'pg', AGroup);
 
-  if SendCommand(hmGET, '/facade/participants/' + S, S1, nil) then
+  if SendCommand(hmGET, '/facade/participants/' + S, S1, nil, crtpVersion3) then
   begin
     SaveHttpData('participants_info');
     FHTTP.Document.Position:=0;
@@ -752,7 +760,7 @@ begin
   DoLogin;
   S:=HTTPEncode(StringReplace(CIS, '%', '%25', [rfReplaceAll]));
 
-  if SendCommand(hmGET, '/facade/identifytools/' + S, '', nil) then
+  if SendCommand(hmGET, '/facade/identifytools/' + S, '', nil, crtpVersion3) then
   begin
     SaveHttpData('cis_info');
     FHTTP.Document.Position:=0;
@@ -819,7 +827,7 @@ begin
   Целое число
   Максимальное количество записей, которое вернется в качестве ответа.
 *)
-  if SendCommand(hmGET, '/facade/marked_products/listV2', S, nil) then
+  if SendCommand(hmGET, '/facade/marked_products/listV2', S, nil, crtpVersion3) then
   begin
     FHTTP.Document.Position:=0;
     P:=TJSONParser.Create(FHTTP.Document);
@@ -839,11 +847,36 @@ function TCRPTComponent.GetSimpleGoodsList(KMList: TStringArray): TCISItems;
 var
   S, CIS: String;
   P: TJSONParser;
+  J: TJSONObject;
+  JA: TJSONArray;
+  M: TStringStream;
 begin
-  DoLogin;
   Result:=nil;
   //URL: ?cis={КМ}
   //Метод: GET
+  DoLogin;
+
+  J:=TJSONObject.Create;
+  JA:=TJSONArray.Create;
+  for CIS in KMList do
+    JA.Add(CIS);
+  J.Add('cises', JA);
+  M:=TStringStream.Create(J.FormatJSON);
+  M.Position:=0;
+  J.Free;
+//  M.SaveToFile('/home/alexs/aa.txt');
+//  M.Free;
+
+  if SendCommand(hmPOST, '/facade/cis/cis_list', S, M, crtpVersion4) then
+  begin
+    SaveHttpData('cis_list');
+    FHTTP.Document.Position:=0;
+    Result:=TCISItems.Create;
+    Result.LoadFromStream(FHTTP.Document);
+  end;
+  M.Free;
+
+(*
   S:='';
   for CIS in KMList do
     AddURLParam(S, 'cis', CIS);
@@ -857,6 +890,7 @@ begin
     Result:=TCISItems.Create;
     Result.LoadFromStream(FHTTP.Document);
   end;
+*)
 end;
 
 function TCRPTComponent.GetSimpleGoodsList(KM: string): TCISItems;
@@ -909,7 +943,7 @@ begin
   //  8  - milk        – Молочная продукция;
   //  9  - bicycle     – Велосипеды  и  велосипедные рамы;
   //  10 - wheelchairs – Кресла-коляски
-  if SendCommand(hmGET, '/facade/doc/listV2', S, nil) then
+  if SendCommand(hmGET, '/facade/doc/listV2', S, nil, crtpVersion3) then
   begin
     SaveHttpData('doc_list');
     FHTTP.Document.Position:=0;
@@ -933,7 +967,7 @@ begin
   DoLogin;
   Result:=nil;
   S:=HTTPEncode(StringReplace(ADocID, '%', '%25', [rfReplaceAll]));
-  if SendCommand(hmGET, '/facade/doc/'+S+'/body', '', nil) then
+  if SendCommand(hmGET, '/facade/doc/'+S+'/body', '', nil, crtpVersion3) then
   begin
     SaveHttpData('doc_content');
     FHTTP.Document.Position:=0;
@@ -969,7 +1003,7 @@ begin
   V.Free;
   M.Position:=0;
 
-  if SendCommand(hmGET, '/lk/documents/create', S, M) then
+  if SendCommand(hmGET, '/lk/documents/create', S, M, crtpVersion3) then
   begin
     SaveHttpData('documents_create');
     FHTTP.Document.Position:=0;
