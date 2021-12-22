@@ -158,8 +158,19 @@ begin
 end;
 
 procedure TCRPTCreateDocumentData.LoadSignature(AStream: TStream);
+var
+  S: String;
 begin
-  Signature:=EncodeStringBase64W(AStream)
+  //Signature:=EncodeStringBase64W(AStream)
+  Signature:='';
+  if not Assigned(AStream) then Exit;
+  if (AStream.Size > 0) then
+  begin
+    S:='';
+    SetLength(S, AStream.Size);
+    AStream.Read(S[1], AStream.Size);
+    Signature:=S;
+  end;
 end;
 
 end.

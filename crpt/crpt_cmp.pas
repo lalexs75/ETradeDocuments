@@ -988,8 +988,9 @@ var
 begin
   //URL: /api/v3/lk/documents/create
   //Метод: POST
-  AbstractError;
+ // AbstractError;
   Result:='';
+  DoLogin;
 
   S:='';
   M:=TMemoryStream.Create;
@@ -1003,7 +1004,7 @@ begin
   V.Free;
   M.Position:=0;
 
-  if SendCommand(hmGET, '/lk/documents/create', S, M, crtpVersion3) then
+  if SendCommand(hmPOST, '/lk/documents/create', S, M, crtpVersion3) then
   begin
     SaveHttpData('documents_create');
     FHTTP.Document.Position:=0;
