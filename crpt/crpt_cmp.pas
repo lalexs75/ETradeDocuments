@@ -40,8 +40,13 @@ uses
 
 const
 //  sAPIURL = 'https://ismp.crpt.ru'; //WORK API
+
   sAPIURL = 'https://ismp.crpt.ru/api/v3';
   sAPIURL4 = 'https://ismp.crpt.ru/api/v3';
+
+  //тестовый ЦРПТ
+//  sAPIURL = 'https://sandbox.crpt.tech/api/v3';
+//  sAPIURL4 = 'https://sandbox.crpt.tech/api/v4';
 type
   THttpMethod = (hmGET, hmPOST);
   TCRPTProtocolVersion = (crtpVersion3, crtpVersion4);
@@ -873,7 +878,9 @@ begin
     FHTTP.Document.Position:=0;
     Result:=TCISItems.Create;
     Result.LoadFromStream(FHTTP.Document);
-  end;
+  end
+  else
+    SaveHttpData('cis_list');
   M.Free;
 
 (*
@@ -1008,7 +1015,7 @@ begin
   begin
     SaveHttpData('documents_create');
     FHTTP.Document.Position:=0;
-    if FHTTP.ResultCode = 200 then
+//    if FHTTP.ResultCode = 200 then
     begin
       if FHTTP.Document.Size > 0 then
       begin

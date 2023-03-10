@@ -23,6 +23,10 @@ type
 
   TlrSBRF_QRCodeView = class(TlrQRCodeView)
   private
+    FContract: string;
+    FFirstName: string;
+    FLastName: string;
+    FMiddleName: string;
     FPayerINN: string;
     FPayRecipientAccount: string;
     FPayRecipientBank: string;
@@ -30,10 +34,12 @@ type
     FPayRecipientCorrAccount: string;
     FPayRecipientName: string;
     FPurpose: string;
+    FQRFormat: string;
     FSum: string;
   protected
     function GetText:string; override;
   public
+    constructor Create(AOwnerPage:TfrPage);override;
     procedure LoadFromStream(Stream: TStream); override;
     procedure SaveToStream(Stream: TStream); override;
     procedure LoadFromXML(XML: TLrXMLConfig; const Path: String); override;
@@ -55,6 +61,13 @@ type
     property Sum:string read FSum write FSum;
     property Purpose:string read FPurpose write FPurpose;
     property PayerINN:string read FPayerINN write FPayerINN;
+
+    property QRFormat:string read FQRFormat write FQRFormat; //ST00012
+    property Contract:string read FContract write FContract; //Номер договора (Номер счета на оплату)
+    property LastName:string read FLastName write FLastName; //Фамилия Плательщика
+    property FirstName:string read FFirstName write FFirstName; //Имя Плательщика
+    property MiddleName:string read FMiddleName write FMiddleName; //Отчество Плательщика
+
   end;
 
 procedure Register;
@@ -109,7 +122,7 @@ begin
 end;
 
 begin
-  Result:='ST00011|'+
+  Result:=FQRFormat+'|'+
   'Name=' + DoParse(FPayRecipientName) + '|'+
   'PersonalAcc=' + DoParse(FPayRecipientAccount) + '|'+
   'BankName=' + DoParse(FPayRecipientBank) + '|'+
@@ -117,8 +130,20 @@ begin
   'CorrespAcc=' + DoParse(FPayRecipientCorrAccount) + '|'+
   'Sum='+DoParseSum(FSum) + '|'+
   'Purpose=' + DoParse(FPurpose) + '|'+
-  'PayerINN=' + DoParse(FPayerINN)
+  'PayerINN=' + DoParse(FPayerINN) + '|'+
+  'Contract=' + DoParse(FContract);
+  if FLastName<>'' then
+    Result:=Result + '|'+ 'LastName=' + DoParse(FLastName);
+  if FirstName<>'' then
+    Result:=Result + '|'+ 'FirstName=' + DoParse(FFirstName);
+  if MiddleName<>'' then
+    Result:=Result + '|'+ 'MiddleName=' + DoParse(FMiddleName);
+end;
 
+constructor TlrSBRF_QRCodeView.Create(AOwnerPage: TfrPage);
+begin
+  inherited Create(AOwnerPage);
+  FQRFormat:='ST00012';
 end;
 
 procedure TlrSBRF_QRCodeView.LoadFromStream(Stream: TStream);
@@ -134,6 +159,13 @@ begin
   FSum:=frReadString(Stream);
   FPurpose:=frReadString(Stream);
   FPayerINN:=frReadString(Stream);
+  FQRFormat:=frReadString(Stream);//ST00012
+  if FQRFormat = '' then
+    FQRFormat:='ST00012';
+  FContract:=frReadString(Stream);//Номер договора (Номер счета на оплату)
+  FLastName:=frReadString(Stream);//Фамилия Плательщика
+  FFirstName:=frReadString(Stream);//Имя Плательщика
+  FMiddleName:=frReadString(Stream);//Отчество Плательщика
 end;
 
 procedure TlrSBRF_QRCodeView.SaveToStream(Stream: TStream);
@@ -148,6 +180,11 @@ begin
   frWriteString(Stream, FSum);
   frWriteString(Stream, FPurpose);
   frWriteString(Stream, FPayerINN);
+  frWriteString(Stream, FQRFormat);//ST00012
+  frWriteString(Stream, FContract);//Номер договора (Номер счета на оплату)
+  frWriteString(Stream, FLastName);//Фамилия Плательщика
+  frWriteString(Stream, FFirstName);//Имя Плательщика
+  frWriteString(Stream, FMiddleName);//Отчество Плательщика
 end;
 
 procedure TlrSBRF_QRCodeView.LoadFromXML(XML: TLrXMLConfig; const Path: String);
@@ -161,6 +198,14 @@ begin
   FSum:=XML.GetValue(Path+'Sum/Value', '');
   FPurpose:=XML.GetValue(Path+'Purpose/Value', '');
   FPayerINN:=XML.GetValue(Path+'PayerINN/Value', '');
+  FQRFormat:=XML.GetValue(Path+'QRFormat/Value', ''); //ST00012
+  FContract:=XML.GetValue(Path+'Contract/Value', ''); //Номер договора (Номер счета на оплату)
+  FLastName:=XML.GetValue(Path+'LastName/Value', ''); //Фамилия Плательщика
+  FFirstName:=XML.GetValue(Path+'FirstName/Value', ''); //Имя Плательщика
+  FMiddleName:=XML.GetValue(Path+'MiddleName/Value', ''); //Отчество Плательщика
+
+  if FQRFormat = '' then
+    FQRFormat:='ST00012';
 end;
 
 procedure TlrSBRF_QRCodeView.SaveToXML(XML: TLrXMLConfig; const Path: String);
@@ -175,6 +220,11 @@ begin
   XML.SetValue(Path+'Sum/Value', FSum);
   XML.SetValue(Path+'Purpose/Value', FPurpose);
   XML.SetValue(Path+'PayerINN/Value', FPayerINN);
+  XML.SetValue(Path+'QRFormat/Value', FQRFormat);//ST00012
+  XML.SetValue(Path+'Contract/Value', FContract);//Номер договора (Номер счета на оплату)
+  XML.SetValue(Path+'LastName/Value', FLastName);//Фамилия Плательщика
+  XML.SetValue(Path+'FirstName/Value', FFirstName);//Имя Плательщика
+  XML.SetValue(Path+'MiddleName/Value', FMiddleName);//Отчество Плательщика
 end;
 
 procedure TlrSBRF_QRCodeView.Assign(Source: TPersistent);
@@ -191,6 +241,14 @@ begin
     FSum:=TlrSBRF_QRCodeView(Source).FSum;
     FPurpose:=TlrSBRF_QRCodeView(Source).FPurpose;
     FPayerINN:=TlrSBRF_QRCodeView(Source).FPayerINN;
+    FQRFormat:=TlrSBRF_QRCodeView(Source).FQRFormat; //ST00012
+    FContract:=TlrSBRF_QRCodeView(Source).FContract; //Номер договора (Номер счета на оплату)
+    FLastName:=TlrSBRF_QRCodeView(Source).FLastName; //Фамилия Плательщика
+    FFirstName:=TlrSBRF_QRCodeView(Source).FFirstName; //Имя Плательщика
+    FMiddleName:=TlrSBRF_QRCodeView(Source).FMiddleName; //Отчество Плательщика
+
+    if FQRFormat = '' then
+      FQRFormat:='ST00012';
   end;
 end;
 

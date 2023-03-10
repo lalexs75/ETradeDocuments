@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fpdoc-descriptions><package name="sbrf_qr"><module name="lrSBRF_QR"><element name="TlrSBRF_QRCodeView.QRFormat"><short>Идентификатор формата</short>
+      </element><element name="TlrSBRF_QRCodeView.Sum"><short>Сумма платежа, в копейках Макс. 18 знаков </short>
+      </element><element name="TlrSBRF_QRCodeView.PayRecipientName"><short>Наименование получателя </short>
+      </element><element name="TlrSBRF_QRCodeView.PayRecipientAccount"><short>Номер счета получателя платежа </short>
+      </element><element name="TlrSBRF_QRCodeView.PayRecipientBank"><short>Наименование банка получателя платежа </short>
+      </element><element name="TlrSBRF_QRCodeView.PayRecipientBIC"><short>БИК </short>
+      </element><element name="TlrSBRF_QRCodeView.PayRecipientCorrAccount"><short> Номер кор./сч. банка получателя платежа </short>
+      </element><element name="TlrSBRF_QRCodeView.PayerINN"><short>ИНН получателя </short>
+      </element><element name="TlrSBRF_QRCodeView.Purpose"><short>Назначение платежа</short>
+      </element><element name="TlrSBRF_QRCodeView.Contract"><short>Номер договора (Номер счета на оплату)</short>
+      </element><element name="TlrSBRF_QRCodeView.LastName"><short>Фамилия Плательщика</short>
+      </element><element name="TlrSBRF_QRCodeView.FirstName"><short>Имя Плательщика</short>
+      </element><element name="TlrSBRF_QRCodeView.MiddleName"><short>Отчество Плательщика</short>
+      </element>
+    </module>
+  </package>
+</fpdoc-descriptions>
