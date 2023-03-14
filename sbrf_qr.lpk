@@ -12,7 +12,7 @@
       </SearchPaths>
     </CompilerOptions>
     <License Value="LGPL"/>
-    <Version Major="1" Release="2" Build="4"/>
+    <Version Major="1" Release="3" Build="6"/>
     <Files>
       <Item>
         <Filename Value="lrsbrf_qr/lrsbrf_qr.pas"/>

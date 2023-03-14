@@ -128,16 +128,37 @@ begin
   'BankName=' + DoParse(FPayRecipientBank) + '|'+
   'BIC=' + DoParse(FPayRecipientBIC) + '|'+
   'CorrespAcc=' + DoParse(FPayRecipientCorrAccount) + '|'+
-  'Sum='+DoParseSum(FSum) + '|'+
+  'PayeeINN=' + DoParse(FPayerINN) + '|'+
+  'Contract=' + DoParse(FContract) + '|'+
   'Purpose=' + DoParse(FPurpose) + '|'+
-  'PayerINN=' + DoParse(FPayerINN) + '|'+
-  'Contract=' + DoParse(FContract);
+  'LastName=' + DoParse(FLastName) + '|'+
+  'FirstName=' + DoParse(FFirstName) + '|'+
+  'MiddleName=' + DoParse(FMiddleName)+ '|'+
+  'Sum='+DoParseSum(FSum)
+{
   if FLastName<>'' then
     Result:=Result + '|'+ 'LastName=' + DoParse(FLastName);
   if FirstName<>'' then
     Result:=Result + '|'+ 'FirstName=' + DoParse(FFirstName);
   if MiddleName<>'' then
     Result:=Result + '|'+ 'MiddleName=' + DoParse(FMiddleName);
+}
+
+{
+  ST00012 - Идентификатор формата
+  Name= Наименование получателя
+  PersonalAcc= Номер счета получателя платежа
+  BankName= Наименование банка получателя платежа
+  BIC= БИК
+  CorrespAcc= Номер кор./сч. банка получателя платежа
+  PayeeINN= ИНН получателя
+  Contract=Номер договора (Номер счета на оплату)
+  Purpose= Назначение платежа
+  LastName=Фамилия Плательщика
+  FirstName=Имя Плательщика
+  MiddleName=Отчество Плательщика
+  Sum=Сумма платежа, в копейках Макс. 18 знаков
+}
 end;
 
 constructor TlrSBRF_QRCodeView.Create(AOwnerPage: TfrPage);
