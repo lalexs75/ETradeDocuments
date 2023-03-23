@@ -30,6 +30,7 @@ type
     Label6: TLabel;
     Label7: TLabel;
     Label8: TLabel;
+    CLabel: TLabel;
     procedure EditButton1ButtonClick(Sender: TObject);
   private
 

@@ -1,18 +1,18 @@
 object lrSBRF_QR_EditorForm: TlrSBRF_QR_EditorForm
   Left = 487
-  Height = 453
+  Height = 599
   Top = 186
-  Width = 389
+  Width = 568
   Caption = 'Параметры QR кода оплаты'
-  ClientHeight = 453
-  ClientWidth = 389
+  ClientHeight = 599
+  ClientWidth = 568
   Position = poScreenCenter
-  LCLVersion = '2.1.0.0'
+  LCLVersion = '2.3.0.0'
   object ButtonPanel1: TButtonPanel
     Left = 6
-    Height = 42
-    Top = 405
-    Width = 377
+    Height = 40
+    Top = 553
+    Width = 556
     OKButton.Name = 'OKButton'
     OKButton.DefaultCaption = True
     HelpButton.Name = 'HelpButton'
@@ -28,7 +28,7 @@ object lrSBRF_QR_EditorForm: TlrSBRF_QR_EditorForm
     AnchorSideLeft.Control = Owner
     AnchorSideTop.Control = Owner
     Left = 6
-    Height = 15
+    Height = 17
     Top = 6
     Width = 169
     BorderSpacing.Around = 6
@@ -41,22 +41,22 @@ object lrSBRF_QR_EditorForm: TlrSBRF_QR_EditorForm
     AnchorSideTop.Control = EditButton1
     AnchorSideTop.Side = asrBottom
     Left = 6
-    Height = 15
-    Top = 57
-    Width = 215
+    Height = 17
+    Top = 64
+    Width = 209
     BorderSpacing.Around = 6
     Caption = 'Номер счета получателя платежа'
     FocusControl = EditButton2
     ParentColor = False
   end
   object Label3: TLabel
-    AnchorSideLeft.Control = Owner
-    AnchorSideTop.Control = EditButton2
+    AnchorSideLeft.Control = CLabel
+    AnchorSideTop.Control = EditButton7
     AnchorSideTop.Side = asrBottom
-    Left = 6
-    Height = 15
-    Top = 108
-    Width = 268
+    Left = 290
+    Height = 17
+    Top = 64
+    Width = 264
     BorderSpacing.Around = 6
     Caption = 'Наименование банка получателя платежа'
     FocusControl = EditButton3
@@ -67,8 +67,8 @@ object lrSBRF_QR_EditorForm: TlrSBRF_QR_EditorForm
     AnchorSideTop.Control = EditButton3
     AnchorSideTop.Side = asrBottom
     Left = 6
-    Height = 15
-    Top = 159
+    Height = 17
+    Top = 122
     Width = 26
     BorderSpacing.Around = 6
     Caption = 'БИК'
@@ -76,13 +76,13 @@ object lrSBRF_QR_EditorForm: TlrSBRF_QR_EditorForm
     ParentColor = False
   end
   object Label5: TLabel
-    AnchorSideLeft.Control = Owner
-    AnchorSideTop.Control = EditButton4
+    AnchorSideLeft.Control = CLabel
+    AnchorSideTop.Control = EditButton3
     AnchorSideTop.Side = asrBottom
-    Left = 6
-    Height = 15
-    Top = 210
-    Width = 268
+    Left = 290
+    Height = 17
+    Top = 122
+    Width = 262
     BorderSpacing.Around = 6
     Caption = 'Номер кор./сч. банка получателя платежа'
     FocusControl = EditButton5
@@ -92,12 +92,11 @@ object lrSBRF_QR_EditorForm: TlrSBRF_QR_EditorForm
     AnchorSideLeft.Control = Owner
     AnchorSideTop.Control = Label1
     AnchorSideTop.Side = asrBottom
-    AnchorSideRight.Control = Owner
-    AnchorSideRight.Side = asrBottom
+    AnchorSideRight.Control = CLabel
     Left = 6
-    Height = 24
-    Top = 27
-    Width = 377
+    Height = 29
+    Top = 29
+    Width = 272
     Anchors = [akTop, akLeft, akRight]
     BorderSpacing.Around = 6
     ButtonWidth = 23
@@ -113,12 +112,11 @@ object lrSBRF_QR_EditorForm: TlrSBRF_QR_EditorForm
     AnchorSideLeft.Control = Owner
     AnchorSideTop.Control = Label2
     AnchorSideTop.Side = asrBottom
-    AnchorSideRight.Control = Owner
-    AnchorSideRight.Side = asrBottom
+    AnchorSideRight.Control = CLabel
     Left = 6
-    Height = 24
-    Top = 78
-    Width = 377
+    Height = 29
+    Top = 87
+    Width = 272
     Anchors = [akTop, akLeft, akRight]
     BorderSpacing.Around = 6
     ButtonWidth = 23
@@ -131,15 +129,15 @@ object lrSBRF_QR_EditorForm: TlrSBRF_QR_EditorForm
     Text = 'EditButton2'
   end
   object EditButton3: TEditButton
-    AnchorSideLeft.Control = Owner
+    AnchorSideLeft.Control = Label3
     AnchorSideTop.Control = Label3
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
-    Left = 6
-    Height = 24
-    Top = 129
-    Width = 377
+    Left = 296
+    Height = 29
+    Top = 87
+    Width = 266
     Anchors = [akTop, akLeft, akRight]
     BorderSpacing.Around = 6
     ButtonWidth = 23
@@ -155,12 +153,11 @@ object lrSBRF_QR_EditorForm: TlrSBRF_QR_EditorForm
     AnchorSideLeft.Control = Owner
     AnchorSideTop.Control = Label4
     AnchorSideTop.Side = asrBottom
-    AnchorSideRight.Control = Owner
-    AnchorSideRight.Side = asrBottom
+    AnchorSideRight.Control = CLabel
     Left = 6
-    Height = 24
-    Top = 180
-    Width = 377
+    Height = 29
+    Top = 145
+    Width = 272
     Anchors = [akTop, akLeft, akRight]
     BorderSpacing.Around = 6
     ButtonWidth = 23
@@ -173,15 +170,15 @@ object lrSBRF_QR_EditorForm: TlrSBRF_QR_EditorForm
     Text = 'EditButton4'
   end
   object EditButton5: TEditButton
-    AnchorSideLeft.Control = Owner
+    AnchorSideLeft.Control = Label5
     AnchorSideTop.Control = Label5
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
-    Left = 6
-    Height = 24
-    Top = 231
-    Width = 377
+    Left = 296
+    Height = 29
+    Top = 145
+    Width = 266
     Anchors = [akTop, akLeft, akRight]
     BorderSpacing.Around = 6
     ButtonWidth = 23
@@ -198,22 +195,23 @@ object lrSBRF_QR_EditorForm: TlrSBRF_QR_EditorForm
     AnchorSideTop.Control = EditButton5
     AnchorSideTop.Side = asrBottom
     Left = 6
-    Height = 15
-    Top = 261
-    Width = 99
+    Height = 17
+    Top = 238
+    Width = 96
+    Anchors = [akLeft]
     BorderSpacing.Around = 6
     Caption = 'Сумма платежа'
     FocusControl = EditButton6
     ParentColor = False
   end
   object Label7: TLabel
-    AnchorSideLeft.Control = Owner
-    AnchorSideTop.Control = EditButton6
-    AnchorSideTop.Side = asrBottom
-    Left = 6
-    Height = 15
-    Top = 312
-    Width = 104
+    AnchorSideLeft.Control = CLabel
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Owner
+    Left = 291
+    Height = 17
+    Top = 6
+    Width = 105
     BorderSpacing.Around = 6
     Caption = 'ИНН получателя'
     FocusControl = EditButton7
@@ -224,9 +222,10 @@ object lrSBRF_QR_EditorForm: TlrSBRF_QR_EditorForm
     AnchorSideTop.Control = EditButton7
     AnchorSideTop.Side = asrBottom
     Left = 6
-    Height = 15
-    Top = 363
-    Width = 133
+    Height = 17
+    Top = 456
+    Width = 131
+    Anchors = [akLeft]
     BorderSpacing.Around = 6
     Caption = 'Назначение платежа'
     FocusControl = EditButton8
@@ -239,9 +238,9 @@ object lrSBRF_QR_EditorForm: TlrSBRF_QR_EditorForm
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
     Left = 6
-    Height = 24
-    Top = 282
-    Width = 377
+    Height = 29
+    Top = 261
+    Width = 556
     Anchors = [akTop, akLeft, akRight]
     BorderSpacing.Around = 6
     ButtonWidth = 23
@@ -254,15 +253,15 @@ object lrSBRF_QR_EditorForm: TlrSBRF_QR_EditorForm
     Text = 'EditButton6'
   end
   object EditButton7: TEditButton
-    AnchorSideLeft.Control = Owner
+    AnchorSideLeft.Control = Label7
     AnchorSideTop.Control = Label7
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
-    Left = 6
-    Height = 24
-    Top = 333
-    Width = 377
+    Left = 297
+    Height = 29
+    Top = 29
+    Width = 265
     Anchors = [akTop, akLeft, akRight]
     BorderSpacing.Around = 6
     ButtonWidth = 23
@@ -281,9 +280,9 @@ object lrSBRF_QR_EditorForm: TlrSBRF_QR_EditorForm
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
     Left = 6
-    Height = 24
-    Top = 384
-    Width = 377
+    Height = 29
+    Top = 479
+    Width = 556
     Anchors = [akTop, akLeft, akRight]
     BorderSpacing.Around = 6
     ButtonWidth = 23
@@ -294,5 +293,14 @@ object lrSBRF_QR_EditorForm: TlrSBRF_QR_EditorForm
     Spacing = 0
     TabOrder = 8
     Text = 'EditButton8'
+  end
+  object CLabel: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideTop.Control = Owner
+    Left = 284
+    Height = 1
+    Top = 0
+    Width = 1
   end
 end

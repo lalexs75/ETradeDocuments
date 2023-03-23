@@ -37,7 +37,8 @@ type
     FQRFormat: string;
     FSum: string;
   protected
-    function GetText:string; override;
+    //function GetText:string; override;
+    function GetCodeString:string; override;
   public
     constructor Create(AOwnerPage:TfrPage);override;
     procedure LoadFromStream(Stream: TStream); override;
@@ -45,6 +46,7 @@ type
     procedure LoadFromXML(XML: TLrXMLConfig; const Path: String); override;
     procedure SaveToXML(XML: TLrXMLConfig; const Path: String); override;
     procedure Assign(Source: TPersistent); override;
+    //procedure Print(Stream: TStream); override;
   published
     property Frames;
     property FrameColor;
@@ -95,7 +97,7 @@ end;
 
 { TlrSBRF_QRCodeView }
 
-function TlrSBRF_QRCodeView.GetText: string;
+function TlrSBRF_QRCodeView.GetCodeString: string;
 
 function DoParse(AText:string):string;
 begin
@@ -122,19 +124,24 @@ begin
 end;
 
 begin
-  Result:=FQRFormat+'|'+
-  'Name=' + DoParse(FPayRecipientName) + '|'+
-  'PersonalAcc=' + DoParse(FPayRecipientAccount) + '|'+
-  'BankName=' + DoParse(FPayRecipientBank) + '|'+
-  'BIC=' + DoParse(FPayRecipientBIC) + '|'+
-  'CorrespAcc=' + DoParse(FPayRecipientCorrAccount) + '|'+
-  'PayeeINN=' + DoParse(FPayerINN) + '|'+
-  'Contract=' + DoParse(FContract) + '|'+
-  'Purpose=' + DoParse(FPurpose) + '|'+
-  'LastName=' + DoParse(FLastName) + '|'+
-  'FirstName=' + DoParse(FFirstName) + '|'+
-  'MiddleName=' + DoParse(FMiddleName)+ '|'+
-  'Sum='+DoParseSum(FSum)
+  if CurReport.DocMode = dmDesigning then
+    Result:=FQRFormat
+  else
+  begin
+    Result:=FQRFormat+'|'+
+    'Name=' + DoParse(FPayRecipientName) + '|'+
+    'PersonalAcc=' + DoParse(FPayRecipientAccount) + '|'+
+    'BankName=' + DoParse(FPayRecipientBank) + '|'+
+    'BIC=' + DoParse(FPayRecipientBIC) + '|'+
+    'CorrespAcc=' + DoParse(FPayRecipientCorrAccount) + '|'+
+    'PayeeINN=' + DoParse(FPayerINN) + '|'+
+    'Contract=' + DoParse(FContract) + '|'+
+    'Purpose=' + DoParse(FPurpose) + '|'+
+    'LastName=' + DoParse(FLastName) + '|'+
+    'FirstName=' + DoParse(FFirstName) + '|'+
+    'MiddleName=' + DoParse(FMiddleName)+ '|'+
+    'Sum='+DoParseSum(FSum)
+  end;
 {
   if FLastName<>'' then
     Result:=Result + '|'+ 'LastName=' + DoParse(FLastName);
